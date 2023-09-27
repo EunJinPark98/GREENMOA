@@ -20,26 +20,27 @@
 채팅 <br>
 </div>
 
-
+<br>
+<br>
 
 
 <div>
-![image](https://github.com/EunJinPark98/GREENMOA/assets/120006805/b8d5b01b-de43-4838-abbf-06421bf0789c)
-
-
 박은진😊 : 팀 리더, 프로젝트 기획 및 관리 <br>
 이윤주😊 : 프론트엔드 개발 <br>
 신협진😊 : 백엔드 개발 <br>
 김진우😊 : 백엔드 개발 <br>
 </div>
 
-
+<br>
+<br>
 
 <div>
 🏃‍♂️개발 기간 <br>
 23. 10. 04 ~ 언제까지..? (약 한달)
 </div>
 
+<br>
+<br>
 
 <div>
 🛠️ 기술 스택 <br>
@@ -48,7 +49,8 @@
 버전관리 GIT / GitHub <br>
 </div>
 
-
+<br>
+<br>
 
 <div>
 팀스페이스
