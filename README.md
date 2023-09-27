@@ -14,7 +14,7 @@
 23. 09. 26 ~ 그린 종강
 
 
-🛠️ 기술 스택
+🛠️ 기술 스택 <br>
 프론트엔드 HTML / CSS / JavaScript / Thymeleaf <br>
 백엔드 Java / SpringBoot / Oracle <br>
 버전관리 GIT / GitHub
