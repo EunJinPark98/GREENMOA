@@ -25,4 +25,13 @@
 백엔드 Java / SpringBoot / Oracle <br>
 버전관리 GIT / GitHub
 
+
+
+팀스페이스
+https://www.notion.so/2c88f99b2bf94323a6a96eef6757d0cc?v=02b6d3c9f0ca4dfbb3bf5e8bda285f75&pvs=4
+
+모든 상황 노션에 공유해주세요~!
+소통 열심히!
+코딩은 재밌게!
+
 </div>
