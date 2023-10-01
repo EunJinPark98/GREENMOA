@@ -10,48 +10,48 @@
 </div>
 
 
-<div>
+
 ## 💭구현할 기능 (구상중)
 
 로그인/회원가입<br>
 게시판(공지, 질의, 자유) <br>
 쪽지 <br>
 채팅 <br>
-</div>
+
 
 <br>
 <br>
 
 
-<div>
+
 박은진😊 : 팀 리더, 프로젝트 기획 및 관리 <br>
 이윤주😊 : 프론트엔드 개발 <br>
 신협진😊 : 백엔드 개발 <br>
 김진우😊 : 백엔드 개발 <br>
-</div>
+
 
 <br>
 <br>
 
-<div>
+
 ## 🏃‍♂️개발 기
 23. 10. 04 ~ 그린 종강 (약 한달)
-</div>
+
 
 <br>
 <br>
 
-<div>
+
 ## 🛠️ 기술 스택
 프론트엔드 HTML / CSS / JavaScript / JQuery / Thymeleaf <br>
 백엔드 Java / SpringBoot / Oracle <br>
 버전관리 GIT / GitHub <br>
-</div>
+
 
 <br>
 <br>
 
-<div>
+
   
 ## 💬팀스페이스
 https://www.notion.so/2c88f99b2bf94323a6a96eef6757d0cc?v=02b6d3c9f0ca4dfbb3bf5e8bda285f75&pvs=4
