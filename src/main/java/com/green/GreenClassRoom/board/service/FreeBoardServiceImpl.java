@@ -22,4 +22,24 @@ public class FreeBoardServiceImpl implements FreeBoardService{
     public int insertFreeBoard(FreeBoardVO freeBoardVO) {
         return sqlSession.insert("freeBoardMapper.insertFreeBoard",freeBoardVO);
     }
+
+    @Override
+    public FreeBoardVO selectFreeBoardDetail(int boardNum) {
+        return sqlSession.selectOne("freeBoardMapper.selectFreeBoardDetail",boardNum);
+    }
+
+    @Override
+    public int readCntUp(int boardNum) {
+        return sqlSession.update("freeBoardMapper.readCntUp",boardNum);
+    }
+
+    @Override
+    public int updateFreeBoard(FreeBoardVO freeBoardVO) {
+        return sqlSession.update("freeBoardMapper.updateFreeBoard",freeBoardVO);
+    }
+
+    @Override
+    public int deleteFreeBoard(int boardNum) {
+        return sqlSession.delete("freeBoardMapper.deleteFreeBoard",boardNum);
+    }
 }

@@ -1,17 +1,20 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org"
-    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{fragment/main_layout}">
 <head>
 <meta charset="UTF-8">
 <title></title>
 </head>
 <body>
-    <h3>자유게시글 작성 페이지</h3>
-    <hr>
-    <form action="/board/insertFreeBoard" method="post">
-        글 제목 : <input type="text" name="title" required ><br>
-        글 내용 : <textarea rows="5" cols="50" name="content"></textarea><br>
-        <input type="submit" value="글 등록">
-    </form>
+    <th:block layout:fragment="content">
+        <h3>자유게시글 작성 페이지</h3>
+        <hr>
+        <form action="/board/insertFreeBoard" method="post">
+            글 제목 : <input type="text" name="title" required ><br>
+            글 내용 : <textarea rows="5" cols="50" name="content"></textarea><br>
+            <input type="submit" value="글 등록">
+        </form>
+    </th:block>   
 </body>
 </html>
