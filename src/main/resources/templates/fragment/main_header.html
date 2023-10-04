@@ -7,11 +7,14 @@
 <body>
     <th:block th:fragment="mainHeaderFragment">
         <link rel="stylesheet" href="/css/main_header.css">
-        <h1>헤더입니다!!</h1>
-        <h2>헤더에는 메뉴를 넣습니다</h2>
-        <h1>헤더를 왼쪽에 만들어봤는데</h1>
-        <h2>어떻게 할지는 마음대로!</h2>
+
+        <span class="cursor-span" onclick="location.href='/member/loginPage';">로그인</span>
+        <span class="cursor-span" onclick="location.href='/member/joinPage'">회원가입</span>
+
+
+
     </th:block>
+    </div>
     <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
     <script src="/js/main_header.js"></script>
 </body>
