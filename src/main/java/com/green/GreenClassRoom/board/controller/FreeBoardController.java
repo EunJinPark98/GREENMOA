@@ -44,4 +44,35 @@ public class FreeBoardController {
         System.out.println("@@@@@@@@@@@@@"+freeBoardVO);
         return "redirect:/board/freeBoardList";
     }
+
+    // 게시글 상세 페이지 이동, 게시글 조회수 증가 기능
+    @GetMapping("/freeBoardDetail")
+    public String freeBoardDetail(int boardNum,Model model){
+        FreeBoardVO freeBoardDetail=freeBoardService.selectFreeBoardDetail(boardNum);
+        model.addAttribute("freeBoardDetail",freeBoardDetail);
+
+        freeBoardService.readCntUp(boardNum);
+        return "content/board/free_board_detail";
+    }
+    // 게시글 수정 페이지 이동
+    @GetMapping("/updateBoardForm")
+    public String updateBoardForm(int boardNum,Model model){
+        FreeBoardVO freeBoardDetail=freeBoardService.selectFreeBoardDetail(boardNum);
+        model.addAttribute("freeBoardDetail",freeBoardDetail);
+        return "content/board/free_board_update";
+    }
+
+    // 게시글 수정 기능
+    @PostMapping("/updateFreeBoard")
+    public String updateFreeBoard(FreeBoardVO freeBoardVO){
+        freeBoardService.updateFreeBoard(freeBoardVO);
+        return "redirect:/board/freeBoardDetail?boardNum="+freeBoardVO.getBoardNum();
+    }
+
+    // 게시글 삭제 기능
+    @GetMapping("/deleteBoard")
+    public String deleteBoard(int boardNum){
+        freeBoardService.deleteFreeBoard(boardNum);
+        return "redirect:/board/freeBoardList";
+    }
 }
