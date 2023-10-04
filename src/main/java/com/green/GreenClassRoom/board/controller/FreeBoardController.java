@@ -2,6 +2,7 @@ package com.green.GreenClassRoom.board.controller;
 
 import com.green.GreenClassRoom.board.service.FreeBoardService;
 import com.green.GreenClassRoom.board.vo.FreeBoardVO;
+import com.green.GreenClassRoom.member.vo.MemberVO;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -36,8 +37,8 @@ public class FreeBoardController {
     // 게시글 작성
     @PostMapping("/insertFreeBoard")
     public String insertFreeBoard(FreeBoardVO freeBoardVO, HttpSession session){
-//        FreeBoardVO loginInfo=(FreeBoardVO) session.getAttribute("loginInfo");
-//        freeBoardVO.setWriter(loginInfo.getWriter());
+        MemberVO loginInfo=(MemberVO) session.getAttribute("loginInfo");
+        freeBoardVO.setWriter(loginInfo.getMemberId());
         // writer 값 임시로 지정
         freeBoardVO.setWriter("test2");
         freeBoardService.insertFreeBoard(freeBoardVO);
