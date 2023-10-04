@@ -1,5 +1,9 @@
 @charset "UTF-8";
 
+body{
+    position: relative;
+}
+
 #classRoom{
     background-image: url(/images/room_frame.jpg);
     background-size: 100% 100%;
@@ -8,4 +12,33 @@
     border-radius: 20px;
     height: 400px;
     object-fit: cover;
+}
+
+.utility{
+    background-image: url(/images/login.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 100% auto;
+    width: 150px;
+    height: 115px;
+    text-indent: -99999px;
+    position: absolute;
+    top: 30%;
+    left: 50%;
+}
+
+.utilMenu{
+    background-image: url(/images/conver.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 100% auto;
+    width: 200px;
+    height: 140px;
+    text-align: center;
+    padding-top: 45px;
+    font-family: 'Dovemayo_gothic';
+}
+
+.utilMenu a{
+    font-size: 23px;
 }
