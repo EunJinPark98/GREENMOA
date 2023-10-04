@@ -7,6 +7,10 @@
 <body>
     <th:block th:fragment="mainHeaderFragment">
         <link rel="stylesheet" href="/css/main_header.css">
+        <th:block th:each="menu : ${menuList}">
+            <p><a th:href="@{${menu.menuUrl}}">[[${menu.menuName}]]</a></p>
+        </th:block>
+
     </th:block>
     </div>
     <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
