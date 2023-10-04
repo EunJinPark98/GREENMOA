@@ -1,11 +1,11 @@
 @charset "UTF-8";
 body{
-    background-color: #A7BDB6;
+    background-color: #EBE4DA;
 }
 
 #logo{
-    width: 200px;
-    height: 200px;
+    width: 500px;
+    height: 150px;
 }
 
 #logo img{
