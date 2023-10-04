@@ -1,2 +1,36 @@
 @charset "UTF-8";
 
+@font-face {
+    font-family: 'Dovemayo_gothic';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2302@1.1/Dovemayo_gothic.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
+a{
+    text-decoration: none;
+}
+
+.menu{
+    width: 113px;
+    height: 65px;
+    border-radius: 0 15px 15px 0;
+    border: 3px solid #E4C682;
+    font-family: 'Dovemayo_gothic';
+    padding-top: 18px;
+    background-color: #F0E2BC;
+    margin-left: -13px;
+}
+
+.menu a{
+    font-size: 20px;
+    color: #9f9083;
+    letter-spacing: 1px;
+    margin-left: 10px;
+}
+
+.menu:hover{
+    background-color: #F7D281;
+    width: 150px;
+    transition-duration: 0.5s;
+}
