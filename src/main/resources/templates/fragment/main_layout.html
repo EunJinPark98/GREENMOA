@@ -9,13 +9,14 @@
 <body>
     <div class="container">
         <div class="row mt-5">
-            <!-- 헤더 -->
-            <div class="col-2" style="background-color: #B1D0D1;">
-                <th:block th:replace="~{/fragment/main_header :: mainHeaderFragment}"></th:block>
-            </div>
+            <h1 id="logo"><img src="/images/GreenMoaLogo.png" alt=""></h1>
             <!-- 컨텐츠 -->
-            <div class="col-10" style="background-color: #FDFCFB;">
+            <div class="col-11" style="background-color: #EDEDEB;">
                 <th:block layout:fragment="content"></th:block>
+            </div>
+            <!-- 헤더 -->
+            <div class="col-1" style="background-color: #DDCDCD; color: #fff;">
+                <th:block th:replace="~{/fragment/main_header :: mainHeaderFragment}"></th:block>
             </div>
         </div>
     </div>

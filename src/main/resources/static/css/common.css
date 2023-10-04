@@ -1,4 +1,15 @@
 @charset "UTF-8";
 body{
-    background-color: #BBD8B7;
+    background-color: #A7BDB6;
+}
+
+#logo{
+    width: 200px;
+    height: 200px;
+}
+
+#logo img{
+    width: 100%;
+    height: auto;
+
 }
