@@ -10,4 +10,6 @@ public class FreeBoardVO {
     private String writer;
     private String createDate;
     private int readCnt;
+    private String searchType;
+    private String searchValue;
 }

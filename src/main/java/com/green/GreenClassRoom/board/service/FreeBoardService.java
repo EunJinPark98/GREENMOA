@@ -11,5 +11,16 @@ public interface FreeBoardService {
     // 게시판 글 등록 쿼리 메소드
     public int insertFreeBoard(FreeBoardVO freeBoardVO);
 
+    // 게시판 번호를 기준으로 상세게시글 보기
+    public FreeBoardVO selectFreeBoardDetail(int boardNum);
+
+    // 조회 수 카운트 증가 기능
+    public int readCntUp(int boardNum);
+
+    // 게시판 수정 기능
+    public int updateFreeBoard(FreeBoardVO freeBoardVO);
+
+    // 게시판 삭제 기능
+    public int deleteFreeBoard(int boardNum);
 
 }

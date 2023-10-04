@@ -11,6 +11,7 @@
         <result column="CREATE_DATE" property="createDate"/>
         <result column="READ_CNT" property="readCnt"/>
     </resultMap>
+
     <!--자유게시판 목록 쿼리-->
     <select id="selectFreeBoardList" resultMap="freeBoard">
         SELECT BOARD_NUM
@@ -19,8 +20,12 @@
             , TO_CHAR(CREATE_DATE,'YYYY-MM-DD') CREATE_DATE
             , READ_CNT
         FROM FREE_BOARD
-        ORDER BY CREATE_DATE DESC
+        <if test='searchValue!=null and !searchValue.equals("")'>
+            WHERE UPPER(${searchType}) LIKE '%'||UPPER(#{searchValue})||'%'
+        </if>
+        ORDER BY BOARD_NUM DESC
     </select>
+
     <!--자유게시판 작성 쿼리-->
     <insert id="insertFreeBoard">
         INSERT INTO FREE_BOARD(
@@ -35,6 +40,41 @@
             , #{writer}
         )
     </insert>
+
+    <!--게시판 번호를 기준으로 상세게시글 보기-->
+    <select id="selectFreeBoardDetail" resultMap="freeBoard">
+        SELECT BOARD_NUM
+        , TITLE
+        , CONTENT
+        , WRITER
+        , TO_CHAR(CREATE_DATE,'YYYY-MM-DD') CREATE_DATE
+        , READ_CNT
+        FROM FREE_BOARD
+        WHERE BOARD_NUM=#{boardNum}
+    </select>
+
+    <!--게시글 조회수 증가-->
+    <update id="readCntUp">
+        UPDATE FREE_BOARD
+        SET
+        READ_CNT= READ_CNT+1
+        WHERE BOARD_NUM=#{boardNum}
+    </update>
+
+    <!--게시글 수정 -->
+    <update id="updateFreeBoard">
+        UPDATE FREE_BOARD
+        SET
+        TITLE=#{title}
+        ,CONTENT=#{content}
+        WHERE BOARD_NUM=#{boardNum}
+    </update>
+
+    <!--게시글 삭제-->
+    <delete id="deleteFreeBoard">
+        DELETE FREE_BOARD
+        WHERE BOARD_NUM=#{boardNum}
+    </delete>
 </mapper>
 
 
