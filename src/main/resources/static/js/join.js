@@ -7,6 +7,18 @@ function searchAddr(){
     }).open();
 }
 
+//회원가입시 데이터 유효성 검사
+function joinValidate(){
+    //1. 데이터 유효성 검사
+    //ID 입력 여부 체크
+
+    //form 태그 선택
+    //form 태그 안의 요소는 name 속성으로 접근 가능
+    const joinForm = document.querySelector("#joinForm");
+
+    //form 태그 안에 name 속성이 memberId인 태그의 value
+}
+
 //아이디 중복확인
 function checkId(){
     fetch('/member/checkId', { //요청경로

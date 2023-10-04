@@ -8,5 +8,5 @@ public interface MemberService {
     public int join(MemberVO memberVO);
 
     //아이디 중복 확인
-    public boolean checkId(String memberId);
+//    public boolean checkId(String memberId);
 }
