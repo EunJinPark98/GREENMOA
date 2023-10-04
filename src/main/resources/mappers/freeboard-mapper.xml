@@ -20,6 +20,9 @@
             , TO_CHAR(CREATE_DATE,'YYYY-MM-DD') CREATE_DATE
             , READ_CNT
         FROM FREE_BOARD
+        <if test='searchValue!=null and !searchValue.equals("")'>
+            WHERE UPPER(${searchType}) LIKE '%'||UPPER(#{searchValue})||'%'
+        </if>
         ORDER BY BOARD_NUM DESC
     </select>
 
