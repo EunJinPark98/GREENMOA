@@ -7,7 +7,6 @@ function searchAddr(){
     }).open();
 }
 
-
 //아이디 중복확인
 function checkId(){
     fetch('/member/checkId', { //요청경로
@@ -27,12 +26,17 @@ function checkId(){
             return ;
         }
     
-        return response.text(); //컨트롤러에서 return하는 데이터가 없거나 int, String 일 때 사용
-        //return response.json(); //나머지 경우에 사용
+        //return response.text(); //컨트롤러에서 return하는 데이터가 없거나 int, String 일 때 사용
+        return response.json(); //나머지 경우에 사용
     })
     //fetch 통신 후 실행 영역
     .then((data) => {//data -> controller에서 리턴되는 데이터!
-        
+        if(data){
+            alert('사용 가눙한 ID입니다.')
+        }
+        else{
+            alert('사용 불가능한 ID입니다.')
+        }
     })
     //fetch 통신 실패 시 실행 영역
     .catch(err=>{

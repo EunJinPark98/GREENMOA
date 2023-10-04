@@ -1,7 +1,9 @@
 package com.green.GreenClassRoom.room.controller;
 
+import com.green.GreenClassRoom.room.service.RoomService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -9,9 +11,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/room")
 @RequiredArgsConstructor
 public class RoomController {
-//여기는 메인 화면 작업하는 컨트롤러입니다!!
+    private final RoomService roomService;
+
     @GetMapping("/main")
-    public String main(){
+    public String main(Model model){
+        model.addAttribute("menuList", roomService.selectMenuList());
         return "/content/room/main";
     }
 

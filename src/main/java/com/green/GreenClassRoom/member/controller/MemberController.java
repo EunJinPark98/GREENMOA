@@ -25,7 +25,7 @@ public class MemberController {
     @PostMapping("/join")
     public String join(MemberVO memberVO){
         memberService.join(memberVO);
-        return "redirect:/content/room/main";
+        return "redirect:/room/main";
     }
 
     //아이디 중복 확인

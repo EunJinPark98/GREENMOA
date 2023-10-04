@@ -44,12 +44,6 @@
         )
     </insert>
 
-    <!--아이디 중복 확인-->
-    <select id="checkId" resultMap="String">
-        SELECT MEMBER_ID
-        FROM GREEN_MEMBER
-        WHERE MEMBER_ID = #{memberId}
-    </select>
 </mapper>
 
 
