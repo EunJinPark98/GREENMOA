@@ -4,7 +4,7 @@
 그린아카데미 팀 프로젝트 4조
 학급커뮤니티 "GREEN MOA"
 
-![그린모아로고](https://github.com/EunJinPark98/GREENMOA/assets/120006805/292157dc-c20a-4b56-a184-06f5d170e9bf)
+![image](https://github.com/EunJinPark98/GREENMOA/assets/120006805/79e49d0d-28c6-405c-8002-50af7407d98b)
 
 <br>
 <br>
