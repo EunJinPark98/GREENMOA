@@ -9,13 +9,16 @@
 <body>
     <div class="container">
         <div class="row mt-5">
-            <!-- 헤더 -->
-            <div class="col-2" style="background-color: #B1D0D1;">
-                <th:block th:replace="~{/fragment/main_header :: mainHeaderFragment}"></th:block>
-            </div>
+            <h1 id="logo"><img src="/images/GREENMOA_logo.png" alt=""></h1>
             <!-- 컨텐츠 -->
-            <div class="col-10" style="background-color: #fff;">
-                <th:block layout:fragment="content"></th:block>
+            <div class="col-11" style="background-color: #FFF; padding: 40px; border: 3px solid #E4C682; margin-top: -20px;">
+                <div style="border: 3px solid #D8D8D8; padding-bottom: 600px; border-radius: 20px;">
+                    <th:block layout:fragment="content"></th:block>
+                </div>
+            </div>
+            <!-- 헤더 -->
+            <div class="col-1" style="background-color: #F0E2BC; color: #fff;">
+                <th:block th:replace="~{/fragment/main_header :: mainHeaderFragment}"></th:block>
             </div>
         </div>
     </div>
