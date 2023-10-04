@@ -3,7 +3,7 @@
 
 <!-- 해당 파일에 모든 쿼리문을 작성 -->
 <mapper namespace="memberMapper">
-	<resultMap id="member" type="com.green.GreenClassRoom.member.vo.MemberVO">
+    <resultMap id="member" type="com.green.GreenClassRoom.member.vo.MemberVO">
         <result column="MEMBER_ID" property="memberId"/>
         <result column="MEMBER_PW" property="memberPw"/>
         <result column="MEMBER_NAME" property="memberName"/>
@@ -15,6 +15,41 @@
         <result column="MEMBER_EMAIL" property="memberEmail"/>
         <result column="MEMBER_ROLL" property="memberRoll"/>
     </resultMap>
+
+    <!--회원가입-->
+    <insert id="join">
+        INSERT INTO GREEN_MEMBER (
+            MEMBER_ID
+            , MEMBER_PW
+            , MEMBER_NAME
+            , MEMBER_BIRTHDATE
+            , MEMBER_GENDER
+            , MEMBER_TEL
+            , MEMBER_ADDR
+            , ADDR_DETAIL
+            , MEMBER_EMAIL
+        ) VALUES (
+            #{memberId}
+            , #{memberPw}
+            , #{memberName}
+            , #{memberBirthDate}
+            , #{memberGender}
+            , #{memberTel}
+            , #{memberAddr}
+            , #{addrDetail}
+            ,
+        <foreach collection="memberEmails" item="email" separator="||">
+            #{email}
+        </foreach>
+        )
+    </insert>
+
+    <!--아이디 중복 확인-->
+    <select id="checkId" resultMap="String">
+        SELECT MEMBER_ID
+        FROM GREEN_MEMBER
+        WHERE MEMBER_ID = #{memberId}
+    </select>
 </mapper>
 
 
