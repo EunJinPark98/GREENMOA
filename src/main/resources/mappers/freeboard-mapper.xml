@@ -20,7 +20,7 @@
             , TO_CHAR(CREATE_DATE,'YYYY-MM-DD') CREATE_DATE
             , READ_CNT
         FROM FREE_BOARD
-        ORDER BY CREATE_DATE DESC
+        ORDER BY BOARD_NUM DESC
     </select>
 
     <!--자유게시판 작성 쿼리-->
