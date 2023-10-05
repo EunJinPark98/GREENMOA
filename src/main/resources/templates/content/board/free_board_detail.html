@@ -48,6 +48,9 @@
                     </tr>
                 </th:block>
         </table>
+        <div>
+            
+        </div>
         <input type="button" value="뒤로가기" onclick="location.href='/board/freeBoardList'">
         <div th:if="${session.loginInfo != null}">
             <div th:if="${freeBoardDetail.writer == session.loginInfo.memberId or session.loginInfo.isAdmin == 'Y'}">
