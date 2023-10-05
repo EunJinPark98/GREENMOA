@@ -17,6 +17,21 @@ function joinValidate(){
     const joinForm = document.querySelector("#joinForm");
 
     //form 태그 안에 name 속성이 memberId인 태그의 value
+    if(joinForm.memberId.value == ''){
+        inputInvalidate('#id-error-div', 'ID을 입력해야합니다.');
+        return;
+    }
+    else if(joinForm.memberId.value.length < 4){
+        inputInvalidate('#id-error-div', 'ID는 4글자 이상이어야 합니다.');
+        return;
+    }
+
+    //이메일 정규식
+    var emailRegex = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/;
+    
+    //2. submit 실행
+    //form 태그 선택 -> submit() 함수 실행
+    document.querySelector('#joinForm').submit();
 }
 
 //아이디 중복확인

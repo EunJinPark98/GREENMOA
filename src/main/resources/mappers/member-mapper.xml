@@ -44,6 +44,12 @@
         )
     </insert>
 
+    <select id="checkId" resultType="String">
+        SELECT MEMBER_ID
+        FROM GREEN_MEMBER
+        WHERE MEMBER_ID = #{memberId}
+    </select>
+
 </mapper>
 
 

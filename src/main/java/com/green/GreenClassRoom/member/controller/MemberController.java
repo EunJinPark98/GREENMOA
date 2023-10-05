@@ -29,11 +29,11 @@ public class MemberController {
     }
 
     //아이디 중복 확인
-//    @PostMapping("/checkId")
-//    @ResponseBody
-//    public boolean checkId(String memberId){
-//        return memberService.checkId(memberId);
-//    }
+    @ResponseBody
+    @PostMapping("/checkId")
+    public boolean checkId(String memberId){
+        return memberService.checkId(memberId);
+    }
 
     //로그인 페이지
     @GetMapping("/loginPage")
