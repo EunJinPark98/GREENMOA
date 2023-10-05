@@ -15,4 +15,5 @@ public class MemberVO {
     private String memberEmail;
     private String[] memberEmails;
     private String memberRoll;
+    private String isAdmin;
 }

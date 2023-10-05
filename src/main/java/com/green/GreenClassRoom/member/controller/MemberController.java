@@ -50,7 +50,8 @@ public class MemberController {
             session.setAttribute("loginInfo", loginInfo);
         }
         System.out.println(loginInfo);
-        return "redirect:/room/main";
+        //"redirect:/room/main"
+        return "content/member/login_result";
     }
     // 로그아웃 기능
     @GetMapping("/logout")
