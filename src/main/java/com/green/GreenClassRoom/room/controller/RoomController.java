@@ -11,11 +11,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/room")
 @RequiredArgsConstructor
 public class RoomController {
-    private final RoomService roomService;
+
 
     @GetMapping("/main")
-    public String main(Model model){
-        model.addAttribute("menuList", roomService.selectMenuList());
+    public String main(){
+
         return "/content/room/main";
     }
 
