@@ -7,67 +7,76 @@ function searchAddr(){
     }).open();
 }
 
-//회원가입시 데이터 유효성 검사
+//회원가입 시 데이터 유효성 검사
 function joinValidate(){
-    //1. 데이터 유효성 검사
-    //ID 입력 여부 체크
-
-    //form 태그 선택
-    //form 태그 안의 요소는 name 속성으로 접근 가능
-    const joinForm = document.querySelector("#joinForm");
-
-    //form 태그 안에 name 속성이 memberId인 태그의 value
-    if(joinForm.memberId.value == ''){
-        inputInvalidate('#id-error-div', 'ID을 입력해야합니다.');
-        return;
-    }
-    else if(joinForm.memberId.value.length < 4){
-        inputInvalidate('#id-error-div', 'ID는 4글자 이상이어야 합니다.');
-        return;
-    }
-
-    //이메일 정규식
-    var emailRegex = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/;
     
-    //2. submit 실행
-    //form 태그 선택 -> submit() 함수 실행
-    document.querySelector('#joinForm').submit();
+    const joinForm = document.querySelector('#joinForm');       //form 안에 요소들은 name으로 접근가능!
+
+    if(joinForm.memberId.value == ''){
+        inputInvalidate('#id-error-div', '아이디를 입력해주세요.');
+        return;
+    }else if(joinForm.memberId.value.length < 4){
+        inputInvalidate('#id-error-div', '아이디는 4자 이상 입력해주세요.');
+        return;
+    }
+
+    // 정규식 테스트
+    var telRegex = /^01([0|1|6|7|8|9])-?([0-9]{3,4})-?([0-9]{4})$/;
+    const tel = joinForm.memberTels[0].value + '-' + joinForm.memberTels[1].value + '-' + joinForm.memberTels[2].value;
+    if(!(telRegex.test(tel))){
+        inputInvalidate('#tel-error-div', '연락처를 다시 입력해주세요.');
+        return;
+    }
+
+    var emailRegex = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/;
+    const email = joinForm.memberEmails[0].value + joinForm.memberEmails[1].value
+    if(!(emailRegex.test(email))){
+        inputInvalidate('#email-error-div', '이메일을 다시 입력해주세요.');
+        return;
+    }
+
+    joinForm.submit();
 }
+
+//validate 실패 시 메세지 설정
+function inputInvalidate(tagId, msg){
+    document.querySelector(tagId).style.display = 'block';
+    document.querySelector(tagId).textContent = msg;
+}
+
 
 //아이디 중복확인
 function checkId(){
-    fetch('/member/checkId', { //요청경로
-        method: 'POST',
+    fetch('/member/checkIdFetch', { 		
+        method: 'POST', 		
         cache: 'no-cache',
         headers: {
             'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
         },
-        //컨트롤러로 전달할 데이터
         body: new URLSearchParams({
             'memberId' : document.querySelector('#memberId').value
         })
     })
     .then((response) => {
         if(!response.ok){
-            alert('fetch error!\n컨트롤러로 통신중에 오류가 발생했습니다.');
-            return ;
+            return;
         }
-    
-        //return response.text(); //컨트롤러에서 return하는 데이터가 없거나 int, String 일 때 사용
-        return response.json(); //나머지 경우에 사용
+        //return response.text();		//컨트롤러에서 return하는 데이터가 없거나 int, String 일 때
+        return response.json(); 		//위의 경우 뺀 나머지 (객체, 리스트)
     })
-    //fetch 통신 후 실행 영역
-    .then((data) => {//data -> controller에서 리턴되는 데이터!
+    .then((data) => {
         if(data){
-            alert('사용 가눙한 ID입니다.')
-        }
-        else{
-            alert('사용 불가능한 ID입니다.')
+            alert('사용 가능한 아이디입니다.');
+            document.querySelector('#joinBtn').disabled = false;
+        }else{
+            alert('사용 불가능한 아이디입니다.');
         }
     })
-    //fetch 통신 실패 시 실행 영역
     .catch(err=>{
-        alert('fetch error!\nthen 구문에서 오류가 발생했습니다.\n콘솔창을 확인하세요!');
-        console.log(err);
     });
+}
+
+//가입버튼 비활성화
+function setDisabled(){
+    document.querySelector('#joinBtn').disabled = true;
 }

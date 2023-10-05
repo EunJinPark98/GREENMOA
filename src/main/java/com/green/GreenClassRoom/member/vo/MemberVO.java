@@ -7,13 +7,14 @@ public class MemberVO {
     private String memberId;
     private String memberPw;
     private String memberName;
-    private String memberBirthDate;
+    private String memberBirthday;
     private String memberGender;
     private String memberTel;
+    private String[] memberTels;
     private String memberAddr;
     private String addrDetail;
     private String memberEmail;
     private String[] memberEmails;
     private String memberRoll;
-    private String isAdmin;
+    private String minime;
 }

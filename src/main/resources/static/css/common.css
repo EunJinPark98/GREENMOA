@@ -27,3 +27,7 @@ body{
     height: auto;
 
 }
+
+#email-error-div{
+    color: red;
+}

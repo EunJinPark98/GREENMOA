@@ -15,6 +15,8 @@ public class MenuInterceptor implements HandlerInterceptor {
 
     @Override
     public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception {
-        modelAndView.addObject("menuList", roomService.selectMenuList());
+        if(modelAndView!=null){
+            modelAndView.addObject("menuList", roomService.selectMenuList());
+        }
     }
 }

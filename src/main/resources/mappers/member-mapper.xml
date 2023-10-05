@@ -4,19 +4,49 @@
 <!-- 해당 파일에 모든 쿼리문을 작성 -->
 <mapper namespace="memberMapper">
     <resultMap id="member" type="com.green.GreenClassRoom.member.vo.MemberVO">
-        <result column="MEMBER_ID" property="memberId"/>
+        <id column="MEMBER_ID" property="memberId"/>
         <result column="MEMBER_PW" property="memberPw"/>
         <result column="MEMBER_NAME" property="memberName"/>
-        <result column="MEMBER_BIRTHDATE" property="memberBirthDate"/>
+        <result column="MEMBER_BIRTHDAY" property="memberBirthday"/>
         <result column="MEMBER_GENDER" property="memberGender"/>
         <result column="MEMBER_TEL" property="memberTel"/>
         <result column="MEMBER_ADDR" property="memberAddr"/>
         <result column="ADDR_DETAIL" property="addrDetail"/>
         <result column="MEMBER_EMAIL" property="memberEmail"/>
         <result column="MEMBER_ROLL" property="memberRoll"/>
+        <result column="MINIME" property="minime"/>
     </resultMap>
 
     <!--회원가입-->
+    <insert id="join">
+        INSERT INTO GREEN_MEMBER (
+            MEMBER_ID
+            , MEMBER_PW
+            , MEMBER_NAME
+            , MEMBER_BIRTHDAY
+            , MEMBER_GENDER
+            , MEMBER_TEL
+            , MEMBER_ADDR
+            , ADDR_DETAIL
+            , MEMBER_EMAIL
+        ) VALUES(
+            #{memberId}
+            , #{memberPw}
+            , #{memberName}
+            , #{memberBirthday}
+            , #{memberGender}
+            ,
+            <foreach collection="memberTels" item="tel" separator="||'-'||">
+                #{tel}
+            </foreach>
+            , #{memberAddr}
+            , #{addrDetail}
+            ,
+            <foreach collection="memberEmails" item="email" separator="||">
+                #{email}
+            </foreach>
+            )
+    </insert>
 
     <!--로그인 기능 쿼리-->
     <select id="login" resultMap="member">
@@ -28,35 +58,12 @@
         AND MEMBER_PW=#{memberPw}
     </select>
 
+    <!--ID 체크-->
+    <select id="checkId" resultType="String">
+        SELECT MEMBER_ID
+        FROM GREEN_MEMBER
+        WHERE MEMBER_ID = #{memberId}
+    </select>
 </mapper>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
