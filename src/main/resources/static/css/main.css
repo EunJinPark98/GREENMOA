@@ -28,17 +28,21 @@ body{
 }
 
 .utilMenu{
-    background-image: url(/images/conver.png);
+    background-image: url(/images/loginMenu.png);
     background-position: center;
     background-repeat: no-repeat;
     background-size: 100% auto;
-    width: 200px;
-    height: 140px;
+    width: 170px;
+    height: 135px;
     text-align: center;
     padding-top: 45px;
     font-family: 'Dovemayo_gothic';
+    position: absolute;
+    top: 18%;
+    left: 48%;
 }
 
 .utilMenu a{
-    font-size: 23px;
+    font-size: 25px;
+    color: #fff;
 }

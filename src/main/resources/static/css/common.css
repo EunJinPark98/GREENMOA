@@ -1,6 +1,6 @@
 @charset "UTF-8";
 
-/* 윤주 : 폰트 - 둘기마요고딕 */
+/* 폰트 - 둘기마요고딕 */
 @font-face {
     font-family: 'Dovemayo_gothic';
     src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2302@1.1/Dovemayo_gothic.woff2') format('woff2');
@@ -8,7 +8,7 @@
     font-style: normal;
 }
 
-/* 윤주 : a태그 밑줄 없애기 */
+/* a태그 밑줄 없애기 */
 a{
     text-decoration: none;
 }
