@@ -18,6 +18,7 @@
     </resultMap>
 
     <!--회원가입-->
+<<<<<<< HEAD
 <!--    <insert id="join">-->
 <!--        INSERT INTO GREEN_MEMBER (-->
 <!--            MEMBER_ID-->
@@ -51,6 +52,42 @@
         SELECT MEMBER_ID
         FROM GREEN_MEMBER
         WHERE MEMBER_ID = #{memberId}
+=======
+    <insert id="join">
+        INSERT INTO GREEN_MEMBER (
+            MEMBER_ID
+            , MEMBER_PW
+            , MEMBER_NAME
+            , MEMBER_BIRTHDATE
+            , MEMBER_GENDER
+            , MEMBER_TEL
+            , MEMBER_ADDR
+            , ADDR_DETAIL
+            , MEMBER_EMAIL
+        ) VALUES (
+            #{memberId}
+            , #{memberPw}
+            , #{memberName}
+            , #{memberBirthDate}
+            , #{memberGender}
+            , #{memberTel}
+            , #{memberAddr}
+            , #{addrDetail}
+            ,
+        <foreach collection="memberEmails" item="email" separator="||">
+            #{email}
+        </foreach>
+        )
+    </insert>
+    <!--로그인 기능 쿼리-->
+    <select id="login" resultMap="member">
+        SELECT MEMBER_ID
+        , MEMBER_NAME
+        , MEMBER_ROLL
+        FROM GREEN_MEMBER
+        WHERE MEMBER_ID=#{memberId}
+        AND MEMBER_PW=#{memberPw}
+>>>>>>> e59298b61a0e77b14048992d6137b27a5b937883
     </select>
 
 </mapper>

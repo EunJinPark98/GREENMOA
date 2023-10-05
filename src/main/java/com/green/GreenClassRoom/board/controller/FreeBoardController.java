@@ -37,10 +37,10 @@ public class FreeBoardController {
     // 게시글 작성
     @PostMapping("/insertFreeBoard")
     public String insertFreeBoard(FreeBoardVO freeBoardVO, HttpSession session){
-//        MemberVO loginInfo=(MemberVO) session.getAttribute("loginInfo");
-//        freeBoardVO.setWriter(loginInfo.getMemberId());
-        // writer 값 임시로 지정
-        freeBoardVO.setWriter("test2");
+        MemberVO loginInfo=(MemberVO) session.getAttribute("loginInfo");
+        freeBoardVO.setWriter(loginInfo.getMemberId());
+//        writer 값 임시로 지정
+//        freeBoardVO.setWriter("test2");
         freeBoardService.insertFreeBoard(freeBoardVO);
         System.out.println("@@@@@@@@@@@@@"+freeBoardVO);
         return "redirect:/board/freeBoardList";
