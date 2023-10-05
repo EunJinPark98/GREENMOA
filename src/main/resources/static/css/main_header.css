@@ -20,6 +20,7 @@ a{
     padding-top: 18px;
     background-color: #F0E2BC;
     margin-left: -13px;
+    transition: width 0.1s ease-out;
 }
 
 .menu a{
@@ -32,5 +33,4 @@ a{
 .menu:hover{
     background-color: #F7D281;
     width: 150px;
-    transition-duration: 0.5s;
 }
