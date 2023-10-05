@@ -14,10 +14,10 @@
         <result column="ADDR_DETAIL" property="addrDetail"/>
         <result column="MEMBER_EMAIL" property="memberEmail"/>
         <result column="MEMBER_ROLL" property="memberRoll"/>
-        <result column="MINIME" property="minime"/>
     </resultMap>
 
     <!--회원가입-->
+<<<<<<< HEAD
 <<<<<<< HEAD
 <!--    <insert id="join">-->
 <!--        INSERT INTO GREEN_MEMBER (-->
@@ -47,6 +47,34 @@
 <!--            , #{minime}-->
 <!--        )-->
 <!--    </insert>-->
+=======
+    <insert id="join">
+        INSERT INTO GREEN_MEMBER (
+            MEMBER_ID
+            , MEMBER_PW
+            , MEMBER_NAME
+            , MEMBER_BIRTHDATE
+            , MEMBER_GENDER
+            , MEMBER_TEL
+            , MEMBER_ADDR
+            , ADDR_DETAIL
+            , MEMBER_EMAIL
+        ) VALUES (
+            #{memberId}
+            , #{memberPw}
+            , #{memberName}
+            , #{memberBirthDate}
+            , #{memberGender}
+            , #{memberTel}
+            , #{memberAddr}
+            , #{addrDetail}
+            ,
+        <foreach collection="memberEmails" item="email" separator="||">
+            #{email}
+        </foreach>
+        )
+    </insert>
+>>>>>>> parent of e426f3f (미니미 실패)
 
     <select id="checkId" resultType="String">
         SELECT MEMBER_ID

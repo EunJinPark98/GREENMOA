@@ -25,7 +25,7 @@ public class MemberController {
     //회원가입
     @PostMapping("/join")
     public String join(MemberVO memberVO){
-//        memberService.join(memberVO);
+        memberService.join(memberVO);
         return "redirect:/room/main";
     }
 

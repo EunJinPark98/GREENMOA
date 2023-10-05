@@ -59,7 +59,7 @@ function checkId(){
     //fetch 통신 후 실행 영역
     .then((data) => {//data -> controller에서 리턴되는 데이터!
         if(data){
-            alert('사용 가능한 ID입니다.')
+            alert('사용 가눙한 ID입니다.')
         }
         else{
             alert('사용 불가능한 ID입니다.')
@@ -71,42 +71,3 @@ function checkId(){
         console.log(err);
     });
 }
-
-//이미지 슬라이드
-// let currentGroup = 0;
-
-function openModal() {
-    document.getElementById('myModal').style.display = 'block';
-    // showGroup(currentGroup);
-}
-
-// function closemodal() {
-//     document.getElementById('myModal').style.display = 'none';
-// }
-
-// function showGroup(index) {
-//     const groups = document.querySelectorAll('.slide-group');
-//     groups.forEach((group, i) => {
-//         group.style.transform = `translateX(${100 * (i - index)}%)`;
-//     });
-// }
-
-// function prevGroup() {
-//     if (currentGroup > 0) {
-//         currentGroup--;
-//         showGroup(currentGroup);
-//     }
-// }
-
-// function nextGroup() {
-//     const groups = document.querySelectorAll('.slide-group');
-//     if (currentGroup < groups.length - 1) {
-//         currentGroup++;
-//         showGroup(currentGroup);
-//     }
-// }
-
-// document.getElementById('openModalBtn').addEventListener('click', openModal);
-
-
-

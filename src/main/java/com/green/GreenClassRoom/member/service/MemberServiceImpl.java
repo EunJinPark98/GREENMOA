@@ -10,10 +10,10 @@ import org.springframework.stereotype.Service;
 public class MemberServiceImpl implements MemberService {
     private final SqlSessionTemplate sqlSession;
 
-//    @Override
-//    public int join(MemberVO memberVO) {
-//        return sqlSession.insert("memberMapper.join", memberVO);
-//    }
+    @Override
+    public int join(MemberVO memberVO) {
+        return sqlSession.insert("memberMapper.join", memberVO);
+    }
 
     @Override
     public boolean checkId(String memberId) {
