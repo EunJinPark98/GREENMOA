@@ -10,12 +10,25 @@
     <th:block layout:fragment="content">
         <link rel="stylesheet" href="/css/main.css">
         <div id="classRoom">
-            <a href="/member/joinPage">회원가입 임시</a><br>
+            <!-- 로그인 / 회원가입 버튼 아래 다른 div박스로 옮김 -->
+        </div>
+
+        <!-- 책 아이콘 클릭 -> 로그인, 회원가입 메뉴 -->
+        <div class="utility" onclick="login();">login</div>
+
+        <div class="utilMenu">
             <a href="/member/loginPage">로그인 임시</a>
         </div>
 
+<<<<<<< HEAD
 
         
+=======
+        <script>
+            let utilMenu = document.querySelector('.utilMenu');
+        </script>
+
+>>>>>>> 35af9459c413f44478f326aa02676d7a06279db8
     </th:block>
 </body>
 </html>
