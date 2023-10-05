@@ -16,8 +16,48 @@
         <!-- 책 아이콘 클릭 -> 로그인, 회원가입 메뉴 -->
         <div class="utility" onclick="login();">login</div>
 
-        <div class="utilMenu">
-            <a href="/member/loginPage">로그인 임시</a>
+        <!-- 로그인 안했을 시 -->
+        <th:block th:if="${session.loginInfo ==null}">
+            <div class="utilMenu">
+                <a data-bs-toggle="modal" data-bs-target="#login-modal" href="/member/loginPage">로그인 임시</a>
+            </div>
+        </th:block>
+        <!-- 로그인 했을 시 -->
+        <th:block th:if="${session.loginInfo !=null}">
+            <div class="utilMenu">
+                <a href="/member/logout">로그아웃</a>
+            </div>
+        </th:block>
+        
+        <!-- 로그인 임시 버튼 클릭시 실행되는 modal창 -->
+
+        <div class="modal fade" id="login-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <form action="/member/login" method="post">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">로그인 화면</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                      </div>
+                      <div class="modal-body">
+                        <form>
+                          <div class="mb-3">
+                            <label for="recipient-name" class="col-form-label">아이디</label>
+                            <input type="text" class="form-control" id="memberId" name="memberId" required >
+                          </div>
+                          <div class="mb-3">
+                            <label for="message-text" class="col-form-label">비밀번호</label>
+                            <input type="password" class="form-control" id="memberPw" name="memberPw" required>
+                          </div>
+                        </form>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" onclick="location.href='/member/joinPage';">회원가입하러 가기</button>
+                        <button type="submit" class="btn btn-primary" value="로그인">로그인</button>
+                      </div>
+                    </div>
+                </div>
+            </form>
         </div>
 
         <script>

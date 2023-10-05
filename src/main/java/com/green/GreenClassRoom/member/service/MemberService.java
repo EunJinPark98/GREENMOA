@@ -9,4 +9,7 @@ public interface MemberService {
 
     //아이디 중복 확인
     public boolean checkId(String memberId);
+
+    // 로그인
+    public MemberVO login(MemberVO memberVO);
 }

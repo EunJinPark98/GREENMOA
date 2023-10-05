@@ -2,6 +2,7 @@ package com.green.GreenClassRoom.member.controller;
 
 import com.green.GreenClassRoom.member.service.MemberService;
 import com.green.GreenClassRoom.member.vo.MemberVO;
+import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -39,5 +40,22 @@ public class MemberController {
     @GetMapping("/loginPage")
     public String loginPage(){
         return "/content/member/login_page";
+    }
+
+    // 로그인 기능
+    @PostMapping("/login")
+    public String login(MemberVO memberVO, HttpSession session){
+        MemberVO loginInfo=memberService.login(memberVO);
+        if(loginInfo!=null) {
+            session.setAttribute("loginInfo", loginInfo);
+        }
+        System.out.println(loginInfo);
+        return "redirect:/room/main";
+    }
+    // 로그아웃 기능
+    @GetMapping("/logout")
+    public String logout(HttpSession session){
+        session.removeAttribute("loginInfo");
+        return "redirect:/room/main";
     }
 }

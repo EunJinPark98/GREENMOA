@@ -43,6 +43,15 @@
         </foreach>
         )
     </insert>
+    <!--로그인 기능 쿼리-->
+    <select id="login" resultMap="member">
+        SELECT MEMBER_ID
+        , MEMBER_NAME
+        , MEMBER_ROLL
+        FROM GREEN_MEMBER
+        WHERE MEMBER_ID=#{memberId}
+        AND MEMBER_PW=#{memberPw}
+    </select>
 
 </mapper>
 
