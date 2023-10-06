@@ -9,23 +9,29 @@
 <body>
     <th:block layout:fragment="content">
         <link rel="stylesheet" href="/css/main.css">
-        <div id="classRoom"></div>
 
-        <!-- 책 아이콘 -> 로그인 메뉴 -->
-        <div class="utility">login</div>
+        <!-- 로그인 미니미 -->
+        <div class="loginMinimi">minimi</div>
 
         <!-- 로그인 안했을 시 -->
         <th:block th:if="${session.loginInfo ==null}">
-            <div class="utilMenu">
-                <a data-bs-toggle="modal" data-bs-target="#login-modal" href="/member/loginPage">로그인</a>
-            </div>
+          <div class="loginConver">
+            <a data-bs-toggle="modal" data-bs-target="#login-modal" href="/member/loginPage">로그인</a>
+          </div>
         </th:block>
         <!-- 로그인 했을 시 -->
         <th:block th:if="${session.loginInfo !=null}">
-            <div class="utilMenu">
-                <a href="/member/logout">로그아웃 임시</a>
+            <div class="loginConver">
+                <a href="/member/logout">로그아웃</a>
             </div>
         </th:block>
+
+        <!-- 룸 배경 -->
+        <div id="classRoom"></div>
+
+        <!-- 책 아이콘 -> 과제 메뉴? 아직 안정함 -->
+        <div class="utility">과제</div>
+        <div class="utilMenu"></div>
         
         <!-- 로그인 임시 버튼 클릭시 실행되는 modal창 -->
 

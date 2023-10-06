@@ -4,6 +4,10 @@ body{
     position: relative;
 }
 
+.content{
+    position: relative;
+}
+
 #classRoom{
     background-image: url(/images/room_frame.jpg);
     background-size: 100% 100%;
@@ -14,7 +18,38 @@ body{
     object-fit: cover;
 }
 
-/* --------- 로그인 메뉴 애니메이션 효과 --------- */
+/* ----------- 로그인 메뉴 ----------- */
+.loginMinimi, .loginConver{
+    position: absolute;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+.loginMinimi{
+    background-image: url(/images/loginMinimi2.png);
+    top: 17px;
+    right: 12%;
+    width: 80px;
+    height: 105px;
+    text-indent: -99999px;
+}
+.loginConver{
+    background-image: url(/images/loginMinimi1.png);
+    top: -15px;
+    right: 17%;
+    width: 90px;
+    height: 70px;
+    text-align: center;
+    padding-top: 15px;
+    transform: rotate(-10deg);
+}
+.loginConver a{
+    color: #89847b;
+    font-size: 20px;
+    letter-spacing: 1px;
+}
+
+/* --------- 로그인 메뉴(로그인말고 과제로) 애니메이션 효과 --------- */
 .utility{
     background-image: url(/images/login.png);
     background-position: center;
@@ -38,7 +73,6 @@ body{
     height: 135px;
     text-align: center;
     padding-top: 45px;
-    font-family: 'Dovemayo_gothic';
     position: absolute;
     top: 19%;
     left: 50%;

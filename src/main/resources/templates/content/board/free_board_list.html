@@ -19,17 +19,16 @@
     .headTitle{
         position: relative;
     }
-    .headTitle::after{
-        content: "";
-        display: block;
+    .headTitleBar{
         position: absolute;
-        bottom: 0;
+        top: 0;
         width: 160px;
         height: 30px;
         background-color: #ddd;
-        animation: headTitle .5s ease-in forwards;
+        animation: headTitleBar .5s ease-in forwards;
+        text-indent: -99999px;
     }
-    @keyframes headTitle{
+    @keyframes headTitleBar{
         0%{
             width: 0px;
         }
@@ -50,7 +49,8 @@
 <body>
     <th:block layout:fragment="content">
         <div class="boardBox container">
-            <p class="headTitle h1">자유게시판</p>
+            <h1 class="headTitle">자유게시판</h1>
+            <span class="headTitleBar">head-title-bar</span>
             <div class="searchBox col align-self-center mt-5 mb-3">
                 <form action="/board/freeBoardList" method="post">
                     <div class="input-group justify-content-md-center">
