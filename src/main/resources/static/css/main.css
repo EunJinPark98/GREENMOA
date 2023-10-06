@@ -14,6 +14,7 @@ body{
     object-fit: cover;
 }
 
+/* --------- 로그인 메뉴 애니메이션 효과 --------- */
 .utility{
     background-image: url(/images/login.png);
     background-position: center;
@@ -25,6 +26,7 @@ body{
     position: absolute;
     top: 30%;
     left: 50%;
+    cursor: pointer;
 }
 
 .utilMenu{
@@ -38,9 +40,8 @@ body{
     padding-top: 45px;
     font-family: 'Dovemayo_gothic';
     position: absolute;
-    top: 18%;
-    left: 48%;
-    display: none;
+    top: 19%;
+    left: 50%;
 }
 
 .utilMenu a{

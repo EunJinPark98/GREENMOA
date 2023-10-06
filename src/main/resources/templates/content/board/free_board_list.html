@@ -10,7 +10,7 @@
         font-family: 'Dovemayo_gothic';
     }
 
-    /* ----------- 게시판 영역 ----------- */
+    /* ----------- 자유게시판 ----------- */
     .boardBox{
         padding: 50px;
         position: relative;
@@ -18,7 +18,6 @@
     }
     .headTitle{
         position: relative;
-        z-index: 1;
     }
     .headTitle::after{
         content: "";
@@ -51,7 +50,7 @@
 <body>
     <th:block layout:fragment="content">
         <div class="boardBox container">
-            <h1 class="headTitle">자유게시판</h1>
+            <p class="headTitle h1">자유게시판</p>
             <div class="searchBox col align-self-center mt-5 mb-3">
                 <form action="/board/freeBoardList" method="post">
                     <div class="input-group justify-content-md-center">

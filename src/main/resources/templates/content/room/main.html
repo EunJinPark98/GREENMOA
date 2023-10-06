@@ -9,12 +9,10 @@
 <body>
     <th:block layout:fragment="content">
         <link rel="stylesheet" href="/css/main.css">
-        <div id="classRoom">
-            <!-- 로그인 버튼 아래 다른 div박스로 옮김 -->
-        </div>
+        <div id="classRoom"></div>
 
-        <!-- 책 아이콘 클릭 -> 로그인, 회원가입 메뉴 -->
-        <div class="utility" onclick="login();">login</div>
+        <!-- 책 아이콘 -> 로그인 메뉴 -->
+        <div class="utility">login</div>
 
         <!-- 로그인 안했을 시 -->
         <th:block th:if="${session.loginInfo ==null}">
@@ -60,19 +58,11 @@
             </form>
         </div>
 
-        <a data-original-title="Popover on left" 
-            data-animation="false" data-easein="bounce" href="#" 
-            class="btn btn-primary" rel="popover" 
-            data-placement="top" 
-            data-content="Vivamus sagittis lacus vel augue laoreet 
-            rutrum faucibus.">bounce</a>
-
+        <!-- 로그인 메뉴 말풍선 -->
         <script>
             let utilMenu = document.querySelector('.utilMenu');
-            function login(){
-                element.classList.remove("bounce");
-                element.offsetWidth = element.offsetWidth;
-                element.classList.add("bounce");
+            window.onload = function(){
+              utilMenu.classList.add('bounce');
             }
         </script>
 
