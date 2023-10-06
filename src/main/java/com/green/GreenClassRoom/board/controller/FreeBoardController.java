@@ -2,6 +2,7 @@ package com.green.GreenClassRoom.board.controller;
 
 import com.green.GreenClassRoom.board.service.FreeBoardService;
 import com.green.GreenClassRoom.board.vo.FreeBoardVO;
+import com.green.GreenClassRoom.board.vo.ReplyVO;
 import com.green.GreenClassRoom.member.vo.MemberVO;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
@@ -23,7 +24,7 @@ public class FreeBoardController {
     @RequestMapping("/freeBoardList")
     public String freeBoardList(FreeBoardVO freeBoardVO, Model model){
         System.out.println("///////////////////////"+freeBoardVO);
-        List< FreeBoardVO> boardList = freeBoardService.selectFreeBoardList(freeBoardVO);
+        List<FreeBoardVO> boardList = freeBoardService.selectFreeBoardList(freeBoardVO);
         model.addAttribute("boardList",boardList);
         return "content/board/free_board_list";
     }
@@ -48,9 +49,12 @@ public class FreeBoardController {
 
     // 게시글 상세 페이지 이동, 게시글 조회수 증가 기능
     @GetMapping("/freeBoardDetail")
-    public String freeBoardDetail(int boardNum,Model model){
+    public String freeBoardDetail(int boardNum,Model model,ReplyVO replyVO){
         FreeBoardVO freeBoardDetail=freeBoardService.selectFreeBoardDetail(boardNum);
         model.addAttribute("freeBoardDetail",freeBoardDetail);
+
+        List<ReplyVO> replyList = freeBoardService.selectReply(replyVO);
+        model.addAttribute("replyList",replyList);
 
         freeBoardService.readCntUp(boardNum);
         return "content/board/free_board_detail";
@@ -75,5 +79,13 @@ public class FreeBoardController {
     public String deleteBoard(int boardNum){
         freeBoardService.deleteFreeBoard(boardNum);
         return "redirect:/board/freeBoardList";
+    }
+
+    // 댓글 작성
+    @PostMapping("/insertReply")
+    public String insertReply(ReplyVO replyVO){
+        System.out.println("###########"+replyVO);
+        freeBoardService.insertReply(replyVO);
+        return "redirect:/board/freeBoardDetail?boardNum="+replyVO.getBoardNum();
     }
 }

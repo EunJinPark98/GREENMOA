@@ -39,7 +39,7 @@
             </th:block>
             <th:block th:unless="${#lists.size(freeBoardDetail)==0}">
                     <tr th:each="board, state : ${freeBoardDetail}">
-                        <td>[[${#lists.size(freeBoardDetail)-state.index}]]</td>
+                        <td>[[${board.boardNum}]]</td>
                         <td>[[${board.title}]]</td>
                         <td>[[${board.content}]]</td>
                         <td>[[${board.writer}]]</td>
@@ -48,7 +48,40 @@
                     </tr>
                 </th:block>
         </table>
+
         <div>
+            <table>
+                <tr>
+                    <td>댓글번호</td>
+                    <td>작성자</td>
+                    <td>댓글내용</td>
+                    <td>작성일</td>
+                </tr>
+    
+                <th:block th:if="${#lists.size(replyList)==0}">
+                    <tr>
+                        <td colspan="5">조회된 게시글이 없습니다.</td>
+                    </tr>
+                </th:block>
+    
+                <th:block th:unless="${#lists.size(replyList)==0}">
+                    <tr th:each="reply, state : ${replyList}">
+                        <td>[[${#lists.size(replyList)-state.index}]]</td>
+                        <td>[[${reply.replyer}]]</td>
+                        <td>[[${reply.replyText}]]</td>
+                        <td>[[${reply.regDate}]]</td>
+                    </tr>
+                </th:block>
+            </table>
+        </div>
+        <div>
+            <form action="/board/insertReply" method="post">
+                <label>댓글 작성자</label>
+                <input type="text" id="replyer" name="replyer"><br>
+                <textarea name="replyText" id="replyText" cols="50" rows="5"></textarea>
+                <input type="hidden" name="boardNum" th:value="${freeBoardDetail.boardNum}">
+                <input type="submit" value="댓글작성"></input>
+            </form>
             
         </div>
         <input type="button" value="뒤로가기" onclick="location.href='/board/freeBoardList'">
