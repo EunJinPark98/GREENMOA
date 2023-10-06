@@ -77,9 +77,10 @@
         </div>
         <div>
             <form action="/board/insertReply" method="post">
-                <label>댓글 작성자</label>
+                <label>댓글 작성자</label><br>
                 <input type="text" id="replyer" name="replyer"><br>
-                <textarea name="replyText" id="replyText" cols="50" rows="5"></textarea>
+                <label >댓글 쓰기</label><br>
+                <textarea name="replyText" id="replyText" cols="50" rows="5"></textarea><br>
                 <input type="hidden" name="boardNum" th:value="${freeBoardDetail.boardNum}">
                 <input type="submit" value="댓글작성"></input>
             </form>
