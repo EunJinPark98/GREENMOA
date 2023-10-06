@@ -1,6 +1,7 @@
 package com.green.GreenClassRoom.board.service;
 
 import com.green.GreenClassRoom.board.vo.FreeBoardVO;
+import com.green.GreenClassRoom.board.vo.ReplyVO;
 
 import java.util.List;
 
@@ -22,5 +23,11 @@ public interface FreeBoardService {
 
     // 게시판 삭제 기능
     public int deleteFreeBoard(int boardNum);
+
+    // 댓글 작성
+    public int insertReply(ReplyVO replyVO);
+
+    // 댓글 조회
+    public List<ReplyVO> selectReply(ReplyVO replyVO);
 
 }
