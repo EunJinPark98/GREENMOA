@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 해당 파일에 모든 쿼리문을 작성 -->
+<mapper namespace="qnaBoardMapper">
+    <resultMap id="qnaBoard" type="com.green.GreenClassRoom.board.vo.QnaBoardVO">
+        <result column="QNA_BOARD_NUM" property="qnaBoardNum"/>
+        <result column="QNA_BOARD_TITLE" property="qnaBoardTitle"/>
+        <result column="QNA_BOARD_CONTENT" property="qnaBoardContent"/>
+        <result column="QNA_BOARD_WRITER" property="qnaBoardWriter"/>
+        <result column="QNA_CREATE_DATE" property="qnaCreateDate"/>
+        <result column="QNA_READ_CNT" property="qnaReadCnt"/>
+    </resultMap>
+
+    <!--질문게시판 글 작성-->
+    <insert id="insert">
+        INSERT INTO QNA_BOARD (
+            QNA_BOARD_NUM
+            , QNA_BOARD_TITLE
+            , QNA_BOARD_CONTENT
+            , QNA_BOARD_WRITER
+        ) VALUES (
+            (SELECT NVL(MAX(QNA_BOARD_NUM),0) +1 FROM QNA_BOARD)
+            , #{qnaBoardTitle}
+            , #{qnaBoardContent}
+            , #{qnaBoardWriter}
+        )
+    </insert>
+
+    <!--질문게시판 글 목록 조회-->
+    <select id="selectQnaBoard" resultMap="qnaBoard">
+        SELECT QNA_BOARD_NUM
+            , QNA_BOARD_TITLE
+            , QNA_BOARD_WRITER
+            , TO_CHAR(QNA_CREATE_DATE, 'YYYY-MM-DD') QNA_CREATE_DATE
+            , QNA_READ_CNT
+        FROM QNA_BOARD
+        <if test='searchText!=null and !searchText.equals("")'>
+            WHERE UPPER(${searchType}) LIKE '%'||UPPER(#{searchText})||'%'
+        </if>
+        ORDER BY QNA_BOARD_NUM DESC
+    </select>
+	
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

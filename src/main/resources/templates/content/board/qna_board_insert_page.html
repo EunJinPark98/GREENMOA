@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{fragment/main_layout}" >
+<head>
+<meta charset="UTF-8">
+<title></title>
+</head>
+<body>
+<th:block layout:fragment="content">
+    <h1>질문 글 작성</h1>
+    <hr>
+    <form action="/board/qnaBoardInsert" method="post">
+        <div class="row">
+            <div class="col">
+                제목 : <input type="text" name="qnaBoardTitle">
+
+                <input type="text" name="qnaBoardWriter">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <div>내용</div>
+                <div><textarea name="qnaBoardContent" rows="5" cols="50"></textarea></div>
+            </div>
+        </div>
+        <!-- <div class="row mb-3">
+            <div class="col-5">
+                <label class="form-label">이미지 파일 선택</label>
+                <input type="file" class="form-control" name="mainImg">
+            </div>
+        </div> -->
+        <input type="submit" class="btn btn-primary" value="글 작성">
+    </form>
+</th:block>
+</body>
+</html>
