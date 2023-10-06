@@ -7,10 +7,10 @@ function searchAddr(){
     }).open();
 }
 
-//회원가입 시 데이터 유효성 검사
+//회원가입페이지 가입버튼 누르면
 function joinValidate(){
     
-    const joinForm = document.querySelector('#joinForm');       //form 안에 요소들은 name으로 접근가능!
+    const joinForm = document.querySelector('#joinForm');    
 
     if(joinForm.memberId.value == ''){
         inputInvalidate('#id-error-div', '아이디를 입력해주세요.');
@@ -80,3 +80,108 @@ function checkId(){
 function setDisabled(){
     document.querySelector('#joinBtn').disabled = true;
 }
+
+
+
+//미니미 선택
+// 토끼
+$('.minimeA').click(function(){
+    $('.minimeA_slideList').css({
+        display : 'block'
+    });
+    $('.minime_AB').css({
+        display : 'none'
+    });
+    $('.minimeA_btn').css({
+        display : 'flex'
+    })
+
+})
+
+$('.minimeA_slideList').slick({
+    dots : false,
+    prevArrow : '.prev_btnA',
+    nextArrow : '.next_btnA',
+    slidesToShow : 1,
+    centerMode : true,
+    variableWidth: true
+})
+
+$('.minimeA_1').click(function(){
+    var srcValue = $(this).find('img').attr('src');
+    $('.my-minime img').attr('src', srcValue);
+    $('.minimeInfo').val('minimeA_1');
+});
+$('.minimeA_2').click(function(){
+    var srcValue = $(this).find('img').attr('src');
+    $('.my-minime img').attr('src', srcValue);
+    $('.minimeInfo').val('minimeA_2');
+});
+$('.minimeA_3').click(function(){
+    var srcValue = $(this).find('img').attr('src');
+    $('.my-minime img').attr('src', srcValue);
+    $('.minimeInfo').val('minimeA_3');
+});
+$('.minimeA_4').click(function(){
+    var srcValue = $(this).find('img').attr('src');
+    $('.my-minime img').attr('src', srcValue);
+    $('.minimeInfo').val('minimeA_4');
+});
+
+
+// 여우
+$('.minimeB').click(function(){
+    $('.minimeB_slideList').css({
+        display : 'block'
+    });
+    $('.minime_AB').css({
+        display : 'none'
+    });
+    $('.minimeB_btn').css({
+        display : 'flex'
+    })
+
+})
+
+$('.minimeB_slideList').slick({
+    dots : false,
+    prevArrow : '.prev_btnB',
+    nextArrow : '.next_btnB',
+    slidesToShow : 1,
+    centerMode : true,
+    variableWidth: true
+})
+
+$('.minimeB_1').click(function(){
+    var srcValue = $(this).find('img').attr('src');
+    $('.my-minime img').attr('src', srcValue);
+    $('.minimeInfo').val('minimeB_1');
+});
+$('.minimeB_2').click(function(){
+    var srcValue = $(this).find('img').attr('src');
+    $('.my-minime img').attr('src', srcValue);
+    $('.minimeInfo').val('minimeB_2');
+});
+$('.minimeB_3').click(function(){
+    var srcValue = $(this).find('img').attr('src');
+    $('.my-minime img').attr('src', srcValue);
+    $('.minimeInfo').val('minimeB_3');
+});
+$('.minimeB_4').click(function(){
+    var srcValue = $(this).find('img').attr('src');
+    $('.my-minime img').attr('src', srcValue);
+    $('.minimeInfo').val('minimeB_4');
+});
+
+
+$('.minime-choice').click(function(){
+    $('.minimeA_slideList').css({
+        display : 'none'
+    });
+    $('.minimeB_slideList').css({
+        display : 'none'
+    });
+    $('.minime_AB').css({
+        display : 'flex'
+    });
+})

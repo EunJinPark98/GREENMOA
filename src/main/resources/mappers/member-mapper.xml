@@ -29,6 +29,7 @@
             , MEMBER_ADDR
             , ADDR_DETAIL
             , MEMBER_EMAIL
+            , MINIME
         ) VALUES(
             #{memberId}
             , #{memberPw}
@@ -45,7 +46,8 @@
             <foreach collection="memberEmails" item="email" separator="||">
                 #{email}
             </foreach>
-            )
+            , #{minime}
+        )
     </insert>
 
     <!--로그인 기능 쿼리-->

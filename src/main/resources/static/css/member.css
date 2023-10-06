@@ -1,0 +1,33 @@
+@charset "UTF-8";
+
+/* 회원가입 미니미 선택 */
+.minime_choice{
+    width: 235px;
+    height: 305px;
+}
+.minime_choice img{
+    width: 100%;
+    height: auto;
+}
+
+
+/* 토끼 */
+.minimeA_slideList{
+    display: none;
+}
+.minimeA_btn{
+    display: none;
+}
+
+/* 여우 */
+.minimeB_slideList{
+    display: none;
+}
+.minimeB_btn{
+    display: none;
+}
+
+.minimeA_btn, .minimeB_btn{
+    display: none;
+}
+
