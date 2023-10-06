@@ -2,7 +2,9 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <!-- 해당 파일에 모든 쿼리문을 작성 -->
+<!--자유게시판-->
 <mapper namespace="freeBoardMapper">
+    <!--자유게시판-->
     <resultMap id="freeBoard" type="com.green.GreenClassRoom.board.vo.FreeBoardVO">
         <id column="BOARD_NUM" property="boardNum"/>
         <result column="TITLE" property="title"/>
@@ -10,6 +12,15 @@
         <result column="WRITER" property="writer"/>
         <result column="CREATE_DATE" property="createDate"/>
         <result column="READ_CNT" property="readCnt"/>
+    </resultMap>
+    <!--리플-->
+    <resultMap id="reply" type="com.green.GreenClassRoom.board.vo.ReplyVO">
+        <id column="REPLY_NUM" property="replyNum"/>
+        <result column="BOARD_NUM" property="boardNum"/>
+        <result column="REPLY_TEXT" property="replyText"/>
+        <result column="REPLYER" property="replyer"/>
+        <result column="REG_DATE" property="regDate"/>
+        <result column="UPDATE_DATE" property="updateDate"/>
     </resultMap>
 
     <!--자유게시판 목록 쿼리-->
@@ -75,6 +86,29 @@
         DELETE FREE_BOARD
         WHERE BOARD_NUM=#{boardNum}
     </delete>
+    <!--댓글 작성-->
+    <insert id="insertReply">
+        INSERT INTO BOARD_REPLY(
+            REPLY_NUM
+            , REPLY_TEXT
+            , REPLYER
+            , BOARD_NUM
+        )
+        VALUES(
+            (SELECT NVL(MAX(REPLY_NUM),0) +1 FROM BOARD_REPLY)
+            ,#{replyText}
+            ,#{replyer}
+            ,#{boardNum}
+        )
+    </insert>
+    <select id="selectReply" resultMap="reply">
+        SELECT REPLY_NUM
+            , REPLY_TEXT
+            , REPLYER
+            , TO_CHAR(REG_DATE,'YYYY-MM-DD') REG_DATE
+        FROM BOARD_REPLY
+        WHERE BOARD_NUM=#{boardNum}
+    </select>
 </mapper>
 
 
