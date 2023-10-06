@@ -1,0 +1,50 @@
+@charset "utf-8";
+
+body{
+    font-family: 'Dovemayo_gothic';
+}
+
+/* ----------- 자유게시판 목록 ----------- */
+.boardBox{
+    padding: 50px;
+    position: relative;
+    font-size: 18px;
+}
+.headTitle{
+    position: relative;
+    z-index: 1;
+}
+.headTitleBar{
+    position: absolute;
+    top: 75px;
+    width: 155px;
+    height: 15px;
+    background-color: #ffc107;
+    opacity: 0.6;
+    animation: headTitleBar .5s ease-in forwards;
+    text-indent: -99999px;
+}
+@keyframes headTitleBar{
+    0%{
+        width: 0px;
+    }
+    100%{
+        width: 155px;
+    }
+
+}
+.searchBox{
+    width: 35%;
+}
+
+td{
+    padding: 5px ;
+}
+/* ----------- 자유게시판 목록 끝 ----------- */
+
+
+/* ----------- 자유게시판 글쓰기 ----------- */
+
+
+
+/* ----------- 자유게시판 글쓰기 끝 ----------- */

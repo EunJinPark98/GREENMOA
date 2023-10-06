@@ -8,13 +8,29 @@
 </head>
 <body>
     <th:block layout:fragment="content">
-        <h3>자유게시글 작성 페이지</h3>
-        <hr>
-        <form action="/board/insertFreeBoard" method="post">
-            글 제목 : <input type="text" name="title" required ><br>
-            글 내용 : <textarea rows="5" cols="50" name="content"></textarea><br>
-            <input type="submit" value="글 등록">
-        </form>
+        <link rel="stylesheet" href="/css/board/free_board.css">
+        <div class="boardBox">
+            <h3 class="headTitle">자유게시글 작성 페이지</h3>
+            <span class="headTitleBar">head-title-bar</span>
+
+            <form action="/board/insertFreeBoard" method="post">
+
+                <div class="input-group mt-5 mb-3">
+                    <span class="input-group-text" id="basic-addon1">제목</span>
+                    <input name="title" type="text" class="form-control" aria-label="Username" aria-describedby="basic-addon1" required>
+                </div>
+
+                <div class="input-group mb-3">
+                    <span class="input-group-text">내용</span>
+                    <textarea name="content" class="form-control" rows="13" aria-label="With textarea"></textarea>
+                </div>
+
+                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                    <input class="btn btn-outline-warning" type="submit" value="등록"></input>
+                </div>
+
+            </form>
+        </div>
     </th:block>   
 </body>
 </html>
