@@ -8,6 +8,9 @@
 </head>
 <body>
 <th:block layout:fragment="content">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reset-css@5.0.1/reset.min.css">
+    <link rel="stylesheet" href="/css/slick.css">
+    <link rel="stylesheet" href="/css/member.css">
     <div class="row">
         <div class="col-5">
             <form id="joinForm"  class="row g-3" action="/member/join" method="post">
@@ -83,6 +86,13 @@
                         <label class="form-check-label">여성</label>
                     </div>
                 </div>
+                <div class="col-12">
+                    <div class="my-minime"><img src="/images/minime_A1.png" alt=""></div>
+                    <input class="minimeInfo" type="hidden" name="minime" value="">
+                </div>
+                <div class="col-12">
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#minime-modal">미니미 선택</button>
+                </div>
                 <div class="offset-6 col-3 d-grid">
                     <button id="joinBtn" type="button" class="btn btn-primary" onclick="joinValidate()" disabled>가입</button>
                 </div>
@@ -92,6 +102,63 @@
             </form>
         </div>
     </div>
+
+    <!-- 미니미선택 Modal -->
+    <div class="modal fade" id="minime-modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body">
+
+
+                <h1>미니미 선택</h1>
+                <div class="minime_AB" style="display: flex;">
+                    <div class="minimeA"><img src="/images/minime_A1.png" alt=""></div>
+                    <div class="minimeB"><img src="/images/minime_B1.png" alt=""></div>
+                </div>
+
+
+                <!-- 미니미A 토끼슬라이드 -->
+                <div class="minimeA_slideList">
+                    <div class="minimeA_1"><img src="/images/minime_A1.png" alt=""></div>
+                    <div class="minimeA_2"><img src="/images/minime_A2.png" alt=""></div>
+                    <div class="minimeA_3"><img src="/images/minime_A3.png" alt=""></div>
+                    <div class="minimeA_4"><img src="/images/minime_A4.png" alt=""></div>
+                </div>
+
+                <div class="minimeA_btn">
+                    <p class="prev_btnA">이전으로</p>
+                    <p class="next_btnA">다음으로</p>
+                </div>
+                
+
+                <!-- 미니미B 여우슬라이드 -->
+                <div class="minimeB_slideList">
+                    <div class="minimeB_1"><img src="/images/minime_B1.png" alt=""></div>
+                    <div class="minimeB_1"><img src="/images/minime_B2.png" alt=""></div>
+                    <div class="minimeB_1"><img src="/images/minime_B3.png" alt=""></div>
+                    <div class="minimeB_1"><img src="/images/minime_B4.png" alt=""></div>
+                </div>
+
+                <div class="minimeB_btn">
+                    <p class="prev_btnB">이전으로</p>
+                    <p class="next_btnB">다음으로</p>
+                </div>
+                
+                
+                <div class="row mt-5">
+                    <div class="col-3 d-grid">
+                        <button type="button" class="btn btn-primary minime-choice" data-bs-dismiss="modal">완료</button>
+                    </div>
+                </div>
+               
+            </div>
+        </div>
+    </div>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="/js/slick.min.js"></script>
     <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
     <script src="/js/join.js"></script>
 </th:block>
