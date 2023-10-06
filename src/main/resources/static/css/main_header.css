@@ -11,6 +11,7 @@ a{
     text-decoration: none;
 }
 
+/* ----------- 전체메뉴 ----------- */
 .menu{
     width: 113px;
     height: 65px;
@@ -19,7 +20,8 @@ a{
     font-family: 'Dovemayo_gothic';
     padding-top: 18px;
     background-color: #F0E2BC;
-    margin-left: -13px;
+    margin-left: -15px;
+    transition: width 0.1s ease-out;
 }
 
 .menu a{
@@ -32,5 +34,4 @@ a{
 .menu:hover{
     background-color: #F7D281;
     width: 150px;
-    transition-duration: 0.5s;
 }
