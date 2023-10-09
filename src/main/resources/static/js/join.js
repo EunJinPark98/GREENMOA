@@ -108,22 +108,22 @@ $('.minimeA_slideList').slick({
 })
 
 $('.minimeA_1').click(function(){
-    var srcValue = $(this).find('img').attr('src');
+    let srcValue = $(this).find('img').attr('src');
     $('.my-minime img').attr('src', srcValue);
     $('.minimeInfo').val('minimeA_1');
 });
 $('.minimeA_2').click(function(){
-    var srcValue = $(this).find('img').attr('src');
+    let srcValue = $(this).find('img').attr('src');
     $('.my-minime img').attr('src', srcValue);
     $('.minimeInfo').val('minimeA_2');
 });
 $('.minimeA_3').click(function(){
-    var srcValue = $(this).find('img').attr('src');
+    let srcValue = $(this).find('img').attr('src');
     $('.my-minime img').attr('src', srcValue);
     $('.minimeInfo').val('minimeA_3');
 });
 $('.minimeA_4').click(function(){
-    var srcValue = $(this).find('img').attr('src');
+    let srcValue = $(this).find('img').attr('src');
     $('.my-minime img').attr('src', srcValue);
     $('.minimeInfo').val('minimeA_4');
 });
@@ -153,26 +153,25 @@ $('.minimeB_slideList').slick({
 })
 
 $('.minimeB_1').click(function(){
-    var srcValue = $(this).find('img').attr('src');
+    let srcValue = $(this).find('img').attr('src');
     $('.my-minime img').attr('src', srcValue);
     $('.minimeInfo').val('minimeB_1');
 });
 $('.minimeB_2').click(function(){
-    var srcValue = $(this).find('img').attr('src');
+    let srcValue = $(this).find('img').attr('src');
     $('.my-minime img').attr('src', srcValue);
     $('.minimeInfo').val('minimeB_2');
 });
 $('.minimeB_3').click(function(){
-    var srcValue = $(this).find('img').attr('src');
+    let srcValue = $(this).find('img').attr('src');
     $('.my-minime img').attr('src', srcValue);
     $('.minimeInfo').val('minimeB_3');
 });
 $('.minimeB_4').click(function(){
-    var srcValue = $(this).find('img').attr('src');
+    let srcValue = $(this).find('img').attr('src');
     $('.my-minime img').attr('src', srcValue);
     $('.minimeInfo').val('minimeB_4');
 });
-
 
 $('.minime-choice').click(function(){
     $('.minimeA_slideList').css({

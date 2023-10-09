@@ -8,7 +8,6 @@
     font-style: normal;
 }
 
-/* a태그 밑줄 없애기 */
 a{
     text-decoration: none;
 }
@@ -18,19 +17,44 @@ body{
     font-family: 'Dovemayo_gothic';
 }
 
-#logo{
+h1#logo{
     width: 300px;
     height: 58px;
 }
 
-#logo img{
+h1#logo img{
     width: 100%;
     height: auto;
+    cursor: pointer;
+}
 
+h3#logo{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+h3#logo img{
+    width: 10px;
+    height: auto;
+    margin-top: 10px;
 }
 
 #email-error-div{
     color: red;
 }
 
+.btn-primary{
+    background-color: #FEBC5B;
+    border: none;
+    --bs-btn-disabled-bg: #FEDE90;
+}
+.btn-primary:hover{
+    background-color: #6c757d;
+    border: none;
+}
+.btn-secondary{
+    background-color: #D9D9D9;
+    border: none;
+}
 

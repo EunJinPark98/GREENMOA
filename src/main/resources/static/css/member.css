@@ -31,3 +31,18 @@
     display: none;
 }
 
+/* 양식 디자인 */
+.join-input input{
+    margin-bottom: 15px;
+}
+
+.minime-btn{
+    margin-top: 20px;
+}
+.my-minime{
+    margin-left: 20px;
+}
+
+#joinForm{
+    padding: 40px;
+}

@@ -36,12 +36,6 @@ public class MemberController {
         return memberService.checkId(memberId);
     }
 
-    //로그인 페이지
-    @GetMapping("/loginPage")
-    public String loginPage(){
-        return "/content/member/login_page";
-    }
-
     // 로그인 기능
     @PostMapping("/login")
     public String login(MemberVO memberVO, HttpSession session){
@@ -49,8 +43,6 @@ public class MemberController {
         if(loginInfo!=null) {
             session.setAttribute("loginInfo", loginInfo);
         }
-        System.out.println(loginInfo);
-        //"redirect:/room/main"
         return "content/member/login_result";
     }
     // 로그아웃 기능
