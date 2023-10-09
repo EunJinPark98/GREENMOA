@@ -16,6 +16,68 @@
     padding: 40px;
 }
 
+
+/* 미니미 선택 효과 */
+.minimeA, .minimeB{
+    position: relative;
+}
+.minimeA:hover > .mini-star,
+.minimeB:hover > .mini-star {
+    display: block;
+}
+.mini-star{
+    display: none;
+    position: absolute;
+    top: -10px;
+    left: 10px;
+    width: 200px;
+    height: auto;
+    background-color: transparent;
+}
+
+.minimeA_slideList div, .minimeB_slideList div{
+    position: relative;
+    cursor: pointer;
+}
+.mini-check{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 235px;
+    height: 80px;
+    background-image: url(/images/icon_check.png);
+    background-size: 60px auto;
+    background-position: center;
+    background-repeat: no-repeat;
+    z-index: 1000;
+}
+
+/* 슬라이드 버튼 */
+.mini-modal-body{
+    position: relative;
+}
+.prev_btnA, .next_btnA, .prev_btnB, .next_btnB{
+    position: absolute;
+    top: 50%;
+    width: 30px;
+    height: 30px;
+    border-left: 5px solid #FEBC5B;
+    border-bottom: 5px solid #FEBC5B;
+    text-indent: -9999px;
+}
+
+.prev_btnA, .prev_btnB{
+    left: 25px;
+    transform: rotate(45deg);
+}
+
+.next_btnA, .next_btnB{
+    right: 25px;
+    transform: rotate(-135deg);
+}
+
+
+
 /* 토끼 */
 .minimeA_slideList{
     display: none;

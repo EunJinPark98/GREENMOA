@@ -16,7 +16,7 @@
             <form id="joinForm"  class="row g-3 mt-3" action="/member/join" method="post">
                 <div class="row">
                     <!-- 회원가입 왼쪽 -->
-                    <div class="col text-center">
+                    <div class="col text-center mt-3">
                         <div class="my-minime"><img src="/images/minime_A1.png" alt=""></div>
                         <input class="minimeInfo" type="hidden" name="minime" value="minimeA_1">
                         <button type="button" class="btn btn-primary minime-btn" data-bs-toggle="modal" data-bs-target="#minime-modal">미니미 선택</button>
@@ -117,42 +117,43 @@
     aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
-            <div class="modal-body">
+            <div class="modal-body mini-modal-body">
 
-                <h1 class="mb-5">미니미 선택</h1>
+                <h1 class="mb-5 text-center">미니미 선택</h1>
                 <div class="minime_AB">
-                    <div class="minimeA"><img src="/images/minime_A1.png" alt=""></div>
-                    <div class="minimeB"><img src="/images/minime_B1.png" alt=""></div>
+                    <div class="minimeA">
+                        <img class="mini-star" src="/images/icon_star.png" alt="">
+                        <img src="/images/minime_A1.png" alt="">
+                    </div>
+                    <div class="minimeB">
+                        <img class="mini-star" src="/images/icon_star.png" alt="">
+                        <img src="/images/minime_B1.png" alt="">
+                    </div>
                 </div>
-
 
                 <!-- 미니미A 토끼슬라이드 -->
                 <div class="minimeA_slideList">
-                    <div class="minimeA_1"><img src="/images/minime_A1.png" alt=""></div>
-                    <div class="minimeA_2"><img src="/images/minime_A2.png" alt=""></div>
-                    <div class="minimeA_3"><img src="/images/minime_A3.png" alt=""></div>
-                    <div class="minimeA_4"><img src="/images/minime_A4.png" alt=""></div>
+                    <div class="minimeA_1"><span></span><img src="/images/minime_A1.png" alt=""></div>
+                    <div class="minimeA_2"><span></span><img src="/images/minime_A2.png" alt=""></div>
+                    <div class="minimeA_3"><span></span><img src="/images/minime_A3.png" alt=""></div>
+                    <div class="minimeA_4"><span></span><img src="/images/minime_A4.png" alt=""></div>
                 </div>
-
                 <div class="minimeA_btn">
                     <p class="prev_btnA">이전으로</p>
                     <p class="next_btnA">다음으로</p>
                 </div>
                 
-
                 <!-- 미니미B 여우슬라이드 -->
                 <div class="minimeB_slideList">
-                    <div class="minimeB_1"><img src="/images/minime_B1.png" alt=""></div>
-                    <div class="minimeB_1"><img src="/images/minime_B2.png" alt=""></div>
-                    <div class="minimeB_1"><img src="/images/minime_B3.png" alt=""></div>
-                    <div class="minimeB_1"><img src="/images/minime_B4.png" alt=""></div>
+                    <div class="minimeB_1"><span></span><img src="/images/minime_B1.png" alt=""></div>
+                    <div class="minimeB_2"><span></span><img src="/images/minime_B2.png" alt=""></div>
+                    <div class="minimeB_3"><span></span><img src="/images/minime_B3.png" alt=""></div>
+                    <div class="minimeB_4"><span></span><img src="/images/minime_B4.png" alt=""></div>
                 </div>
-
                 <div class="minimeB_btn">
                     <p class="prev_btnB">이전으로</p>
                     <p class="next_btnB">다음으로</p>
                 </div>
-                
                 
                 <div class="row mt-5" style="display: flex; justify-content: center;">
                     <div class="col-3 d-grid">

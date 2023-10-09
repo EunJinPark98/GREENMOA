@@ -112,21 +112,33 @@ $('.minimeA_1').click(function(){
     let srcValue = $(this).find('img').attr('src');
     $('.my-minime img').attr('src', srcValue);
     $('.minimeInfo').val('minimeA_1');
+
+    $('.minimeA_slideList').find('.mini-check').removeClass('mini-check');
+    $(this).find('span').addClass('mini-check');
 });
 $('.minimeA_2').click(function(){
     let srcValue = $(this).find('img').attr('src');
     $('.my-minime img').attr('src', srcValue);
     $('.minimeInfo').val('minimeA_2');
+
+    $('.minimeA_slideList').find('.mini-check').removeClass('mini-check');
+    $(this).find('span').addClass('mini-check');
 });
 $('.minimeA_3').click(function(){
     let srcValue = $(this).find('img').attr('src');
     $('.my-minime img').attr('src', srcValue);
     $('.minimeInfo').val('minimeA_3');
+
+    $('.minimeA_slideList').find('.mini-check').removeClass('mini-check');
+    $(this).find('span').addClass('mini-check');
 });
 $('.minimeA_4').click(function(){
     let srcValue = $(this).find('img').attr('src');
     $('.my-minime img').attr('src', srcValue);
     $('.minimeInfo').val('minimeA_4');
+
+    $('.minimeA_slideList').find('.mini-check').removeClass('mini-check');
+    $(this).find('span').addClass('mini-check');
 });
 
 
@@ -157,21 +169,33 @@ $('.minimeB_1').click(function(){
     let srcValue = $(this).find('img').attr('src');
     $('.my-minime img').attr('src', srcValue);
     $('.minimeInfo').val('minimeB_1');
+
+    $('.minimeB_slideList').find('.mini-check').removeClass('mini-check');
+    $(this).find('span').addClass('mini-check');
 });
 $('.minimeB_2').click(function(){
     let srcValue = $(this).find('img').attr('src');
     $('.my-minime img').attr('src', srcValue);
     $('.minimeInfo').val('minimeB_2');
+
+    $('.minimeB_slideList').find('.mini-check').removeClass('mini-check');
+    $(this).find('span').addClass('mini-check');
 });
 $('.minimeB_3').click(function(){
     let srcValue = $(this).find('img').attr('src');
     $('.my-minime img').attr('src', srcValue);
     $('.minimeInfo').val('minimeB_3');
+
+    $('.minimeB_slideList').find('.mini-check').removeClass('mini-check');
+    $(this).find('span').addClass('mini-check');
 });
 $('.minimeB_4').click(function(){
     let srcValue = $(this).find('img').attr('src');
     $('.my-minime img').attr('src', srcValue);
     $('.minimeInfo').val('minimeB_4');
+
+    $('.minimeB_slideList').find('.mini-check').removeClass('mini-check');
+    $(this).find('span').addClass('mini-check');
 });
 
 
@@ -195,4 +219,6 @@ $('.minime-choice').click(function(){
         display : 'none'
     });
     $('.minime-choice').prop('disabled', true);
+    $('.minimeA_slideList').find('.mini-check').removeClass('mini-check');
+    $('.minimeB_slideList').find('.mini-check').removeClass('mini-check');
 })
