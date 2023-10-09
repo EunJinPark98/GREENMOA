@@ -84,7 +84,8 @@ function setDisabled(){
 
 
 //미니미 선택
-// 토끼
+
+// 토끼 선택
 $('.minimeA').click(function(){
     $('.minimeA_slideList').css({
         display : 'block'
@@ -95,7 +96,7 @@ $('.minimeA').click(function(){
     $('.minimeA_btn').css({
         display : 'flex'
     })
-
+    $('.minime-choice').prop('disabled', false);
 })
 
 $('.minimeA_slideList').slick({
@@ -140,7 +141,7 @@ $('.minimeB').click(function(){
     $('.minimeB_btn').css({
         display : 'flex'
     })
-
+    $('.minime-choice').prop('disabled', false);
 })
 
 $('.minimeB_slideList').slick({
@@ -173,6 +174,10 @@ $('.minimeB_4').click(function(){
     $('.minimeInfo').val('minimeB_4');
 });
 
+
+
+
+// 미니미선택 완료버튼
 $('.minime-choice').click(function(){
     $('.minimeA_slideList').css({
         display : 'none'
@@ -183,4 +188,11 @@ $('.minime-choice').click(function(){
     $('.minime_AB').css({
         display : 'flex'
     });
+    $('.minimeA_btn').css({
+        display : 'none'
+    });
+    $('.minimeB_btn').css({
+        display : 'none'
+    });
+    $('.minime-choice').prop('disabled', true);
 })

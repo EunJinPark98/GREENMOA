@@ -1,15 +1,20 @@
 @charset "UTF-8";
 
-/* 회원가입 미니미 선택 */
-.minime_choice{
-    width: 235px;
-    height: 305px;
-}
-.minime_choice img{
-    width: 100%;
-    height: auto;
+/* 양식 디자인 */
+.join-input input{
+    margin-bottom: 15px;
 }
 
+.minime-btn{
+    margin-top: 20px;
+}
+.my-minime{
+    margin-left: 20px;
+}
+
+#joinForm{
+    padding: 40px;
+}
 
 /* 토끼 */
 .minimeA_slideList{
@@ -31,18 +36,14 @@
     display: none;
 }
 
-/* 양식 디자인 */
-.join-input input{
-    margin-bottom: 15px;
-}
 
-.minime-btn{
-    margin-top: 20px;
+/* 미니미 선택 */
+.minime_AB{
+    display: flex;
 }
-.my-minime{
-    margin-left: 20px;
+.minimeA_btn{
+    display: none;
 }
-
-#joinForm{
-    padding: 40px;
+.minimeB_btn{
+    display: none;
 }

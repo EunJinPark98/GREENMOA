@@ -16,6 +16,7 @@ body{
     border-radius: 20px;
     height: 400px;
     object-fit: cover;
+    cursor: url('../images/pen.png'), auto;
 }
 
 /* ----------- 로그인 메뉴 ----------- */
