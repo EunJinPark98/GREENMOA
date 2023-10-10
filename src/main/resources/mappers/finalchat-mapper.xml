@@ -3,7 +3,7 @@
 
 
 <mapper namespace="chatMapper">
-    <resultMap id="" type="com.green.GreenClassRoom.chat2.ChatVO">
+    <resultMap id="" type="com.green.GreenClassRoom.finalchat.ChatVO">
         <id column="MEMBER_ID" property="boardNum"/>
         <result column="MEMBR_NAME" property="title"/>
         <result column="MESSAGE" property="content"/>
