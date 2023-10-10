@@ -34,7 +34,8 @@
         <div class="utilMenu">과제메뉴</div>
 
         <!-- 캘린더 -->
-        <span class="calendar">캘린더</span>
+        <span class="calendar" onclick="planManage();">캘린더</span>
+        <div class="planManage"><img src="/images/planManage.png" width="1000px" alt="일정관리"></div>
         
         <!-- 로그인 임시 버튼 클릭시 실행되는 modal창 -->
         <div class="modal fade" id="login-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -71,6 +72,10 @@
             let utilMenu = document.querySelector('.utilMenu');
             window.onload = function(){
               utilMenu.classList.add('bounce');
+            }
+            
+            let planManage = document.querySelector('.planManage');
+            function planManage(){
             }
         </script>
 
