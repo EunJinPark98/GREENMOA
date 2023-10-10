@@ -9,11 +9,15 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 @RequiredArgsConstructor
 public class InterceptorConfig implements WebMvcConfigurer {
     private final MenuInterceptor menuInterceptor;
+    private final CheckLoginInterceptor checkLoginInterceptor;
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(menuInterceptor)
                 .addPathPatterns("/**")
+                .excludePathPatterns("/images/**", "/css/**", "/js/**");
+        registry.addInterceptor(checkLoginInterceptor)
+                .addPathPatterns("/board/**")
                 .excludePathPatterns("/images/**", "/css/**", "/js/**");
     }
 }
