@@ -21,4 +21,14 @@ public class QnaBoardServiceImpl implements QnaBoardService{
     public List<QnaBoardVO> selectQnaBoard(QnaBoardVO qnaBoardVO) {
         return sqlSession.selectList("qnaBoardMapper.selectQnaBoard", qnaBoardVO);
     }
+
+    @Override
+    public int updateCnt(int qnaBoardNum) {
+        return sqlSession.update("qnaBoardMapper.updateCnt", qnaBoardNum);
+    }
+
+    @Override
+    public QnaBoardVO qnaBoardDetail(int qnaBoardNum) {
+        return sqlSession.selectOne("qnaBoardMapper.qnaBoardDetail", qnaBoardNum);
+    }
 }

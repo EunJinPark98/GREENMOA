@@ -2,6 +2,8 @@ package com.green.GreenClassRoom.board.vo;
 
 import lombok.Data;
 
+import java.util.List;
+
 @Data
 public class QnaBoardVO {
     private int qnaBoardNum;
@@ -12,4 +14,6 @@ public class QnaBoardVO {
     private String qnaReadCnt;
     private String searchText;
     private String searchType;
+    private String originFileName;
+    private String attachedFileName;
 }

@@ -10,7 +10,7 @@
 <th:block layout:fragment="content">
     <h1>질문 글 작성</h1>
     <hr>
-    <form action="/board/qnaBoardInsert" method="post">
+    <form action="/board/qnaBoardInsert" method="post" enctype="multipart/form-data">
         <div class="row">
             <div class="col">
                 제목 : <input type="text" name="qnaBoardTitle">
@@ -19,15 +19,15 @@
         <div class="row">
             <div class="col">
                 <div>내용</div>
-                <div><textarea name="qnaBoardContent" rows="5" cols="50"></textarea></div>
+                <div><textarea name="qnaBoardContent" rows="5" cols="50" required></textarea></div>
             </div>
         </div>
-        <!-- <div class="row mb-3">
+        <div class="row mb-3">
             <div class="col-5">
                 <label class="form-label">이미지 파일 선택</label>
-                <input type="file" class="form-control" name="mainImg">
+                <input type="file" class="form-control" name="img" multiple>
             </div>
-        </div> -->
+        </div>
         <input type="submit" class="btn btn-primary" value="글 작성">
     </form>
 </th:block>

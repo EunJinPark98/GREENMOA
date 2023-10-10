@@ -1,4 +1,4 @@
-package com.green.GreenClassRoom.chat;
+package com.green.GreenClassRoom.finalchat;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import groovy.util.logging.Slf4j;
