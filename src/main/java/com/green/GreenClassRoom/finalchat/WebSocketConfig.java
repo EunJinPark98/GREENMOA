@@ -1,6 +1,3 @@
-<<<<<<<< HEAD:src/main/java/com/green/GreenClassRoom/chat2/WebSocketConfig.java
-package com.green.GreenClassRoom.chat2;
-========
 package com.green.GreenClassRoom.finalchat;
 
 //import lombok.RequiredArgsConstructor;
@@ -22,7 +19,6 @@ package com.green.GreenClassRoom.finalchat;
 //        registry.addHandler(webSocketHandler, "/chat").setAllowedOrigins("*");
 //    }
 //}
->>>>>>>> hyeopjin:src/main/java/com/green/GreenClassRoom/finalchat/WebSocketConfig.java
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.messaging.simp.config.MessageBrokerRegistry;
