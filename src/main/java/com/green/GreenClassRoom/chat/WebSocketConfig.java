@@ -21,7 +21,6 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
     public void registerStompEndpoints(StompEndpointRegistry registry) {
         // WebSocket 엔드포인트 등록
         registry.addEndpoint("/chat")
-                .setAllowedOrigins("*")
                 .withSockJS(); // WebSocket 연결을 "/chat" 엔드포인트로 설정
     }
 }
