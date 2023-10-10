@@ -1,4 +1,4 @@
-package com.green.GreenClassRoom.chat;
+package com.green.GreenClassRoom.chat2;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.messaging.simp.config.MessageBrokerRegistry;

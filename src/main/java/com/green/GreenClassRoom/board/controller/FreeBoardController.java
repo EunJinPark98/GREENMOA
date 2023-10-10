@@ -51,7 +51,12 @@ public class FreeBoardController {
     // 게시글 상세 페이지 이동, 게시글 조회수 증가 기능
     @GetMapping("/freeBoardDetail")
     public String freeBoardDetail(int boardNum,Model model,ReplyVO replyVO,
-                                  @RequestParam(required = false, defaultValue = "false") boolean noCount){
+                                  @RequestParam(required = false, defaultValue = "false") boolean noCount
+                                    , HttpSession session,FreeBoardVO freeBoardVO){
+
+        MemberVO loginInfo=(MemberVO) session.getAttribute("loginInfo");
+        freeBoardVO.setWriter(loginInfo.getMemberId());
+        model.addAttribute("loginInfo",loginInfo);
         // @RequestParam(required = false, defaultValue = "false") boolean noCount
         // 댓글 등록이 실행되지 않으면 noCount가 넘어오지 않고, 그 값은 false가 된다.
         // 댓글 등록 시 게시글 목록 페이지로 오면 카운터 무효!
@@ -97,6 +102,6 @@ public class FreeBoardController {
         System.out.println("###########"+replyVO);
         freeBoardService.insertReply(replyVO);
         //+ "&noCount=true" :  댓글 작성시 조회수가 오르지 않게 하기 위해 true인 값인 noCount를 보낸다.
-        return "redirect:/board/freeBoardDetail?boardNum="+replyVO.getBoardNum() + "&noCount=true";
+        return "redirect:/board/freeBoardDetail?boardNum="+replyVO.getBoardNum()+"&replyer="+replyVO.getReplyer() + "&noCount=true" ;
     }
 }

@@ -108,6 +108,7 @@
             , TO_CHAR(REG_DATE,'YYYY-MM-DD') REG_DATE
         FROM BOARD_REPLY
         WHERE BOARD_NUM=#{boardNum}
+        ORDER BY REPLY_NUM DESC
     </select>
 </mapper>
 

@@ -77,18 +77,22 @@
         </div>
         <div>
             <form action="/board/insertReply" method="post">
-                <label>댓글 작성자</label><br>
-                <input type="text" id="replyer" name="replyer"><br>
                 <label >댓글 쓰기</label><br>
                 <textarea name="replyText" id="replyText" cols="50" rows="5"></textarea><br>
                 <input type="hidden" name="boardNum" th:value="${freeBoardDetail.boardNum}">
+                <input type="hidden" name="replyer" th:value="${loginInfo.memberId}">
                 <input type="submit" value="댓글작성"></input>
             </form>
-            
+        </div>
+        <div th:if="${session.loginInfo != null}">
+            <div th:if="${freeBoardDetail.writer == session.loginInfo.memberId}">
+                <input type="button" value="삭제" th:onclick="goDeleteReply([[${freeBoardDetail.boardNum}]])">
+                <input type="button" value="수정" th:onclick="goUpdateReply([[${freeBoardDetail.boardNum}]])">
+            </div>
         </div>
         <input type="button" value="뒤로가기" onclick="location.href='/board/freeBoardList'">
         <div th:if="${session.loginInfo != null}">
-            <div th:if="${freeBoardDetail.writer == session.loginInfo.memberId or session.loginInfo.isAdmin == 'Y'}">
+            <div th:if="${freeBoardDetail.writer == session.loginInfo.memberId}">
                 <input type="button" value="삭제" th:onclick="goDelete([[${freeBoardDetail.boardNum}]])">
                 <input type="button" value="수정" th:onclick="goUpdate([[${freeBoardDetail.boardNum}]])">
             </div>

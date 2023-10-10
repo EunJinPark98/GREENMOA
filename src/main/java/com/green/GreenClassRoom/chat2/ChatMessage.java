@@ -1,4 +1,4 @@
-package com.green.GreenClassRoom.chat;
+package com.green.GreenClassRoom.chat2;
 import lombok.Data;
 
 @Data
