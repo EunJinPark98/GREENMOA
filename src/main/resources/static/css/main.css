@@ -16,40 +16,9 @@ body{
     border-radius: 20px;
     height: 400px;
     object-fit: cover;
-    cursor: url('../images/pen.png'), auto;
 }
 
-/* ----------- 로그인 메뉴 ----------- */
-.loginMinime, .loginConver{
-    position: absolute;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: 100% 100%;
-}
-.loginMinime{
-    background-image: url(/images/loginMinime2.png);
-    top: 17px;
-    right: 12%;
-    width: 80px;
-    height: 105px;
-    text-indent: -99999px;
-}
-.loginConver{
-    background-image: url(/images/loginMinime1.png);
-    top: -15px;
-    right: 17%;
-    width: 90px;
-    height: 70px;
-    text-align: center;
-    padding-top: 15px;
-    transform: rotate(-10deg);
-    cursor: pointer;
-}
-.loginConver a{
-    color: #89847b;
-    font-size: 20px;
-    letter-spacing: 1px;
-}
+
 
 /* --------- 로그인 메뉴(로그인말고 과제로) 애니메이션 효과 --------- */
 .utility{
