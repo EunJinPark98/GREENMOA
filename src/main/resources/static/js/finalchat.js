@@ -1,5 +1,3 @@
-// chat.js
-
 // 웹 소켓 연결 설정
 var stompClient = null;
 
@@ -8,7 +6,7 @@ function connect() {
     stompClient = Stomp.over(socket);
     stompClient.connect({}, function (frame) {
         console.log('Connected: ' + frame);
-        stompClient.subscribe('/topic/messages', function (message) {
+        stompClient.subscribe('/', function (message) {
             showMessage(JSON.parse(message.body).content);
         });
     });
