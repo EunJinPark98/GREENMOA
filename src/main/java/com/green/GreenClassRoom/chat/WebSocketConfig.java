@@ -1,25 +1,5 @@
 package com.green.GreenClassRoom.chat;
 
-//import lombok.RequiredArgsConstructor;
-//import org.springframework.context.annotation.Configuration;
-//import org.springframework.web.socket.WebSocketHandler;
-//import org.springframework.web.socket.config.annotation.EnableWebSocket;
-//import org.springframework.web.socket.config.annotation.WebSocketConfigurer;
-//import org.springframework.web.socket.config.annotation.WebSocketHandlerRegistry;
-//
-//@Configuration
-//@EnableWebSocket
-//@RequiredArgsConstructor
-//public class WebSocketConfig implements WebSocketConfigurer {
-//
-//    private final WebSocketHandler webSocketHandler;
-//
-//    @Override
-//    public void registerWebSocketHandlers(WebSocketHandlerRegistry registry) {
-//        registry.addHandler(webSocketHandler, "/chat").setAllowedOrigins("*");
-//    }
-//}
-
 import org.springframework.context.annotation.Configuration;
 import org.springframework.messaging.simp.config.MessageBrokerRegistry;
 import org.springframework.web.socket.config.annotation.EnableWebSocketMessageBroker;
@@ -40,6 +20,8 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
     @Override
     public void registerStompEndpoints(StompEndpointRegistry registry) {
         // WebSocket 엔드포인트 등록
-        registry.addEndpoint("/chat").withSockJS(); // WebSocket 연결을 "/chat" 엔드포인트로 설정
+        registry.addEndpoint("/chat")
+                .setAllowedOrigins("*")
+                .withSockJS(); // WebSocket 연결을 "/chat" 엔드포인트로 설정
     }
 }
