@@ -20,14 +20,14 @@ body{
 }
 
 /* ----------- 로그인 메뉴 ----------- */
-.loginMinimi, .loginConver{
+.loginMinime, .loginConver{
     position: absolute;
     background-position: center;
     background-repeat: no-repeat;
     background-size: 100% 100%;
 }
-.loginMinimi{
-    background-image: url(/images/loginMinimi2.png);
+.loginMinime{
+    background-image: url(/images/loginMinime2.png);
     top: 17px;
     right: 12%;
     width: 80px;
@@ -35,7 +35,7 @@ body{
     text-indent: -99999px;
 }
 .loginConver{
-    background-image: url(/images/loginMinimi1.png);
+    background-image: url(/images/loginMinime1.png);
     top: -15px;
     right: 17%;
     width: 90px;
@@ -98,4 +98,27 @@ body{
     60%{
         transform: translateY(-20px);
     }
+}
+
+
+/* --------- 캘린더 --------- */
+.calendar{
+    background-image: url(/images/calendar.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 100% auto;
+    width: 150px;
+    height: 200px;
+    text-indent: -99999px;
+    position: absolute;
+    top: 15%;
+    left: 10%;
+    transform: perspective(200px) rotateY(30deg);
+}
+.calendar:after{
+    content: '';
+    display: block;
+    width: 150px;
+    height: 150px;
+    box-shadow: -1px 5px 3px 0px rgba(0, 0, 0, 0.3);
 }
