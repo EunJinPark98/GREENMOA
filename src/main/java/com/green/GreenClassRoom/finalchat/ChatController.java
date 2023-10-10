@@ -9,6 +9,7 @@ public class ChatController {
     @MessageMapping("/chat")
     @SendTo("/")
     public ChatMessage sendMessage(ChatMessage message) {
+        System.out.println("@@@@@@@@@@@@@@@" + message);
         return message;
     }
 
