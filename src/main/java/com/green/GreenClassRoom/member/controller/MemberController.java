@@ -39,7 +39,7 @@ public class MemberController {
     //로그인 페이지
     @GetMapping("/loginPage")
     public String loginPage(){
-        return "/content/member/login_page";
+        return "/content/room/main";
     }
 
     // 로그인 기능
