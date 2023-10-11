@@ -4,14 +4,15 @@ var stompClient = null;
 
 function connect() {
     //var socket = new SockJS('/chat');
-    var socket = new SockJS('http://58.151.101.222:8081/chat');
-    //var socket = new WebSocket('ws://localhost:8081/chat');
+    var socket = new SockJS('http://192.168.30.55:8081/chat');
     stompClient = Stomp.over(socket);
     stompClient.connect({}, function (frame) {
         console.log('Connected: ' + frame);
         stompClient.subscribe('/', function (message) {
             showMessage(JSON.parse(message.body).content);
         });
+
+        sendMessage("연결됐다!!!!!");
     }); 
 }
 

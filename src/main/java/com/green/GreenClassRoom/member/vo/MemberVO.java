@@ -17,4 +17,5 @@ public class MemberVO {
     private String[] memberEmails;
     private String memberRoll;
     private String minime;
+    private String statusMsg;
 }

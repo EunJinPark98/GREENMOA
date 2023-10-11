@@ -24,6 +24,7 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
     public void registerStompEndpoints(StompEndpointRegistry registry) {
         // WebSocket 엔드포인트
         registry.addEndpoint("/chat")
+                .setAllowedOriginPatterns("*")
                 .withSockJS();
     }
 }

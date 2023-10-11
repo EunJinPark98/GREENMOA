@@ -15,6 +15,7 @@
         <result column="MEMBER_EMAIL" property="memberEmail"/>
         <result column="MEMBER_ROLL" property="memberRoll"/>
         <result column="MINIME" property="minime"/>
+        <result column="STATUS_MSG" property="statusMsg"/>
     </resultMap>
 
     <!--회원가입-->
@@ -53,8 +54,11 @@
     <!--로그인 기능 쿼리-->
     <select id="login" resultMap="member">
         SELECT MEMBER_ID
-        , MEMBER_NAME
-        , MEMBER_ROLL
+            , MEMBER_NAME
+            , MEMBER_ROLL
+            , MINIME
+            , MEMBER_BIRTHDAY
+            , STATUS_MSG
         FROM GREEN_MEMBER
         WHERE MEMBER_ID=#{memberId}
         AND MEMBER_PW=#{memberPw}
@@ -66,6 +70,8 @@
         FROM GREEN_MEMBER
         WHERE MEMBER_ID = #{memberId}
     </select>
+
+
 </mapper>
 
 

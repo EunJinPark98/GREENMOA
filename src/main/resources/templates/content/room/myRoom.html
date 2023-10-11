@@ -9,7 +9,42 @@
 <body>
 <th:block layout:fragment="content">
     <link rel="stylesheet" href="/css/room.css">
-    <div id="myRoom"></div>
+    <div id="myRoom">
+        <div class="todoList" data-bs-toggle="modal" data-bs-target="#todo-modal">
+            <img class="pin" src="/images/pin-red.png" alt="">
+        </div>
+        <div id="minime">
+            <div class="status-msg">[[${loginInfo.statusMsg}]]</div>
+            <img th:src="|/images/${loginInfo.minime}.png|">
+            <p class="name">[[${loginInfo.memberName}]]</p>
+        </div>
+    </div>
+
+
+    <div class="modal fade" id="todo-modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body modal-body">
+
+                <h1 class="mb-5 text-center">투두 리스트</h1>
+
+
+
+
+
+                
+                <div class="row mt-5" style="display: flex; justify-content: center;">
+                    <div class="col-3 d-grid">
+                        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">확인</button>
+                    </div>
+                </div>
+               
+            </div>
+        </div>
+    </div>
+    </div>
+
 </th:block>
 </body>
 </html>

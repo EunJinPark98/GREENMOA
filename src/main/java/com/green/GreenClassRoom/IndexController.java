@@ -1,8 +1,6 @@
 package com.green.GreenClassRoom;
 
 import com.green.GreenClassRoom.member.service.MemberService;
-import com.green.GreenClassRoom.member.vo.MemberVO;
-import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;

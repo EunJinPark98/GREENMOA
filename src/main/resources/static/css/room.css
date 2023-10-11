@@ -1,6 +1,8 @@
 @charset "UTF-8";
 
+/* 마이룸 */
 #myRoom{
+    position: relative;
     background-image: url(/images/room_frame.jpg);
     background-size: 100% 100%;
     background-position: center;
@@ -9,3 +11,67 @@
     height: 400px;
     object-fit: cover;
 }
+
+/* 미니미 */
+#minime{
+    position: absolute;
+    right: 30%;
+    top: 0;
+    width: 150px;
+}
+
+#minime img{
+    width: 100%;
+    height: auto;
+    margin-left: 15px;
+}
+
+#minime .name{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    font-size: 1.2rem;
+}
+
+.status-msg{
+    width: 200px;
+    height: 200px;
+    background-image: url(/images/msgBox_1.png);
+    background-size: 100% auto;
+    background-repeat: no-repeat;
+    background-position: center;
+
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   
+   padding-left: 10px;
+   padding-right: 10px;
+   font-size: 1.3rem;
+
+   margin-right: 10px;
+
+}
+
+/* 투두리스트 */
+.todoList{
+    display: flex;
+    justify-content: center;
+    width: 150px;
+    height: 200px;
+    position: absolute;
+    left: 50px;
+    top: 50px;
+    transform: rotate(-8deg);
+    background-image: url(/images/todoList_3.png);
+    background-size: 100% auto;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+.todoList .pin{
+    margin-top: 5px;
+    margin-left: 10px;
+    width: 30px;
+    height: 32px;
+}
+
