@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.Collections;
 import java.util.List;
 
 @Controller
@@ -57,6 +58,9 @@ public class FreeBoardController {
         MemberVO loginInfo=(MemberVO) session.getAttribute("loginInfo");
         freeBoardVO.setWriter(loginInfo.getMemberId());
         model.addAttribute("loginInfo",loginInfo);
+
+        FreeBoardVO freeBoardDetail=freeBoardService.selectFreeBoardDetail(boardNum);
+        model.addAttribute("freeBoardDetail",freeBoardDetail);
         // @RequestParam(required = false, defaultValue = "false") boolean noCount
         // 댓글 등록이 실행되지 않으면 noCount가 넘어오지 않고, 그 값은 false가 된다.
         // 댓글 등록 시 게시글 목록 페이지로 오면 카운터 무효!
@@ -65,12 +69,8 @@ public class FreeBoardController {
             freeBoardService.readCntUp(boardNum);
         }
 
-        FreeBoardVO freeBoardDetail=freeBoardService.selectFreeBoardDetail(boardNum);
-        model.addAttribute("freeBoardDetail",freeBoardDetail);
-
         List<ReplyVO> replyList = freeBoardService.selectReply(replyVO);
         model.addAttribute("replyList",replyList);
-
 
         return "content/board/free_board_detail";
     }
@@ -103,5 +103,13 @@ public class FreeBoardController {
         freeBoardService.insertReply(replyVO);
         //+ "&noCount=true" :  댓글 작성시 조회수가 오르지 않게 하기 위해 true인 값인 noCount를 보낸다.
         return "redirect:/board/freeBoardDetail?boardNum="+replyVO.getBoardNum()+"&replyer="+replyVO.getReplyer() + "&noCount=true" ;
+    }
+
+    // 댓글 삭제 기능
+    @GetMapping("/deleteReply")
+    public String deleteReply(@RequestParam(name = "replyNums") List<Integer> replyNums,ReplyVO replyVO){
+        replyVO.setReplyNumList(replyNums);
+        freeBoardService.deleteReply(replyVO);
+        return "redirect:/board/freeBoardDetail?boardNum="+replyVO.getBoardNum()+"&replyer="+replyVO.getReplyer() + "&noCount=true";
     }
 }

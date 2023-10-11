@@ -32,11 +32,11 @@
                 <td>조회수</td>
             </tr>
             <!-- 게시글이 하나도 없다면 -->
-            <th:block th:if="${#lists.size(freeBoardDetail)==0}">
+            <!-- <th:block th:if="${#lists.size(freeBoardDetail)==0}">
                 <tr>
                     <td colspan="5">조회된 게시글이 없습니다.</td>
                 </tr>
-            </th:block>
+            </th:block> -->
             <th:block th:unless="${#lists.size(freeBoardDetail)==0}">
                     <tr th:each="board, state : ${freeBoardDetail}">
                         <td>[[${board.boardNum}]]</td>
@@ -57,6 +57,9 @@
                     <td>작성자</td>
                     <td>댓글내용</td>
                     <td>작성일</td>
+                    <td>
+                        <input type="checkbox" name="allCheck" onclick="selectAll(this);">
+                    </td>
                 </tr>
     
                 <th:block th:if="${#lists.size(replyList)==0}">
@@ -71,9 +74,19 @@
                         <td>[[${reply.replyer}]]</td>
                         <td>[[${reply.replyText}]]</td>
                         <td>[[${reply.regDate}]]</td>
+                        <td>
+                            <input type="checkbox" name="innerCheck" class="chk" onclick="checkSelectAll();" th:data-reply-num="${reply.replyNum}" th:value="${reply.replyNum}">
+                            <!-- th:diabled="" -->
+                        </td>
                     </tr>
                 </th:block>
             </table>
+        </div>
+        <div th:if="${session.loginInfo != null}">
+            <div th:if="${freeBoardDetail.writer == session.loginInfo.memberId}">
+                <input type="button" value="삭제" th:onclick="deleteReply([[${freeBoardDetail.boardNum}]])">
+                <input type="button" value="수정" th:onclick="goUpdateReply([[${freeBoardDetail.boardNum}]])">
+            </div>
         </div>
         <div>
             <form action="/board/insertReply" method="post">
@@ -83,12 +96,6 @@
                 <input type="hidden" name="replyer" th:value="${loginInfo.memberId}">
                 <input type="submit" value="댓글작성"></input>
             </form>
-        </div>
-        <div th:if="${session.loginInfo != null}">
-            <div th:if="${freeBoardDetail.writer == session.loginInfo.memberId}">
-                <input type="button" value="삭제" th:onclick="goDeleteReply([[${freeBoardDetail.boardNum}]])">
-                <input type="button" value="수정" th:onclick="goUpdateReply([[${freeBoardDetail.boardNum}]])">
-            </div>
         </div>
         <input type="button" value="뒤로가기" onclick="location.href='/board/freeBoardList'">
         <div th:if="${session.loginInfo != null}">
