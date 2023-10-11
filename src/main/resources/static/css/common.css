@@ -15,10 +15,23 @@ a{
 }
 
 body{
-    position: relative;
     background-color: #EBE4DA;
     font-family: 'Dovemayo_gothic';
+}
 
+/* 그린모아 프레임 */
+.main-fr{
+    border: 3px solid #E4C682;
+    margin-top: -20px;
+    background-color: #fff;
+    padding: 40px;
+}
+
+.inner-fr{
+    position: relative;
+    height: 600px;
+    border: 3px solid #D8D8D8;
+    border-radius: 20px;
 }
 
 
