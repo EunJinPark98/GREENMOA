@@ -7,6 +7,7 @@ import com.green.GreenClassRoom.util.UploadUtil;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
+import org.springframework.stereotype.Repository;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -41,7 +42,7 @@ public class QnaBoardController {
     @PostMapping("/qnaBoardInsert")
     public String qnaBoardInsert(QnaBoardVO qnaBoardVO, MultipartFile img, HttpSession session){
         //이미지 파일 첨부
-        QnaBoardVO upLoadInfo= UploadUtil.uploadFile(img);
+        QnaBoardVO upLoadInfo = UploadUtil.uploadFile(img);
         //이미지 파일을 첨부시 원본 파일명과 첨부된 파일명 데이터를 가져오는것!
         if (upLoadInfo != null){
             qnaBoardVO.setOriginFileName(upLoadInfo.getOriginFileName());
@@ -61,9 +62,29 @@ public class QnaBoardController {
 
         QnaBoardVO qnaBoard = qnaBoardService.qnaBoardDetail(qnaBoardNum);
         model.addAttribute("qnaBoardList", qnaBoard);
-
-
         return "content/board/qna_board_detail";
+    }
+
+    //질문게시판 삭제
+    @GetMapping("/deleteQnaBoard")
+    public String deleteBoard(int qnaBoardNum){
+        qnaBoardService.deleteQnaBoard(qnaBoardNum);
+        return "redirect:/board/question";
+    }
+
+    //질문게시판 수정 페이지
+    @GetMapping("/updateQnaBoardPage")
+    public String updateQnaBoardPage(int qnaBoardNum, Model model){
+        QnaBoardVO qnaBoardDetail = qnaBoardService.qnaBoardDetail(qnaBoardNum);
+        model.addAttribute("qnaBoardDetail", qnaBoardDetail);
+        return "/content/board/qna_board_update_page";
+    }
+
+    //질문게시판 수정
+    @PostMapping("/updateQnaBoard")
+    public String updateQnaBoard(QnaBoardVO qnaBoardVO){
+        qnaBoardService.updateQnaBoard(qnaBoardVO);
+        return "redirect:/board/qnaBoardDetail?qnaBoardNum=" + qnaBoardVO.getQnaBoardNum();
     }
 
 

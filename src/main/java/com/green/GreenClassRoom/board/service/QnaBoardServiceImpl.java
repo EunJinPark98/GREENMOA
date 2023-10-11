@@ -31,4 +31,14 @@ public class QnaBoardServiceImpl implements QnaBoardService{
     public QnaBoardVO qnaBoardDetail(int qnaBoardNum) {
         return sqlSession.selectOne("qnaBoardMapper.qnaBoardDetail", qnaBoardNum);
     }
+
+    @Override
+    public int deleteQnaBoard(int qnaBoardNum) {
+        return sqlSession.delete("qnaBoardMapper.deleteQnaBoard", qnaBoardNum);
+    }
+
+    @Override
+    public int updateQnaBoard(QnaBoardVO qnaBoardVO) {
+        return sqlSession.update("qnaBoardMapper.updateQnaBoard", qnaBoardVO);
+    }
 }

@@ -21,7 +21,7 @@ public class UploadUtil {
 
             //첨부될 파일명
             String uuid = UUID.randomUUID().toString();
-            //가장 빨리 만나는 자바.jpg
+
             int dotIndex = originFileName.lastIndexOf(".");
             String extension = originFileName.substring(dotIndex);
             String attachedFileName = uuid + extension;

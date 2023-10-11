@@ -9,14 +9,12 @@
     tr,td{
         border: 1px solid black;
     }
-    div{
-        width: 100%;
-    }
-    table{
-        width: 100%;
-    }
     .page{
         display: flex;
+        margin-bottom: 10px;
+    }
+    div, table{
+        width: 100%;
     }
 </style>
 </head>
@@ -58,8 +56,15 @@
             </th:block>
         </table>
     </div>
+    <div th:if="${session.loginInfo != null}">
+        <div th:if="${qnaBoardList.qnaBoardWriter == session.loginInfo.memberId or session.loginInfo.memberId == 'admin'}">
+            <input type="button" class="btn btn-primary" value="수정" th:onclick="updateQnaBoard([[${qnaBoardList.qnaBoardNum}]])">
+            <input type="button" class="btn btn-primary" value="삭제" th:onclick="deleteQnaBoard([[${qnaBoardList.qnaBoardNum}]])">
+        </div>
+    </div>
+    <input type="button" class="btn btn-primary" value="뒤로가기" onclick="location.href='/board/question';">
 </div>
-
+<script src="/js/board/qna_board.js"></script>
 </th:block>
 </body>
 </html>

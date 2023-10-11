@@ -15,7 +15,14 @@ public interface QnaBoardService {
     //질문게시판 조회수 증가
     public int updateCnt(int qnaBoardNum);
 
-    //게시글 상세 조회
+    //질문게시판 상세 조회
     public QnaBoardVO qnaBoardDetail(int qnaBoardNum);
+
+    //질문게시판 삭제
+    public int deleteQnaBoard(int qnaBoardNum);
+
+    //질문게시판 수정
+    public int updateQnaBoard(QnaBoardVO qnaBoardVO);
+
 
 }
