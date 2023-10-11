@@ -15,36 +15,26 @@ a{
 }
 
 body{
-    position: relative;
     background-color: #EBE4DA;
     font-family: 'Dovemayo_gothic';
-
 }
 
-h1#logo{
-    display: flex;
-    justify-content: center;
-    width: 91%;
-    height: 58px;
-    margin-bottom: 50px;
+/* 그린모아 프레임 */
+.main-fr{
+    border: 3px solid #E4C682;
+    margin-top: -20px;
+    background-color: #fff;
+    padding: 40px;
 }
 
-h1#logo img{
-    width: 300px;
-    height: auto;
+.inner-fr{
+    position: relative;
+    height: 600px;
+    border: 3px solid #D8D8D8;
+    border-radius: 20px;
 }
 
-h3#logo{
-    width: 100%;
-    display: flex;
-    justify-content: center;
-}
 
-h3#logo img{
-    width: 150px;
-    height: auto;
-    margin-top: 10px;
-}
 
 #email-error-div{
     color: red;
@@ -64,3 +54,7 @@ h3#logo img{
     border: none;
 }
 
+.form-check-input:checked {
+    background-color: #FEBC5B;
+    border-color: #FEBC5B;
+}
