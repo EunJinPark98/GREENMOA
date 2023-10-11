@@ -32,7 +32,6 @@ body{
     position: absolute;
     top: 30%;
     left: 50%;
-    cursor: pointer;
 }
 
 .utilMenu{
@@ -83,14 +82,12 @@ body{
     top: 15%;
     left: 10%;
     transform: perspective(200px) rotateY(30deg);
-    cursor: pointer;
 }
 .calendar:after{
     content: '';
     display: block;
     width: 150px;
     height: 150px;
-    box-shadow: -1px 5px 5px 0px rgba(0, 0, 0, 0.3);
 }
 .planManage{
     display: none;
