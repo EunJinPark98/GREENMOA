@@ -1,5 +1,6 @@
 package com.green.GreenClassRoom.room.controller;
 
+import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,6 +14,7 @@ public class RoomController {
     //클래스룸
     @GetMapping("/main")
     public String main(){
+
         return "/content/room/main";
     }
 

@@ -11,6 +11,8 @@
         <th:block th:each="menu : ${menuList}">
             <p class="menu" th:attr="onclick='location.href=\'' + ${menu.menuUrl} + '\''" th:text="${menu.menuName}"></p>
         </th:block>
+         
+        
 
         <!-- 로그인 미니미 -->
         <div class="loginMinime">minime</div>
