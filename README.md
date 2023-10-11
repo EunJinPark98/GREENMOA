@@ -4,14 +4,14 @@
 그린아카데미 팀 프로젝트 4조
 학급커뮤니티 "GREEN MOA"
 
-![image](https://github.com/EunJinPark98/GREENMOA/assets/120006805/79e49d0d-28c6-405c-8002-50af7407d98b)
+![image](https://github.com/EunJinPark98/GREENMOA/assets/120006805/f3379b69-85e0-4972-90a2-3f01459ec8f1)
+
 
 <br>
 <br>
 
 
-게더타운 + 구글클래스룸 + 싸이월드<br>
-기존에 다소 딱딱한 학사관리시스템을 좀 더 메타버스+싸이옛감성을 넣어서 만들어보고 싶은 마음<br>
+싸이월드 + 메타버스 느낌의 학급커뮤니티<br>
 
 <br>
 <br>
