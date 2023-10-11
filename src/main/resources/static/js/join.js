@@ -96,7 +96,7 @@ $('.minimeA').click(function(){
     $('.minimeA_btn').css({
         display : 'flex'
     })
-    $('.minime-choice').prop('disabled', false);
+   
 })
 
 $('.minimeA_slideList').slick({
@@ -107,6 +107,9 @@ $('.minimeA_slideList').slick({
     centerMode : true,
     variableWidth: true
 })
+
+
+
 
 $('.minimeA_1').click(function(){
     let srcValue = $(this).find('img').attr('src');
@@ -153,7 +156,6 @@ $('.minimeB').click(function(){
     $('.minimeB_btn').css({
         display : 'flex'
     })
-    $('.minime-choice').prop('disabled', false);
 })
 
 $('.minimeB_slideList').slick({
@@ -199,7 +201,13 @@ $('.minimeB_4').click(function(){
 });
 
 
-
+//미니미 완료 버튼 활성화
+$('.minimeA_slideList').find('div').click(function(){
+    $('.minime-choice').prop('disabled', false);
+})
+$('.minimeB_slideList').find('div').click(function(){
+    $('.minime-choice').prop('disabled', false);
+})
 
 // 미니미선택 완료버튼
 $('.minime-choice').click(function(){

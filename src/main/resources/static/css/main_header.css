@@ -8,7 +8,7 @@
     border: 3px solid #E4C682;
     padding-top: 18px;
     background-color: #F0E2BC;
-    margin-left: -15px;
+    margin-left: -14px;
     transition: width 0.1s ease-out;
     font-size: 20px;
     color: #8b7766;
@@ -34,24 +34,23 @@ body{
 }
 .loginMinime{
     background-image: url(/images/loginMinime2.png);
-    top: 15px;
-    right: 12%;
+    top: 10px;
+    right: 39%;
     width: 80px;
     height: 105px;
     text-indent: -99999px;
 }
 .loginConver{
     background-image: url(/images/loginMinime1.png);
-    top: -15px;
+    top: 0;
     right: 17%;
-    width: 90px;
-    height: 70px;
+    width: 115px;
+    height: 65px;
     text-align: center;
     padding-top: 15px;
-    transform: rotate(-10deg);
 }
 .loginConver a{
     color: #89847b;
-    font-size: 20px;
+    font-size: 0.9rem;
     letter-spacing: 1px;
 }

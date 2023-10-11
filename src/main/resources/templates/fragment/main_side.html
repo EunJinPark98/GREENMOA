@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+<meta charset="UTF-8">
+<title></title>
+</head>
+<body>
+    <th:block th:fragment="mainSideFragment">
+        <link rel="stylesheet" href="/css/main_header.css">
+        <th:block th:each="menu : ${menuList}">
+            <p class="menu" th:attr="onclick='location.href=\'' + ${menu.menuUrl} + '\''" th:text="${menu.menuName}"></p>
+        </th:block>
+    </th:block>
+</body>
+</html>

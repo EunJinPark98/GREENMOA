@@ -17,7 +17,7 @@ public class LoginInfoInterceptor implements HandlerInterceptor {
         HttpSession session = request.getSession();
         MemberVO loginInfo = (MemberVO) session.getAttribute("loginInfo");
         if (loginInfo == null) {
-            response.sendRedirect("/room/main");
+            response.sendRedirect("/member/loginPage");
             return false;
         }
         return true;
