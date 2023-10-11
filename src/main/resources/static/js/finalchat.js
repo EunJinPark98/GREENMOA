@@ -3,15 +3,16 @@ var stompClient = null;
 
 
 function connect() {
-    var socket = new SockJS('/chat');
-    //var socket = new WebSocket('ws://localhost:8081/chat'); // WebSocket 연결 URL
+    //var socket = new SockJS('/chat');
+    var socket = new SockJS('http://58.151.101.222:8081/chat');
+    //var socket = new WebSocket('ws://localhost:8081/chat');
     stompClient = Stomp.over(socket);
     stompClient.connect({}, function (frame) {
         console.log('Connected: ' + frame);
         stompClient.subscribe('/', function (message) {
             showMessage(JSON.parse(message.body).content);
         });
-    });
+    }); 
 }
 
 // 메시지 전송
