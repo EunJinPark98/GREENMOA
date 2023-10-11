@@ -110,6 +110,14 @@
         WHERE BOARD_NUM=#{boardNum}
         ORDER BY REPLY_NUM DESC
     </select>
+    <!--댓글 선택 삭제-->
+    <delete id="deleteReply">
+        DELETE BOARD_REPLY
+        WHERE REPLY_NUM IN
+        <foreach collection="replyNumList" item="replyNum" separator="," open="(" close=")">
+            #{replyNum}
+        </foreach>
+    </delete>
 </mapper>
 
 

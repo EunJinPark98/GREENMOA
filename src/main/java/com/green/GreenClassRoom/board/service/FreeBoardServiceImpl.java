@@ -53,4 +53,9 @@ public class FreeBoardServiceImpl implements FreeBoardService{
     public List<ReplyVO> selectReply(ReplyVO replyVO) {
         return sqlSession.selectList("freeBoardMapper.selectReply",replyVO);
     }
+
+    @Override
+    public int deleteReply(ReplyVO replyVO) {
+        return sqlSession.delete("freeBoardMapper.deleteReply",replyVO);
+    }
 }
