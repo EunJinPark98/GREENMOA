@@ -2,6 +2,8 @@ package com.green.GreenClassRoom.member.service;
 
 import com.green.GreenClassRoom.member.vo.MemberVO;
 
+import java.util.List;
+
 public interface MemberService {
 
     //회원가입
@@ -12,4 +14,7 @@ public interface MemberService {
 
     // 로그인
     public MemberVO login(MemberVO memberVO);
+
+    // 모든 학생 출력
+    public List<MemberVO> selectMemberList();
 }

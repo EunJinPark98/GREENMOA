@@ -5,6 +5,8 @@ import lombok.RequiredArgsConstructor;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class MemberServiceImpl implements MemberService {
@@ -24,5 +26,10 @@ public class MemberServiceImpl implements MemberService {
     @Override
     public MemberVO login(MemberVO memberVO) {
         return sqlSession.selectOne("memberMapper.login",memberVO);
+    }
+
+    @Override
+    public List<MemberVO> selectMemberList() {
+        return sqlSession.selectList("memberMapper.selectMemberList");
     }
 }

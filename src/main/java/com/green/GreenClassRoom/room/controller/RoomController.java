@@ -1,7 +1,9 @@
 package com.green.GreenClassRoom.room.controller;
 
+import com.green.GreenClassRoom.member.service.MemberService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -9,11 +11,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/room")
 @RequiredArgsConstructor
 public class RoomController {
+    private final MemberService memberService;
 
     //클래스룸
     @GetMapping("/main")
-    public String main(){
-
+    public String main(Model model){
+        model.addAttribute("memberList", memberService.selectMemberList());
         return "/content/room/main";
     }
 

@@ -7,33 +7,22 @@
 <body>
     <th:block th:fragment="mainHeaderFragment">
         <link rel="stylesheet" href="/css/main_header.css">
-
-        <h1 id="logo"><img src="/images/GREENMOA_logo.png" alt="" onclick="location.href='/room/main'"></h1>
-
-        <!-- 로그인 미니미 -->
-        <div class="loginMinime">minime</div>
-        <!-- 로그인 안했을 시 -->
-        <th:block th:if="${session.loginInfo ==null}">
-            <div class="loginConver" onclick="location.href='/member/loginPage';">로그인</div>
-        </th:block>
-        <!-- 로그인 했을 시 -->
-        <th:block th:if="${session.loginInfo !=null}">
-            <div class="loginConver">
-                <a href="/member/logout">로그아웃</a>
+        <div class="row mt-5">
+            <div class="col">
+                <!-- 그린모아 로고 -->
+                <h1 id="logo"><img src="/images/GREENMOA_logo.png" onclick="location.href='/room/main'"></h1>
+                <!-- 로그인 안했을 시 -->
+                <th:block th:if="${session.loginInfo ==null}">
+                    <div class="loginMinime" onclick="location.href='/member/loginPage';"></div>
+                    <div class="loginConver" onclick="location.href='/member/loginPage';">로그인</div>
+                </th:block>
+                <!-- 로그인 했을 시 -->
+                <th:block th:if="${session.loginInfo !=null}">
+                    <div class="loginMinime" onclick="location.href='/member/logout';"></div>
+                    <div class="loginConver" onclick="location.href='/member/logout';">로그아웃</div>
+                </th:block>
             </div>
-        </th:block>
-
-        <!-- 말풍선 -->
-        <script>
-            let utilMenu = document.querySelector('.utilMenu');
-            window.onload = function(){
-                utilMenu.classList.add('bounce');
-            }
-            
-            // let planManage = document.querySelector('.planManage');
-            // function planManage(){
-            // }
-        </script>
+        </div>
     </th:block>
     </div>
     <script src="/js/main_header.js"></script>

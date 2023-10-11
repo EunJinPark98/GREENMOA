@@ -71,6 +71,14 @@
         WHERE MEMBER_ID = #{memberId}
     </select>
 
+    <!--모든 학생 출력-->
+    <select id="selectMemberList" resultMap="member">
+        SELECT MEMBER_ID
+            , MEMBER_NAME
+            , MEMBER_BIRTHDAY
+            , MINIME
+        FROM GREEN_MEMBER
+    </select>
 
 </mapper>
 
