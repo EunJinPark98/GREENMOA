@@ -37,7 +37,6 @@
 
 .minimeA_slideList div, .minimeB_slideList div{
     position: relative;
-    cursor: pointer;
 }
 .mini-check{
     position: absolute;
@@ -109,3 +108,5 @@
 .minimeB_btn{
     display: none;
 }
+
+

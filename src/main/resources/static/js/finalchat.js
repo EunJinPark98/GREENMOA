@@ -4,7 +4,7 @@ var stompClient = null;
 
 function connect() {
     //var socket = new SockJS('/chat');
-    var socket = new SockJS('http://192.168.30.55:8081/chat');
+    var socket = new SockJS('http://192.168.35.187:8081/chat');
     stompClient = Stomp.over(socket);
     stompClient.connect({}, function (frame) {
         console.log('Connected: ' + frame);

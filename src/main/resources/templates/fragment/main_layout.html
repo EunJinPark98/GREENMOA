@@ -9,17 +9,17 @@
 <body>
     <div class="container">
         <!-- 컨텐츠 -->
-        <div class="content row mb-5" style="margin-top: 100px;">
-            <h1 id="logo"><img src="/images/GREENMOA_logo.png" alt="" onclick="location.href='/room/main'"></h1>
-            <div class="col-11" style="background-color: #FFF; padding: 40px; border: 3px solid #E4C682; margin-top: -20px;">
-                <div style="border: 3px solid #D8D8D8; padding-bottom: 600px; border-radius: 20px;">
+        <div class="row mt-5">
+            <th:block th:replace="~{/fragment/main_header :: mainHeaderFragment}"></th:block>
+        </div>
+        <div class="row mb-5">
+            <div class="col-11 main-fr">
+                <div class="inner-fr">
                     <th:block layout:fragment="content"></th:block>
                 </div>
             </div>
-            <!-- 헤더 -->
             <div class="col-1">
-                <th:block th:replace="~{/fragment/main_header :: mainHeaderFragment}">
-                </th:block>
+                <th:block th:replace="~{/fragment/main_side :: mainSideFragment}"></th:block>
             </div>
         </div>
     </div>

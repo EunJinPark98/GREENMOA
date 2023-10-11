@@ -7,26 +7,34 @@
 <title></title>
 </head>
 <body>
-    <th:block layout:fragment="content">
+    <th:block layout:fragment="content" style="height: 1000px;">
         <link rel="stylesheet" href="/css/main.css">
         <!-- 룸 배경 -->
         <div id="classRoom"></div>
 
         <!-- 책 아이콘 -> 과제 메뉴? 아직 안정함 -->
         <div class="utility">과제</div>
-        <div class="utilMenu">과제메뉴</div>
+        <div class="utilMenu">과제</div>
 
         <!-- 캘린더 -->
         <span class="calendar">캘린더</span>
         <div class="planManage"><img src="/images/planManage.png" width="1000px" alt="일정관리"></div>
         
-        <!-- 과제 말풍선 -->
-        <script>
-            let utilMenu = document.querySelector('.utilMenu');
-            window.onload = function(){
-              utilMenu.classList.add('bounce');
-            }
-        </script>
+        <!-- 모든 학생 미니미 -->
+   
+           
+                <div class="mini-fr">
+                    <th:block th:each="member : ${memberList}">
+                    <div class="member">
+                        <img th:src="|/images/${member.minime}.png|">
+                        <p class="name">[[${member.memberName}]]</p>
+                    </div>
+                    </th:block>
+                </div>
+            
+
+
+        <script src="/js/room.js"></script>
     </th:block>
 </body>
 </html>
