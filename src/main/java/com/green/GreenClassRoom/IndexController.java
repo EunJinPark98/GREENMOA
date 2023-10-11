@@ -13,11 +13,8 @@ public class IndexController {
     final private MemberService memberService;
 
     @GetMapping("/")
-    public String index(MemberVO memberVO, HttpSession session){
-        MemberVO loginInfo=memberService.login(memberVO);
-        if(loginInfo!=null) {
-            session.setAttribute("loginInfo", loginInfo);
-        }
+    public String index(){
+
         return "redirect:/room/main";
     }
 }
