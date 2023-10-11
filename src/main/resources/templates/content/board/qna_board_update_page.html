@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{fragment/main_layout}" >
+<head>
+<meta charset="UTF-8">
+<title></title>
+</head>
+<body>
+<th:block layout:fragment="content">
+    <h1>질문 글 수정</h1>
+    <hr>
+    <form action="/board/updateQnaBoard" method="post" enctype="multipart/form-data">
+        <input type="hidden" name="qnaBoardNum" th:value="${qnaBoardDetail.qnaBoardNum}">
+        <div class="row">
+            <div class="col">
+                제목 : <input type="text" name="qnaBoardTitle" th:value="${qnaBoardDetail.qnaBoardTitle}">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <div>내용</div>
+                <div><textarea name="qnaBoardContent" rows="5" cols="50" required>[[${qnaBoardDetail.qnaBoardContent}]]</textarea></div>
+            </div>
+        </div>
+        <div class="row mb-3">
+            <div class="col-5">
+                <label class="form-label">이미지 파일 선택</label>
+                <input type="file" class="form-control" name="upload" th:value="${qnaBoardDetail.originFileName}" multiple>
+            </div>
+        </div>
+        <input type="submit" class="btn btn-primary" value="수정 완료">
+    </form>
+</th:block>
+</th:block>
+</body>
+</html>

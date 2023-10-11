@@ -72,6 +72,31 @@
         WHERE QNA_BOARD_NUM = #{qnaBoardNum}
     </select>
 
+    <!--게시글 삭제-->
+    <delete id="deleteQnaBoard">
+        DELETE QNA_BOARD
+        WHERE QNA_BOARD_NUM = #{qnaBoardNum}
+    </delete>
+
+    <!--게시글 수정-->
+    <update id="updateQnaBoard">
+        UPDATE QNA_BOARD
+        SET QNA_BOARD_TITLE = #{qnaBoardTitle}
+            , QNA_BOARD_CONTENT = #{qnaBoardContent}
+            <if test="originFileName != null">
+                , ORIGIN_FILE_NAME = #{originFileName}
+                , ATTACHED_FILE_NAME = #{attachedFileName}
+            </if>
+        WHERE QNA_BOARD_NUM = #{qnaBoardNum}
+    </update>
+
+    <!--게시판 첨부파일 삭제-->
+    <delete id="deleteFile">
+        DELETE QNA_BOARD
+            ORIGIN_FILE_NAME = #{originFileName}
+            , ATTACHED_FILE_NAME = #{attachedFileName}
+        WHERE QNA_BOARD_NUM = #{qnaBoardNum}
+    </delete>
 </mapper>
 
 
