@@ -1,6 +1,7 @@
 package com.green.GreenClassRoom.board.service;
 
 import com.green.GreenClassRoom.board.vo.QnaBoardVO;
+import com.green.GreenClassRoom.board.vo.ReplyVO;
 import lombok.RequiredArgsConstructor;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Service;
@@ -56,4 +57,19 @@ public class QnaBoardServiceImpl implements QnaBoardService{
     public int insertFile(QnaBoardVO qnaBoardVO) {
         return sqlSession.insert("qnaBoardMapper.insertFile", qnaBoardVO);
     }
+
+//    @Override
+//    public int insertReply(ReplyVO replyVO) {
+//        return sqlSession.insert("freeBoardMapper.insertReply",replyVO);
+//    }
+//
+//    @Override
+//    public List<ReplyVO> selectReply(ReplyVO replyVO) {
+//        return sqlSession.selectList("freeBoardMapper.selectReply",replyVO);
+//    }
+//
+//    @Override
+//    public int deleteReply(int replyNum) {
+//        return sqlSession.delete("freeBoardMapper.deleteReply",replyNum);
+//    }
 }
