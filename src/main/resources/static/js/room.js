@@ -3,3 +3,4 @@ let utilMenu = document.querySelector('.utilMenu');
 window.onload = function(){
   utilMenu.classList.add('bounce');
 }
+
