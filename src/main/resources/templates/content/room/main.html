@@ -10,31 +10,45 @@
     <th:block layout:fragment="content" style="height: 1000px;">
         <link rel="stylesheet" href="/css/main.css">
         <!-- 룸 배경 -->
-        <div id="classRoom"></div>
+        <div id="classRoom">
+            <!-- 책 아이콘 -> 과제 메뉴? 아직 안정함 -->
+            <div class="utility">과제</div>
+            <div class="utilMenu">과제</div>
 
-        <!-- 책 아이콘 -> 과제 메뉴? 아직 안정함 -->
-        <div class="utility">과제</div>
-        <div class="utilMenu">과제</div>
-
-        <!-- 캘린더 -->
-        <span class="calendar">캘린더</span>
-        <div class="planManage"><img src="/images/planManage.png" width="1000px" alt="일정관리"></div>
-        
-        <!-- 모든 학생 미니미 -->
-   
-           
-                <div class="mini-fr">
-                    <th:block th:each="member : ${memberList}">
-                    <div class="member">
-                        <img th:src="|/images/${member.minime}.png|">
-                        <p class="name">[[${member.memberName}]]</p>
-                    </div>
-                    </th:block>
-                </div>
+            <!-- 캘린더 -->
+            <span class="calendar">캘린더</span>
+            <div class="planManage"><img src="/images/planManage.png" width="1000px" alt="일정관리"></div>
             
+            <!-- 모든 멤버 미니미 -->
+            <div class="mini-fr">
+                <th:block th:each="member : ${memberList}">
+                <div class="member">
+                    <img th:src="|/images/${member.minime}.png|">
+                    <p class="name">[[${member.memberName}]]</p>
+                </div>
+                </th:block>
+            </div>
+        </div>
 
+
+            
+        <h1>채팅</h1>
+        <!-- 채팅 -->
+        <div id="chat">
+            <div id="chat-messages"></div>
+        
+            <form id="message-form">
+                <input type="text" id="message">
+                <button type="submit">전송</button>
+            </form>
+        </div>    
 
         <script src="/js/room.js"></script>
+
+        <!-- WebSocket 및 채팅 로직을 초기화하는 스크립트 추가 -->
+        <script src="/webjars/sockjs-client/1.1.2/sockjs.min.js"></script>
+        <script src="/webjars/stomp-websocket/2.3.3/stomp.min.js"></script>
+        <script src="/js/chat.js"></script>
     </th:block>
 </body>
 </html>
