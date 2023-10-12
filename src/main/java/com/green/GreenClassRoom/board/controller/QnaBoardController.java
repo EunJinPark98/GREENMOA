@@ -3,17 +3,16 @@ package com.green.GreenClassRoom.board.controller;
 import com.green.GreenClassRoom.board.service.QnaBoardService;
 import com.green.GreenClassRoom.board.vo.QnaBoardVO;
 import com.green.GreenClassRoom.member.vo.MemberVO;
+import com.green.GreenClassRoom.util.ConstantVariable;
 import com.green.GreenClassRoom.util.UploadUtil;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
-import org.springframework.stereotype.Repository;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
 import java.util.List;
 
 @Controller
@@ -81,10 +80,46 @@ public class QnaBoardController {
     }
 
     //질문게시판 수정
-    @PostMapping("/updateQnaBoard")
+    @RequestMapping("/updateQnaBoard")
     public String updateQnaBoard(QnaBoardVO qnaBoardVO){
+        //수정하려는 게시글에 첨부파일 존재 여부 확인
+        QnaBoardVO qnaBoard = qnaBoardService.qnaBoardDetail(qnaBoardVO.getQnaBoardNum());
+        if (qnaBoard.getAttachedFileName() != null){
+
+        }
+
+        //첨부파일이 존재하는 게시글을 수정?
+        //디비는 update
+        //첨부파일은 삭제 후 등록
+
+
+        //첨부파일이 존재하지 않는 게시글을 수정?
+        //디비는 update
+        //첨부파일을 추가(게시글 등록때처럼 똑같이)
+
+
         qnaBoardService.updateQnaBoard(qnaBoardVO);
         return "redirect:/board/qnaBoardDetail?qnaBoardNum=" + qnaBoardVO.getQnaBoardNum();
+    }
+
+    //질문게시판 첨부파일 수정&삭제
+    @GetMapping("/updateFile")
+    public String updateFile(QnaBoardVO qnaBoardVO){
+        QnaBoardVO qnaBoard = qnaBoardService.qnaBoardDetail(qnaBoardVO.getQnaBoardNum());
+
+        if (qnaBoard.getAttachedFileName() != null){
+            String imgPath = ConstantVariable.UPLOAD_PATH;
+
+            if (imgPath != null){
+                File imgFile = new File(imgPath + qnaBoard.getAttachedFileName());
+                if (imgFile.exists()){
+                    imgFile.delete();
+                }
+            }
+        }
+
+        qnaBoardService.deleteFile(qnaBoardVO);
+        return "redirect:/board/updateQnaBoardPage?qnaBoardNum=" + qnaBoardVO.getQnaBoardNum();
     }
 
 
