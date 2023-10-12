@@ -24,5 +24,7 @@ public interface QnaBoardService {
     //질문게시판 수정
     public int updateQnaBoard(QnaBoardVO qnaBoardVO);
 
+    //질문게시판 첨부파일 삭제
+    public int deleteFile(QnaBoardVO qnaBoardVO);
 
 }

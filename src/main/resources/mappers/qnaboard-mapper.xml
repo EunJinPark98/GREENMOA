@@ -91,12 +91,16 @@
     </update>
 
     <!--게시판 첨부파일 삭제-->
-    <delete id="deleteFile">
-        DELETE QNA_BOARD
-            ORIGIN_FILE_NAME = #{originFileName}
-            , ATTACHED_FILE_NAME = #{attachedFileName}
+    <update id="deleteFile">
+        UPDATE QNA_BOARD
+        SET
+            ORIGIN_FILE_NAME = ''
+            , ATTACHED_FILE_NAME = ''
         WHERE QNA_BOARD_NUM = #{qnaBoardNum}
-    </delete>
+    </update>
+
+    <!--게시판 첨부파일 수정-->
+
 </mapper>
 
 

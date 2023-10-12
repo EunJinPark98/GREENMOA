@@ -1,37 +1,81 @@
 <!DOCTYPE html>
-<html lang="ko" xmlns:th="http://www.thymeleaf.org"
-    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-    layout:decorate="~{fragment/main_layout}" >
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{fragment/main_layout}">
+
 <head>
-<meta charset="UTF-8">
-<title></title>
+    <meta charset="UTF-8">
+    <title></title>
 </head>
+
 <body>
-<th:block layout:fragment="content">
-    <h1>질문 글 수정</h1>
-    <hr>
-    <form action="/board/updateQnaBoard" method="post" enctype="multipart/form-data">
-        <input type="hidden" name="qnaBoardNum" th:value="${qnaBoardDetail.qnaBoardNum}">
-        <div class="row">
-            <div class="col">
-                제목 : <input type="text" name="qnaBoardTitle" th:value="${qnaBoardDetail.qnaBoardTitle}">
+    <th:block layout:fragment="content">
+        <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.32/dist/sweetalert2.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="/css/board.css">
+
+        <h1>질문 글 수정</h1>
+        <hr>
+        <form action="/board/updateQnaBoard" method="post" enctype="multipart/form-data">
+            <input type="hidden" name="qnaBoardNum" th:value="${qnaBoardDetail.qnaBoardNum}">
+            <div class="row">
+                <div class="col">
+                    제목 : <input type="text" name="qnaBoardTitle" th:value="${qnaBoardDetail.qnaBoardTitle}">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <div>내용</div>
+                    <div><textarea name="qnaBoardContent" rows="5" cols="50"
+                            required>[[${qnaBoardDetail.qnaBoardContent}]]</textarea></div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <span class="clickable-span" data-bs-toggle="modal" data-bs-target="#img-modal">[[${qnaBoardDetail.originFileName}]]</span>
+
+                    <svg th:if="${qnaBoardDetail.originFileName != null}" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-x" viewBox="0 0 16 16" th:onclick="deleteFile([[${qnaBoardDetail.qnaBoardNum}]]);">
+                        <path d="M6.146 6.146a.5.5 0 0 1 .708 0L8 7.293l1.146-1.147a.5.5 0 1 1 .708.708L8.707 8l1.147 1.146a.5.5 0 0 1-.708.708L8 8.707 6.854 9.854a.5.5 0 0 1-.708-.708L7.293 8 6.146 6.854a.5.5 0 0 1 0-.708z" />
+                        <path d="M4 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H4zm0 1h8a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1z" />
+                    </svg>
+
+                    <!-- <img width="50%" height="180px" th:src="|/upload/${qnaBoardDetail.attachedFileName}|" alt=""> -->
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-5">
+                    <label class="form-label">이미지 파일 선택</label>
+                    <input type="file" class="form-control" name="upload" multiple>
+                </div>
+            </div>
+            <input type="submit" class="btn btn-primary" value="수정 완료">
+        </form>
+
+        <!-- 첨부된 이미지 파일 팝업 Modal -->
+        <!-- Modal -->
+        <div class="modal fade" id="img-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">[[${qnaBoardDetail.qnaBoardContent}]]</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col text-center">
+                                <img width="50%" height="180px" th:src="|/upload/${qnaBoardDetail.attachedFileName}|" alt="">
+                            </div>
+                        </div>
+                    </div>
+                   
+                </div>
             </div>
         </div>
-        <div class="row">
-            <div class="col">
-                <div>내용</div>
-                <div><textarea name="qnaBoardContent" rows="5" cols="50" required>[[${qnaBoardDetail.qnaBoardContent}]]</textarea></div>
-            </div>
-        </div>
-        <div class="row mb-3">
-            <div class="col-5">
-                <label class="form-label">이미지 파일 선택</label>
-                <input type="file" class="form-control" name="upload" th:value="${qnaBoardDetail.originFileName}" multiple>
-            </div>
-        </div>
-        <input type="submit" class="btn btn-primary" value="수정 완료">
-    </form>
-</th:block>
-</th:block>
+
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.32/dist/sweetalert2.all.min.js"></script>
+        <script src="/js/board/qna_board_update_page.js"></script>
+        
+
+    </th:block>
+
 </body>
+
 </html>

@@ -40,3 +40,13 @@ body{
 td{
     padding: 5px ;
 }
+
+/* 
+* qua_baord_upate_pahr.tml 에 사용하는 css 적용
+* CREATE-DATE : 2023-10-12
+* CREATE BY 협진
+*/
+.clickable-span{
+    cursor: pointer;
+}
+
