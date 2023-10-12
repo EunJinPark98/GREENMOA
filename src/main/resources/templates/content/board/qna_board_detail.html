@@ -49,6 +49,7 @@
                 </tr>
             </th:block>
         </table>
+        <hr>
     </div>
     <div th:if="${session.loginInfo != null}">
         <div th:if="${qnaBoardList.qnaBoardWriter == session.loginInfo.memberId or session.loginInfo.memberId == 'admin'}">

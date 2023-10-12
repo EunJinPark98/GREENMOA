@@ -2,6 +2,7 @@ package com.green.GreenClassRoom.board.controller;
 
 import com.green.GreenClassRoom.board.service.QnaBoardService;
 import com.green.GreenClassRoom.board.vo.QnaBoardVO;
+import com.green.GreenClassRoom.board.vo.ReplyVO;
 import com.green.GreenClassRoom.member.vo.MemberVO;
 import com.green.GreenClassRoom.util.ConstantVariable;
 import com.green.GreenClassRoom.util.UploadUtil;
@@ -55,7 +56,7 @@ public class QnaBoardController {
 
     //질문게시판 상세페이지
     @GetMapping("/qnaBoardDetail")
-    public String qnaBoardDetail(int qnaBoardNum, Model model){
+    public String qnaBoardDetail(int qnaBoardNum, Model model, ReplyVO replyVO){
         //게시글 조회수 증가
         qnaBoardService.updateCnt(qnaBoardNum);
 
@@ -106,22 +107,25 @@ public class QnaBoardController {
                     qnaBoardVO.setAttachedFileName(upLoadInfo.getAttachedFileName());
                 }
             }
-            else if (qnaBoard.getAttachedFileName() == null){
-                QnaBoardVO upLoadInfo = UploadUtil.uploadFile(img);
-                //이미지 파일을 첨부시 원본 파일명과 첨부된 파일명 데이터를 가져오는것!
-                if (upLoadInfo != null){
-                    qnaBoardVO.setOriginFileName(upLoadInfo.getOriginFileName());
-                    qnaBoardVO.setAttachedFileName(upLoadInfo.getAttachedFileName());
-                }
-                qnaBoardService.insertFile(qnaBoardVO);
+
+        }
+        if (qnaBoard.getAttachedFileName() == null){
+
+            System.out.println("dkdkdkkdsfjlkejf;oisjekl아아ㅏ아아아ㅏㅇ");
+            QnaBoardVO upLoadInfo = UploadUtil.uploadFile(img);
+            //이미지 파일을 첨부시 원본 파일명과 첨부된 파일명 데이터를 가져오는것!
+            if (upLoadInfo != null){
+                qnaBoardVO.setOriginFileName(upLoadInfo.getOriginFileName());
+                qnaBoardVO.setAttachedFileName(upLoadInfo.getAttachedFileName());
+
+                qnaBoardService.updateQnaBoard(qnaBoardVO);
             }
         }
 
         //첨부파일이 존재하지 않는 게시글을 수정?
         //디비는 update
         //첨부파일을 추가(게시글 등록때처럼 똑같이)
-        qnaBoardService.updateFile(qnaBoardVO);
-        qnaBoardService.updateQnaBoard(qnaBoardVO);
+
         return "redirect:/board/qnaBoardDetail?qnaBoardNum=" + qnaBoardVO.getQnaBoardNum();
     }
 
@@ -145,5 +149,20 @@ public class QnaBoardController {
         return "redirect:/board/updateQnaBoardPage?qnaBoardNum=" + qnaBoardVO.getQnaBoardNum();
     }
 
+//    // 댓글 작성
+//    @PostMapping("/insertReply")
+//    public String insertReply(ReplyVO replyVO){
+//        qnaBoardService.insertReply(replyVO);
+//        //+ "&noCount=true" :  댓글 작성시 조회수가 오르지 않게 하기 위해 true인 값인 noCount를 보낸다.
+//        return "redirect:/board/qnaBoardDetail?QnaBoardNum="+replyVO.getBoardNum()+"&replyer="+replyVO.getReplyer() + "&noCount=true" ;
+//    }
+//
+//    // 댓글 삭제 기능
+//    @GetMapping("/deleteReply")
+//    public String deleteReply(int replyNum,ReplyVO replyVO){
+//        //replyVO.setReplyNumList(replyNums);
+//        qnaBoardService.deleteReply(replyNum);
+//        return "redirect:/board/qnaBoardDetail?QnaBoardNum="+replyVO.getBoardNum()+"&replyer="+replyVO.getReplyer() + "&noCount=true";
+//    }
 
 }

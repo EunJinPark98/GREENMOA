@@ -99,29 +99,36 @@
         WHERE QNA_BOARD_NUM = #{qnaBoardNum}
     </update>
 
-    <!--게시판 첨부파일 수정-->
-    <update id="updateFile">
-        UPDATE QNA_BOARD
-        SET
-            ORIGIN_FILE_NAME = #{originFileName}
-            , ATTACHED_FILE_NAME =#{attachedFileName}
-        WHERE QNA_BOARD_NUM = #{qnaBoardNum}
-    </update>
 
-    <!--게시판 첨부파일 첨부-->
-    <insert id="insertFile">
-        INSERT INTO QNA_BOARD (
-        <if test="originFileName == null">
-            ORIGIN_FILE_NAME
-            , ATTACHED_FILE_NAME
-        </if>
-        ) VALUES (
-        <if test="originFileName == null">
-            #{originFileName}
-            , #{attachedFileName}
-        </if>
-        )
-    </insert>
+<!--    &lt;!&ndash;댓글 작성&ndash;&gt;-->
+<!--    <insert id="insertReply">-->
+<!--        INSERT INTO BOARD_REPLY(-->
+<!--        REPLY_NUM-->
+<!--        , REPLY_TEXT-->
+<!--        , REPLYER-->
+<!--        , BOARD_NUM-->
+<!--        )-->
+<!--        VALUES(-->
+<!--        (SELECT NVL(MAX(REPLY_NUM),0) +1 FROM BOARD_REPLY)-->
+<!--        ,#{replyText}-->
+<!--        ,#{replyer}-->
+<!--        ,#{boardNum}-->
+<!--        )-->
+<!--    </insert>-->
+<!--    <select id="selectReply" resultMap="reply">-->
+<!--        SELECT REPLY_NUM-->
+<!--        , REPLY_TEXT-->
+<!--        , REPLYER-->
+<!--        , TO_CHAR(REG_DATE,'YYYY-MM-DD') REG_DATE-->
+<!--        FROM BOARD_REPLY-->
+<!--        WHERE BOARD_NUM=#{boardNum}-->
+<!--        ORDER BY REPLY_NUM DESC-->
+<!--    </select>-->
+<!--    <delete id="deleteReply">-->
+<!--        DELETE BOARD_REPLY-->
+<!--        WHERE REPLY_NUM=#{replyNum}-->
+<!--    </delete>-->
+
 </mapper>
 
 
