@@ -75,8 +75,6 @@
     transform: rotate(-135deg);
 }
 
-
-
 /* 토끼 */
 .minimeA_slideList{
     display: none;
@@ -90,7 +88,7 @@
     display: none;
 }
 .minimeB_btn{
-    display: none;
+    display: none ;
 }
 
 .minimeA_btn, .minimeB_btn{
