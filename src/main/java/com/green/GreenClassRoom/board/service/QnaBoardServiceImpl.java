@@ -44,6 +44,16 @@ public class QnaBoardServiceImpl implements QnaBoardService{
 
     @Override
     public int deleteFile(QnaBoardVO qnaBoardVO) {
-        return sqlSession.delete("qnaBoardMapper.deleteFile", qnaBoardVO);
+        return sqlSession.update("qnaBoardMapper.deleteFile", qnaBoardVO);
+    }
+
+    @Override
+    public int updateFile(QnaBoardVO qnaBoardVO) {
+        return sqlSession.update("qnaBoardMapper.updateFile", qnaBoardVO);
+    }
+
+    @Override
+    public int insertFile(QnaBoardVO qnaBoardVO) {
+        return sqlSession.insert("qnaBoardMapper.insertFile", qnaBoardVO);
     }
 }
