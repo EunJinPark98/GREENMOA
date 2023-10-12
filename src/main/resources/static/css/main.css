@@ -72,27 +72,70 @@ body{
 
 
 /* --------- 캘린더 --------- */
+.pin{
+    background-image: url(/images/pin-green.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 100% auto;
+    position: absolute;
+    top: 15%;
+    left: 12%;
+    z-index: 1;
+    width: 35px;
+    height: 35px;
+    text-indent: -99999px;
+}
 .calendar{
     background-image: url(/images/calendar.png);
     background-position: center;
     background-repeat: no-repeat;
     background-size: 100% auto;
-    width: 130px;
+    width: 150px;
     height: 200px;
     text-indent: -99999px;
     position: absolute;
-    top: 10%;
-    left: 12%;
+    top: 15%;
+    left: 10%;
     transform: perspective(200px) rotateY(30deg);
 }
-.calendar:after{
-    content: '';
-    display: block;
-    width: 150px;
-    height: 150px;
+.modal-fullscreen{
+    width: 1250px;
+    height: 1000px;
+    position: absolute;
+    left: 20px;
+}
+.modal-header .btn-close {
+    margin: 0;
+    margin-right: 16px;
 }
 .planManage{
-    display: none;
+    background-color: #f7f6f4;
+}
+
+.carousel-item img{
+    width: 1200px;
+}
+.carousel-indicators{
+    position: absolute;
+    top: 80px;
+    right: -50px;
+
+    top: -40px;
+    right: 0px;
+}
+.carousel-indicators .default{
+    width: 15px;
+    height: 15px;
+    background-color: #c3c1c0;
+    border-radius: 50%;
+    margin-right: 20px;
+}
+.carousel-indicators .active{
+    background-color: #d8902d;
+}
+
+.carousel-inner{
+    margin-top: 80px;
 }
 
 
