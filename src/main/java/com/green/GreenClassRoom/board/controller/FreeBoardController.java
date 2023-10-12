@@ -79,7 +79,7 @@ public class FreeBoardController {
     public String updateBoardForm(int boardNum,Model model){
         FreeBoardVO freeBoardDetail=freeBoardService.selectFreeBoardDetail(boardNum);
         model.addAttribute("freeBoardDetail",freeBoardDetail);
-        return "content/board/free_board_update";
+        return "content/board/free_board_update_page";
     }
 
     // 게시글 수정 기능
