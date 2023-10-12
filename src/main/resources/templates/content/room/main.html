@@ -9,8 +9,10 @@
 <body>
     <th:block layout:fragment="content" style="height: 1000px;">
         <link rel="stylesheet" href="/css/main.css">
-        <!-- 룸 배경 -->
+
+        <!-- 클래스룸 -->
         <div id="classRoom">
+
             <!-- 책 아이콘 -> 과제 메뉴? 아직 안정함 -->
             <div class="utility">과제</div>
             <div class="utilMenu">과제</div>
@@ -28,20 +30,22 @@
                 </div>
                 </th:block>
             </div>
+
         </div>
 
 
             
-        <h1>채팅</h1>
-        <!-- 채팅 -->
-        <div id="chat">
+        
+        <div id="chat" class="container-md">
+            <h3>채팅기능을 만들어보자</h3>
             <div id="chat-messages"></div>
         
             <form id="message-form">
-                <input type="text" id="message">
-                <button type="submit">전송</button>
+                <input type="text" id="message" class="form-control">
+                <button type="submit" class="btn btn-primary chatBtn">전송</button>
             </form>
-        </div>    
+        </div>
+    
 
         <script src="/js/room.js"></script>
 

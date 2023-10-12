@@ -20,16 +20,20 @@ function connect() {
 function sendMessage() {
     var messageInput = document.getElementById('message');
     var message = messageInput.value;
-    stompClient.send("/app/chat", {}, JSON.stringify({ 'content': message }));
+    stompClient.send("/app/chat", {}, JSON.stringify({'content': message, 'sender': "익명" }));
+    
+    
     messageInput.value = '';
 }
 
 // 메시지 표시
 function showMessage(message) {
     var chatMessages = document.getElementById('chat-messages');
-    var messageElement = document.createElement('p');
-    messageElement.appendChild(document.createTextNode(message));
-    chatMessages.appendChild(messageElement);
+    var msgEl = document.createElement('p');
+    msgEl.appendChild(document.createTextNode(message));
+    chatMessages.appendChild(msgEl);
+
+    scrollToBottom();
 }
 
 // 페이지 로드 시 연결
@@ -42,3 +46,11 @@ document.addEventListener('DOMContentLoaded', function () {
         sendMessage();
     });
 });
+
+
+
+// 채팅 스크롤바 항상 밑으로
+function scrollToBottom() {
+    var chatMessages = document.getElementById('chat-messages');
+    chatMessages.scrollTop = chatMessages.scrollHeight;
+}

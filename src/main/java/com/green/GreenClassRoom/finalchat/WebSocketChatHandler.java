@@ -42,6 +42,7 @@ public class WebSocketChatHandler extends TextWebSocketHandler {
         // 메시지 처리 로직 추가
 
         // 메시지 브로드캐스트
+        System.out.println("브로드캐스트!!!!!!!!!!!!");
         broadcastMessage(receivedMessage);
     }
 
