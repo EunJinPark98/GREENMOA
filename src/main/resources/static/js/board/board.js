@@ -5,7 +5,7 @@ function goDelete(boardNum){
         location.href=`/board/deleteBoard?boardNum=${boardNum}`;
     };
 };
-
+// 게시글 수정 버튼
 function goUpdate(boardNum){
     location.href=`/board/updateBoardForm?boardNum=${boardNum}`;
 }

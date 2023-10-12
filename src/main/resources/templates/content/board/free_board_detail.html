@@ -82,12 +82,6 @@
                 </th:block>
             </table>
         </div>
-        <div th:if="${session.loginInfo != null}">
-            <div th:if="${freeBoardDetail.writer == session.loginInfo.memberId}">
-                <input type="button" value="삭제" th:onclick="deleteReply([[${freeBoardDetail.boardNum}]])">
-                <input type="button" value="수정" th:onclick="goUpdateReply([[${freeBoardDetail.boardNum}]])">
-            </div>
-        </div>
         <div>
             <form action="/board/insertReply" method="post">
                 <label >댓글 쓰기</label><br>
