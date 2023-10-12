@@ -31,6 +31,6 @@ public interface FreeBoardService {
     public List<ReplyVO> selectReply(ReplyVO replyVO);
 
     // 댓글 선택 삭제 기능
-    public int deleteReply(ReplyVO replyVO);
+    public int deleteReply(int replyNum);
 
 }

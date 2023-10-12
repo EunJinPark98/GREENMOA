@@ -55,7 +55,7 @@ public class FreeBoardServiceImpl implements FreeBoardService{
     }
 
     @Override
-    public int deleteReply(ReplyVO replyVO) {
-        return sqlSession.delete("freeBoardMapper.deleteReply",replyVO);
+    public int deleteReply(int replyNum) {
+        return sqlSession.delete("freeBoardMapper.deleteReply",replyNum);
     }
 }
