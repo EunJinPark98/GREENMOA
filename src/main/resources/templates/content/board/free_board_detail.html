@@ -20,34 +20,83 @@
 </head>
 <body>
     <th:block layout:fragment="content">
-        <h3>자유게시판 상세 페이지</h3>
-        <hr>
-        <table>
-            <tr>
-                <td>글 번호</td>
-                <td>제 목</td>
-                <td>글 내용</td>
-                <td>작성자</td>
-                <td>작성일</td>
-                <td>조회수</td>
-            </tr>
+
+        <link rel="stylesheet" href="/css/board.css">
+        <div class="boardBox">
+
             <!-- 게시글이 하나도 없다면 -->
             <!-- <th:block th:if="${#lists.size(freeBoardDetail)==0}">
                 <tr>
                     <td colspan="5">조회된 게시글이 없습니다.</td>
                 </tr>
             </th:block> -->
+
+            <!-- 게시글 -->
             <th:block th:unless="${#lists.size(freeBoardDetail)==0}">
-                    <tr th:each="board, state : ${freeBoardDetail}">
-                        <td>[[${board.boardNum}]]</td>
-                        <td>[[${board.title}]]</td>
-                        <td>[[${board.content}]]</td>
-                        <td>[[${board.writer}]]</td>
-                        <td>[[${board.createDate}]]</td>
-                        <td>[[${board.readCnt}]]</td>
+                <div th:each="board, state : ${freeBoardDetail}">
+                    <h3>[[${board.title}]]</h3>
+                    <hr>
+        
+                    <div class="row">
+                        <b style="font-size: 20px;">[[${board.writer}]]</b>
+                        <br>
+                        <p style="color: #aaaaaa; font-size: 13px; margin-bottom: 15px;">[[${board.createDate}]]</p>
+                    </div>
+                    <div class="row">
+                        <div class="col-6 mb-5">
+                            <div style="color: #6e6e6e; white-space: pre-line;">[[${board.content}]]</div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <p style="color: #aaaaaa; font-size: 13px; margin-bottom: 15px;">조회 [[${board.readCnt}]]</p>
+                    </div>
+                </div>
+            </th:block>
+
+            <hr>
+
+            <!-- 댓글 -->
+            <th:block th:if="${#lists.size(replyList)==0}">
+                <p style="text-align: center;">작성된 댓글이 없습니다.</p>
+                <hr>
+            </th:block>
+
+            <th:block th:unless="${#lists.size(replyList)==0}">
+                <table class="mb-5">
+                    <tr>
+                        <td>댓글번호</td>
+                        <td>작성자</td>
+                        <td>댓글내용</td>
+                        <td>작성일</td>
+                        <td>
+                            댓글삭제
+                        </td>
                     </tr>
-                </th:block>
-        </table>
+                    <tr th:each="reply, state : ${replyList}">
+                        <td>[[${#lists.size(replyList)-state.index}]]</td>
+                        <td>[[${reply.replyer}]]</td>
+                        <td style="white-space: pre-line;">[[${reply.replyText}]]</td>
+                        <td>[[${reply.regDate}]]</td>
+                        <td>
+                            <input type="button" id="replyNum" name="replyNum" th:onclick="deleteReply([[${freeBoardDetail.boardNum}]])" th:data-reply-num="${reply.replyNum}" value="삭제" th:disabled="${reply.replyer != session.loginInfo.memberId}">
+                            <!-- th:diabled="" 댓글 각각에 -->
+                        </td>
+                    </tr>
+                </table>
+            </th:block>
+            
+            <div>
+                <form action="/board/insertReply" method="post">
+                    <div>
+                        <textarea name="replyText" id="replyText" cols="50" rows="1" class="rounded-pill" placeholder="댓글쓰기"></textarea>
+                        <input type="hidden" name="boardNum" th:value="${freeBoardDetail.boardNum}">
+                        <input type="hidden" name="replyer" th:value="${loginInfo.memberId}">
+                        <input type="submit" value="등록" class="commentBtn btn btn-outline-warning">
+                    </div>
+                </form>
+            </div>
+
+        </div>
 
         <div>
             <h5>댓글</h5>
@@ -85,7 +134,7 @@
         <div>
             <form action="/board/insertReply" method="post">
                 <label >댓글 쓰기</label><br>
-                <textarea name="replyText" id="replyText" cols="50" rows="5"></textarea><br>
+                <textarea name="replyText" id="replyText" cols="50" rows="2" class="rounded-pill"></textarea><br>
                 <input type="hidden" name="boardNum" th:value="${freeBoardDetail.boardNum}">
                 <input type="hidden" name="replyer" th:value="${loginInfo.memberId}">
                 <input type="submit" value="댓글작성"></input>
