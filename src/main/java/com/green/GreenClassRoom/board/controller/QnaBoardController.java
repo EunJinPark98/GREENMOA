@@ -81,28 +81,51 @@ public class QnaBoardController {
 
     //질문게시판 수정
     @RequestMapping("/updateQnaBoard")
-    public String updateQnaBoard(QnaBoardVO qnaBoardVO){
+    public String updateQnaBoard(QnaBoardVO qnaBoardVO, MultipartFile img){
         //수정하려는 게시글에 첨부파일 존재 여부 확인
+
         QnaBoardVO qnaBoard = qnaBoardService.qnaBoardDetail(qnaBoardVO.getQnaBoardNum());
         if (qnaBoard.getAttachedFileName() != null){
 
+            //첨부파일이 존재하는 게시글을 수정?
+            //디비는 update
+            //첨부파일은 삭제 후 등록
+            if (qnaBoard.getAttachedFileName() != null){
+                String imgPath = ConstantVariable.UPLOAD_PATH;
+
+                if (imgPath != null){
+                    File imgFile = new File(imgPath + qnaBoard.getAttachedFileName());
+                    if (imgFile.exists()){
+                        imgFile.delete();
+                    }
+                }
+                QnaBoardVO upLoadInfo = UploadUtil.uploadFile(img);
+                //이미지 파일을 첨부시 원본 파일명과 첨부된 파일명 데이터를 가져오는것!
+                if (upLoadInfo != null){
+                    qnaBoardVO.setOriginFileName(upLoadInfo.getOriginFileName());
+                    qnaBoardVO.setAttachedFileName(upLoadInfo.getAttachedFileName());
+                }
+            }
+            else if (qnaBoard.getAttachedFileName() == null){
+                QnaBoardVO upLoadInfo = UploadUtil.uploadFile(img);
+                //이미지 파일을 첨부시 원본 파일명과 첨부된 파일명 데이터를 가져오는것!
+                if (upLoadInfo != null){
+                    qnaBoardVO.setOriginFileName(upLoadInfo.getOriginFileName());
+                    qnaBoardVO.setAttachedFileName(upLoadInfo.getAttachedFileName());
+                }
+                qnaBoardService.insertFile(qnaBoardVO);
+            }
         }
-
-        //첨부파일이 존재하는 게시글을 수정?
-        //디비는 update
-        //첨부파일은 삭제 후 등록
-
 
         //첨부파일이 존재하지 않는 게시글을 수정?
         //디비는 update
         //첨부파일을 추가(게시글 등록때처럼 똑같이)
-
-
+        qnaBoardService.updateFile(qnaBoardVO);
         qnaBoardService.updateQnaBoard(qnaBoardVO);
         return "redirect:/board/qnaBoardDetail?qnaBoardNum=" + qnaBoardVO.getQnaBoardNum();
     }
 
-    //질문게시판 첨부파일 수정&삭제
+    //질문게시판 첨부파일 삭제
     @GetMapping("/updateFile")
     public String updateFile(QnaBoardVO qnaBoardVO){
         QnaBoardVO qnaBoard = qnaBoardService.qnaBoardDetail(qnaBoardVO.getQnaBoardNum());

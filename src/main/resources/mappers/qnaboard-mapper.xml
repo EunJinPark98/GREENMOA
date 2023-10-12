@@ -100,7 +100,28 @@
     </update>
 
     <!--게시판 첨부파일 수정-->
+    <update id="updateFile">
+        UPDATE QNA_BOARD
+        SET
+            ORIGIN_FILE_NAME = #{originFileName}
+            , ATTACHED_FILE_NAME =#{attachedFileName}
+        WHERE QNA_BOARD_NUM = #{qnaBoardNum}
+    </update>
 
+    <!--게시판 첨부파일 첨부-->
+    <insert id="insertFile">
+        INSERT INTO QNA_BOARD (
+        <if test="originFileName == null">
+            ORIGIN_FILE_NAME
+            , ATTACHED_FILE_NAME
+        </if>
+        ) VALUES (
+        <if test="originFileName == null">
+            #{originFileName}
+            , #{attachedFileName}
+        </if>
+        )
+    </insert>
 </mapper>
 
 
