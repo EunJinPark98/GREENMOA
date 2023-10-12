@@ -58,7 +58,7 @@
                     <td>댓글내용</td>
                     <td>작성일</td>
                     <td>
-                        <input type="checkbox" name="allCheck" onclick="selectAll(this);">
+                        댓글삭제
                     </td>
                 </tr>
     
@@ -75,8 +75,8 @@
                         <td>[[${reply.replyText}]]</td>
                         <td>[[${reply.regDate}]]</td>
                         <td>
-                            <input type="checkbox" name="innerCheck" class="chk" onclick="checkSelectAll();" th:data-reply-num="${reply.replyNum}" th:value="${reply.replyNum}">
-                            <!-- th:diabled="" -->
+                            <input type="button" id="replyNum" name="replyNum" th:onclick="deleteReply([[${freeBoardDetail.boardNum}]])" th:data-reply-num="${reply.replyNum}" value="삭제" th:disabled="${reply.replyer != session.loginInfo.memberId}">
+                            <!-- th:diabled="" 댓글 각각에 -->
                         </td>
                     </tr>
                 </th:block>
