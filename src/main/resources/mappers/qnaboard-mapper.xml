@@ -13,6 +13,15 @@
         <result column="ORIGIN_FILE_NAME" property="originFileName"/>
         <result column="ATTACHED_FILE_NAME" property="attachedFileName"/>
     </resultMap>
+    <!--리플-->
+    <resultMap id="reply" type="com.green.GreenClassRoom.board.vo.QnaReplyVO">
+        <id column="QNA_REPLY_NUM" property="qnaReplyNum"/>
+        <result column="QNA_BOARD_NUM" property="qnaBoardNum"/>
+        <result column="QNA_REPLY_TEXT" property="qnaReplyText"/>
+        <result column="QNA_REPLYER" property="qnaReplyer"/>
+        <result column="QNA_REG_DATE" property="qnaRegDate"/>
+        <result column="QNA_UPDATE_DATE" property="qnaUpdateDate"/>
+    </resultMap>
 
     <!--질문게시판 글 작성 + 이미지 파일 첨부-->
     <insert id="insert">
@@ -100,34 +109,36 @@
     </update>
 
 
-<!--    &lt;!&ndash;댓글 작성&ndash;&gt;-->
-<!--    <insert id="insertReply">-->
-<!--        INSERT INTO BOARD_REPLY(-->
-<!--        REPLY_NUM-->
-<!--        , REPLY_TEXT-->
-<!--        , REPLYER-->
-<!--        , BOARD_NUM-->
-<!--        )-->
-<!--        VALUES(-->
-<!--        (SELECT NVL(MAX(REPLY_NUM),0) +1 FROM BOARD_REPLY)-->
-<!--        ,#{replyText}-->
-<!--        ,#{replyer}-->
-<!--        ,#{boardNum}-->
-<!--        )-->
-<!--    </insert>-->
-<!--    <select id="selectReply" resultMap="reply">-->
-<!--        SELECT REPLY_NUM-->
-<!--        , REPLY_TEXT-->
-<!--        , REPLYER-->
-<!--        , TO_CHAR(REG_DATE,'YYYY-MM-DD') REG_DATE-->
-<!--        FROM BOARD_REPLY-->
-<!--        WHERE BOARD_NUM=#{boardNum}-->
-<!--        ORDER BY REPLY_NUM DESC-->
-<!--    </select>-->
-<!--    <delete id="deleteReply">-->
-<!--        DELETE BOARD_REPLY-->
-<!--        WHERE REPLY_NUM=#{replyNum}-->
-<!--    </delete>-->
+    <!--댓글 작성-->
+    <insert id="insertQnaReply">
+        INSERT INTO QNA_BOARD_REPLY(
+            QNA_REPLY_NUM
+            , QNA_REPLY_TEXT
+            , QNA_REPLYER
+            , QNA_BOARD_NUM
+        )
+        VALUES(
+            (SELECT NVL(MAX(QNA_REPLY_NUM),0) +1 FROM QNA_BOARD_REPLY)
+            , #{qnaReplyText}
+            , #{qnaReplyer}
+            , #{qnaBoardNum}
+        )
+    </insert>
+
+    <select id="selectQnaReply" resultMap="reply">
+        SELECT QNA_REPLY_NUM
+            , QNA_REPLY_TEXT
+            , QNA_REPLYER
+            , TO_CHAR(QNA_REG_DATE,'YYYY-MM-DD') QNA_REG_DATE
+        FROM QNA_BOARD_REPLY
+        WHERE QNA_BOARD_NUM = #{qnaBoardNum}
+        ORDER BY QNA_REPLY_NUM DESC
+    </select>
+
+    <delete id="deleteQnaReply">
+        DELETE QNA_BOARD_REPLY
+        WHERE QNA_REPLY_NUM = #{qnaReplyNum}
+    </delete>
 
 </mapper>
 
