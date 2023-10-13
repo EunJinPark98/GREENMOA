@@ -116,12 +116,15 @@ public class QnaBoardController {
                 qnaBoardService.insertFile(qnaBoardVO);
             }
         }
+        if(qnaBoard.getAttachedFileName() == null){
 
+        }
         //첨부파일이 존재하지 않는 게시글을 수정?
         //디비는 update
         //첨부파일을 추가(게시글 등록때처럼 똑같이)
-        qnaBoardService.updateFile(qnaBoardVO);
-        qnaBoardService.updateQnaBoard(qnaBoardVO);
+        System.out.println("!!!!!!!!!!!!" + qnaBoardVO);
+        //qnaBoardService.updateFile(qnaBoardVO);
+       // qnaBoardService.updateQnaBoard(qnaBoardVO);
         return "redirect:/board/qnaBoardDetail?qnaBoardNum=" + qnaBoardVO.getQnaBoardNum();
     }
 
