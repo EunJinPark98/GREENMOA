@@ -17,7 +17,7 @@
 <br>
 
 
-
+![팀원.jpg](https://prod-files-secure.s3.us-west-2.amazonaws.com/5e113eda-1fc5-4537-9c96-2e5dff9337b0/e923129a-352d-44a0-b6f1-31e528504cbf/%ED%8C%80%EC%9B%90.jpg)
 박은진😊 : 팀 리더, 프로젝트 기획 및 관리 <br>
 이윤주😊 : 프론트엔드 개발 <br>
 신협진😊 : 백엔드 개발 <br>
@@ -28,7 +28,7 @@
 
 
 ## 💭구현할 기능 (구상중)
-
+![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/5e113eda-1fc5-4537-9c96-2e5dff9337b0/faf925ed-75f0-4110-b13c-8fa1dabca397/Untitled.png)
 로그인/회원가입 (협진)<br>
 클래스룸 - 채팅, 쪽지, 일정관리, 과제 (은진)<br>
 마이룸 - 투두리스트, 상태메세지, 쪽지 (지누)<br>
