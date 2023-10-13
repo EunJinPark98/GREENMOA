@@ -5,18 +5,6 @@
 <head>
 <meta charset="UTF-8">
 <title></title>
-<style>
-    table{
-        border: 1px solid black;
-    }
-    tr{
-        border: 1px solid black;
-    }
-    td{
-        border: 1px solid black;
-        padding: 5px ;
-    }
-</style>
 </head>
 <body>
     <th:block layout:fragment="content">
@@ -34,21 +22,38 @@
             <!-- 게시글 -->
             <th:block th:unless="${#lists.size(freeBoardDetail)==0}">
                 <div th:each="board, state : ${freeBoardDetail}">
-                    <h3>[[${board.title}]]</h3>
+                    <div class="row">
+                        <div class="col-11">
+                            <h3>[[${board.title}]]</h3>
+                        </div>
+                        <div class="col-1 d-grid gap-2 d-md-flex justify-content-md-end col">
+                            <div class="backArrow" onclick="location.href='/board/freeBoardList'">뒤로가기</div>
+                        </div>
+                    </div>
+                
                     <hr>
         
                     <div class="row">
-                        <b style="font-size: 20px;">[[${board.writer}]]</b>
+                        <b class="boardWriter">[[${board.writer}]]</b>
                         <br>
-                        <p style="color: #aaaaaa; font-size: 13px; margin-bottom: 15px;">[[${board.createDate}]]</p>
+                        <p class="boardDate">[[${board.createDate}]]</p>
                     </div>
                     <div class="row">
-                        <div class="col-6 mb-5">
-                            <div style="color: #6e6e6e; white-space: pre-line;">[[${board.content}]]</div>
+                        <div class="col-6 mb-5 px-4">
+                            <div class="textContent">[[${board.content}]]</div>
                         </div>
                     </div>
                     <div class="row">
-                        <p style="color: #aaaaaa; font-size: 13px; margin-bottom: 15px;">조회 [[${board.readCnt}]]</p>
+                        <div class="col-6">
+                            <p class="boardReadCnt">조회 [[${board.readCnt}]]</p>
+                        </div>
+                        <div class="col-6 d-grid gap-2 d-md-flex justify-content-md-end col" 
+                        th:if="${session.loginInfo != null}">
+                            <div th:if="${freeBoardDetail.writer == session.loginInfo.memberId}">
+                                <input type="button" class="updateButton btn btn-primary" value="수정" th:onclick="goUpdate([[${freeBoardDetail.boardNum}]])">
+                                <input type="button" class="btn btn-light" value="삭제" th:onclick="goDelete([[${freeBoardDetail.boardNum}]])">
+                            </div>
+                        </div>
                     </div>
                 </div>
             </th:block>
@@ -57,15 +62,11 @@
 
             <!-- 댓글 -->
             <th:block th:if="${#lists.size(replyList)==0}">
-                <p style="text-align: center;">작성된 댓글이 없습니다.</p>
+                <p class="text-center">작성된 댓글이 없습니다.</p>
                 <hr>
             </th:block>
 
-            <!-- ---------------- -->
-
-
             <th:block th:unless="${#lists.size(replyList)==0}">
-
                 <section th:each="reply, state : ${replyList}">
                     <div class="container my-1 py-1 text-dark">
                       <div class="row d-flex">
@@ -73,27 +74,21 @@
                           <div class="d-flex flex-start mb-4">
                             <img class="rounded-circle shadow-1-strong me-3" src="/images/emoji5.png" alt="avatar" width="40" height="40" />
                             <div class="card w-100" >
-                              <div class="card-body p-4">
-                                <div class="">
-
+                              <div class="card-body p-3">
+                                <div>
                                   <div class="commentHead row">
-                                      <div class="col-6">
-                                          <h5>[[${reply.replyer}]]</h5>
+                                      <div class="col-8">
+                                          <h5 class="replyWriter">[[${reply.replyer}]]</h5>
                                       </div>
-                                      <div class="col-6 d-grid gap-2 d-md-flex justify-content-md-end col align-self-end">
-                                          <p class="small">[[${reply.regDate}]]</p>
-                                      </div>
-                                  </div>
-
-                                  <p style="white-space: pre-line;">[[${reply.replyText}]]</p>
-                  
-                                  <div class="d-flex justify-content-between align-items-center">
-                                    <div class="d-grid gap-2 d-md-flex justify-content-md-end col align-self-end">
+                                      <div class="col-4 d-grid gap-2 d-md-flex justify-content-md-end col align-self-end">
+                                        <div class="small">[[${reply.regDate}]]</div>
                                         <input type="button" id="replyNum" name="replyNum" th:onclick="deleteReply([[${freeBoardDetail.boardNum}]])" 
                                         th:data-reply-num="${reply.replyNum}" value="삭제" th:disabled="${reply.replyer != session.loginInfo.memberId}">
                                         <!-- th:diabled="" 댓글 각각에 -->
-                                    </div>
+                                      </div>
                                   </div>
+
+                                  <p class="textContent">[[${reply.replyText}]]</p>
                                 </div>
                               </div>
                             </div>
@@ -102,10 +97,7 @@
                       </div>
                     </div>
                   </section>
-
             </th:block>
-
-            <!-- ------------------ -->
             
             <div>
                 <form action="/board/insertReply" method="post">
@@ -117,45 +109,8 @@
                     </div>
                 </form>
             </div>
-
         </div>
 
-        <!-- ----------------------------------------- -->
-
-
-        <th:block th:unless="${#lists.size(replyList)==0}">
-                <table class="mb-5">
-                    <tr>
-                        <td>댓글번호</td>
-                        <td>작성자</td>
-                        <td>댓글내용</td>
-                        <td>작성일</td>
-                        <td>
-                            댓글삭제
-                        </td>
-                    </tr>
-                    <tr th:each="reply, state : ${replyList}">
-                        <td>[[${#lists.size(replyList)-state.index}]]</td>
-                        <td>[[${reply.replyer}]]</td>
-                        <td style="white-space: pre-line;">[[${reply.replyText}]]</td>
-                        <td>[[${reply.regDate}]]</td>
-                        <td>
-                            <input type="button" id="replyNum" name="replyNum" th:onclick="deleteReply([[${freeBoardDetail.boardNum}]])" th:data-reply-num="${reply.replyNum}" value="삭제" th:disabled="${reply.replyer != session.loginInfo.memberId}">
-                            <!-- th:diabled="" 댓글 각각에 -->
-                        </td>
-                    </tr>
-                </table>
-            </th:block>
-
-
-
-        <input type="button" value="뒤로가기" onclick="location.href='/board/freeBoardList'">
-        <div th:if="${session.loginInfo != null}">
-            <div th:if="${freeBoardDetail.writer == session.loginInfo.memberId}">
-                <input type="button" value="삭제" th:onclick="goDelete([[${freeBoardDetail.boardNum}]])">
-                <input type="button" value="수정" th:onclick="goUpdate([[${freeBoardDetail.boardNum}]])">
-            </div>
-        </div>
         <script type="text/javascript" src="/js/board/board.js"></script>
     </th:block>
 </body>
