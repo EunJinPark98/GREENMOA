@@ -10,6 +10,7 @@
         <result column="TODO_START_DATE" property="todoStartDate"/>
         <result column="TODO_FINISH_DATE" property="todoFinishDate"/>
     </resultMap>
+    <!--todo리스트 등록    -->
     <insert id="insertTodo">
         INSERT INTO TODO_LIST(
             TODO_NUM
@@ -24,6 +25,15 @@
             ,#{todoFinishDate}
         )
     </insert>
+    <!--todo리스트 조회-->
+    <select id="selectTodo" resultMap="todo">
+        SELECT TODO_NUM
+            , TODO_CONTENT
+            , TODO_START_DATE
+            , TODO_FINISH_DATE
+        FROM TODO_LIST
+        ORDER BY TODO_NUM DESC
+    </select>
 </mapper>
 
 

@@ -28,22 +28,17 @@
             <div class="modal-body modal-body">
                 <h1 class="mb-5 text-center">투두 리스트</h1>
                 <div class="todoInput">
-                    <form action="">
                         <label>해보자</label>
-                        <input type="text" name="todoContent">
+                        <!-- <input type="text" name="todoContent"> -->
+                        <textarea rows="5" cols="50" id="todoContent"></textarea>
                         <label>끝내보자</label>
-                        <input type="date" name="todoFinishDate"><br>
-                        <input type="submit" value="등록">
-                    </form>
+                        <input type="date" id="todoFinishDate"><br>
+                        <input type="hidden" id="todoWriter" th:value="${loginInfo.memberId}">
+                        <input type="button" value="등록" onclick="insertTodo()"></input>
                 </div>
                 <div class="todoOutput">
                     <ul></ul>
                 </div>
-
-
-
-
-                
                 <div class="row mt-5" style="display: flex; justify-content: center;">
                     <div class="col-3 d-grid">
                         <button type="button" class="btn btn-primary" data-bs-dismiss="modal">확인</button>
@@ -53,7 +48,7 @@
         </div>
     </div>
     </div>
-
+    <script src="/js/room.js"></script>
 </th:block>
 </body>
 </html>
