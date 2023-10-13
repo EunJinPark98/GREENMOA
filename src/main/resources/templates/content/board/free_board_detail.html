@@ -61,7 +61,69 @@
                 <hr>
             </th:block>
 
+            <!-- ---------------- -->
+
+
             <th:block th:unless="${#lists.size(replyList)==0}">
+
+                <section th:each="reply, state : ${replyList}">
+                    <div class="container my-1 py-1 text-dark">
+                      <div class="row d-flex">
+                        <div class="col-md-11 col-lg-9 col-xl-7">
+                          <div class="d-flex flex-start mb-4">
+                            <img class="rounded-circle shadow-1-strong me-3" src="/images/emoji5.png" alt="avatar" width="40" height="40" />
+                            <div class="card w-100" >
+                              <div class="card-body p-4">
+                                <div class="">
+
+                                  <div class="commentHead row">
+                                      <div class="col-6">
+                                          <h5>[[${reply.replyer}]]</h5>
+                                      </div>
+                                      <div class="col-6 d-grid gap-2 d-md-flex justify-content-md-end col align-self-end">
+                                          <p class="small">[[${reply.regDate}]]</p>
+                                      </div>
+                                  </div>
+
+                                  <p style="white-space: pre-line;">[[${reply.replyText}]]</p>
+                  
+                                  <div class="d-flex justify-content-between align-items-center">
+                                    <div class="d-grid gap-2 d-md-flex justify-content-md-end col align-self-end">
+                                        <input type="button" id="replyNum" name="replyNum" th:onclick="deleteReply([[${freeBoardDetail.boardNum}]])" 
+                                        th:data-reply-num="${reply.replyNum}" value="삭제" th:disabled="${reply.replyer != session.loginInfo.memberId}">
+                                        <!-- th:diabled="" 댓글 각각에 -->
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </section>
+
+            </th:block>
+
+            <!-- ------------------ -->
+            
+            <div>
+                <form action="/board/insertReply" method="post">
+                    <div>
+                        <textarea name="replyText" id="replyText" cols="50" rows="1" class="rounded-pill" placeholder="응원하기"></textarea>
+                        <input type="hidden" name="boardNum" th:value="${freeBoardDetail.boardNum}">
+                        <input type="hidden" name="replyer" th:value="${loginInfo.memberId}">
+                        <input type="submit" value="등록" class="commentBtn btn btn-outline-warning">
+                    </div>
+                </form>
+            </div>
+
+        </div>
+
+        <!-- ----------------------------------------- -->
+
+
+        <th:block th:unless="${#lists.size(replyList)==0}">
                 <table class="mb-5">
                     <tr>
                         <td>댓글번호</td>
@@ -84,62 +146,9 @@
                     </tr>
                 </table>
             </th:block>
-            
-            <div>
-                <form action="/board/insertReply" method="post">
-                    <div>
-                        <textarea name="replyText" id="replyText" cols="50" rows="1" class="rounded-pill" placeholder="댓글쓰기"></textarea>
-                        <input type="hidden" name="boardNum" th:value="${freeBoardDetail.boardNum}">
-                        <input type="hidden" name="replyer" th:value="${loginInfo.memberId}">
-                        <input type="submit" value="등록" class="commentBtn btn btn-outline-warning">
-                    </div>
-                </form>
-            </div>
 
-        </div>
 
-        <div>
-            <h5>댓글</h5>
-            <table>
-                <tr>
-                    <td>댓글번호</td>
-                    <td>작성자</td>
-                    <td>댓글내용</td>
-                    <td>작성일</td>
-                    <td>
-                        댓글삭제
-                    </td>
-                </tr>
-    
-                <th:block th:if="${#lists.size(replyList)==0}">
-                    <tr>
-                        <td colspan="5">작성된 댓글이 없습니다.</td>
-                    </tr>
-                </th:block>
-    
-                <th:block th:unless="${#lists.size(replyList)==0}">
-                    <tr th:each="reply, state : ${replyList}">
-                        <td>[[${#lists.size(replyList)-state.index}]]</td>
-                        <td>[[${reply.replyer}]]</td>
-                        <td>[[${reply.replyText}]]</td>
-                        <td>[[${reply.regDate}]]</td>
-                        <td>
-                            <input type="button" id="replyNum" name="replyNum" th:onclick="deleteReply([[${freeBoardDetail.boardNum}]])" th:data-reply-num="${reply.replyNum}" value="삭제" th:disabled="${reply.replyer != session.loginInfo.memberId}">
-                            <!-- th:diabled="" 댓글 각각에 -->
-                        </td>
-                    </tr>
-                </th:block>
-            </table>
-        </div>
-        <div>
-            <form action="/board/insertReply" method="post">
-                <label >댓글 쓰기</label><br>
-                <textarea name="replyText" id="replyText" cols="50" rows="2" class="rounded-pill"></textarea><br>
-                <input type="hidden" name="boardNum" th:value="${freeBoardDetail.boardNum}">
-                <input type="hidden" name="replyer" th:value="${loginInfo.memberId}">
-                <input type="submit" value="댓글작성"></input>
-            </form>
-        </div>
+
         <input type="button" value="뒤로가기" onclick="location.href='/board/freeBoardList'">
         <div th:if="${session.loginInfo != null}">
             <div th:if="${freeBoardDetail.writer == session.loginInfo.memberId}">
