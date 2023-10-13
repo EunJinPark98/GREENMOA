@@ -35,8 +35,7 @@
 마이룸 - 투두리스트, 상태메세지, 쪽지 (지누)<br>
 게시판 - 공지(윤주), 질의(협진), 자유(지누)<br>
 
-![image](https://github.com/EunJinPark98/GREENMOA/assets/120006805/8ca24958-3fad-4321-abce-24198c5a27ef) <br>
-
+![image](https://github.com/EunJinPark98/GREENMOA/assets/120006805/d44c95c9-5826-40f1-9cd9-849e456307d0) <br>
 
 <br>
 <br>
