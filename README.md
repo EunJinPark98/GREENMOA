@@ -38,7 +38,6 @@
 ![image](https://github.com/EunJinPark98/GREENMOA/assets/120006805/8ca24958-3fad-4321-abce-24198c5a27ef) <br>
 
 
-
 <br>
 <br>
 
@@ -73,7 +72,8 @@ https://www.notion.so/2c88f99b2bf94323a6a96eef6757d0cc?v=02b6d3c9f0ca4dfbb3bf5e8
 
 <br>
 <br>
-![image](https://github.com/EunJinPark98/GREENMOA/assets/120006805/f6d27702-5d03-4a11-b30f-f2ac5325e5ed)
+
+![image](https://github.com/EunJinPark98/GREENMOA/assets/120006805/23b5f25f-df6c-43e6-b758-cb07b96f5437) <br>
 
 화이팅...!
 
