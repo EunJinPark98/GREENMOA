@@ -138,13 +138,11 @@ public class QnaBoardController {
 
             }
         }
-<<<<<<< HEAD
         //첨부파일 수정도 안하고 게시글만 삭제할때
         if(qnaBoard.getAttachedFileName() == null){}
 
         qnaBoardService.updateQnaBoard(qnaBoardVO);
 
-=======
         if(qnaBoard.getAttachedFileName() == null){
 
         }
@@ -154,7 +152,6 @@ public class QnaBoardController {
         System.out.println("!!!!!!!!!!!!" + qnaBoardVO);
         //qnaBoardService.updateFile(qnaBoardVO);
        // qnaBoardService.updateQnaBoard(qnaBoardVO);
->>>>>>> eunjin
         return "redirect:/board/qnaBoardDetail?qnaBoardNum=" + qnaBoardVO.getQnaBoardNum();
     }
 
