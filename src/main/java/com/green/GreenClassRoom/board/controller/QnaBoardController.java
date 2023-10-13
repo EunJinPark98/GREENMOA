@@ -138,11 +138,23 @@ public class QnaBoardController {
 
             }
         }
+<<<<<<< HEAD
         //첨부파일 수정도 안하고 게시글만 삭제할때
         if(qnaBoard.getAttachedFileName() == null){}
 
         qnaBoardService.updateQnaBoard(qnaBoardVO);
 
+=======
+        if(qnaBoard.getAttachedFileName() == null){
+
+        }
+        //첨부파일이 존재하지 않는 게시글을 수정?
+        //디비는 update
+        //첨부파일을 추가(게시글 등록때처럼 똑같이)
+        System.out.println("!!!!!!!!!!!!" + qnaBoardVO);
+        //qnaBoardService.updateFile(qnaBoardVO);
+       // qnaBoardService.updateQnaBoard(qnaBoardVO);
+>>>>>>> eunjin
         return "redirect:/board/qnaBoardDetail?qnaBoardNum=" + qnaBoardVO.getQnaBoardNum();
     }
 

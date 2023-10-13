@@ -7,12 +7,11 @@ function connect() {
     var socket = new SockJS('http://192.168.30.55:8081/chat');
     stompClient = Stomp.over(socket);
     stompClient.connect({}, function (frame) {
-        console.log('Connected: ' + frame);
+        console.log('연결상태: ' + frame);
         stompClient.subscribe('/', function (message) {
             showMessage(JSON.parse(message.body).content);
         });
 
-        sendMessage("연결됐다!!!!!");
     }); 
 }
 
@@ -21,8 +20,8 @@ function sendMessage() {
     var messageInput = document.getElementById('message');
     var message = messageInput.value;
     stompClient.send("/app/chat", {}, JSON.stringify({'content': message, 'sender': "익명" }));
-    
-    
+
+
     messageInput.value = '';
 }
 
@@ -36,7 +35,7 @@ function showMessage(message) {
     scrollToBottom();
 }
 
-// 페이지 로드 시 연결
+// 페이지 로드 시 채팅 연결
 document.addEventListener('DOMContentLoaded', function () {
     connect();
     
@@ -49,7 +48,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 
-// 채팅 스크롤바 항상 밑으로
+// 채팅 스크롤바 항상 밑에 있도록
 function scrollToBottom() {
     var chatMessages = document.getElementById('chat-messages');
     chatMessages.scrollTop = chatMessages.scrollHeight;
