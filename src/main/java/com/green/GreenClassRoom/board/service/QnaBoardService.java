@@ -1,6 +1,7 @@
 package com.green.GreenClassRoom.board.service;
 
 import com.green.GreenClassRoom.board.vo.QnaBoardVO;
+import com.green.GreenClassRoom.board.vo.QnaReplyVO;
 import com.green.GreenClassRoom.board.vo.ReplyVO;
 
 import java.util.List;
@@ -34,13 +35,13 @@ public interface QnaBoardService {
     //질문게시판 첨부파일 첨부
     public int insertFile(QnaBoardVO qnaBoardVO);
 
-//    // 댓글 작성
-//    public int insertReply(ReplyVO replyVO);
-//
-//    // 댓글 조회
-//    public List<ReplyVO> selectReply(ReplyVO replyVO);
-//
-//    // 댓글 선택 삭제 기능
-//    public int deleteReply(int replyNum);
+    // 댓글 작성
+    public int insertQnaReply(QnaReplyVO qnaReplyVO);
+
+    // 댓글 조회
+    public List<QnaReplyVO> selectQnaReply(QnaReplyVO qnaReplyVO);
+
+    // 댓글 선택 삭제 기능
+    public int deleteQnaReply(int QnaReplyNum);
 
 }
