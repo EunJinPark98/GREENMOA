@@ -8,7 +8,7 @@ function connect() {
     stompClient = Stomp.over(socket);
     stompClient.connect({}, function (frame) {
         console.log('연결상태: ' + frame);
-        stompClient.subscribe('/', function (message) {
+        stompClient.subscribe('/topic', function (message) {
             showMessage(JSON.parse(message.body).content);
         });
 
