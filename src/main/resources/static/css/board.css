@@ -47,15 +47,48 @@ td{
 }
 #replyText{
     resize: none;
-    outline: none;
-    border-color: #aaaaaa;
+    outline-color: #ffc107;
+    border-color: #868686;
     padding: 15px 30px;
+}
+#replyText:hover{
+    border: 2px solid #868686;
 }
 .commentBtn{
     margin-left: 10px;
-    margin-top: -45px;
+    margin-top: -50px;
     border-radius: 100%;
-    padding: 10px 10px;
+    padding: 17px 17px;
+}
+
+.card{
+    border: 0px;
+    box-shadow: 0 1px 6px 0 #20212447;
+    position: relative;
+}
+.card::before{
+    content: "";
+    display: block;
+    width: 0;
+    height: 0;
+    position: absolute;
+    top: 30%;
+    left: -11px;
+    transform: rotate(45deg);
+    border: .75rem solid transparent;
+    border-top: none;
+    border-bottom-color: #fff;
+    filter: drop-shadow(0 -0.0625rem 0.0625rem rgba(0, 0, 0, .1));
+
+}
+
+#replyNum{
+    border: 0;
+    background-color: transparent;
+    color: #9c8277;
+}
+#replyNum:hover{
+    color: #a3d6cd;
 }
 
 
