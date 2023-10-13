@@ -22,6 +22,7 @@ public class InterceptorConfig implements WebMvcConfigurer {
         registry.addInterceptor(loginInfoInterceptor)
                 .addPathPatterns("/room/myRoom")
                 .addPathPatterns("/board/freeBoardDetail")
+                .addPathPatterns("/board/qnaBoardDetail")
                 .excludePathPatterns("/images/**", "/css/**", "/js/**");
     }
 }
