@@ -109,7 +109,7 @@
     </update>
 
 
-    <!--댓글 작성-->
+    <!--답변 작성-->
     <insert id="insertQnaReply">
         INSERT INTO QNA_BOARD_REPLY(
             QNA_REPLY_NUM
@@ -125,6 +125,7 @@
         )
     </insert>
 
+    <!--답변 조회-->
     <select id="selectQnaReply" resultMap="reply">
         SELECT QNA_REPLY_NUM
             , QNA_REPLY_TEXT
@@ -135,6 +136,7 @@
         ORDER BY QNA_REPLY_NUM DESC
     </select>
 
+    <!--답변 삭제-->
     <delete id="deleteQnaReply">
         DELETE QNA_BOARD_REPLY
         WHERE QNA_REPLY_NUM = #{qnaReplyNum}

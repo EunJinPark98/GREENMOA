@@ -3,7 +3,6 @@ package com.green.GreenClassRoom.board.controller;
 import com.green.GreenClassRoom.board.service.QnaBoardService;
 import com.green.GreenClassRoom.board.vo.QnaBoardVO;
 import com.green.GreenClassRoom.board.vo.QnaReplyVO;
-import com.green.GreenClassRoom.board.vo.ReplyVO;
 import com.green.GreenClassRoom.member.vo.MemberVO;
 import com.green.GreenClassRoom.util.ConstantVariable;
 import com.green.GreenClassRoom.util.UploadUtil;
@@ -178,19 +177,18 @@ public class QnaBoardController {
     // 답변 작성
     @PostMapping("/insertQnaReply")
     public String insertReply(QnaReplyVO qnaReplyVO){
-        System.out.println(qnaReplyVO);
 
         qnaBoardService.insertQnaReply(qnaReplyVO);
         //+ "&noCount=true" :  댓글 작성시 조회수가 오르지 않게 하기 위해 true인 값인 noCount를 보낸다.
-        return "redirect:/board/qnaBoardDetail?QnaBoardNum=" + qnaReplyVO.getQnaBoardNum() + "&replyer=" + qnaReplyVO.getQnaReplyer() + "&noCount=true" ;
+        return "redirect:/board/qnaBoardDetail?qnaBoardNum=" + qnaReplyVO.getQnaBoardNum() + "&replyer=" + qnaReplyVO.getQnaReplyer() + "&noCount=true" ;
     }
 
     // 답변 삭제 기능
-    @GetMapping("/deleteQnaReply")
-    public String deleteReply(int qnaReplyNum, QnaReplyVO qnaReplyVO){
-        //replyVO.setReplyNumList(qnaReplyNum);
-        qnaBoardService.deleteQnaReply(qnaReplyNum);
-        return "redirect:/board/qnaBoardDetail?QnaBoardNum=" + qnaReplyVO.getQnaBoardNum() + "&replyer=" + qnaReplyVO.getQnaReplyer() + "&noCount=true";
+    @RequestMapping("/deleteQnaReply")
+    public String deleteReply(QnaReplyVO qnaReplyVO){
+        System.out.println(qnaReplyVO + "@@@@@@@@@@@@");
+        qnaBoardService.deleteQnaReply(qnaReplyVO);
+        return "redirect:/board/qnaBoardDetail?qnaBoardNum=" + qnaReplyVO.getQnaBoardNum() + "&replyer=" + qnaReplyVO.getQnaReplyer() + "&noCount=true";
     }
 
 }

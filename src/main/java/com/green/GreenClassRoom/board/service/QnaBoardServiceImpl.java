@@ -2,7 +2,6 @@ package com.green.GreenClassRoom.board.service;
 
 import com.green.GreenClassRoom.board.vo.QnaBoardVO;
 import com.green.GreenClassRoom.board.vo.QnaReplyVO;
-import com.green.GreenClassRoom.board.vo.ReplyVO;
 import lombok.RequiredArgsConstructor;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Service;
@@ -70,8 +69,8 @@ public class QnaBoardServiceImpl implements QnaBoardService{
     }
 
     @Override
-    public int deleteQnaReply(int QnaReplyNum) {
-        return sqlSession.delete("qnaBoardMapper.deleteQnaReply", QnaReplyNum);
+    public int deleteQnaReply(QnaReplyVO qnaReplyVO) {
+        return sqlSession.delete("qnaBoardMapper.deleteQnaReply", qnaReplyVO);
     }
 
 

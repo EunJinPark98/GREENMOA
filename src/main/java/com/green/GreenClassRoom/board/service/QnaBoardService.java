@@ -35,13 +35,13 @@ public interface QnaBoardService {
     //질문게시판 첨부파일 첨부
     public int insertFile(QnaBoardVO qnaBoardVO);
 
-    // 댓글 작성
+    // 답변 작성
     public int insertQnaReply(QnaReplyVO qnaReplyVO);
 
-    // 댓글 조회
+    // 답변 조회
     public List<QnaReplyVO> selectQnaReply(QnaReplyVO qnaReplyVO);
 
-    // 댓글 선택 삭제 기능
-    public int deleteQnaReply(int QnaReplyNum);
+    // 답변 선택 삭제 기능
+    public int deleteQnaReply(QnaReplyVO qnaReplyVO);
 
 }
