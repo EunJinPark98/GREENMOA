@@ -46,7 +46,14 @@
                 </tr>
                 <tr th:each="qnaBoard, state : ${qnaBoardList}">
                     <td>[[${#lists.size(qnaBoardList) - state.index}]]</td>
-                    <td><a th:href="@{qnaBoardDetail(qnaBoardNum=${qnaBoard.qnaBoardNum})}">[[${qnaBoard.qnaBoardTitle}]]</a></td>
+                    <td>
+                        <!-- <svg th:if="${qnaBoard.originFileName != null}" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-image" viewBox="0 0 16 16">
+                            <path d="M8.002 5.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"/>
+                            <path d="M12 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zM3 2a1 1 0 0 1 1-1h8a1 1 0 0 1 1 1v8l-2.083-2.083a.5.5 0 0 0-.76.063L8 11 5.835 9.7a.5.5 0 0 0-.611.076L3 12V2z"/>
+                        </svg> -->
+                        <!-- <img th:if="${qnaBoard.attachedFileName != null}" width="53px" height="19px" th:src="|/upload/${qnaBoard.attachedFileName}|" alt="">
+                        <a th:href="@{qnaBoardDetail(qnaBoardNum=${qnaBoard.qnaBoardNum})}">[[${qnaBoard.qnaBoardTitle}]]</a> -->
+                    </td>
                     <td>[[${qnaBoard.qnaBoardWriter}]]</td>
                     <td>[[${qnaBoard.qnaCreateDate}]]</td>
                     <td>[[${qnaBoard.qnaReadCnt}]]</td>

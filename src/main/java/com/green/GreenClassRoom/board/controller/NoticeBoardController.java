@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping("/board")
 @RequiredArgsConstructor
-public class NoticeController {
+public class NoticeBoardController {
 
     @GetMapping("/notice")
     public String notice(){
