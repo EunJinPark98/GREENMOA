@@ -100,7 +100,7 @@
             </th:block>
             
             <div>
-                <form action="/board/insertReply" method="post">
+                <form action="/board/insertReply" method="post" id="replyForm">
                     <div>
                         <textarea name="replyText" id="replyText" cols="50" rows="1" class="rounded-pill" placeholder="응원하기"></textarea>
                         <input type="hidden" name="boardNum" th:value="${freeBoardDetail.boardNum}">
