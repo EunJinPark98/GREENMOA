@@ -8,14 +8,28 @@
 </head>
 <body>
     <th:block layout:fragment="content">
-        <h3>자유게시글 수정</h3>
-        <hr>
-        <form action="/board/updateFreeBoard" method="post">
-            제목 : <input type="text" name="title" th:value="${freeBoardDetail.title}"><br>
-            글내용 :<textarea rows="5" cols="50" name="content">[[${freeBoardDetail.content}]]</textarea> <br>
-            <input type="hidden" name="boardNum" th:value="${freeBoardDetail.boardNum}">
-            <input type="submit" value="수정">
-        </form>
+        <link rel="stylesheet" href="/css/board.css">
+        <div class="boardBox">
+            <h3 class="headTitle">자유게시글 수정</h3>
+            <span class="headTitleBar">head-title-bar</span>
+            
+            <form action="/board/updateFreeBoard" method="post">
+
+                <div class="input-group mt-5 mb-3">
+                    <span class="input-group-text" id="basic-addon1">제목</span>
+                    <input name="title" type="text" th:value="${freeBoardDetail.title}" class="form-control" required>
+                </div>
+                <div class="input-group mb-3">
+                    <span class="input-group-text">내용</span>
+                    <textarea name="content" class="form-control" rows="13" aria-label="With textarea">[[${freeBoardDetail.content}]]</textarea>
+                </div>
+                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                    <input type="hidden" name="boardNum" th:value="${freeBoardDetail.boardNum}">
+                    <input class="btn btn-outline-warning" type="submit" value="수정"></input>
+                </div>
+
+            </form>
+        </div>
     </th:block>
 </body>
 </html>

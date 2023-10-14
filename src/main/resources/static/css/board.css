@@ -3,6 +3,15 @@
 body{
     font-family: 'Dovemayo_gothic';
 }
+textarea{
+    resize: none;
+}
+a{
+    color: #9c8277;
+}
+a:hover{
+    color: #86b9af;
+}
 
 /* ----------- 자유게시판 목록 ----------- */
 .boardBox{
@@ -24,6 +33,7 @@ body{
     animation: headTitleBar .5s ease-in forwards;
     text-indent: -99999px;
 }
+
 @keyframes headTitleBar{
     0%{
         width: 0px;
@@ -43,7 +53,7 @@ td{
 
 /* ----------- 자유게시판 상세페이지 ----------- */
 .boardWriter{
-    font-size: 20px;
+    font-size: 18px;
 }
 .replyWriter{
     font-size: 17px;
@@ -77,10 +87,10 @@ td{
 .boardDate, .boardReadCnt{
     color: #aaaaaa; 
     font-size: 13px;
+    margin-bottom: 0;
 }
 .boardReadCnt{
-    margin-top: 20px;
-    margin-bottom: 0;
+    margin-top: 10px;
 }
 .textContent{
     color: #6e6e6e; 
@@ -98,16 +108,16 @@ td{
     display: none;
 }
 #replyText{
-    resize: none;
     outline-color: #ffc107;
     border: 2px solid #868686;
-    padding: 5px 20px;
+    padding: 7px 20px 7px 35px;
+    height: 45px;
 }
 .commentBtn{
-    margin-left: 5px;
-    margin-top: -34px;
+    margin-left: 55px;
+    margin-bottom: 10px;
     border-radius: 100%;
-    padding: 8px 8px;
+    padding: 10px 10px;
 }
 .card{
     border: 0px;
@@ -136,6 +146,15 @@ td{
 }
 #replyNum:hover{
     color: #a3d6cd;
+}
+
+.textareaIcon {
+    position: relative;
+}
+.textareaIcon .bi {
+    position: absolute;
+    top: 7px;
+    left: 12px;
 }
 
 
