@@ -8,9 +8,8 @@ import org.springframework.stereotype.Controller;
 public class ChatController {
     @MessageMapping("/chat")
     @SendTo("/topic")
-    public ChatMessage sendMessage(ChatMessage message) {
-        System.out.println("@@@@@@@@@@@@@@@" + message);
-        System.out.println(message.getContent());
+    public ChatVO sendMessage(ChatVO message) {
+        System.out.println("이건 왜 안나오냐");
 
         return message;
     }
