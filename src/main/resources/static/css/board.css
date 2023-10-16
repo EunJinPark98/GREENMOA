@@ -52,6 +52,9 @@ td{
 }
 
 /* ----------- 자유게시판 상세페이지 ----------- */
+.dropdown-menu {
+    min-width: 70px;
+}
 .boardWriter{
     font-size: 18px;
 }

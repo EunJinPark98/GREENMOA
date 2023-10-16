@@ -21,9 +21,10 @@ function deleteReply(boardNum){
 };
 
 // 댓글 이모지 드롭다운 선택
-function changeEmoji(emojiURL, emojiValue){
+function changeEmoji(emojiURL){
     let selectImg = document.querySelector('.selectImg');
     selectImg.src = emojiURL;
-    let resultEmoji = document.querySelector('.resultEmoji');
-    resultEmoji.value = emojiValue;
+
+    let replyEmojiInput = document.querySelector(".resultEmoji[name='replyEmoji']");
+    replyEmojiInput.value = emojiURL;
 }
