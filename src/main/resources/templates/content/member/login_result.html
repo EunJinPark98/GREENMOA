@@ -8,16 +8,50 @@
 </head>
 <body>
     <th:block layout:fragment="content">
+
+        <!-- sweetalert2 script -->
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+        <style>
+        div:where(.swal2-container) div:where(.swal2-popup) {
+            background-image: url(/images/login-modal.png);
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: 100% auto;
+            background-color: transparent;
+            height: 635px;
+            padding-top: 70px;
+        }
+        div:where(.swal2-icon).swal2-success, div:where(.swal2-icon).swal2-error.swal2-icon-show {
+            top: 220px;
+        }
+        h2#swal2-title.swal2-title{
+            height: 0;
+            margin-top: 70px;
+        }
+        </style>
+
+        
         <!-- 로그인 성공 했으면~ -->
         <th:block th:if="${session.loginInfo !=null}">
             <input type="hidden" id="roll" th:value="${session.loginInfo.memberRoll}">
             <script>
-                alert(`[[${session.loginInfo.memberId}]]님 반갑습니다.`);
+
+                Swal.fire({
+                    position: 'center',
+                    icon: 'success',
+                    title: `[[${session.loginInfo.memberId}]] 님 <br> <sub>반갑습니다!<sub>`,
+                    showConfirmButton: false,
+                    timer: 2000
+                }).then(()=>{
+                    location.href = '/room/main';
+                })
+
                 // 로그인 유저의 권한 정보
                 // const memberRoll=document.querySelector('#roll').value;
-
-                location.href='/room/main';
+                // location.href = '/room/main';
                 // memberRoll == 'USER' ? '/room/main' : '/room/main'
+
             </script>
         </th:block>
         
@@ -27,10 +61,18 @@
             <input type="hidden" id="inputId" th:value="${memberVO.memberId}">
             <script>
                 const memberId=document.querySelector("#inputId").value;
-                alert('ID 혹은 PW 확인');
-                location.href=`/room/main`;
+
+                Swal.fire({
+                    icon: 'error',
+                    title: 'ID 혹은 PW 확인',
+                    showConfirmButton: false,
+                    timer: 3000
+                }).then(()=>{
+                    location.href=`/room/main`;
+                })
             </script>
         </th:block>
+
     </th:block>
 
 </body>
