@@ -73,7 +73,9 @@
                       <div class="row d-flex">
                         <div class="col-md-11 col-lg-9 col-xl-7">
                           <div class="d-flex flex-start mb-4">
-                            <img class="rounded-circle shadow-1-strong me-3" src="/images/emoji5.png" alt="avatar" width="40" height="40" />
+                            <div id="replyEmoji" name="replyEmoji">
+                                <img class="rounded-circle shadow-1-strong me-3" th:src="|/images/${reply.replyEmoji}.png|" alt="avatar" width="40" height="40"/>
+                            </div>
                             <div class="card w-100" >
                               <div class="card-body p-3">
                                 <div>
@@ -102,11 +104,30 @@
             
             <div>
                 <form action="/board/insertReply" method="post" id="replyForm">
-                    <div class="row justify-content-md-end align-items-center">
+                    <div class="row">
+                        <div class="col-2">
+                            <div class="dropdown">
+                                <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                  <img src="/images/emoji1.png" alt="" class="selectImg" id="replyEmoji" >
+                                </button>
+                                <ul class="dropdown-menu col-xs-3">
+                                  <li><a class="dropdown-item" onclick="changeEmoji('/images/emoji1.png');"><img src="/images/emoji1.png" alt=""></a></li>
+                                  <li><a class="dropdown-item" onclick="changeEmoji('/images/emoji2.png');"><img src="/images/emoji2.png" alt=""></a></li>
+                                  <li><a class="dropdown-item" onclick="changeEmoji('/images/emoji3.png');"><img src="/images/emoji3.png" alt=""></a></li>
+                                  <li><a class="dropdown-item" onclick="changeEmoji('/images/emoji4.png');"><img src="/images/emoji4.png" alt=""></a></li>
+                                  <li><a class="dropdown-item" onclick="changeEmoji('/images/emoji5.png');"><img src="/images/emoji5.png" alt=""></a></li>
+                                  <li><a class="dropdown-item" onclick="changeEmoji('/images/emoji6.png');"><img src="/images/emoji6.png" alt=""></a></li>
+                                  <li><a class="dropdown-item" onclick="changeEmoji('/images/emoji7.png');"><img src="/images/emoji7.png" alt=""></a></li>
+                                  <li><a class="dropdown-item" onclick="changeEmoji('/images/emoji8.png');"><img src="/images/emoji8.png" alt=""></a></li>
+                                  <li><a class="dropdown-item" onclick="changeEmoji('/images/emoji9.png');"><img src="/images/emoji9.png" alt=""></a></li>
+                                </ul>
+                            </div>
+                        </div>
                         <textarea name="replyText" id="replyText" cols="50" rows="1" class="rounded-pill" placeholder="응원하기"></textarea>
                         <input type="hidden" name="boardNum" th:value="${freeBoardDetail.boardNum}">
                         <input type="hidden" name="replyer" th:value="${loginInfo.memberId}">
-                        <div class="col-7">
+                        <input type="hidden" class="resultEmoji" name="replyEmoji" value="emoji1">
+                        <div class="col-1">
                             <input type="submit" value="등록" class="commentBtn btn btn-outline-warning">
                         </div>
                     </div>

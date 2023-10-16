@@ -99,6 +99,10 @@ td{
 }
 
 /* 댓글 */
+.dropdown img{
+    width: 40px;
+    height: 40px;
+}
 .small{
     font-size: 12px;
     color: #aaaaaa;
@@ -112,6 +116,7 @@ td{
     border: 2px solid #868686;
     padding: 7px 20px 7px 35px;
     height: 45px;
+    width: 45%;
 }
 #replyText:placeholder-shown{
     background-image: url(/images/emoji-sunglasses.svg);

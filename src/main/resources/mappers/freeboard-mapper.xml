@@ -21,6 +21,7 @@
         <result column="REPLYER" property="replyer"/>
         <result column="REG_DATE" property="regDate"/>
         <result column="UPDATE_DATE" property="updateDate"/>
+        <result column="REPLY_EMOJI" property="replyEmoji"/>
     </resultMap>
 
     <!--자유게시판 목록 쿼리-->
@@ -93,12 +94,14 @@
             , REPLY_TEXT
             , REPLYER
             , BOARD_NUM
+            , REPLY_EMOJI
         )
         VALUES(
             (SELECT NVL(MAX(REPLY_NUM),0) +1 FROM BOARD_REPLY)
             ,#{replyText}
             ,#{replyer}
             ,#{boardNum}
+            ,#{replyEmoji}
         )
     </insert>
     <select id="selectReply" resultMap="reply">
@@ -106,6 +109,7 @@
             , REPLY_TEXT
             , REPLYER
             , TO_CHAR(REG_DATE,'YYYY-MM-DD') REG_DATE
+            , REPLY_EMOJI
         FROM BOARD_REPLY
         WHERE BOARD_NUM=#{boardNum}
         ORDER BY REPLY_NUM DESC

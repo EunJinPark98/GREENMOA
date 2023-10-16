@@ -19,3 +19,11 @@ function deleteReply(boardNum){
         location.href=`/board/deleteReply?replyNum=${replyNum}&boardNum=${boardNum}`;
     };
 };
+
+// 댓글 이모지 드롭다운 선택
+function changeEmoji(emojiURL, emojiValue){
+    let selectImg = document.querySelector('.selectImg');
+    selectImg.src = emojiURL;
+    let resultEmoji = document.querySelector('.resultEmoji');
+    resultEmoji.value = emojiValue;
+}

@@ -101,7 +101,7 @@ public class FreeBoardController {
     public String insertReply(ReplyVO replyVO){
         freeBoardService.insertReply(replyVO);
         //+ "&noCount=true" :  댓글 작성시 조회수가 오르지 않게 하기 위해 true인 값인 noCount를 보낸다.
-        return "redirect:/board/freeBoardDetail?boardNum="+replyVO.getBoardNum()+"&replyer="+replyVO.getReplyer() + "&noCount=true" ;
+        return "redirect:/board/freeBoardDetail?boardNum="+replyVO.getBoardNum()+"&replyer="+replyVO.getReplyer() + "&noCount=true";
     }
 
     // 댓글 삭제 기능
