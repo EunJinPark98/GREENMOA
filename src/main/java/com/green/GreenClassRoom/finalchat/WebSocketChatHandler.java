@@ -40,20 +40,24 @@ public class WebSocketChatHandler extends TextWebSocketHandler {
         String receivedMessage = message.getPayload();
 
         // 메시지 처리 로직
+
         System.out.println("제이슨 : " + receivedMessage);
 
         ObjectMapper objectMapper = new ObjectMapper();
         Map<String, String> msgMap = objectMapper.readValue(receivedMessage, new TypeReference<Map<String, String>>() {});
         System.out.println("맵 : " + msgMap);
 
-        String content = "";
+        ChatVO chatVO = new ChatVO();
+        String content = "content";
         String sender = "외부인";
 
-        ChatVO chatVO = new ChatVO();
+        System.out.println("-----------------------");
+
         chatVO.setContent(msgMap.get(content));
         chatVO.setSender(msgMap.get(sender));
-        System.out.println("이것은 콘텐츠 : " +  chatVO.getContent());
-        System.out.println("이것은 보내는 사람 : " +  chatVO.getContent());
+        
+        System.out.println("이것은 컨텐츠 : " +  chatVO.getContent());
+        System.out.println("이것은 보내는 사람 : " +  chatVO.getSender());
 
 
 

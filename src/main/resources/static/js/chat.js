@@ -18,31 +18,33 @@ socket.onerror = function(error) {
 };
 
 
-// var messageForm = document.getElementById('message-form');
-// messageForm.addEventListener('submit', function (e) {
-//         e.preventDefault();
-//         sendMessage();
-//         scrollToBottom()
-// });
-
 
 // 메시지 전송
-function submitMsg(){
+var messageForm = document.getElementById('message-form');
+messageForm.addEventListener('submit', function (e) {
+    e.preventDefault();
     sendMessage();
-    scrollToBottom()
-}
+});
 
 function sendMessage() {
-    var message = document.getElementById('message').value;
-    socket.send(JSON.stringify({'content': message}));
-    messageInput.value = '';
+    var messageInput = document.getElementById('message').value;
+    var sender = "외부인"
+    var senderElement = document.getElementById('sender');
+    if (senderElement) {
+        var name = senderElement.getAttribute('data-sender');
+        if (name) sender = name;
+    }
+
+    socket.send(JSON.stringify({'content': messageInput, 'sender' : sender}));
+
+    document.getElementById('message').value = '';
 }
 
 // 메시지 표시
-
 socket.onmessage = function(event) {
     var message = JSON.parse(event.data);
     showMessage(message.content, message.sender);
+    scrollToBottom();
 };
 
 
@@ -51,13 +53,10 @@ function showMessage(message, sender) {
     console.log("메세지 : " + message);
     
     var chatMessages = document.getElementById('chat-messages');
-    var cenderEl = document.createElement('p');
-    cenderEl.appendChild(document.createTextNode(sender));
-    var msgEl = document.createElement('p');
-    msgEl.appendChild(document.createTextNode(message));
+    var msg = document.createElement('p');
+    msg.appendChild(document.createTextNode(sender + " : " + message));
 
-    chatMessages.appendChild(cenderEl);
-    chatMessages.appendChild(msgEl);
+    chatMessages.appendChild(msg);
 }
 
 
@@ -66,3 +65,5 @@ function scrollToBottom() {
     var chatMessages = document.getElementById('chat-messages');
     chatMessages.scrollTop = chatMessages.scrollHeight;
 }
+
+

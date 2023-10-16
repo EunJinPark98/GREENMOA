@@ -99,6 +99,10 @@
             
             <!-- 모든 멤버 미니미 -->
             <div class="mini-fr">
+                <th:block th:if="${memberList} != null">
+
+                </th:block>
+
                 <th:block th:each="member : ${memberList}">
                 <div class="member">
                     <img th:src="|/images/${member.minime}.png|">
@@ -109,17 +113,19 @@
 
         </div>
 
-
-            
         
+        <th:block th:if="${session.loginInfo}!=null">
+          <input id="sender" type="hidden" th:attr="data-sender=${session.loginInfo.memberName}">
+        </th:block>
+
         <div id="chat" class="container-md">
-            <h3>채팅기능을 만들어보자</h3>
+            <h3>채팅</h3>
             <div id="chat-messages"></div>
         
-            <!-- <form id="message-form"> -->
+            <form id="message-form">
                 <input type="text" id="message" class="form-control">
-                <button type="button" id="chatBtn" class="btn btn-primary" onclick="submitMsg()">전송</button>
-            <!-- </form> -->
+                <button type="submit" id="chatBtn" class="btn btn-primary">전송</button>
+            </form>
         </div>
     
 
