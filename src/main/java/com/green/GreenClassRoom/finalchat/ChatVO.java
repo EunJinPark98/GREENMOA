@@ -2,7 +2,7 @@ package com.green.GreenClassRoom.finalchat;
 import lombok.Data;
 
 @Data
-public class ChatMessage {
+public class ChatVO {
     private String content;
     private String sender;
 }
