@@ -28,12 +28,22 @@
     <!--todo리스트 조회-->
     <select id="selectTodo" resultMap="todo">
         SELECT TODO_NUM
+            , TODO_WRITER
             , TODO_CONTENT
-            , TODO_START_DATE
-            , TODO_FINISH_DATE
+            , TO_NUMBER(TO_CHAR(TODO_START_DATE, 'YYYYMMDD'))
+            , TO_NUMBER(TO_CHAR(TODO_FINISH_DATE, 'YYYYMMDD'))
+            , TO_DATE(TO_CHAR(SYSDATE, 'YYYYMMDD'))-TO_DATE(TO_CHAR(TODO_FINISH_DATE, 'YYYYMMDD'))TODO_START_DATE
         FROM TODO_LIST
+        WHERE TODO_WRITER=#{todoWriter}
+        AND TO_DATE(TO_CHAR(SYSDATE, 'YYYYMMDD'))-TO_DATE(TO_CHAR(TODO_FINISH_DATE, 'YYYYMMDD')) &lt; 0
         ORDER BY TODO_NUM DESC
     </select>
+    <!--todo리스트 삭제-->
+    <delete id="deleteTodoList">
+        DELETE TODO_LIST
+        WHERE TODO_NUM =#{todoNum}
+    </delete>
+
 </mapper>
 
 
