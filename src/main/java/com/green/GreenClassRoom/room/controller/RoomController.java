@@ -24,6 +24,7 @@ public class RoomController {
     @GetMapping("/main")
     public String main(Model model){
         model.addAttribute("memberList", memberService.selectMemberList());
+        model.addAttribute("teacher", memberService.selectAdmin());
         return "/content/room/main";
     }
 

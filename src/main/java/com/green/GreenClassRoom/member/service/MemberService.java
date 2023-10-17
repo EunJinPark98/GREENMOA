@@ -17,4 +17,7 @@ public interface MemberService {
 
     // 모든 학생 출력
     public List<MemberVO> selectMemberList();
+
+    // 선생님 출력
+    public MemberVO selectAdmin();
 }

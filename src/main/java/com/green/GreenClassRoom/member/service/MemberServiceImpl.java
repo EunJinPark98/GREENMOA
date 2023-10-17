@@ -32,4 +32,9 @@ public class MemberServiceImpl implements MemberService {
     public List<MemberVO> selectMemberList() {
         return sqlSession.selectList("memberMapper.selectMemberList");
     }
+
+    @Override
+    public MemberVO selectAdmin() {
+        return sqlSession.selectOne("memberMapper.selectAdmin");
+    }
 }

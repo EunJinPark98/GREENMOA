@@ -25,12 +25,14 @@ body{
     margin-top: -20px;
     background-color: #fff;
     padding: 40px;
+    box-sizing: border-box;
 }
 
 .inner-fr{
     position: relative;
     height: 1000px;
     border: 3px solid #D8D8D8;
+    box-sizing: border-box;
     border-radius: 20px;
 }
 
