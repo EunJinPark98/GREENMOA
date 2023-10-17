@@ -12,6 +12,6 @@ public class ReplyVO {
     private String replyer;
     private String regDate;
     private String updateDate;
-    private List<Integer> replyNumList;
+//    private List<Integer> replyNumList;
     private String replyEmoji;
 }

@@ -35,6 +35,9 @@ public interface QnaBoardService {
     //질문게시판 첨부파일 첨부
     public int insertFile(QnaBoardVO qnaBoardVO);
 
+    //질문게시판 페이징
+    public int selectQnaBoardCnt();
+
     // 답변 작성
     public int insertQnaReply(QnaReplyVO qnaReplyVO);
 
@@ -42,6 +45,6 @@ public interface QnaBoardService {
     public List<QnaReplyVO> selectQnaReply(QnaReplyVO qnaReplyVO);
 
     // 답변 선택 삭제 기능
-    public int deleteQnaReply(QnaReplyVO qnaReplyVO);
+    public void deleteQnaReply(QnaReplyVO qnaReplyVO);
 
 }

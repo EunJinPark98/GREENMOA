@@ -11,18 +11,113 @@ body{
 #classRoom{
     position: relative;
     background-image: url(/images/room_frame.jpg);
-    background-size: 100% 100%;
-    background-position: center;
+    background-size: 100% auto;
+    background-position: top;
     background-repeat: no-repeat;
     border-radius: 20px;
-    height: 500px;
-    object-fit: cover;
+    box-sizing: border-box;
+    height: 700px;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 0 10px;
 }
 
 
+/* 클래스룸 미니미들 위치 */
+.teacher{
+    position: absolute;
+    top: 11%;
+    left: 40%;
+    width: 190px;
+}
+.teacher img{
+    width: 100%;
+    height: auto;
+}
+.teacher .name{
+    display: flex;
+    justify-content: center;
+    font-size: 1.2rem;
+    margin-bottom: -10px;
+}
+.mini-fr{
+    position: absolute;
+    top: 55%;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    padding: 0 20px;
+}
 
+.member img{
+    width: 100px;
+    height: auto;
+    z-index: 1200;
+}
+
+.member .name{
+    display: flex;
+    justify-content: center;
+    font-size: 1.2rem;
+    margin-bottom: -10px;
+}
+
+/* 출석부 */
+.student-list{
+    width: 100px;
+    position: absolute;
+    top: 17%;
+    right: 38%;
+    transform: rotate(30deg);
+}
+.student-list:hover{
+    top: 15%;
+}
+.student-list img{
+    width: 100%;
+    height: auto;
+}
+
+#stuListModal{
+    text-align: center;
+    border: none;
+}
+
+#stuListModalLabel{
+    margin-left: 200px;
+}
+
+.stu-modal-content{
+    position: relative;
+    background-color: #C69A77;
+}
+
+.stu-modal-header{
+    background-color: #9B877A;
+    border: none;
+}
+
+.stu-thead th{
+    background-color: #6F9BC7;
+}
+
+.stu-tbody td{
+    background-color: #F2DFBF;
+}
+
+.stu-modal-footer{
+    border: none;
+}
+
+.stu-list-pen{
+    position: absolute;
+    top: 30%;
+    right: -40px;
+    transform: rotate(30deg);
+}
 /* --------- 과제로 애니메이션 효과 --------- */
-.utility{
+.work-icon{
     background-image: url(/images/login.png);
     background-position: center;
     background-repeat: no-repeat;
@@ -31,11 +126,15 @@ body{
     height: 75px;
     text-indent: -99999px;
     position: absolute;
-    top: 70%;
-    left: 15%;
+    top: 41%;
+    right: 31%;
 }
 
-.utilMenu{
+.work-icon:hover + .work-btn{
+    top: 28%;
+}
+
+.work-btn{
     background-image: url(/images/loginMenu.png);
     background-position: center;
     background-repeat: no-repeat;
@@ -43,8 +142,8 @@ body{
     width: 100px;
     height: 100px;
     position: absolute;
-    top: 50%;
-    left: 15%;
+    top: 30%;
+    right: 30%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -78,9 +177,9 @@ body{
     background-repeat: no-repeat;
     background-size: 100% auto;
     position: absolute;
-    top: 15%;
+    top: 10%;
     left: 12%;
-    z-index: 1;
+    z-index: 100;
     width: 35px;
     height: 35px;
     text-indent: -99999px;
@@ -94,9 +193,10 @@ body{
     height: 200px;
     text-indent: -99999px;
     position: absolute;
-    top: 15%;
+    top: 10%;
     left: 10%;
     transform: perspective(200px) rotateY(30deg);
+    z-index: 10;
 }
 .modal-fullscreen{
     width: 1250px;
@@ -119,7 +219,6 @@ body{
     position: absolute;
     top: 80px;
     right: -50px;
-
     top: -40px;
     right: 0px;
 }
@@ -141,33 +240,13 @@ body{
 
 
 
-/* 클래스룸 미니미들 임시 위치지정 */
-
-.mini-fr{
-    position: absolute;
-    top: 50%;
-    left: 30%;
-    display: flex;
-}
-
-.member img{
-    width: 100px;
-    height: auto;
-}
-
-.member .name{
-    display: flex;
-    justify-content: center;
-    font-size: 1.2rem;
-}
-
 
 /* 채팅 */
 #chat{
     height: 300px;
 }
 #chat-messages{
-    height: 250px;
+    height: 200px;
     border: 2px solid #DEE2E6;
     border-radius: 0.375rem;
     background-color: #fff;

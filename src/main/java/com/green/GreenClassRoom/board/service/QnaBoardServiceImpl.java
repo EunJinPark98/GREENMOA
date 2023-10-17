@@ -59,6 +59,11 @@ public class QnaBoardServiceImpl implements QnaBoardService{
     }
 
     @Override
+    public int selectQnaBoardCnt() {
+        return sqlSession.selectOne("qnaBoardMapper.selectQnaBoardCnt");
+    }
+
+    @Override
     public int insertQnaReply(QnaReplyVO qnaReplyVO) {
         return sqlSession.insert("qnaBoardMapper.insertQnaReply", qnaReplyVO);
     }
@@ -69,8 +74,8 @@ public class QnaBoardServiceImpl implements QnaBoardService{
     }
 
     @Override
-    public int deleteQnaReply(QnaReplyVO qnaReplyVO) {
-        return sqlSession.delete("qnaBoardMapper.deleteQnaReply", qnaReplyVO);
+    public void deleteQnaReply(QnaReplyVO qnaReplyVO) {
+        sqlSession.delete("qnaBoardMapper.deleteQnaReply", qnaReplyVO);
     }
 
 

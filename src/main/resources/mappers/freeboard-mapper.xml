@@ -114,6 +114,7 @@
         WHERE BOARD_NUM=#{boardNum}
         ORDER BY REPLY_NUM
     </select>
+    <!--댓글 삭제-->
     <delete id="deleteReply">
         DELETE BOARD_REPLY
         WHERE REPLY_NUM=#{replyNum}

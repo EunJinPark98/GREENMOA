@@ -2,6 +2,8 @@ package com.green.GreenClassRoom.room.vo;
 
 import lombok.Data;
 
+import java.util.List;
+
 @Data
 public class TodoVO {
     private int todoNum;
@@ -9,4 +11,6 @@ public class TodoVO {
     private String todoContent;
     private String todoStartDate;
     private String todoFinishDate;
+    private String dDay;
+
 }
