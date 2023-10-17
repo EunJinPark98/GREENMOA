@@ -132,6 +132,12 @@
     left: 42%;
     color: #89847b;
 }
+.btn-close{
+    position: absolute;
+    bottom: 50%;
+    right: 8%;
+    color: #89847b;
+}
 
 #login-modal-board{
     background-color: transparent;

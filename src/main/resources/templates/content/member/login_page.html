@@ -20,6 +20,8 @@
                             <div class="col">
                                 <h3 class="loginTitle text-center mb-6">로 그 인</h3>
                             </div>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            
                         </div>
                         <div class="row">
                             <div class="col">
@@ -52,9 +54,14 @@
         
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
         <script>
+            // 로그인 모달
              $(window).on('load', function() {
                 $("#login-modal").modal("show");
             });
+            // 로그인 모달 닫기
+            $('.btn-close').click(function(){
+                location.href='/room/main';
+            })
         </script>
 
     </th:block>

@@ -106,6 +106,9 @@ td{
     width: 40px;
     height: 40px;
 }
+.dropdownWrap{
+    width: 10%;
+}
 .small{
     font-size: 12px;
     color: #aaaaaa;
@@ -128,8 +131,6 @@ td{
     background-size: 16px 16px;
 }
 .commentBtn{
-    margin-left: 55px;
-    margin-bottom: 10px;
     border-radius: 100%;
     padding: 10px 10px;
 }
