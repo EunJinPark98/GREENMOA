@@ -27,7 +27,7 @@
     <div class="page">
         <th:block th:each="qnaBoard : ${qnaBoardList}">
             <th:block th:if="${qnaBoard.originFileName != null}">
-                <img width="100%" height="280px" th:src="${'/upload/' + qnaBoard.attachedFileName}" alt="">
+                <img width="50%" height="280px" th:src="${'/upload/' + qnaBoard.attachedFileName}" alt="">
             </th:block>
         </th:block>
         <table border="1">
@@ -82,7 +82,7 @@
                     <td>[[${qnaReply.qnaReplyText}]]</td>
                     <td>[[${qnaReply.qnaRegDate}]]</td>
                     <td>
-                        <input type="button" class="btn btn-primary" id="qnaReplyNum" name="qnaReplyNum" th:onclick="deleteQnaReply([[${qnaBoardList.qnaBoardNum}]])" th:data-reply-num="${qnaReply.qnaReplyNum}" value="삭제" th:disabled="${qnaReply.qnaReplyer != session.loginInfo.memberId}">
+                        <input type="button" class="btn btn-primary" id="qnaReplyNum" name="qnaReplyNum" th:onclick="deleteQnaReply([[${qnaBoardList.qnaBoardNum}]], [[${qnaReply.qnaReplyNum}]])" value="삭제" th:disabled="${qnaReply.qnaReplyer != session.loginInfo.memberId}">
                     </td>
                 </tr>
             </th:block>

@@ -2,10 +2,8 @@ package com.green.GreenClassRoom.board.vo;
 
 import lombok.Data;
 
-import java.util.List;
-
 @Data
-public class QnaBoardVO {
+public class QnaBoardVO extends QnaPageVO {
     private int qnaBoardNum;
     private String qnaBoardTitle;
     private String qnaBoardContent;

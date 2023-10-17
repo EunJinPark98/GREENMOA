@@ -10,6 +10,8 @@
 <body>
     <th:block layout:fragment="content">
         <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.32/dist/sweetalert2.min.css" rel="stylesheet">
+        <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="/css/summernote/summernote-lite.css">
         <link rel="stylesheet" href="/css/board.css">
 
         <h1>질문 글 수정</h1>
@@ -24,8 +26,7 @@
             <div class="row">
                 <div class="col">
                     <div>내용</div>
-                    <div><textarea name="qnaBoardContent" rows="5" cols="50"
-                            required>[[${qnaBoardDetail.qnaBoardContent}]]</textarea></div>
+                    <textarea id="summernote" name="qnaBoardContent">[[${qnaBoardDetail.qnaBoardContent}]]</textarea>
                 </div>
             </div>
             <div class="row">
@@ -71,6 +72,10 @@
         </div>
 
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.32/dist/sweetalert2.all.min.js"></script>
+        <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
+        <script src="/js/summernote/summernote-lite.js"></script>
+        <script src="/js/summernote/lang/summernote-ko-KR.js"></script>
         <script src="/js/board/qna_board_update_page.js"></script>
         
 

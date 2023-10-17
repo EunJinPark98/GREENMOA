@@ -1,13 +1,17 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org"
     xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-    layout:decorate="~{fragment/main_layout}" >
+    layout:decorate="~{fragment/main_layout}">
+
 <head>
 <meta charset="UTF-8">
 <title></title>
 </head>
 <body>
 <th:block layout:fragment="content">
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/css/summernote/summernote-lite.css">
+
     <h1>질문 글 작성</h1>
     <hr>
     <form action="/board/qnaBoardInsert" method="post" enctype="multipart/form-data">
@@ -19,7 +23,7 @@
         <div class="row">
             <div class="col">
                 <div>내용</div>
-                <div><textarea name="qnaBoardContent" rows="5" cols="50" required></textarea></div>
+                <textarea id="summernote" name="qnaBoardContent" required></textarea>
             </div>
         </div>
         <div class="row mb-3">
@@ -30,6 +34,12 @@
         </div>
         <input type="submit" class="btn btn-primary" value="글 작성">
     </form>
+
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
+    <script src="/js/summernote/summernote-lite.js"></script>
+    <script src="/js/summernote/lang/summernote-ko-KR.js"></script>
+    <script src="/js/board/qna_board_insert_page.js"></script>
 </th:block>
 </body>
 </html>

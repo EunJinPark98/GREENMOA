@@ -26,6 +26,11 @@ public class QnaBoardController {
     @RequestMapping("/question")
     public String qnaBoardList(QnaBoardVO qnaBoardVO, Model model){
 
+        //페이징 처리
+        int totalDataCnt = qnaBoardService.selectQnaBoardCnt();
+        qnaBoardVO.setTotalDataCnt(totalDataCnt);
+        qnaBoardVO.setPageInfo();
+
         //질문게시판 글 조회
         List<QnaBoardVO> qnaBoardList = qnaBoardService.selectQnaBoard(qnaBoardVO);
         model.addAttribute("qnaBoardList", qnaBoardList);
@@ -186,7 +191,7 @@ public class QnaBoardController {
     // 답변 삭제 기능
     @RequestMapping("/deleteQnaReply")
     public String deleteReply(QnaReplyVO qnaReplyVO){
-        System.out.println(qnaReplyVO + "@@@@@@@@@@@@");
+        qnaReplyVO.setQnaReplyNum(qnaReplyVO.getQnaReplyNum());
         qnaBoardService.deleteQnaReply(qnaReplyVO);
         return "redirect:/board/qnaBoardDetail?qnaBoardNum=" + qnaReplyVO.getQnaBoardNum() + "&replyer=" + qnaReplyVO.getQnaReplyer() + "&noCount=true";
     }
