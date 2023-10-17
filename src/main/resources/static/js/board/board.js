@@ -22,9 +22,8 @@ function goUpdate(boardNum){
 }
 
 // 댓글 삭제 버튼
-function deleteReply(boardNum){
-    var replyNum=document.getElementById("replyNum");
-    replyNum=replyNum.dataset.replyNum;
+function deleteReply(boardNum, replyNum){
+
     const result = confirm('정말 삭제하시겠습니까?');
     if(result){
         location.href=`/board/deleteReply?replyNum=${replyNum}&boardNum=${boardNum}`;

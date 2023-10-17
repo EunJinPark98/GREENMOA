@@ -109,6 +109,6 @@ public class FreeBoardController {
     public String deleteReply(int replyNum,ReplyVO replyVO){
         //replyVO.setReplyNumList(replyNums);
         freeBoardService.deleteReply(replyNum);
-        return "redirect:/board/freeBoardDetail?boardNum="+replyVO.getBoardNum()+"&replyer="+replyVO.getReplyer() + "&noCount=true";
+        return "redirect:/board/freeBoardDetail?replyNum="+replyVO.getReplyNum()+"&boardNum="+replyVO.getBoardNum()+"&replyer="+replyVO.getReplyer() + "&noCount=true";
     }
 }
