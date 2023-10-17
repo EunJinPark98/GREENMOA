@@ -2,9 +2,47 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <!-- 해당 파일에 모든 쿼리문을 작성 -->
+<!--공지게시판-->
 <mapper namespace="noticeBoardMapper">
-	
+	<resultMap id="notice" type="com.green.GreenClassRoom.board.vo.NoticeBoardVO">
+        <id column="NOTICE_BOARD_NUM" property="noticeBoardNum"/>
+        <result column="NOTICE_BOARD_TITLE" property="noticeBoardTitle"/>
+        <result column="NOTICE_BOARD_CONTENT" property="noticeBoardContent"/>
+        <result column="MEMBER_ID" property="memberId"/>
+        <result column="NOTICE_BOARD_CREATE_DATE" property="noticeBoardCreateDate"/>
+        <result column="NOTICE_BOARD_READ_CNT" property="noticeBoardReadCnt"/>
+    </resultMap>
+
+    <!--공지사항 목록-->
+    <select id="selectNoticeList" resultMap="notice">
+        SELECT NOTICE_BOARD_NUM
+            , NOTICE_BOARD_TITLE
+            , MEMBER_ID
+            , TO_CHAR(NOTICE_BOARD_CREATE_DATE, 'YYYY-MM-DD HH24:MI') NOTICE_DATE
+            , NOTICE_BOARD_READ_CNT
+        FROM NOTICE_BOARD
+        <if test='searchValue!=null and !searchValue.equals("")'>
+            WHERE UPPER(#{noticeBoardTitle}) LIKE '%'||UPPER(#{searchValue})||'%'
+        </if>
+        ORDER BY NOTICE_BOARD_NUM DESC
+    </select>
+
+    <!--공지사항 글쓰기 권한은 ADMIN만-->
+    <insert id="insertNotice">
+        INSERT INTO NOTICE_BOARD(
+            NOTICE_BOARD_NUM
+            , NOTICE_ BOARD_TITLE
+            , NOTICE_BOARD_CONTENT
+            , MEMBER_ID
+        ) VALUE(
+            (SELECT NVL(MAX(NOTICE_BOARD_NUM), 0) +1 FROM NOTICE_BOARD)
+            , #{noticeBoardTitle}
+            , #{noticeBoardContent}
+            , #{memberId}
+        )
+    </insert>
 </mapper>
+
 
 
 

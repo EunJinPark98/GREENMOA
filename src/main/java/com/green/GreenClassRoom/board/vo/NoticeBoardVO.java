@@ -8,6 +8,7 @@ public class NoticeBoardVO {
     private String noticeBoardTitle;
     private String noticeBoardContent;
     private String memberId;
-    private String noticeCreateDate;
-    private String noticeReadCnt;
+    private String noticeBoardCreateDate;
+    private int noticeBoardReadCnt;
+    private String searchValue;
 }
