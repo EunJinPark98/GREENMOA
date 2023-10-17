@@ -53,11 +53,20 @@
             , QNA_BOARD_WRITER
             , TO_CHAR(QNA_CREATE_DATE, 'YYYY-MM-DD') QNA_CREATE_DATE
             , QNA_READ_CNT
+            , ORIGIN_FILE_NAME
+            , ATTACHED_FILE_NAME
         FROM QNA_BOARD
         <if test='searchText !=null and !searchText.equals("")'>
             WHERE UPPER(${searchType}) LIKE '%'||UPPER(#{searchText})||'%'
         </if>
         ORDER BY QNA_BOARD_NUM DESC
+        OFFSET (#{nowPage} - 1) * #{displayDataCnt} ROWS FETCH FIRST #{displayDataCnt} ROWS ONLY
+    </select>
+
+    <!--게시글 페이징 처리-->
+    <select id="selectQnaBoardCnt" resultType="int">
+        SELECT COUNT(QNA_BOARD_NUM)
+        FROM QNA_BOARD
     </select>
 
     <!--게시글 조회수 증가-->
@@ -108,7 +117,6 @@
         WHERE QNA_BOARD_NUM = #{qnaBoardNum}
     </update>
 
-
     <!--답변 작성-->
     <insert id="insertQnaReply">
         INSERT INTO QNA_BOARD_REPLY(
@@ -141,6 +149,8 @@
         DELETE QNA_BOARD_REPLY
         WHERE QNA_REPLY_NUM = #{qnaReplyNum}
     </delete>
+
+
 
 </mapper>
 
