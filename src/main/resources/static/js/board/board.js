@@ -1,10 +1,21 @@
 //게시글 삭제 버튼
 function goDelete(boardNum){
-    const result = confirm('정말 삭제하시겠습니까?');
-    if(result){
-        location.href=`/board/deleteBoard?boardNum=${boardNum}`;
-    };
-};
+        Swal.fire({
+        title: "정말 삭제하시겠습니까?",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#9c8277',
+        cancelButtonColor: '#767f87',
+        confirmButtonText: '삭제',
+        cancelButtonText: '취소',
+        }).then((result) => {
+        if (result.isConfirmed) {
+            location.href=`/board/deleteBoard?boardNum=${boardNum}`
+        }
+    })
+}
+
+
 // 게시글 수정 버튼
 function goUpdate(boardNum){
     location.href=`/board/updateBoardForm?boardNum=${boardNum}`;

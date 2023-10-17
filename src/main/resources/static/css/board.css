@@ -162,6 +162,29 @@ td{
     color: #a3d6cd;
 }
 
+/* alert창 */
+.swal2-popup.swal2-modal.swal2-icon-warning.swal2-show{
+    background-image: url(/images/confirm.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 100% auto;
+    background-color: transparent;
+    height: 635px;
+    padding-top: 70px;
+}
+div:where(.swal2-icon).swal2-warning {
+    border-color: #e1904a;
+    color: #e1904a;
+    top: 95px;
+}
+h2#swal2-title.swal2-title {
+    margin-top: 0px;
+    top: 30px;
+}
+div:where(.swal2-container) div:where(.swal2-actions) {
+    height: 0;
+    margin-bottom: 130px;
+}
 
 
 /* 
