@@ -19,7 +19,13 @@ public class TodoServiceImpl implements TodoService{
     }
 
     @Override
-    public List<TodoVO> selectTodo(TodoVO todoVO) {
-        return sqlSession.selectList("todoMapper.selectTodo",todoVO);
+    public List<TodoVO> selectTodo(String todoWriter) {
+        return sqlSession.selectList("todoMapper.selectTodo",todoWriter);
     }
+
+    @Override
+    public void deleteTodoList(int todoNum) {
+        sqlSession.delete("todoMapper.deleteTodoList",todoNum);
+    }
+
 }
