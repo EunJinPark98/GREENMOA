@@ -75,11 +75,22 @@
     <select id="selectMemberList" resultMap="member">
         SELECT MEMBER_ID
             , MEMBER_NAME
+            , MEMBER_GENDER
             , MEMBER_BIRTHDAY
             , MINIME
         FROM GREEN_MEMBER
+        WHERE MEMBER_ROLL = 'USER'
     </select>
 
+    <!--선생님 출력-->
+    <select id="selectAdmin" resultMap="member">
+        SELECT MEMBER_ID
+            , MEMBER_NAME
+            , MEMBER_BIRTHDAY
+            , MINIME
+        FROM GREEN_MEMBER
+        WHERE MEMBER_ROLL = 'ADMIN'
+    </select>
 </mapper>
 
 
