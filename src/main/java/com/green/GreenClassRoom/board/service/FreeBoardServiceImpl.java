@@ -58,4 +58,9 @@ public class FreeBoardServiceImpl implements FreeBoardService{
     public int deleteReply(int replyNum) {
         return sqlSession.delete("freeBoardMapper.deleteReply",replyNum);
     }
+
+    @Override
+    public int pagingFreeBoard() {
+        return sqlSession.selectOne("freeBoardMapper.pagingFreeBoard");
+    }
 }

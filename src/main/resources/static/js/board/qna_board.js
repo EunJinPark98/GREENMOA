@@ -19,3 +19,4 @@ function deleteQnaReply(qnaBoardNum, qnaReplyNum){
 
 };
 
+

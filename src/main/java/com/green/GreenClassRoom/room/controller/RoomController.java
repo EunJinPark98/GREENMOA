@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.lang.reflect.Member;
+import java.util.List;
 
 @Controller
 @RequestMapping("/room")
@@ -30,10 +31,11 @@ public class RoomController {
 
     //마이룸
     @GetMapping("/myRoom")
-    public String myRoom(Model model, HttpSession session){
+    public String myRoom(Model model, HttpSession session,MemberVO memberVO){
         MemberVO loginInfo = (MemberVO) session.getAttribute("loginInfo");
         String memberId = loginInfo.getMemberId();
         model.addAttribute("todoList", todoService.selectTodo(memberId));
+
         return "content/room/myRoom";
     }
 

@@ -1,5 +1,6 @@
 package com.green.GreenClassRoom.member.controller;
 
+import com.green.GreenClassRoom.board.vo.FreeBoardVO;
 import com.green.GreenClassRoom.member.service.MemberService;
 import com.green.GreenClassRoom.member.vo.MemberVO;
 import jakarta.servlet.http.HttpSession;
@@ -57,6 +58,14 @@ public class MemberController {
     public String logout(HttpSession session){
         session.removeAttribute("loginInfo");
         return "redirect:/room/main";
+    }
+
+    // 메세지 수정 기능
+    @PostMapping("/updateStatusMsg")
+    public String updateStatusMsg(MemberVO memberVO){
+        memberService.updateStatusMsg(memberVO);
+        System.out.println("########"+memberVO);
+        return "redirect:/room/myRoom?memberId="+memberVO.getMemberId();
     }
 
 

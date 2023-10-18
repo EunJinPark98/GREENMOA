@@ -33,4 +33,7 @@ public interface FreeBoardService {
     // 댓글 선택 삭제 기능
     public int deleteReply(int replyNum);
 
+    // 자유게시판 페이징
+    public int pagingFreeBoard();
+
 }
