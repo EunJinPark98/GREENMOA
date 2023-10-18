@@ -18,7 +18,7 @@
         SELECT NOTICE_BOARD_NUM
             , NOTICE_BOARD_TITLE
             , MEMBER_ID
-            , TO_CHAR(NOTICE_BOARD_CREATE_DATE, 'YYYY-MM-DD HH24:MI') NOTICE_DATE
+            , TO_CHAR(NOTICE_BOARD_CREATE_DATE, 'MM-DD-YYYY') NOTICE_BOARD_CREATE_DATE
             , NOTICE_BOARD_READ_CNT
         FROM NOTICE_BOARD
         <if test='searchValue!=null and !searchValue.equals("")'>
@@ -27,20 +27,54 @@
         ORDER BY NOTICE_BOARD_NUM DESC
     </select>
 
-    <!--공지사항 글쓰기 권한은 ADMIN만-->
+    <!--공지사항 글쓰기-->
     <insert id="insertNotice">
-        INSERT INTO NOTICE_BOARD(
+        INSERT INTO NOTICE_BOARD (
             NOTICE_BOARD_NUM
-            , NOTICE_ BOARD_TITLE
+            , NOTICE_BOARD_TITLE
             , NOTICE_BOARD_CONTENT
             , MEMBER_ID
-        ) VALUE(
+        ) VALUES (
             (SELECT NVL(MAX(NOTICE_BOARD_NUM), 0) +1 FROM NOTICE_BOARD)
             , #{noticeBoardTitle}
             , #{noticeBoardContent}
             , #{memberId}
         )
     </insert>
+
+    <!--공지 상세페이지-->
+    <select id="noticeBoardDetail" resultMap="notice">
+        SELECT NOTICE_BOARD_NUM
+            , NOTICE_BOARD_TITLE
+            , NOTICE_BOARD_CONTENT
+            , MEMBER_ID
+            , TO_CHAR(NOTICE_BOARD_CREATE_DATE, 'YYYY-MM-DD | HH24:MI') NOTICE_BOARD_CREATE_DATE
+            , NOTICE_BOARD_READ_CNT
+        FROM NOTICE_BOARD
+        WHERE NOTICE_BOARD_NUM = #{noticeBoardNum}
+    </select>
+
+    <!--조회수-->
+    <update id="updateReadCnt">
+        UPDATE NOTICE_BOARD
+        SET NOTICE_BOARD_READ_CNT = NOTICE_BOARD_READ_CNT + 1
+        WHERE NOTICE_BOARD_NUM = #{noticeBoardNum}
+    </update>
+
+    <!--공지 삭제-->
+    <delete id="deleteNotice">
+        DELETE NOTICE_BOARD
+        WHERE NOTICE_BOARD_NUM = #{noticeBoardNum}
+    </delete>
+
+    <!--공지 수정-->
+    <update id="updateNotice">
+        UPDATE NOTICE_BOARD
+        SET NOTICE_BOARD_TITLE = #{noticeBoardTitle}
+            , NOTICE_BOARD_CONTENT = #{noticeBoardContent}
+        WHERE NOTICE_BOARD_NUM = #{noticeBoardNum}
+    </update>
+
 </mapper>
 
 

@@ -38,3 +38,22 @@ function changeEmoji(emojiURL){
     let replyEmojiInput = document.querySelector(".resultEmoji[name='replyEmoji']");
     replyEmojiInput.value = emojiURL;
 }
+
+
+
+// 공지 삭제
+function noticeDelete(noticeBoardNum){
+    Swal.fire({
+        title: "공지를 정말 삭제하시겠습니까?",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#9c8277',
+        cancelButtonColor: '#767f87',
+        confirmButtonText: '삭제',
+        cancelButtonText: '취소',
+        }).then((result) => {
+        if (result.isConfirmed) {
+            location.href=`/board/deleteNotice?noticeBoardNum=${noticeBoardNum}`
+        }
+    })
+}

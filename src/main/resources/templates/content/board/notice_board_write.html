@@ -4,11 +4,33 @@
     layout:decorate="~{fragment/main_layout}">
 <head>
 <meta charset="UTF-8">
-<title>공지사항 글 작성</title>
+<title>공지사항 작성</title>
 </head>
 <body>
 <th:block layout:fragment="content">
-    <em>ADMIN만</em>
+    <link rel="stylesheet" href="/css/board.css">
+    <div class="boardBox">
+        <h3 class="headTitle">공지사항 전달</h3>
+        <span class="headTitleBar">head-title-bar</span>
+
+        <form action="/board/insertNotice" method="post">
+
+            <div class="input-group mt-5 mb-3">
+                <span class="input-group-text" id="basic-addon1">제목</span>
+                <input name="noticeBoardTitle" type="text" class="form-control" required>
+            </div>
+
+            <div class="input-group mb-3">
+                <span class="input-group-text">내용</span>
+                <textarea name="noticeBoardContent" class="form-control" rows="13" aria-label="With textarea"></textarea>
+            </div>
+
+            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                <input class="btn btn-outline-warning" type="submit" value="등록"/>
+            </div>
+
+        </form>
+    </div>
 
 </th:block>
 </body>

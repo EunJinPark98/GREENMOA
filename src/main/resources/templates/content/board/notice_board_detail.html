@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{fragment/main_layout}">
+<head>
+<meta charset="UTF-8">
+<title>공지사항 보기</title>
+</head>
+<body>
+<th:block layout:fragment="content">
+    <!-- sweetalert2 script -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link rel="stylesheet" href="/css/board.css">
+    <div class="boardBox">
+        <th:block th:unless="${#lists.size(noticeInfo)==0}">
+            <div th:each="notice, state : ${noticeInfo}">
+                <div class="row">
+                    <div class="col-11">
+                        <h3>[[${notice.noticeBoardTitle}]]</h3>
+                    </div>
+                    <div class="col-1 d-grid gap-2 d-md-flex justify-content-md-end col">
+                        <div class="backArrow" onclick="location.href='/board/notice'">뒤로가기</div>
+                    </div>
+                </div>
+            
+                <hr>
+    
+                <div class="row">
+                    <div class="d-grid gap-2 d-md-flex justify-content-md-end align-items-center">
+                        <p>[[${notice.noticeBoardCreateDate}]]</p>
+                        <p style="font-size: 16px; color: rgb(104, 104, 104);">[[${notice.memberId}]]</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col mb-5 px-4">
+                        <div class="textContent">[[${notice.noticeBoardContent}]]</div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-6">
+                        <p class="boardReadCnt">조회 [[${notice.noticeBoardReadCnt}]]</p>
+                    </div>
+                    <div class="col-6 d-grid gap-2 d-md-flex justify-content-md-end col" 
+                    th:if="${session.loginInfo != null && session.loginInfo.memberRoll == 'ADMIN'}">
+                        <input type="button" class="updateButton btn btn-primary" value="수정" 
+                        th:onclick="|location.href='@{/board/updateNoticeForm(noticeBoardNum=${notice.noticeBoardNum})}';|">
+                        <input type="button" class="btn btn-light" value="삭제" th:onclick="noticeDelete([[${notice.noticeBoardNum}]]);">
+                    </div>
+                </div>
+            </div>
+        </th:block>
+    </div>
+
+    <script src="/js/board/board.js"></script>
+</th:block>
+</body>
+</html>

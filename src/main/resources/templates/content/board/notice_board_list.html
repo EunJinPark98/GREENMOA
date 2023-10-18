@@ -50,15 +50,15 @@
                 <!-- 게시글이 있다면 -->
                 <th:block th:unless="${#lists.size(noticeList)==0}">
                     <tr th:each="notice, state : ${noticeList}">
-                        <td>[[${#lists.size(noticeList)-state.index}]]</td>
-                        <td>[[${notice.noticeBoardTitle}]]</td>
+                        <td>[[${#lists.size(noticeList) - state.index}]]</td>
+                        <td><a th:href="@{noticeBoardDetail(noticeBoardNum=${notice.noticeBoardNum})}">[[${notice.noticeBoardTitle}]]</a></td>
                         <td>[[${notice.memberId}]]</td>
                         <td>[[${notice.noticeBoardCreateDate}]]</td>
                         <td>[[${notice.noticeBoardReadCnt}]]</td>
                     </tr>
                 </th:block>
             </table>
-            <th:block th:if="${session.loginInfo.memberRoll == 'ADMIN'}">
+            <th:block th:if="${session.loginInfo != null && session.loginInfo.memberRoll == 'ADMIN'}">
                 <div class="d-grid gap-2 d-md-flex justify-content-md-end col align-self-end">
                     <input type="button" value="글쓰기" class="btn btn-primary" onclick="location.href='noticeBoardWrite';">
                 </div>

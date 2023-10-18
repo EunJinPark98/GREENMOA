@@ -23,4 +23,28 @@ public class NoticeBoardServiceImpl implements NoticeBoardService{
     public int insertNotice(NoticeBoardVO noticeBoardVO) {
         return sqlSession.insert("noticeBoardMapper.insertNotice",noticeBoardVO);
     }
+
+    //공지 상세페이지
+    @Override
+    public NoticeBoardVO noticeBoardDetail(int noticeBoardNum) {
+        return sqlSession.selectOne("noticeBoardMapper.noticeBoardDetail", noticeBoardNum);
+    }
+
+    //조회수
+    @Override
+    public int updateReadCnt(int noticeBoardNum) {
+        return sqlSession.update("noticeBoardMapper.updateReadCnt", noticeBoardNum);
+    }
+
+    //공지 삭제
+    @Override
+    public int deleteNotice(int noticeBoardNum) {
+        return sqlSession.delete("noticeBoardMapper.deleteNotice", noticeBoardNum);
+    }
+
+    //공지 수정
+    @Override
+    public int updateNotice(NoticeBoardVO noticeBoardVO) {
+        return sqlSession.update("noticeBoardMapper.updateNotice", noticeBoardVO);
+    }
 }

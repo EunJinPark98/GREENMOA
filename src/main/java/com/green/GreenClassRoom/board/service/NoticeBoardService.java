@@ -10,4 +10,17 @@ public interface NoticeBoardService {
 
     //공지사항 글쓰기
     public int insertNotice(NoticeBoardVO noticeBoardVO);
+
+    //공지 상세페이지
+    public NoticeBoardVO noticeBoardDetail(int noticeBoardNum);
+
+    //조회수
+    public int updateReadCnt(int noticeBoardNum);
+
+    //공지 삭제
+    public int deleteNotice(int noticeBoardNum);
+
+    //공지 수정
+    public int updateNotice(NoticeBoardVO noticeBoardVO);
+
 }
