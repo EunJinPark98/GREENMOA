@@ -64,6 +64,11 @@
 https://www.notion.so/2c88f99b2bf94323a6a96eef6757d0cc?v=02b6d3c9f0ca4dfbb3bf5e8bda285f75&pvs=4
 
 <br>
+<br>
+
+https://www.notion.so/6417d69b7005420eb74bf380d629e828
+
+<br>
 
 ✔️ 모든 상황 노션에 공유! <br>
 ✔️ 소통 많이!<br>
