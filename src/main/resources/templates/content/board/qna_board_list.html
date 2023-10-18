@@ -66,14 +66,14 @@
                 <input type="button" class="btn btn-primary" value="글 쓰기" onclick="location.href='/board/qnaBoardUpdatePage';">
             </div>
         </div>
-        <div>
-            <a th:href="@{/board/question(nowPage=${qnaBoardVO.beginPage - 1})}"><span th:if="${qnaBoardVO.prev}">이전</span></a>
-            <th:block th:each="pageNum : ${#numbers.sequence(qnaBoardVO.beginPage, qnaBoardVO.endPage)}">
-                <a th:href="@{/board/question(nowPage=${pageNum})}"><span th:text="${pageNum}"></span></a>
-            </th:block>
-            <a th:href="@{/board/question(nowPage=${qnaBoardVO.endPage + 1})}"><span th:if="${qnaBoardVO.next}">다음</span></a>
-        </div>
     </th:block>
+    <div>
+        <a th:href="@{/board/question(nowPage=${qnaBoardVO.beginPage - 1})}"><span th:if="${qnaBoardVO.prev}">이전</span></a>
+        <th:block th:each="pageNum : ${#numbers.sequence(qnaBoardVO.beginPage, qnaBoardVO.endPage)}">
+            <a th:href="@{/board/question(nowPage=${pageNum})}"><span th:text="${pageNum}"></span></a>
+        </th:block>
+        <a th:href="@{/board/question(nowPage=${qnaBoardVO.endPage + 1})}"><span th:if="${qnaBoardVO.next}">다음</span></a>
+    </div>
 </th:block>
 </body>
 </html>
