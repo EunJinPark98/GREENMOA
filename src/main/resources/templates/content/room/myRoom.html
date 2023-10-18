@@ -14,9 +14,14 @@
             <img class="pin" src="/images/pin-red.png" alt="">
         </div>
         <div id="minime">
-            <div class="status-msg">[[${loginInfo.statusMsg}]]</div>
+            <div class="status-msg">[[${memberInfo.statusMsg}]]</div>
             <img th:src="|/images/${loginInfo.minime}.png|">
-            <p class="name">[[${loginInfo.memberName}]]</p>
+            <p class="name">[[${memberInfo.memberName}]]</p>
+            <form action="/member/updateStatusMsg" method="post">
+                <input type="hidden" name="memberId" th:value="${loginInfo.memberId}">
+                <input type="text" name="statusMsg" required>
+                <input type="submit" value="상태메세지 등록">
+            </form>
         </div>
     </div>
 

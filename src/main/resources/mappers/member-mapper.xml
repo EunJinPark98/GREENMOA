@@ -91,6 +91,13 @@
         FROM GREEN_MEMBER
         WHERE MEMBER_ROLL = 'ADMIN'
     </select>
+    <!--상태메세지 수정 -->
+    <update id="updateStatusMsg">
+        UPDATE GREEN_MEMBER
+        SET
+        STATUS_MSG=#{statusMsg}
+        WHERE MEMBER_ID=#{memberId}
+    </update>
 </mapper>
 
 

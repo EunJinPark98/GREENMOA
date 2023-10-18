@@ -37,4 +37,9 @@ public class MemberServiceImpl implements MemberService {
     public MemberVO selectAdmin() {
         return sqlSession.selectOne("memberMapper.selectAdmin");
     }
+
+    @Override
+    public int updateStatusMsg(MemberVO memberVO) {
+        return sqlSession.update("memberMapper.updateStatusMsg",memberVO);
+    }
 }

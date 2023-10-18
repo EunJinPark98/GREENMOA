@@ -36,6 +36,7 @@
             WHERE UPPER(${searchType}) LIKE '%'||UPPER(#{searchValue})||'%'
         </if>
         ORDER BY BOARD_NUM DESC
+        OFFSET (#{nowPage} - 1) * #{displayDataCnt} ROWS FETCH FIRST #{displayDataCnt} ROWS ONLY
     </select>
 
     <!--자유게시판 작성 쿼리-->
@@ -119,6 +120,11 @@
         DELETE BOARD_REPLY
         WHERE REPLY_NUM=#{replyNum}
     </delete>
+    <!--자유게시판 페이징 -->
+    <select id="pagingFreeBoard" resultType="int">
+        SELECT COUNT(BOARD_NUM)
+        FROM FREE_BOARD
+    </select>
 </mapper>
 
 
