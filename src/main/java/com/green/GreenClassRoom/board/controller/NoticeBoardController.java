@@ -25,6 +25,10 @@ public class NoticeBoardController {
     public String noticeList(NoticeBoardVO noticeBoardVO, Model model){
         List<NoticeBoardVO> noticeList = noticeBoardService.selectNoticeList(noticeBoardVO);
         model.addAttribute("noticeList", noticeList);
+
+        int totalDataCnt = noticeBoardService.pagingNotice();
+        noticeBoardVO.setTotalDataCnt(totalDataCnt);
+        noticeBoardVO.setPageInfo();
         return "/content/board/notice_board_list";
     }
 
@@ -69,7 +73,7 @@ public class NoticeBoardController {
     }
 
     // 공지 수정
-    @GetMapping("/updateNotice")
+    @PostMapping("/updateNotice")
     public String updateNotice(NoticeBoardVO noticeBoardVO){
         noticeBoardService.updateNotice(noticeBoardVO);
         return "redirect:/board/noticeBoardDetail?noticeBoardNum=" + noticeBoardVO.getNoticeBoardNum();

@@ -23,4 +23,7 @@ public interface NoticeBoardService {
     //공지 수정
     public int updateNotice(NoticeBoardVO noticeBoardVO);
 
+    //페이징
+    public int pagingNotice();
+
 }

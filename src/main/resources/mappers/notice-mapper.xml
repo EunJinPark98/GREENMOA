@@ -21,10 +21,12 @@
             , TO_CHAR(NOTICE_BOARD_CREATE_DATE, 'MM-DD-YYYY') NOTICE_BOARD_CREATE_DATE
             , NOTICE_BOARD_READ_CNT
         FROM NOTICE_BOARD
-        <if test='searchValue!=null and !searchValue.equals("")'>
-            WHERE UPPER(#{noticeBoardTitle}) LIKE '%'||UPPER(#{searchValue})||'%'
+        <if test='searchValue != null and !searchValue.equals("")'>
+            WHERE UPPER(${searchType}) LIKE '%'||UPPER(#{searchValue})||'%'
         </if>
         ORDER BY NOTICE_BOARD_NUM DESC
+        <!--페이징-->
+        OFFSET (#{nowPage} - 1) * #{displayDataCnt} ROWS FETCH FIRST #{displayDataCnt} ROWS ONLY
     </select>
 
     <!--공지사항 글쓰기-->
@@ -48,7 +50,7 @@
             , NOTICE_BOARD_TITLE
             , NOTICE_BOARD_CONTENT
             , MEMBER_ID
-            , TO_CHAR(NOTICE_BOARD_CREATE_DATE, 'YYYY-MM-DD | HH24:MI') NOTICE_BOARD_CREATE_DATE
+            , TO_CHAR(NOTICE_BOARD_CREATE_DATE, 'HH24:MI | YYYY-MM-DD') NOTICE_BOARD_CREATE_DATE
             , NOTICE_BOARD_READ_CNT
         FROM NOTICE_BOARD
         WHERE NOTICE_BOARD_NUM = #{noticeBoardNum}
@@ -74,6 +76,12 @@
             , NOTICE_BOARD_CONTENT = #{noticeBoardContent}
         WHERE NOTICE_BOARD_NUM = #{noticeBoardNum}
     </update>
+
+    <!--공지 페이징-->
+    <select id="pagingNotice" resultType="int">
+        SELECT COUNT(NOTICE_BOARD_NUM)
+        FROM NOTICE_BOARD
+    </select>
 
 </mapper>
 
