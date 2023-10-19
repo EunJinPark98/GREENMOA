@@ -74,13 +74,24 @@
             <a th:href="@{/board/notice(nowPage=${noticeBoardVO.beginPage - 1})}">
                 <span th:if="${noticeBoardVO.prev}" type="button"class="btn btn-light">이전</span>
             </a>
+
             <div class="btn-group me-2" role="group" aria-label="First group">
-                <th:block th:each="pageNum : ${#numbers.sequence(noticeBoardVO.beginPage, noticeBoardVO.endPage)}">
-                    <a th:href="@{/board/notice(nowPage=${pageNum})}" type="button" class="btn btn-outline-secondary">
-                        <span th:text="${pageNum}"></span>
+                <!-- 게시글이 하나도 없다면 -->
+                <th:block th:if="${#lists.size(noticeList)==0}">
+                    <a th:href="@{/board/notice(nowPage=${noticeBoardVO.beginPage})}" type="button" class="btn btn-outline-secondary">
+                        <span th:text="${noticeBoardVO.beginPage}"></span>
                     </a>
                 </th:block>
+                <!-- 게시글이 있다면 -->
+                <th:block th:each="pageNum : ${#numbers.sequence(noticeBoardVO.beginPage, noticeBoardVO.endPage)}">
+                    <th:block th:unless="${#lists.size(noticeList)==0}">
+                        <a th:href="@{/board/notice(nowPage=${pageNum})}" type="button" class="btn btn-outline-secondary">
+                            <span th:text="${pageNum}"></span>
+                        </a>
+                    </th:block>
+                </th:block>
             </div>
+
             <a th:href="@{/board/notice(nowPage=${noticeBoardVO.endPage + 1})}" >
                 <span th:if="${noticeBoardVO.next}" type="button" class="btn btn-light">다음</span>
             </a>
