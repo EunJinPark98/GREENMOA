@@ -14,18 +14,38 @@
             <img class="pin" src="/images/pin-red.png" alt="">
         </div>
         <div id="minime">
-            <div class="status-msg">[[${memberInfo.statusMsg}]]</div>
+            <div class="status-msg" data-bs-toggle="modal" data-bs-target="#statusMsg-modal">
+                [[${loginInfo.statusMsg}]]
+            </div>
             <img th:src="|/images/${loginInfo.minime}.png|">
-            <p class="name">[[${memberInfo.memberName}]]</p>
-            <form action="/member/updateStatusMsg" method="post">
-                <input type="hidden" name="memberId" th:value="${loginInfo.memberId}">
-                <input type="text" name="statusMsg" required>
-                <input type="submit" value="상태메세지 등록">
-            </form>
+            <p class="name">[[${loginInfo.memberName}]]</p>
         </div>
     </div>
 
+    <!-- 상태 메세지 모달창 -->
+    <div class="modal fade" id="statusMsg-modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-body modal-body">
+                    <form>
+                        <label>상태 메세지 변경</label>
+                        <input type="hidden" name="memberId" th:value="${loginInfo.memberId}">
+                        <input type="text" name="statusMsg" id="statusMsg" required>
+                        <div class="row mt-5" style="display: flex; justify-content: center;">
+                            <div class="col-3 d-grid">
+                                <button type="button" id="check" class="btn btn-primary" data-bs-dismiss="modal" th:onclick="updateStatusMsg([[${loginInfo.memberId}]])">등록</button>
+                                <button type="button" id="check" class="btn btn-primary" data-bs-dismiss="modal">닫기</button>
+                            </div>
+                        </div>
+                    </form>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
 
+    <!-- todoList 모달창 -->
     <div class="modal fade" id="todo-modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
     aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog">

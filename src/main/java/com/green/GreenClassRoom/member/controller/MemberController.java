@@ -60,13 +60,6 @@ public class MemberController {
         return "redirect:/room/main";
     }
 
-    // 메세지 수정 기능
-    @PostMapping("/updateStatusMsg")
-    public String updateStatusMsg(MemberVO memberVO){
-        memberService.updateStatusMsg(memberVO);
-        System.out.println("########"+memberVO);
-        return "redirect:/room/myRoom?memberId="+memberVO.getMemberId();
-    }
 
 
 }
