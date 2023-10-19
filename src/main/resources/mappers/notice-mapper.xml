@@ -25,6 +25,8 @@
             WHERE UPPER(${searchType}) LIKE '%'||UPPER(#{searchValue})||'%'
         </if>
         ORDER BY NOTICE_BOARD_NUM DESC
+        <!--페이징-->
+        OFFSET (#{nowPage} - 1) * #{displayDataCnt} ROWS FETCH FIRST #{displayDataCnt} ROWS ONLY
     </select>
 
     <!--공지사항 글쓰기-->
@@ -74,6 +76,12 @@
             , NOTICE_BOARD_CONTENT = #{noticeBoardContent}
         WHERE NOTICE_BOARD_NUM = #{noticeBoardNum}
     </update>
+
+    <!--공지 페이징-->
+    <select id="pagingNotice" resultType="int">
+        SELECT COUNT(NOTICE_BOARD_NUM)
+        FROM NOTICE_BOARD
+    </select>
 
 </mapper>
 

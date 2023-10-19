@@ -68,6 +68,24 @@
                 </div>
             </th:block>
         </div>
+
+        <!-- 페이징 -->
+        <div class="btn-toolbar justify-content-md-center" role="toolbar" aria-label="Toolbar with button groups">
+            <a th:href="@{/board/notice(nowPage=${noticeBoardVO.beginPage - 1})}">
+                <span th:if="${noticeBoardVO.prev}" type="button"class="btn btn-light">이전</span>
+            </a>
+            <div class="btn-group me-2" role="group" aria-label="First group">
+                <th:block th:each="pageNum : ${#numbers.sequence(noticeBoardVO.beginPage, noticeBoardVO.endPage)}">
+                    <a th:href="@{/board/notice(nowPage=${pageNum})}" type="button" class="btn btn-outline-secondary">
+                        <span th:text="${pageNum}"></span>
+                    </a>
+                </th:block>
+            </div>
+            <a th:href="@{/board/notice(nowPage=${noticeBoardVO.endPage + 1})}" >
+                <span th:if="${noticeBoardVO.next}" type="button" class="btn btn-light">다음</span>
+            </a>
+        </div>
+
     </th:block>
 </body>
 </html>

@@ -3,7 +3,7 @@ package com.green.GreenClassRoom.board.vo;
 import lombok.Data;
 
 @Data
-public class NoticeBoardVO {
+public class NoticeBoardVO extends QnaPageVO{
     private int noticeBoardNum;
     private String noticeBoardTitle;
     private String noticeBoardContent;

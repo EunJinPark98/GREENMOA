@@ -47,4 +47,10 @@ public class NoticeBoardServiceImpl implements NoticeBoardService{
     public int updateNotice(NoticeBoardVO noticeBoardVO) {
         return sqlSession.update("noticeBoardMapper.updateNotice", noticeBoardVO);
     }
+
+    //페이징
+    @Override
+    public int pagingNotice() {
+        return sqlSession.selectOne("noticeBoardMapper.pagingNotice");
+    }
 }

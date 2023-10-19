@@ -25,6 +25,10 @@ public class NoticeBoardController {
     public String noticeList(NoticeBoardVO noticeBoardVO, Model model){
         List<NoticeBoardVO> noticeList = noticeBoardService.selectNoticeList(noticeBoardVO);
         model.addAttribute("noticeList", noticeList);
+
+        int totalDataCnt = noticeBoardService.pagingNotice();
+        noticeBoardVO.setTotalDataCnt(totalDataCnt);
+        noticeBoardVO.setPageInfo();
         return "/content/board/notice_board_list";
     }
 
