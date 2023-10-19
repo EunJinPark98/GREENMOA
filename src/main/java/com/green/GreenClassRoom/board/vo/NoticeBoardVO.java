@@ -10,5 +10,6 @@ public class NoticeBoardVO {
     private String memberId;
     private String noticeBoardCreateDate;
     private int noticeBoardReadCnt;
-    private String searchValue;
+
+    private String searchType, searchValue;
 }

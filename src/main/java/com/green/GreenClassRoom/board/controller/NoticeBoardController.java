@@ -69,7 +69,7 @@ public class NoticeBoardController {
     }
 
     // 공지 수정
-    @GetMapping("/updateNotice")
+    @PostMapping("/updateNotice")
     public String updateNotice(NoticeBoardVO noticeBoardVO){
         noticeBoardService.updateNotice(noticeBoardVO);
         return "redirect:/board/noticeBoardDetail?noticeBoardNum=" + noticeBoardVO.getNoticeBoardNum();
