@@ -13,11 +13,11 @@
             <h1 class="headTitle">공지사항</h1>
             <span class="headTitleBar">head-title-bar</span>
             <div class="searchBox col align-self-center mt-5 mb-3">
-                <form action="/board/noticeList" method="post">
+                <form action="/board/notice" method="post">
                     <div class="input-group justify-content-md-center">
                         <select name="searchType" class="btn btn-outline-secondary dropdown-toggle" data-bs-toggle="dropdown">
-                            <option value="noticeBoardTitle" class="dropdown-item">제목</option>
-                            <option value="noticeBoardContent" class="dropdown-item">내용</option>
+                            <option value="NOTICE_BOARD_TITLE" class="dropdown-item">제목</option>
+                            <option value="NOTICE_BOARD_CONTENT" class="dropdown-item">내용</option>
                         </select>
                         <input type="text" name="searchValue" class="form-control">
                         <button type="submit" class="btn btn-outline-secondary">

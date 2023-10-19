@@ -21,7 +21,7 @@
             , TO_CHAR(NOTICE_BOARD_CREATE_DATE, 'MM-DD-YYYY') NOTICE_BOARD_CREATE_DATE
             , NOTICE_BOARD_READ_CNT
         FROM NOTICE_BOARD
-        <if test='searchValue !=null and !searchValue.equals("")'>
+        <if test='searchValue != null and !searchValue.equals("")'>
             WHERE UPPER(${searchType}) LIKE '%'||UPPER(#{searchValue})||'%'
         </if>
         ORDER BY NOTICE_BOARD_NUM DESC
@@ -48,7 +48,7 @@
             , NOTICE_BOARD_TITLE
             , NOTICE_BOARD_CONTENT
             , MEMBER_ID
-            , TO_CHAR(NOTICE_BOARD_CREATE_DATE, 'YYYY-MM-DD | HH24:MI') NOTICE_BOARD_CREATE_DATE
+            , TO_CHAR(NOTICE_BOARD_CREATE_DATE, 'HH24:MI | YYYY-MM-DD') NOTICE_BOARD_CREATE_DATE
             , NOTICE_BOARD_READ_CNT
         FROM NOTICE_BOARD
         WHERE NOTICE_BOARD_NUM = #{noticeBoardNum}
