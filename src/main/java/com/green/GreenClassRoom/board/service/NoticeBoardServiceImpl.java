@@ -6,6 +6,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 
 @Service
 @RequiredArgsConstructor
@@ -52,5 +53,16 @@ public class NoticeBoardServiceImpl implements NoticeBoardService{
     @Override
     public int pagingNotice() {
         return sqlSession.selectOne("noticeBoardMapper.pagingNotice");
+    }
+
+
+    @Override
+    public NoticeBoardVO prevList(int noticeBoardNum) {
+        return sqlSession.selectOne("noticeBoardMapper.prevList", noticeBoardNum);
+    }
+
+    @Override
+    public int nextList(int noticeBoardNum) {
+        return sqlSession.selectOne("noticeBoardMapper.nextList", noticeBoardNum);
     }
 }

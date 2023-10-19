@@ -3,6 +3,8 @@ package com.green.GreenClassRoom.board.service;
 import com.green.GreenClassRoom.board.vo.NoticeBoardVO;
 
 import java.util.List;
+import java.util.Map;
+import java.util.Objects;
 
 public interface NoticeBoardService {
     //공지사항 목록 조회
@@ -25,5 +27,8 @@ public interface NoticeBoardService {
 
     //페이징
     public int pagingNotice();
+
+    public NoticeBoardVO prevList(int noticeBoardNum);
+    public int nextList(int noticeBoardNum);
 
 }

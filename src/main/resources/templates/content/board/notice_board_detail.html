@@ -47,6 +47,18 @@
                         <input type="button" class="btn btn-light" value="삭제" th:onclick="noticeDelete([[${notice.noticeBoardNum}]]);">
                     </div>
                 </div>
+
+                <div th:unless="${prevNum == 0}">
+                    <span>이전</span>
+                    <span><a th:href="@{/board/noticeBoardDetail(noticeBoardNum=${prevNum})}">
+                        <p th:text="${prevTitle}"></p>
+                    </a></span>
+                </div>
+                <div th:unless="${nextNum == 0}">
+                    <span>다음</span>
+                    <span><a th:href="@{/board/noticeBoardDetail(noticeBoardNum=${nextNum})}">다음글 제목</a></span>
+                </div>
+
             </div>
         </th:block>
     </div>

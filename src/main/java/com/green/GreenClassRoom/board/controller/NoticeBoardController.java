@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.w3c.dom.NodeList;
 
 import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequestMapping("/board")
@@ -47,13 +48,20 @@ public class NoticeBoardController {
         return "redirect:/board/notice";
     }
 
-    // 상세페이지 이동
+    // 상세페이지
     @GetMapping("/noticeBoardDetail")
     public String noticeBoardDetail(int noticeBoardNum, Model model){
         noticeBoardService.updateReadCnt(noticeBoardNum);
 
         NoticeBoardVO noticeInfo = noticeBoardService.noticeBoardDetail(noticeBoardNum);
         model.addAttribute("noticeInfo", noticeInfo);
+
+        NoticeBoardVO prevList = noticeBoardService.prevList(noticeBoardNum);
+        int nextList = noticeBoardService.nextList(noticeBoardNum);
+        model.addAttribute("prevNum", prevList.getNoticeBoardNum());
+        model.addAttribute("prevTitle", prevList.getNoticeBoardTitle());
+        model.addAttribute("nextNum",nextList);
+        System.out.println("pl"+prevList);
         return "content/board/notice_board_detail";
     }
 

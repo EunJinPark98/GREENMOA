@@ -83,6 +83,23 @@
         FROM NOTICE_BOARD
     </select>
 
+
+    <select id="prevList" resultMap="notice">
+        SELECT NOTICE_BOARD_TITLE
+        FROM NOTICE_BOARD
+        WHERE NOTICE_BOARD_NUM = (
+            SELECT NVL(MAX(NOTICE_BOARD_NUM),0)
+            FROM NOTICE_BOARD
+            WHERE NOTICE_BOARD_NUM &lt; #{noticeBoardNum}
+        )
+    </select>
+    <select id="nextList" resultType="int">
+        SELECT NVL(MIN(NOTICE_BOARD_NUM), 0)
+        FROM NOTICE_BOARD
+        WHERE NOTICE_BOARD_NUM &gt; #{noticeBoardNum}
+    </select>
+
+
 </mapper>
 
 
