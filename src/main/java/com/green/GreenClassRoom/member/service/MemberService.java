@@ -22,6 +22,4 @@ public interface MemberService {
     // 선생님 출력
     public MemberVO selectAdmin();
 
-    // 상태메세지 수정 기능
-    public int updateStatusMsg(MemberVO memberVO);
 }

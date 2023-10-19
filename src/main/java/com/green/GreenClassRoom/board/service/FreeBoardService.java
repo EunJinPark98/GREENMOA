@@ -2,6 +2,7 @@ package com.green.GreenClassRoom.board.service;
 
 import com.green.GreenClassRoom.board.vo.FreeBoardVO;
 import com.green.GreenClassRoom.board.vo.ReplyVO;
+import com.green.GreenClassRoom.member.vo.MemberVO;
 
 import java.util.List;
 
@@ -35,5 +36,7 @@ public interface FreeBoardService {
 
     // 자유게시판 페이징
     public int pagingFreeBoard();
+
+
 
 }
