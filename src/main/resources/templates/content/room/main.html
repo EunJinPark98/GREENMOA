@@ -20,6 +20,7 @@
               <img th:src="|/images/${teacher.minime}.png|">
               <p class="name">[[${teacher.memberName}]]</p>
             </div>
+            <!-- 출석부 -->
             <div class="student-list" data-bs-toggle="modal" data-bs-target="#stuListModal"><img src="/images/studentList.png" alt=""></div>
             <!-- 학생 미니미 -->
 	          <div class="mini-fr">
@@ -39,7 +40,7 @@
 
             <!-- 캘린더 -->
             <div class="pin">핀셋</div>
-            <a class="calendar" data-bs-target="#exampleModalToggle" data-bs-toggle="modal">캘린더</a>
+            <a class="calendar" data-bs-toggle="modal" data-bs-target="#calenderModal">캘린더</a>
           </div>
         </div>
       </div>
@@ -129,84 +130,23 @@
       </div>
 
 
-
-
-      <!-- 캘린더 모달창 -->
-      <div class="modal fade modal-fullscreen" id="exampleModalToggle" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
-        <div class="modal-dialog modal-fullscreen">
+      <!-- 캘린더 모달 -->
+      <div class="modal fade" id="calenderModal" tabindex="-1" aria-labelledby="calenderModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">
-              <h1 class="modal-title fs-5" id="exampleModalToggleLabel">일정관리</h1>
+              <h1 class="modal-title fs-5" id="calenderModalLabel">캘린더</h1>
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="planManage modal-body">
-              <div id="carouselExampleIndicators" class="carousel slide">
-                <div class="carousel-indicators">
-                  <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="default active" aria-current="true" aria-label="Slide 1"></button>
-                  <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" class="default" aria-label="Slide 2"></button>
-                  <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" class="default" aria-label="Slide 3"></button>
-                  <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="3" class="default" aria-label="Slide 4"></button>
-                  <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="4" class="default" aria-label="Slide 5"></button>
-                  <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="5" class="default" aria-label="Slide 6"></button>
-                  <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="6" class="default" aria-label="Slide 7"></button>
-                  <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="7" class="default" aria-label="Slide 8"></button>
-                  <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="8" class="default" aria-label="Slide 9"></button>
-                  <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="9" class="default" aria-label="Slide 10"></button>
-                  <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="10" class="default" aria-label="Slide 11"></button>
-                  <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="11" class="default" aria-label="Slide 12"></button>
-                </div>
-                <div class="carousel-inner">
-                  <div class="carousel-item active">
-                    <img src="/images/calendar-1.png" class="d-block" alt="...">
-                  </div>
-                  <div class="carousel-item">
-                    <img src="/images/calendar-2.png" class="d-block" alt="...">
-                  </div>
-                  <div class="carousel-item">
-                    <img src="/images/calendar-3.png" class="d-block" alt="...">
-                  </div>
-                  <div class="carousel-item">
-                    <img src="/images/calendar-4.png" class="d-block" alt="...">
-                  </div>
-                  <div class="carousel-item">
-                    <img src="/images/calendar-5.png" class="d-block" alt="...">
-                  </div>
-                  <div class="carousel-item">
-                    <img src="/images/calendar-6.png" class="d-block" alt="...">
-                  </div>
-                  <div class="carousel-item">
-                    <img src="/images/calendar-7.png" class="d-block" alt="...">
-                  </div>
-                  <div class="carousel-item">
-                    <img src="/images/calendar-8.png" class="d-block" alt="...">
-                  </div>
-                  <div class="carousel-item">
-                    <img src="/images/calendar-9.png" class="d-block" alt="...">
-                  </div>
-                  <div class="carousel-item">
-                    <img src="/images/calendar-10.png" class="d-block" alt="...">
-                  </div>
-                  <div class="carousel-item">
-                    <img src="/images/calendar-11.png" class="d-block" alt="...">
-                  </div>
-                  <div class="carousel-item">
-                    <img src="/images/calendar-12.png" class="d-block" alt="...">
-                  </div>
-                </div>
-                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
-                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                  <span class="visually-hidden">Previous</span>
-                </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
-                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                  <span class="visually-hidden">Next</span>
-                </button>
-              </div>
+            <div class="modal-body">
+              
             </div>
           </div>
         </div>
       </div>
 
+
+      
 
         <script src="/js/room.js"></script>
         <!-- WebSocket 및 채팅 로직을 초기화하는 스크립트 추가 -->

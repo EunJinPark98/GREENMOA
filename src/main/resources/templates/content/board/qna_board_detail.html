@@ -43,7 +43,7 @@
                 <tr th:each="qnaBoard, state : ${qnaBoardList}">
                     <td>[[${qnaBoard.qnaBoardNum}]]</td>
                     <td>[[${qnaBoard.qnaBoardTitle}]]</td>
-                    <td><textarea id="summernote" name="qnaBoardContent">[[${qnaBoard.qnaBoardContent}]]</textarea></td>
+                    <td id="summernote" name="qnaBoardContent">[[${qnaBoard.qnaBoardContent}]]</td>
                     <td>[[${qnaBoard.qnaBoardWriter}]]</td>
                     <td>[[${qnaBoard.qnaCreateDate}]]</td>
                     <td>[[${qnaBoard.qnaReadCnt}]]</td>
