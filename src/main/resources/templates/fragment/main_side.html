@@ -25,9 +25,9 @@
             })
             window.addEventListener('scroll',function(){
                 if(window.scrollY >= 200){
-                    toTop.style.display = 'block';
-                }else if(window.scrollY <= 200){
-                    toTop.style.display = 'none';
+                    toTop.classList.add('fadeIn');
+                }else{
+                    toTop.classList.remove('fadeIn');
                 }
             })
         </script>
