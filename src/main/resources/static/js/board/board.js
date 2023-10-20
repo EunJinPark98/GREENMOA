@@ -57,3 +57,9 @@ function noticeDelete(noticeBoardNum){
         }
     })
 }
+
+// 스크롤 위로 올라가기
+let toTop = document.querySelector('.to-top');
+toTop.addEventListener('click', function(){
+    window.scrollTo(0,0);
+})
