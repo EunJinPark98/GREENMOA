@@ -8,9 +8,30 @@
 <body>
     <th:block th:fragment="mainSideFragment">
         <link rel="stylesheet" href="/css/main_header.css">
+        
         <th:block th:each="menu : ${menuList}">
             <p class="menu" th:attr="onclick='location.href=\'' + ${menu.menuUrl} + '\''" th:text="${menu.menuName}"></p>
         </th:block>
+
+        <!-- 스크롤 위로 올라가기 -->
+        <div class="col-6 gap-2 d-md-flex justify-content-md-end col mt-1">
+            <div class="to-top"><span></span></div>
+        </div>
+
+        <script>
+            let toTop = document.querySelector('.to-top');
+            toTop.addEventListener('click', function(){
+                window.scrollTo(0,0);
+            })
+            window.addEventListener('scroll',function(){
+                if(window.scrollY >= 200){
+                    toTop.style.display = 'block';
+                }else if(window.scrollY <= 200){
+                    toTop.style.display = 'none';
+                }
+            })
+        </script>
+        
     </th:block>
 </body>
 </html>
