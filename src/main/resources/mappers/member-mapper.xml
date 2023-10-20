@@ -98,6 +98,13 @@
         STATUS_MSG=#{statusMsg}
         WHERE MEMBER_ID=#{memberId}
     </update>
+    <!--상태 메세지 출력-->
+    <select id="selectStatusMsg" resultMap="member">
+        SELECT STATUS_MSG
+        FROM GREEN_MEMBER
+        WHERE MEMBER_ID = #{memberId}
+    </select>
+
 </mapper>
 
 

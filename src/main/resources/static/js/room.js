@@ -23,9 +23,34 @@ function deleteTodo(todoNum){
 };
 
 // 상태 메세지 변경
-function updateStatusMsg(memberId){
-    let statusMsg =document.querySelector('#statusMsg').value;
-    location.href=`/room/updateStatusMsg?memberId=${memberId}&statusMsg=${statusMsg}`;
+function showInput(){
+    let inputStatus =document.getElementById('input-status-msg');
+    inputStatus.style.display='block';
+
 };
+// 상태 메세지 input 닫기
+function closeInput(){
+    let inputStatus =document.getElementById('input-status-msg');
+    inputStatus.style.display='none';
+
+};
+
+// 상태 메세지 update
+function updateStatusMsg(memberId){
+    let inputStatus =document.getElementById('input-status-msg');
+    let inputStatusValue =document.getElementById('input-status-msg').value;
+    
+        if(window.event.keyCode==13){
+            inputStatus.style.display='none';
+            location.href=`/room/updateStatusMsg?memberId=${memberId}&statusMsg=${inputStatusValue}`;
+        };
+        
+    
+    
+};
+
+
+
+
 
 
