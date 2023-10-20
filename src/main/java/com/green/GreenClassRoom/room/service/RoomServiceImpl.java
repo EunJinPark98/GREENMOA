@@ -22,4 +22,9 @@ public class RoomServiceImpl implements RoomService{
     public int updateStatusMsg(MemberVO memberVO) {
         return sqlSession.update("memberMapper.updateStatusMsg",memberVO);
     }
+
+    @Override
+    public MemberVO selectStatusMsg(String memberId) {
+        return sqlSession.selectOne("memberMapper.selectStatusMsg",memberId);
+    }
 }

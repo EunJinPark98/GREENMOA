@@ -10,4 +10,7 @@ public interface RoomService {
 
     // 상태 메세지 수정 기능
     public int updateStatusMsg(MemberVO memberVO);
+
+    // 상태 메세지 출력
+    public MemberVO selectStatusMsg(String memberId);
 }

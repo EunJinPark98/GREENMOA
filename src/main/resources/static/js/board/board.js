@@ -38,3 +38,4 @@ function changeEmoji(emojiURL){
     let replyEmojiInput = document.querySelector(".resultEmoji[name='replyEmoji']");
     replyEmojiInput.value = emojiURL;
 }
+

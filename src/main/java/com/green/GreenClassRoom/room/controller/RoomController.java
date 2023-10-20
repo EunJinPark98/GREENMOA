@@ -38,6 +38,9 @@ public class RoomController {
         MemberVO loginInfo = (MemberVO) session.getAttribute("loginInfo");
         String memberId = loginInfo.getMemberId();
         model.addAttribute("todoList", todoService.selectTodo(memberId));
+        MemberVO statusMsg =roomService.selectStatusMsg(memberId);
+        model.addAttribute("statusMsg",statusMsg);
+        System.out.println("$$$$$$$"+statusMsg);
         return "content/room/myRoom";
     }
 
