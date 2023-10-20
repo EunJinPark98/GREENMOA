@@ -56,12 +56,13 @@ public class NoticeBoardController {
         NoticeBoardVO noticeInfo = noticeBoardService.noticeBoardDetail(noticeBoardNum);
         model.addAttribute("noticeInfo", noticeInfo);
 
+        //이전글 다음글
         NoticeBoardVO prevList = noticeBoardService.prevList(noticeBoardNum);
-        int nextList = noticeBoardService.nextList(noticeBoardNum);
-        model.addAttribute("prevNum", prevList.getNoticeBoardNum());
-        model.addAttribute("prevTitle", prevList.getNoticeBoardTitle());
-        model.addAttribute("nextNum",nextList);
-        System.out.println("pl"+prevList);
+        NoticeBoardVO nextList = noticeBoardService.nextList(noticeBoardNum);
+        model.addAttribute("prevList", prevList);
+        model.addAttribute("nextList", nextList);
+        System.out.println("이전글 " + prevList + "\n다음글 " + nextList);
+
         return "content/board/notice_board_detail";
     }
 

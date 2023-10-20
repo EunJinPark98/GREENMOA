@@ -83,9 +83,10 @@
         FROM NOTICE_BOARD
     </select>
 
-
+    <!--상세페이지에서 이전글 다음글-->
     <select id="prevList" resultMap="notice">
-        SELECT NOTICE_BOARD_TITLE
+        SELECT NOTICE_BOARD_NUM
+            , NOTICE_BOARD_TITLE
         FROM NOTICE_BOARD
         WHERE NOTICE_BOARD_NUM = (
             SELECT NVL(MAX(NOTICE_BOARD_NUM),0)
@@ -93,10 +94,15 @@
             WHERE NOTICE_BOARD_NUM &lt; #{noticeBoardNum}
         )
     </select>
-    <select id="nextList" resultType="int">
-        SELECT NVL(MIN(NOTICE_BOARD_NUM), 0)
+    <select id="nextList" resultMap="notice">
+        SELECT NOTICE_BOARD_NUM
+            , NOTICE_BOARD_TITLE
         FROM NOTICE_BOARD
-        WHERE NOTICE_BOARD_NUM &gt; #{noticeBoardNum}
+        WHERE NOTICE_BOARD_NUM = (
+            SELECT NVL(MIN(NOTICE_BOARD_NUM), 0)
+            FROM NOTICE_BOARD
+            WHERE NOTICE_BOARD_NUM &gt; #{noticeBoardNum}
+        )
     </select>
 
 

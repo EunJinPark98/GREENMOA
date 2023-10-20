@@ -48,15 +48,19 @@
                     </div>
                 </div>
 
-                <div th:unless="${prevNum == 0}">
-                    <span>이전</span>
-                    <span><a th:href="@{/board/noticeBoardDetail(noticeBoardNum=${prevNum})}">
-                        <p th:text="${prevTitle}"></p>
-                    </a></span>
-                </div>
-                <div th:unless="${nextNum == 0}">
+                <hr>
+
+                <div th:unless="${nextList == null}">
                     <span>다음</span>
-                    <span><a th:href="@{/board/noticeBoardDetail(noticeBoardNum=${nextNum})}">다음글 제목</a></span>
+                    <a th:href="@{/board/noticeBoardDetail(noticeBoardNum=${nextList.noticeBoardNum})}">
+                        <span th:text="${nextList.noticeBoardTitle}"></span>
+                    </a>
+                </div>
+                <div th:unless="${prevList == null}">
+                    <span>이전</span>
+                    <a th:href="@{/board/noticeBoardDetail(noticeBoardNum=${prevList.noticeBoardNum})}">
+                        <span th:text="${prevList.noticeBoardTitle}"></span>
+                    </a>
                 </div>
 
             </div>

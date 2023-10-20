@@ -55,14 +55,13 @@ public class NoticeBoardServiceImpl implements NoticeBoardService{
         return sqlSession.selectOne("noticeBoardMapper.pagingNotice");
     }
 
-
+    //상세페이지에서 이전글 다음글
     @Override
     public NoticeBoardVO prevList(int noticeBoardNum) {
         return sqlSession.selectOne("noticeBoardMapper.prevList", noticeBoardNum);
     }
-
     @Override
-    public int nextList(int noticeBoardNum) {
+    public NoticeBoardVO nextList(int noticeBoardNum) {
         return sqlSession.selectOne("noticeBoardMapper.nextList", noticeBoardNum);
     }
 }

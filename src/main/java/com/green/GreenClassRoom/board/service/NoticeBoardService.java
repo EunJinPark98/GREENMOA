@@ -28,7 +28,8 @@ public interface NoticeBoardService {
     //페이징
     public int pagingNotice();
 
+    //상세페이지에서 이전글 다음글
     public NoticeBoardVO prevList(int noticeBoardNum);
-    public int nextList(int noticeBoardNum);
+    public NoticeBoardVO nextList(int noticeBoardNum);
 
 }
