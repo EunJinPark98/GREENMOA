@@ -83,7 +83,6 @@ h1#logo img{
     height: 45px;
     background-color: #9c8277;
     border-radius: 100%;
-    box-shadow: 2px 2px 6px 1px #20212447;
 }
 .to-top span{
     display: block;
@@ -98,7 +97,7 @@ h1#logo img{
 }
 .to-top:hover{
     box-shadow: 2px 2px 6px 1px #20212447;
-    background-color: #a3d6cd;
+    background-color: #f7b900;
 }
 .fadeIn{
     display: block;
