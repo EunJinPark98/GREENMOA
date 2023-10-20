@@ -18,7 +18,15 @@
         SELECT NOTICE_BOARD_NUM
             , NOTICE_BOARD_TITLE
             , MEMBER_ID
-            , TO_CHAR(NOTICE_BOARD_CREATE_DATE, 'MM-DD-YYYY') NOTICE_BOARD_CREATE_DATE
+            <!--글 쓴 작성일 기준으로 자정이 지나기 전에는 시간을, 자정이 지난다면 날짜 표시-->
+            , (SELECT
+                CASE
+                    WHEN TRUNC(SYSDATE) = TRUNC(NOTICE_BOARD_CREATE_DATE)
+                    THEN TO_CHAR(NOTICE_BOARD_CREATE_DATE, 'HH24:MI')
+                    ELSE TO_CHAR(NOTICE_BOARD_CREATE_DATE, 'YYYY-MM-DD')
+                END
+            FROM DUAL) NOTICE_BOARD_CREATE_DATE
+
             , NOTICE_BOARD_READ_CNT
         FROM NOTICE_BOARD
         <if test='searchValue != null and !searchValue.equals("")'>
