@@ -10,11 +10,7 @@ body{
 
 #classRoom{
     position: relative;
-<<<<<<< HEAD
-    background-image: url(/images/wood.jpg);
-=======
     background-image: url(/images/wood.png);
->>>>>>> yoooojl2
     background-size: 100% auto;
     background-position: top;
     background-repeat: no-repeat;
