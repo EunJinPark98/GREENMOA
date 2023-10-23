@@ -4,6 +4,15 @@ window.onload = function(){
   utilMenu.classList.add('bounce');
 }
 
+// 미니미 클릭 시 말풍선 동작
+
+$('.minime-img').click(function(){
+    $(this).siblings('.minmeBubble').toggle();
+})
+
+
+
+
 // 등록 클릭시 todoList insert
 function insertTodo(){
     const result = confirm('등록하시겠습니까?');
@@ -44,9 +53,6 @@ function updateStatusMsg(memberId){
             inputStatus.style.display='none';
             location.href=`/room/updateStatusMsg?memberId=${memberId}&statusMsg=${inputStatusValue}`;
         };
-        
-    
-    
 };
 
 

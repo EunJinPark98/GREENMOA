@@ -1,6 +1,7 @@
 package com.green.GreenClassRoom.room.service;
 
 import com.green.GreenClassRoom.member.vo.MemberVO;
+import com.green.GreenClassRoom.room.vo.LetterVO;
 import com.green.GreenClassRoom.room.vo.menuVO;
 import lombok.RequiredArgsConstructor;
 import org.mybatis.spring.SqlSessionTemplate;
@@ -26,5 +27,10 @@ public class RoomServiceImpl implements RoomService{
     @Override
     public MemberVO selectStatusMsg(String memberId) {
         return sqlSession.selectOne("memberMapper.selectStatusMsg",memberId);
+    }
+
+    @Override
+    public void insertLetter(LetterVO letterVO) {
+        sqlSession.insert("letterMapper.insertLetter",letterVO);
     }
 }
