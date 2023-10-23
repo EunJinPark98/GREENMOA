@@ -10,9 +10,9 @@
 <body>
     <th:block layout:fragment="content">
         <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.32/dist/sweetalert2.min.css" rel="stylesheet">
-        <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
-        <link rel="stylesheet" href="/css/summernote/summernote-lite.css">
+        <!-- <link rel="stylesheet" href="/css/summernote/summernote-lite.css"> -->
         <link rel="stylesheet" href="/css/board.css">
+        <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
 
         <h1>질문 글 수정</h1>
         <hr>
@@ -26,7 +26,7 @@
             <div class="row">
                 <div class="col">
                     <div>내용</div>
-                    <textarea id="summernote" name="qnaBoardContent">[[${qnaBoardDetail.qnaBoardContent}]]</textarea>
+                    <textarea id="summernote11" name="qnaBoardContent"  th:utext="${qnaBoardDetail.qnaBoardContent}"></textarea>
                 </div>
             </div>
             <div class="row">
@@ -38,7 +38,7 @@
                         <path d="M4 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H4zm0 1h8a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1z" />
                     </svg>
 
-                    <!-- <img width="50%" height="180px" th:src="|/upload/${qnaBoardDetail.attachedFileName}|" alt=""> -->
+                    
                 </div>
             </div>
             <div class="row mb-3">
@@ -62,7 +62,7 @@
                     <div class="modal-body">
                         <div class="row">
                             <div class="col text-center">
-                                <img width="50%" height="180px" th:src="|/upload/${qnaBoardDetail.attachedFileName}|" alt="">
+                                <!-- <img width="50%" height="180px" th:src="|/upload/${qnaBoardDetail.attachedFileName}|" alt=""> -->
                             </div>
                         </div>
                     </div>
@@ -71,16 +71,14 @@
             </div>
         </div>
 
-        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.32/dist/sweetalert2.all.min.js"></script>
         <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.32/dist/sweetalert2.all.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
-        <script src="/js/summernote/summernote-lite.js"></script>
         <script src="/js/summernote/lang/summernote-ko-KR.js"></script>
         <script src="/js/board/qna_board_update_page.js"></script>
         
 
     </th:block>
-
 </body>
 
 </html>
