@@ -89,7 +89,7 @@
 
             <!-- 캘린더 -->
             <div class="pin">핀셋</div>
-            <a class="calendar" data-bs-toggle="modal" data-bs-target="#calenderModal">캘린더</a>
+            <a id="openCalender" class="calendar" data-bs-toggle="modal" data-bs-target="#calenderModal">캘린더</a>
           </div>
         </div>
       </div>
@@ -179,20 +179,64 @@
       </div>
 
 
-      <!-- 캘린더 모달 -->
-      <div class="modal fade" id="calenderModal" tabindex="-1" aria-labelledby="calenderModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h1 class="modal-title fs-5" id="calenderModalLabel">캘린더</h1>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-              
-            </div>
+    <!-- 캘린더 모달 -->
+    <div class="modal fade" id="calenderModal" tabindex="-1" aria-labelledby="calenderModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="calenderModalLabel">캘린더</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <div id="calendar"></div>
+            <button class="btn btn-primary">일정 등록</button>
           </div>
         </div>
       </div>
+    </div>
+
+    <style>
+      #calendar{
+        height: 800px;
+      }
+    </style>
+
+
+    <script>
+
+      var openCalender = document.querySelector('#openCalender');
+      openCalender.addEventListener('click', function() {
+
+        $('#calenderModal').on('shown.bs.modal', function() {           
+          calendar.updateSize(); // 캘린더 크기 조정
+        });
+        var calendarEl = document.getElementById('calendar');
+        var calendar = new FullCalendar.Calendar(calendarEl, {
+          initialView: 'dayGridMonth',
+          editable: true,
+          events: [
+            {
+              title: '이벤트 1',
+              start: '2023-10-23',
+            },
+            {
+              title: '이벤트 2',
+              start: '2023-10-24',
+            },
+          ],
+        });
+
+        calendar.render();
+
+
+        // 새 이벤트를 추가
+        var newEvent = {
+          title: '테스트',
+          start: '2023-10-25',
+        };
+        calendar.addEvent(newEvent);
+      });
+    </script>
 
 
       
@@ -202,8 +246,9 @@
         <!-- WebSocket 채팅 -->
         <script src="/webjars/sockjs-client/1.1.2/sockjs.min.js"></script>
         <script src="/js/chat.js"></script>
-        <!-- 구글 캘린더 -->
-        <script src="https://apis.google.com/js/api.js"></script>
+        <!-- 풀 캘린더 -->
+        <link href="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.0/main.css" rel="stylesheet">
+        <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.0/main.js"></script>
     </th:block>
 </body>
 </html>

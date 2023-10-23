@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 해당 파일에 모든 쿼리문을 작성 -->
+<mapper namespace="calenderMapper">
+    <resultMap id="calender" type="com.green.GreenClassRoom.room.vo.CalenderVO">
+        <id column="CAL_NUM" property="calNum"/>
+        <result column="CAL_TITLE" property="calTitle"/>
+        <result column="CAL_DATE" property="calDate"/>
+    </resultMap>
+
+    <!--캘린더 조회-->
+    <select id="selectCalender" resultMap="calender">
+        SELECT CAL_NUM
+        , CAL_TITLE
+        , CAL_DATE
+        FROM GREEN_CALENDER
+    </select>
+
+    <insert id="insertCalender">
+    </insert>
+
+</mapper>
