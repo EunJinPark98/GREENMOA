@@ -1,5 +1,6 @@
 package com.green.GreenClassRoom.room.controller;
 
+import com.green.GreenClassRoom.board.vo.FreeBoardVO;
 import com.green.GreenClassRoom.member.service.MemberService;
 import com.green.GreenClassRoom.member.vo.MemberVO;
 import com.green.GreenClassRoom.room.service.RoomService;
@@ -40,13 +41,17 @@ public class RoomController {
 
     //마이룸
     @GetMapping("/myRoom")
-    public String myRoom(Model model, HttpSession session,MemberVO memberVO){
+    public String myRoom(Model model, HttpSession session,MemberVO memberVO, LetterVO letterVO){
         MemberVO loginInfo = (MemberVO) session.getAttribute("loginInfo");
         String memberId = loginInfo.getMemberId();
         model.addAttribute("todoList", todoService.selectTodo(memberId));
         MemberVO statusMsg =roomService.selectStatusMsg(memberId);
         model.addAttribute("statusMsg",statusMsg);
         System.out.println("$$$$$$$"+statusMsg);
+
+        List<LetterVO> letterList = roomService.selectLetter(letterVO.getMemberName());
+        model.addAttribute("letterList",letterList);
+        System.out.println("@@@@@쪽지 리스트@@@@@"+letterList);
         return "content/room/myRoom";
     }
 
