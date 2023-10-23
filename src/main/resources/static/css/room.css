@@ -129,3 +129,26 @@
     top: 280px;
 }
 
+/* 편지함 이미지 */
+.letterBox{
+    display: flex;
+    justify-content: center;
+    width: 150px;
+    height: 200px;
+    position: absolute;
+    left: 88px;
+    top: 233px;
+    transform: rotate(-8deg);
+    background-image: url(/images/loginMenu.png);
+    background-size: 100% auto;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+/* 쪽지 갯수 표시 */
+.boxNum{
+    margin-top: 50px;
+    margin-left: 16px;
+    width: 30px;
+    height: 32px;
+}
+

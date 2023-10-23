@@ -27,7 +27,17 @@
                 <p class="name">[[${loginInfo.memberName}]]</p>
             </div>
         </div>
-        
+        <div class="letterBox" >
+            <div class="boxNum"><p>1</p></div>
+        </div> 
+    </div>
+    <div class="letterList">
+        <th:block th:each="letter : ${letterList}">
+            <p>[[${letter.letterNum}]]</p>
+            <p>[[${letter.memberId}]]</p>
+            <p>[[${letter.letterContent}]]</p>
+            <p>[[${letter.letterDate}]]</p>
+        </th:block>
     </div>
 
     <!-- todoList 모달창 -->
