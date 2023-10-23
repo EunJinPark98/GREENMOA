@@ -197,3 +197,7 @@ div:where(.swal2-container) div:where(.swal2-actions) {
     cursor: pointer;
 }
 
+/* 더보기 버튼 */
+#moreBtn{
+    margin-bottom: 10px;
+}
