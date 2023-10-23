@@ -111,6 +111,14 @@
 
 
 /* 로그인페이지 */
+
+@font-face {
+    font-family: 'TAEBAEKfont';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2310@1.0/TAEBAEKfont.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
 .login-board{
     width: 500px;
     height: 670px;
@@ -130,7 +138,8 @@
     position: absolute;
     bottom: 45%;
     left: 42%;
-    color: #89847b;
+    color: #444;
+    font-family: 'TAEBAEKfont';
 }
 .btn-close{
     position: absolute;
