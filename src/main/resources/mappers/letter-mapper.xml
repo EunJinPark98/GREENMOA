@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 해당 파일에 모든 쿼리문을 작성 -->
+<mapper namespace="letterMapper">
+    <resultMap id="letter" type="com.green.GreenClassRoom.room.vo.LetterVO">
+        <id column="LETTER_NUM" property="letterNum"/>
+        <result column="FROM_ID" property="formId"/>
+        <result column="MEMBER_ID" property="memberId"/>
+        <result column="LETTER_CONTENT" property="letterContent"/>
+        <result column="LETTER_DATE" property="letterDate"/>
+    </resultMap>
+    <!--쪽지 보내기 등록 -->
+    <insert id="insertLetter">
+        INSERT INTO GREEN_LETTER(
+        LETTER_NUM
+        , FROM_ID
+        , MEMBER_ID
+        , LETTER_CONTENT
+        ) VALUES(
+        (SELECT NVL(MAX(LETTER_NUM),0) +1 FROM GREEN_LETTER)
+        , #{formId}
+        , #{memberId}
+        , #{letterContent}
+        )
+
+    </insert>
+	
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

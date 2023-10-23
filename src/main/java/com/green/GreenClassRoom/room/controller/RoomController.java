@@ -4,6 +4,7 @@ import com.green.GreenClassRoom.member.service.MemberService;
 import com.green.GreenClassRoom.member.vo.MemberVO;
 import com.green.GreenClassRoom.room.service.RoomService;
 import com.green.GreenClassRoom.room.service.TodoService;
+import com.green.GreenClassRoom.room.vo.LetterVO;
 import com.green.GreenClassRoom.room.vo.TodoVO;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
@@ -42,6 +43,15 @@ public class RoomController {
         model.addAttribute("statusMsg",statusMsg);
         System.out.println("$$$$$$$"+statusMsg);
         return "content/room/myRoom";
+    }
+
+    //쪽지 보내기 등록
+    @PostMapping("/insertLetter")
+    public String insertLetter(LetterVO letterVO){
+
+        roomService.insertLetter(letterVO);
+        System.out.println("@#@#@#@#"+letterVO);
+        return "redirect:/room/main";
     }
 
     // 상태 메세지 수정 기능

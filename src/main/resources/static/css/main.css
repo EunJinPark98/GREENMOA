@@ -10,7 +10,7 @@ body{
 
 #classRoom{
     position: relative;
-    background-image: url(/images/room_frame.jpg);
+    background-image: url(/images/wood.jpg);
     background-size: 100% auto;
     background-position: top;
     background-repeat: no-repeat;
@@ -49,7 +49,33 @@ body{
     flex-wrap: wrap;
     padding: 0 20px;
 }
+.member{
+    position: relative;
+}
 
+/* 미니미 말풍선 */
+.minmeBubble{
+    background-image: url(/images/msgBox_1.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 100% auto;
+    width: 100px;
+    height: 100px;
+    position: absolute;
+    top: -90px;
+    left: 0;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+    color: #fff;
+    letter-spacing: 2px;
+}
+.letterText{
+    margin-top: 20px;
+    margin-left: 15px;
+    font-size: 15px;
+}
 .member img{
     width: 100px;
     height: auto;
