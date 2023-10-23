@@ -5,102 +5,133 @@
 <head>
 <meta charset="UTF-8">
 <title></title>
-<style>
-    tr,td{
-        border: 1px solid black;
-    }
-    .page{
-        display: flex;
-        margin-bottom: 10px;
-    }
-    div, table{
-        width: 100%;
-        margin-bottom: 10px;
-    }
-</style>
 </head>
 <body>
 <th:block layout:fragment="content">
-<h3>질문게시판 상세페이지</h3>
-<hr>
-<div>
-    <div class="page">
+
+    <!-- sweetalert2 script -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link rel="stylesheet" href="/css/board.css">
+    
+    <div class="boardBox">
         <th:block th:each="qnaBoard : ${qnaBoardList}">
-            <th:block th:if="${qnaBoard.originFileName != null}">
-                <img width="50%" height="280px" th:src="${'/upload/' + qnaBoard.attachedFileName}" alt="">
-            </th:block>
+            <div class="row">
+                <div class="col-11">
+                    <h3>[[${qnaBoard.qnaBoardTitle}]]</h3>
+                </div>
+                    <div class="col-1 d-grid gap-2 d-md-flex justify-content-md-end col">
+                        <div class="backArrow" onclick="location.href='/board/question';">뒤로가기</div>
+                    </div>
+            </div>
+        
+            <hr>
+
+            <div class="row">
+                <div class="d-grid gap-2 d-md-flex justify-content-md-end align-items-center">
+                    <b class="boardWriter">[[${qnaBoard.qnaBoardWriter}]]</b>
+                    <p class="boardDate">[[${qnaBoard.qnaCreateDate}]]</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-11 mb-5 px-4">
+                    <th:block th:if="${qnaBoard.originFileName != null}">
+                        <!-- <img width="50%" height="280px" th:src="${'/upload/' + qnaBoard.attachedFileName}" alt="" id="uploadImg"> -->
+                        <img th:src="${'/upload/' + qnaBoard.attachedFileName}" alt="" id="uploadImg">
+                    </th:block>
+                    <div id="summernote" name="qnaBoardContent" th:utext="${qnaBoard.qnaBoardContent}" class="textContent"></div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-6">
+                    <p class="boardReadCnt">조회 [[${qnaBoard.qnaReadCnt}]]</p>
+                </div>
+                <div class="col-6 d-grid gap-2 d-md-flex justify-content-md-end col" 
+                th:if="${session.loginInfo != null}">
+                    <div th:if="${qnaBoardList.qnaBoardWriter == session.loginInfo.memberId or session.loginInfo.memberRoll == 'ADMIN'}">
+                        <input type="button" class="updateButton btn btn-primary" value="수정" th:onclick="updateQnaBoard([[${qnaBoardList.qnaBoardNum}]])">
+                        <input type="button" class="btn btn-light" value="삭제" th:onclick="deleteQnaBoard([[${qnaBoardList.qnaBoardNum}]])">
+                    </div>
+                </div>
+            </div>
         </th:block>
-        <table border="1">
-            <tr>
-                <td>글 번호</td>
-                <td>제목</td>
-                <td>내용</td>
-                <td>작성자</td>
-                <td>작성일</td>
-                <td>조회수</td>
+
+        <hr>
+
+        <!-- 댓글 -->
+        <th:block th:if="${#lists.size(qnaReplyList)==0}">
+            <p class="text-center">작성된 댓글이 없습니다.</p>
+            <hr>
+        </th:block>
+
+        <th:block th:unless="${#lists.size(qnaReplyList)==0}">
+            <tr th:each="qnaReply, state : ${qnaReplyList}">
+                <div class="container my-1 py-1 text-dark">
+                <div class="row d-flex">
+                    <div class="col">
+                    <div class="d-flex flex-start mb-4">
+                        <div id="qnaReplyEmoji" name="qnaReplyEmoji">
+                            <img class="rounded-circle shadow-1-strong me-3" th:src="|${qnaReply.qnaReplyEmoji}|" alt="avatar" width="40" height="40"/>
+                        </div>
+                        <div class="card w-100" >
+                        <div class="card-body p-3">
+                            <div>
+                            <div class="commentHead row">
+                                <div class="col-8">
+                                    <h5 class="replyWriter">[[${qnaReply.qnaReplyer}]]</h5>
+                                </div>
+                                <div class="col-4 d-grid gap-2 d-md-flex justify-content-md-end col align-self-end">
+                                    <div class="small">[[${qnaReply.qnaRegDate}]]</div>
+                                    <input type="button" id="qnaReplyNum" name="qnaReplyNum" th:onclick="deleteQnaReply([[${qnaBoardList.qnaBoardNum}]], [[${qnaReply.qnaReplyNum}]])" 
+                                    th:data-reply-num="${qnaReply.qnaReplyNum}" value="삭제" th:disabled="${qnaReply.qnaReplyer != session.loginInfo.memberId}">
+                                </div>
+                            </div>
+
+                            <p class="textContent">[[${qnaReply.qnaReplyText}]]</p>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+                </div>
             </tr>
-            <th:block>
-                <tr th:each="qnaBoard, state : ${qnaBoardList}">
-                    <td>[[${qnaBoard.qnaBoardNum}]]</td>
-                    <td>[[${qnaBoard.qnaBoardTitle}]]</td>
-                    <td id="summernote" name="qnaBoardContent" th:utext="${qnaBoard.qnaBoardContent}"></td>
-                    <td>[[${qnaBoard.qnaBoardWriter}]]</td>
-                    <td>[[${qnaBoard.qnaCreateDate}]]</td>
-                    <td>[[${qnaBoard.qnaReadCnt}]]</td>
-                </tr>
-            </th:block>
-        </table>
-    </div>
-    <div th:if="${session.loginInfo != null}">
-        <div th:if="${qnaBoardList.qnaBoardWriter == session.loginInfo.memberId or session.loginInfo.memberId == 'admin'}">
-            <input type="button" class="btn btn-primary" value="수정" th:onclick="updateQnaBoard([[${qnaBoardList.qnaBoardNum}]])">
-            <input type="button" class="btn btn-primary" value="삭제" th:onclick="deleteQnaBoard([[${qnaBoardList.qnaBoardNum}]])">
+        </th:block>
+        
+        <div>
+            <form action="/board/insertQnaReply" method="post" id="qnaReplyForm">
+                <div class="col input-group">
+
+                    <div class="dropdown">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <img src="/images/emoji8.png" alt="" class="selectImg" id="qnaReplyEmoji" >
+                        </button>
+                        <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" onclick="changeEmoji('/images/emoji1.png');"><img src="/images/emoji1.png" alt=""></a></li>
+                        <li><a class="dropdown-item" onclick="changeEmoji('/images/emoji2.png');"><img src="/images/emoji2.png" alt=""></a></li>
+                        <li><a class="dropdown-item" onclick="changeEmoji('/images/emoji3.png');"><img src="/images/emoji3.png" alt=""></a></li>
+                        <li><a class="dropdown-item" onclick="changeEmoji('/images/emoji4.png');"><img src="/images/emoji4.png" alt=""></a></li>
+                        <li><a class="dropdown-item" onclick="changeEmoji('/images/emoji5.png');"><img src="/images/emoji5.png" alt=""></a></li>
+                        <li><a class="dropdown-item" onclick="changeEmoji('/images/emoji6.png');"><img src="/images/emoji6.png" alt=""></a></li>
+                        <li><a class="dropdown-item" onclick="changeEmoji('/images/emoji7.png');"><img src="/images/emoji7.png" alt=""></a></li>
+                        <li><a class="dropdown-item" onclick="changeEmoji('/images/emoji8.png');"><img src="/images/emoji8.png" alt=""></a></li>
+                        <li><a class="dropdown-item" onclick="changeEmoji('/images/emoji9.png');"><img src="/images/emoji9.png" alt=""></a></li>
+                        </ul>
+                    </div>
+
+                    <textarea name="qnaReplyText" id="qnaReplyText" class="form-control custom-control" rows="1" placeholder="도움주기"></textarea>
+
+                    <input type="hidden" name="qnaBoardNum" th:value="${qnaBoardList.qnaBoardNum}">
+                    <input type="hidden" name="qnaReplyer" th:value="${loginInfo.memberId}">
+                    <input type="hidden" class="resultQnaEmoji" name="qnaReplyEmoji" value="/images/emoji8.png">
+
+                    <input type="submit" value="답변" class="sendCommen btn btn-secondary">
+                    
+                </div>
+            </form>
         </div>
     </div>
-    <hr>
-    <div>
-        <h5>답변</h5>
-        <table>
-            <tr>
-                <td>글 번호</td>
-                <td>작성자</td>
-                <td>답변내용</td>
-                <td>작성일</td>
-                <td>글 삭제</td>
-            </tr>
 
-            <th:block th:if="${#lists.size(qnaReplyList) == 0}">
-                <tr>
-                    <td colspan="5">작성된 답변이 없습니다.</td>
-                </tr>
-            </th:block>
-
-            <th:block th:unless="${#lists.size(qnaReplyList) == 0}">
-                <tr th:each="qnaReply, state : ${qnaReplyList}">
-                    <td>[[${#lists.size(qnaReplyList) - state.index}]]</td>
-                    <td>[[${qnaReply.qnaReplyer}]]</td>
-                    <td>[[${qnaReply.qnaReplyText}]]</td>
-                    <td>[[${qnaReply.qnaRegDate}]]</td>
-                    <td>
-                        <input type="button" class="btn btn-primary" id="qnaReplyNum" name="qnaReplyNum" th:onclick="deleteQnaReply([[${qnaBoardList.qnaBoardNum}]], [[${qnaReply.qnaReplyNum}]])" value="삭제" th:disabled="${qnaReply.qnaReplyer != session.loginInfo.memberId}">
-                    </td>
-                </tr>
-            </th:block>
-        </table>
-    </div>
-    <div>
-        <form action="/board/insertQnaReply" method="post">
-            <label >답변 쓰기</label><br>
-            <textarea name="qnaReplyText" id="qnaReplyText" cols="50" rows="5"></textarea><br>
-            <input type="hidden" name="qnaBoardNum" th:value="${qnaBoardList.qnaBoardNum}">
-            <input type="hidden" name="qnaReplyer" th:value="${loginInfo.memberId}">
-            <input type="submit" class="btn btn-primary" value="답변 작성"></input>
-        </form>
-    </div>
-    <input type="button" class="btn btn-primary" value="뒤로가기" onclick="history.back(-1);">
-</div>
-
-<script src="/js/board/qna_board.js"></script>
+    <script src="/js/board/qna_board.js"></script>
 </th:block>
 </body>
 </html>

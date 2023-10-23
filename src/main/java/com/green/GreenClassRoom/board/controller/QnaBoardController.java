@@ -5,6 +5,7 @@ import com.green.GreenClassRoom.board.vo.QnaBoardVO;
 import com.green.GreenClassRoom.board.vo.QnaReplyVO;
 import com.green.GreenClassRoom.member.vo.MemberVO;
 import com.green.GreenClassRoom.util.ConstantVariable;
+import com.green.GreenClassRoom.util.ResizeImgUtil;
 import com.green.GreenClassRoom.util.UploadUtil;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
@@ -66,7 +67,11 @@ public class QnaBoardController {
     @GetMapping("/qnaBoardDetail")
     public String qnaBoardDetail(int qnaBoardNum, Model model, QnaReplyVO qnaReplyVO,
                                  @RequestParam(required = false, defaultValue = "false") boolean noCount,
-                                 HttpSession session, QnaBoardVO qnaBoardVO){
+                                 HttpSession session, QnaBoardVO qnaBoardVO, MultipartFile reImg) throws Exception {
+
+        String filePath = qnaBoardVO.getAttachedFileName();
+        String formatName = "jpg";
+        ResizeImgUtil.resizeImg(reImg, filePath, formatName);
 
         MemberVO loginInfo=(MemberVO) session.getAttribute("loginInfo");
         qnaBoardVO.setQnaBoardWriter(loginInfo.getMemberId());
