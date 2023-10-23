@@ -5,7 +5,7 @@
 <mapper namespace="letterMapper">
     <resultMap id="letter" type="com.green.GreenClassRoom.room.vo.LetterVO">
         <id column="LETTER_NUM" property="letterNum"/>
-        <result column="FROM_ID" property="formId"/>
+        <result column="MEMBER_NAME" property="memberName"/>
         <result column="MEMBER_ID" property="memberId"/>
         <result column="LETTER_CONTENT" property="letterContent"/>
         <result column="LETTER_DATE" property="letterDate"/>
@@ -14,12 +14,12 @@
     <insert id="insertLetter">
         INSERT INTO GREEN_LETTER(
         LETTER_NUM
-        , FROM_ID
+        , MEMBER_NAME
         , MEMBER_ID
         , LETTER_CONTENT
         ) VALUES(
         (SELECT NVL(MAX(LETTER_NUM),0) +1 FROM GREEN_LETTER)
-        , #{formId}
+        , #{memberName}
         , #{memberId}
         , #{letterContent}
         )

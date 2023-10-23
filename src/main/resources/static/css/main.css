@@ -26,9 +26,9 @@ body{
 /* 클래스룸 미니미들 위치 */
 .teacher{
     position: absolute;
-    top: 11%;
-    left: 40%;
-    width: 190px;
+    top: 20%;
+    left: 45%;
+    width: 100px;
 }
 .teacher img{
     width: 100%;
@@ -256,3 +256,23 @@ body{
     font-size: 1.2rem;
     width: 10%;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -27,9 +27,14 @@ public class RoomController {
 
     //클래스룸
     @GetMapping("/main")
-    public String main(Model model){
+    public String main(Model model, HttpSession session,MemberVO memberVO,LetterVO letterVO){
         model.addAttribute("memberList", memberService.selectMemberList());
         model.addAttribute("teacher", memberService.selectAdmin());
+
+        MemberVO loginInfo=(MemberVO) session.getAttribute("loginInfo");
+        model.addAttribute("loginInfo",loginInfo);
+        System.out.println("######"+loginInfo);
+
         return "/content/room/main";
     }
 
@@ -47,8 +52,9 @@ public class RoomController {
 
     //쪽지 보내기 등록
     @PostMapping("/insertLetter")
-    public String insertLetter(LetterVO letterVO){
-
+    public String insertLetter(LetterVO letterVO,HttpSession session,Model model){
+        MemberVO loginInfo=(MemberVO) session.getAttribute("loginInfo");
+        letterVO.setMemberId(loginInfo.getMemberId());
         roomService.insertLetter(letterVO);
         System.out.println("@#@#@#@#"+letterVO);
         return "redirect:/room/main";
@@ -61,5 +67,23 @@ public class RoomController {
         System.out.println("########"+memberVO);
         return "redirect:/room/myRoom";
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 }
