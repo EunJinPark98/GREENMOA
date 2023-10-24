@@ -98,23 +98,19 @@
       
 
       <!-- 채팅 -->
-      <div class="row">
-        <div class="col">
-          <th:block th:if="${session.loginInfo}!=null">
-            <input id="sender" type="hidden" th:attr="data-sender=${session.loginInfo.memberName}">
-          </th:block>
-
-          <div id="chat" class="container-md">
-              <h3>채팅</h3>
-              <div id="chat-messages"></div>
-
-              <form id="message-form">
-                  <input type="text" id="message" class="form-control">
-                  <button type="submit" id="chatBtn" class="btn btn-primary">전송</button>
-              </form>
+          <div class="chatting-fr">
+            <th:block th:if="${session.loginInfo}!=null">
+              <input id="sender" type="hidden" th:attr="data-sender=${session.loginInfo.memberName}">
+            </th:block>
+            <div id="chat" class="container-md">
+                <h3>채팅</h3>
+                <div id="chat-messages"></div>
+                <form id="message-form">
+                    <input type="text" id="message" class="form-control">
+                    <button type="submit" id="chatBtn" class="btn btn-primary">전송</button>
+                </form>
+            </div>
           </div>
-        </div>
-      </div>
 
      
 
@@ -172,7 +168,9 @@
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
-              <button type="button" class="btn btn-primary">과제 등록</button>
+              <th:block th:if="${session.loginInfo != null && session.loginInfo.memberRoll == 'ADMIN'}">
+                <button type="button" class="btn btn-primary">과제 등록</button>
+              </th:block>
             </div>
           </div>
         </div>
