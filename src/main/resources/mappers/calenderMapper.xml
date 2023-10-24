@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<!-- 해당 파일에 모든 쿼리문을 작성 -->
 <mapper namespace="calenderMapper">
     <resultMap id="calender" type="com.green.GreenClassRoom.room.vo.CalenderVO">
         <id column="CAL_NUM" property="calNum"/>
@@ -17,7 +16,17 @@
         FROM GREEN_CALENDER
     </select>
 
+    <!--캘린더 일정 추가-->
     <insert id="insertCalender">
+        INSERT INTO GREEN_CALENDER (
+            CAL_NUM
+            , CAL_TITLE
+            , CAL_DATE
+        ) VALUES (
+            (SELECT NVL(MAX(CAL_NUM),0) +1 FROM GREEN_CALENDER)
+            , #{calTitle}
+            , #{calDate}
+        )
     </insert>
 
 </mapper>

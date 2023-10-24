@@ -6,7 +6,6 @@ import com.green.GreenClassRoom.member.vo.MemberVO;
 import com.green.GreenClassRoom.room.service.RoomService;
 import com.green.GreenClassRoom.room.service.TodoService;
 import com.green.GreenClassRoom.room.vo.LetterVO;
-import com.green.GreenClassRoom.room.vo.TodoVO;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -16,7 +15,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import java.lang.reflect.Member;
 import java.util.List;
 
 @Controller

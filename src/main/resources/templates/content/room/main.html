@@ -182,7 +182,6 @@
       <div class="modal-dialog modal-xl">
         <div class="modal-content">
           <div class="modal-header">
-            <h1 class="modal-title fs-5" id="calenderModalLabel">캘린더</h1>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body">
@@ -200,41 +199,7 @@
     </style>
 
 
-    <script>
-
-      var openCalender = document.querySelector('#openCalender');
-      openCalender.addEventListener('click', function() {
-
-        $('#calenderModal').on('shown.bs.modal', function() {           
-          calendar.updateSize(); // 캘린더 크기 조정
-        });
-        var calendarEl = document.getElementById('calendar');
-        var calendar = new FullCalendar.Calendar(calendarEl, {
-          initialView: 'dayGridMonth',
-          editable: true,
-          events: [
-            {
-              title: '이벤트 1',
-              start: '2023-10-23',
-            },
-            {
-              title: '이벤트 2',
-              start: '2023-10-24',
-            },
-          ],
-        });
-
-        calendar.render();
-
-
-        // 새 이벤트를 추가
-        var newEvent = {
-          title: '테스트',
-          start: '2023-10-25',
-        };
-        calendar.addEvent(newEvent);
-      });
-    </script>
+    
 
 
       
