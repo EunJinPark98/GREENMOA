@@ -20,7 +20,7 @@
                     <h3>[[${qnaBoard.qnaBoardTitle}]]</h3>
                 </div>
                     <div class="col-1 d-grid gap-2 d-md-flex justify-content-md-end col">
-                        <div class="backArrow" onclick="location.href='/board/question';">뒤로가기</div>
+                        <div class="backArrow" onclick="history.back(-1)">뒤로가기</div>
                     </div>
             </div>
         
@@ -35,7 +35,6 @@
             <div class="row">
                 <div class="col-11 mb-5 px-4">
                     <th:block th:if="${qnaBoard.originFileName != null}">
-                        <!-- <img width="50%" height="280px" th:src="${'/upload/' + qnaBoard.attachedFileName}" alt="" id="uploadImg"> -->
                         <img th:src="${'/upload/' + qnaBoard.attachedFileName}" alt="" id="uploadImg">
                     </th:block>
                     <div id="summernote" name="qnaBoardContent" th:utext="${qnaBoard.qnaBoardContent}" class="textContent"></div>

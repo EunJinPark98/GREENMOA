@@ -23,20 +23,65 @@
             <!-- 출석부 -->
             <div class="student-list" data-bs-toggle="modal" data-bs-target="#stuListModal"><img src="/images/studentList.png" alt=""></div>
             <!-- 학생 미니미 -->
-	          <div class="mini-fr">
-              <th:block th:if="${memberList} != null">
-                <th:block th:each="member : ${memberList}">
-                  <div class="member">
-                    <!-- 미니미 말풍선 -->
-                    <div class="minmeBubble"><p class="letterText" data-bs-toggle="modal" data-bs-target="#letterModal">쪽지보내기</p></div>
 
-                    <!-- 미니미 -->
-                    <img class="minime-img" th:src="|/images/${member.minime}.png|">
-                    <p class="name">[[${member.memberName}]]</p>
-                  </div>
-                </th:block>
+
+            <div class="mini-fr">
+              <th:block th:if="${memberList != null}">
+                  <th:block th:each="member : ${memberList}">
+                      <div class="member">
+                          <!-- 미니미 말풍선 -->
+                          <div class="minmeBubble" th:if="${session.loginInfo != null}">
+                            <p class="letterText" data-bs-toggle="modal" th:attr="data-membername=${member.memberName}">쪽지보내기</p>
+                          </div>
+                          <div class="minmeBubble" th:unless="${session.loginInfo != null}">
+                            <p class="letterText">로그인 하세요.</p>
+                          </div>
+                          <!-- 미니미 -->
+                          <img class="minime-img" th:src="|/images/${member.minime}.png|">
+                          <input type="hidden" id="memberName" name="memberName" th:value="${member.memberName}">
+                          <p class="name">[[${member.memberName}]]</p>
+                      </div>
+                      
+                      <!-- 쪽지 보내기 모달창 -->
+                      <div class="modal fade" id="letterModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+                      aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-body modal-body">
+                                  <div class="letter">
+                                    <h3>[[${member.memberName}]]에게 쪽지보내기</h3>
+                                    <form action="/room/insertLetter" method="post">
+                                      <div th:if="${session.loginInfo != null}">
+                                        <div>
+                                          <input type="hidden" id="memberId" th:value="${loginInfo.memberId}">
+                                        </div>
+                                      </div>
+                                      <div th:unless="${session.loginInfo != null}">
+                                        
+                                      </div>
+                                      <div>
+                                          <!-- <label for="memberName">받는 사람</label> -->
+                                          <input type="hidden" id="memberName" name="memberName" th:value="${member.memberName}">
+                                      </div>
+                                      <div>
+                                          <label for="letterContet">메세지</label>
+                                          <textarea id="letterContet" name="letterContent"></textarea>
+                                      </div>
+                                      <ul>
+                                          <li><input type="submit" class="btn btn-primary" value="보내기"></li>
+                                          <li><button type="button" class="btn btn-secondary" onclick="closeLetterBox()">닫기</button></li>
+                                      </ul>
+                                    </form>
+                                </div>
+                                </div>
+                            </div>
+                        </div>
+                      </div>
+
+                  </th:block>
               </th:block>
             </div>
+            
 
             <!-- 과제 -->
             <div class="work-icon" data-bs-toggle="modal" data-bs-target="#workModal">과제</div>
@@ -44,42 +89,12 @@
 
             <!-- 캘린더 -->
             <div class="pin">핀셋</div>
-            <a class="calendar" data-bs-toggle="modal" data-bs-target="#calenderModal">캘린더</a>
+            <a id="openCalender" class="calendar" data-bs-toggle="modal" data-bs-target="#calenderModal">캘린더</a>
           </div>
         </div>
       </div>
 
-      <!-- 쪽지 보내기 모달창 -->
-      <div class="modal fade" id="letterModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-      aria-labelledby="staticBackdropLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-body modal-body">
-                  <div class="letter">
-                    <h3>쪽지보내기</h3>
-                    <form action="/room/insertLetter" method="post">
-                        <div>
-                            <label for="formId">보내는 사람</label>
-                            <input type="text" id="formId" name="formId">
-                        </div>
-                        <div>
-                            <label for="memberId">받는 사람</label>
-                            <input type="text" id="memberId" name="memberId">
-                        </div>
-                        <div>
-                            <label for="letterContet">메세지</label>
-                            <textarea id="letterContet" name="letterContent"></textarea>
-                        </div>
-                        <ul>
-                            <li><input type="submit" class="btn btn-primary" value="보내기"></li>
-                            <li><input type="button" class="btn btn-secondary" data-bs-dismiss="modal" value="닫기"></li>
-                        </ul>
-                    </form>
-                </div>
-                </div>
-            </div>
-        </div>
-    </div>
+      
       
 
       <!-- 채팅 -->
@@ -164,20 +179,64 @@
       </div>
 
 
-      <!-- 캘린더 모달 -->
-      <div class="modal fade" id="calenderModal" tabindex="-1" aria-labelledby="calenderModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h1 class="modal-title fs-5" id="calenderModalLabel">캘린더</h1>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-              
-            </div>
+    <!-- 캘린더 모달 -->
+    <div class="modal fade" id="calenderModal" tabindex="-1" aria-labelledby="calenderModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="calenderModalLabel">캘린더</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <div id="calendar"></div>
+            <button class="btn btn-primary">일정 등록</button>
           </div>
         </div>
       </div>
+    </div>
+
+    <style>
+      #calendar{
+        height: 800px;
+      }
+    </style>
+
+
+    <script>
+
+      var openCalender = document.querySelector('#openCalender');
+      openCalender.addEventListener('click', function() {
+
+        $('#calenderModal').on('shown.bs.modal', function() {           
+          calendar.updateSize(); // 캘린더 크기 조정
+        });
+        var calendarEl = document.getElementById('calendar');
+        var calendar = new FullCalendar.Calendar(calendarEl, {
+          initialView: 'dayGridMonth',
+          editable: true,
+          events: [
+            {
+              title: '이벤트 1',
+              start: '2023-10-23',
+            },
+            {
+              title: '이벤트 2',
+              start: '2023-10-24',
+            },
+          ],
+        });
+
+        calendar.render();
+
+
+        // 새 이벤트를 추가
+        var newEvent = {
+          title: '테스트',
+          start: '2023-10-25',
+        };
+        calendar.addEvent(newEvent);
+      });
+    </script>
 
 
       
@@ -187,8 +246,9 @@
         <!-- WebSocket 채팅 -->
         <script src="/webjars/sockjs-client/1.1.2/sockjs.min.js"></script>
         <script src="/js/chat.js"></script>
-        <!-- 구글 캘린더 -->
-        <script src="https://apis.google.com/js/api.js"></script>
+        <!-- 풀 캘린더 -->
+        <link href="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.0/main.css" rel="stylesheet">
+        <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.0/main.js"></script>
     </th:block>
 </body>
 </html>

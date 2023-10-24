@@ -5,7 +5,6 @@ import com.green.GreenClassRoom.board.vo.QnaBoardVO;
 import com.green.GreenClassRoom.board.vo.QnaReplyVO;
 import com.green.GreenClassRoom.member.vo.MemberVO;
 import com.green.GreenClassRoom.util.ConstantVariable;
-import com.green.GreenClassRoom.util.ResizeImgUtil;
 import com.green.GreenClassRoom.util.UploadUtil;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
@@ -67,11 +66,7 @@ public class QnaBoardController {
     @GetMapping("/qnaBoardDetail")
     public String qnaBoardDetail(int qnaBoardNum, Model model, QnaReplyVO qnaReplyVO,
                                  @RequestParam(required = false, defaultValue = "false") boolean noCount,
-                                 HttpSession session, QnaBoardVO qnaBoardVO, MultipartFile reImg) throws Exception {
-
-        String filePath = qnaBoardVO.getAttachedFileName();
-        String formatName = "jpg";
-        ResizeImgUtil.resizeImg(reImg, filePath, formatName);
+                                 HttpSession session, QnaBoardVO qnaBoardVO){
 
         MemberVO loginInfo=(MemberVO) session.getAttribute("loginInfo");
         qnaBoardVO.setQnaBoardWriter(loginInfo.getMemberId());
@@ -163,7 +158,7 @@ public class QnaBoardController {
         //첨부파일을 추가(게시글 등록때처럼 똑같이)
         System.out.println("!!!!!!!!!!!!" + qnaBoardVO);
         //qnaBoardService.updateFile(qnaBoardVO);
-       // qnaBoardService.updateQnaBoard(qnaBoardVO);
+        // qnaBoardService.updateQnaBoard(qnaBoardVO);
         return "redirect:/board/qnaBoardDetail?qnaBoardNum=" + qnaBoardVO.getQnaBoardNum();
     }
 

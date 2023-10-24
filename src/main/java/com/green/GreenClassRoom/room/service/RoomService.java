@@ -18,4 +18,7 @@ public interface RoomService {
 
     // 쪽지 보내기 등록
     public void insertLetter(LetterVO letterVO);
+
+    // 쪽지 확인
+    public List<LetterVO> selectLetter(String memberName);
 }

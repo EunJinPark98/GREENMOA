@@ -203,6 +203,7 @@ div:where(.swal2-container) div:where(.swal2-actions) {
 #uploadImg{
     max-width: 100%;
     height: auto;
+    object-fit: cover;
 }
 
 /* 더보기 버튼 */
