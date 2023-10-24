@@ -138,17 +138,31 @@
     position: absolute;
     left: 88px;
     top: 233px;
-    transform: rotate(-8deg);
-    background-image: url(/images/loginMenu.png);
+    transform: rotate(-1deg);
+    background-image: url(/images/mailbox-close.png);
     background-size: 100% auto;
     background-repeat: no-repeat;
     background-position: center;
 }
 /* 쪽지 갯수 표시 */
 .boxNum{
-    margin-top: 50px;
-    margin-left: 16px;
+    padding: 5px;
+    margin-top: 59px;
+    margin-left: -32px;
     width: 30px;
-    height: 32px;
+    height: 30px;
+    background-color: gray;
+    color: white;
+    border-radius: 8px;
 }
+.boxNum p{
+    margin-left: 4px;
+}
+.answerLetter{
+    margin-top: 10px;
+}
+.answerLetter {
+    display: block;
+}
+
 

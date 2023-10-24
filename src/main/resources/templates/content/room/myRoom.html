@@ -28,16 +28,48 @@
             </div>
         </div>
         <div class="letterBox" >
-            <div class="boxNum"><p>1</p></div>
+            <div class="boxNum" data-bs-toggle="modal" data-bs-target="#letter-modal"><p>[[${letterCount}]]</p></div>
         </div> 
     </div>
-    <div class="letterList">
-        <th:block th:each="letter : ${letterList}">
-            <p>[[${letter.letterNum}]]</p>
-            <p>[[${letter.memberId}]]</p>
-            <p>[[${letter.letterContent}]]</p>
-            <p>[[${letter.letterDate}]]</p>
-        </th:block>
+    
+
+    <!-- 쪽지보내기 모달창 -->
+    <div class="modal fade" id="letter-modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title">쪽지 보내기</h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="letterList">
+                    <th:block th:each="letter : ${letterList}">
+                        <hr>
+                            <div class="letterCast">
+                                <p class="letterSender">보낸 사람 : [[${letter.memberId}]]</p>
+                                <p>쪽지 내용 : [[${letter.letterContent}]]</p>
+                                <p>보낸 날짜 : [[${letter.letterDate}]]</p>
+                                <input type="checkbox" name="innerCheck" class="form-check-input chk"  onclick="checkLetter()" th:value="${letter.letterNum}" checked>
+                                <button type="button" class="showinput" onclick="showinput()" th:value="${letter.letterNum}">답장하기</button>
+                            </div>
+                            <div class="answerLetter">
+                                <input type="hidden" id="memberId" th:value="${loginInfo.memberId}">
+                                <input type="hidden" id="memberName" name="memberName" th:value="${letter.memberName}">
+                                <label for="letterContet">메세지</label>
+                                <textarea id="letterContet" name="letterContent"></textarea>
+                                <button class="btn btn-primary sendAnswer">쪽지 보내기</button>
+                            </div>
+                        <hr>
+                    </th:block>
+                </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
+              <button type="button" class="btn btn-primary" onclick="deleteletter()">선택 삭제</button>
+            </div>
+          </div>
+        </div>
     </div>
 
     <!-- todoList 모달창 -->
@@ -70,7 +102,7 @@
                             </li>
                                 <p>D<span>[[${todo.todoStartDate}]]</span>
                                 </p>
-                            <button type="checkbox" id="todoNum" th:onclick="deleteTodo([[${todo.todoNum}]]);"
+                            <button type="button" id="todoNum" th:onclick="deleteTodo([[${todo.todoNum}]]);"
                              th:value="${todo.todoNum}"checked>삭제</button>
                         </ul>
                     </th:block>

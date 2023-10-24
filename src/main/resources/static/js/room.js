@@ -53,7 +53,7 @@ $(document).ready(function() {
     }
 });
 // Bootstrap 모달 창을 닫음
- function closeLetterBox(){
+function closeLetterBox(){
     $('#letterModal').removeClass('show');
     $('#letterModal').addClass('fade');
     $('#letterModal').css('display', 'none');
@@ -102,6 +102,63 @@ function updateStatusMsg(memberId){
             location.href=`/room/updateStatusMsg?memberId=${memberId}&statusMsg=${inputStatusValue}`;
         };
 };
+
+// 쪽지함 체크박스 선택
+function checkLetter(){
+
+    // 내용부에 있는 모든 체크박스
+    const checkboxes = document.querySelectorAll('input[name="innerCheck"]');
+    // 내용부에 체크되어 있는 체크박스
+    const checked = document.querySelectorAll('input[name="innerCheck"]:checked');
+    
+
+    if(checkboxes.length==checked.length){
+        selectAll.checked = true;
+    }
+    else{
+        selectAll.checked =false;
+    }
+
+}
+
+// 선택삭제 버튼 클릭시 실행
+function deleteletter(){
+    // 체크된 체크박스들
+    const checkedChks = document.querySelectorAll('.chk:checked');
+    // 선택된 상품이 없을 경우
+    if(checkedChks.length==0){
+        alert('삭제할 쪽지를 선택하세요.');
+        // 아무것도 없는 return 을 만나면 함수가 끝난다.
+        return ;
+    }
+    if(confirm('선택한 쪽지를 삭제하시겠습니까?')){
+        // 모든 CART_CODE를 가져갈 배열 생성
+        let letterNumArr=[];
+
+        // 삭제하고자하는 CART_CODE들 가져오기
+        checkedChks.forEach(function(chk,index){
+            letterNumArr[index]=chk.value;
+        });
+        // 삭제하러 이동
+        location.href=`/room/deleteLetter?letterNums=${letterNumArr}`;
+    }
+}
+// 답장 input 보이게 하기
+
+function checkLetter(){
+    $('.answerLetter').css('display', 'block');
+ }
+document.addEventListener("DOMContentLoaded", function() {
+    var showButtons = document.querySelectorAll('.showinput');
+
+    showButtons.forEach(function(button) {
+        button.addEventListener('click', function() {
+            var letterNum = this.getAttribute('th:value');
+            var answerLetterDiv = document.getElementsByClassName('answerLetter_' + letterNum);
+            answerLetterDiv.style.display = 'block';
+        });
+    });
+});
 
 
 

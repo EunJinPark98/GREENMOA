@@ -34,8 +34,19 @@ public class RoomServiceImpl implements RoomService{
         sqlSession.insert("letterMapper.insertLetter",letterVO);
     }
 
+
     @Override
     public List<LetterVO> selectLetter(String memberName) {
         return sqlSession.selectList("letterMapper.selectLetter",memberName);
+    }
+
+    @Override
+    public void deleteLetter(LetterVO letterVO) {
+        sqlSession.delete("letterMapper.deleteLetter",letterVO);
+    }
+
+    @Override
+    public List<LetterVO> letterCnt() {
+        return null;
     }
 }

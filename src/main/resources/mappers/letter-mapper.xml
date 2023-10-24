@@ -35,6 +35,19 @@
         WHERE MEMBER_NAME=#{memberName}
         ORDER BY LETTER_NUM DESC
     </select>
+    <!--선택 쪽지 삭제-->
+    <delete id="deleteLetter">
+        DELETE GREEN_LETTER
+        WHERE LETTER_NUM IN
+        <foreach collection="letterNumList" item="letterNum" separator="," open="(" close=")">
+            #{letterNum}
+        </foreach>
+    </delete>
+    <select id="letterCnt" resultMap="letter">
+        SELECT MEMBER_NAME, COUNT(*) AS LETTER_COUNT
+        FROM GREEN_LETTER
+        GROUP BY MEMBER_NAME
+    </select>
 	
 </mapper>
 

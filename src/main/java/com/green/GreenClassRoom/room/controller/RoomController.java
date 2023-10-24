@@ -14,6 +14,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.lang.reflect.Member;
 import java.util.List;
@@ -49,9 +50,17 @@ public class RoomController {
         model.addAttribute("statusMsg",statusMsg);
         System.out.println("$$$$$$$"+statusMsg);
 
-        List<LetterVO> letterList = roomService.selectLetter(letterVO.getMemberName());
-        model.addAttribute("letterList",letterList);
-        System.out.println("@@@@@쪽지 리스트@@@@@"+letterList);
+        // 쪽지 리스트 출력 기능
+        MemberVO loginInfo1 = (MemberVO) session.getAttribute("loginInfo");
+        String memberName = loginInfo1.getMemberName();
+        model.addAttribute("letterList", roomService.selectLetter(memberName));
+
+        // 쪽지 갯수 출력 기능 추가
+        List<LetterVO> letterList = roomService.selectLetter(memberName);
+        model.addAttribute("letterList", letterList);
+        int letterCount = letterList.size();
+        model.addAttribute("letterCount", letterCount);
+
         return "content/room/myRoom";
     }
 
@@ -65,6 +74,15 @@ public class RoomController {
         return "redirect:/room/main";
     }
 
+    // 쪽지 선택 삭제
+    @GetMapping("/deleteLetter")
+    public String deleteLetter(@RequestParam(name = "letterNums") List<String> letterNums, LetterVO letterVO){
+        System.out.println(letterNums);
+        letterVO.setLetterNumList(letterNums);
+        roomService.deleteLetter(letterVO);
+        return "redirect:/room/myRoom";
+    }
+
     // 상태 메세지 수정 기능
     @GetMapping("/updateStatusMsg")
     public String updateStatusMsg(MemberVO memberVO){
@@ -72,6 +90,8 @@ public class RoomController {
         System.out.println("########"+memberVO);
         return "redirect:/room/myRoom";
     }
+
+
 
 
 
