@@ -4,6 +4,7 @@ import com.green.GreenClassRoom.member.vo.MemberVO;
 import lombok.RequiredArgsConstructor;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -38,6 +39,7 @@ public class MemberServiceImpl implements MemberService {
         return sqlSession.selectOne("memberMapper.selectAdmin");
     }
 
+    @Transactional
     @Override
     public int updateStatusMsg(MemberVO memberVO) {
         return sqlSession.update("memberMapper.updateStatusMsg",memberVO);

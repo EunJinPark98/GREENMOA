@@ -48,7 +48,9 @@ public class MemberController {
     @PostMapping("/login")
     public String login(MemberVO memberVO, HttpSession session){
         MemberVO loginInfo=memberService.login(memberVO);
+
         if(loginInfo!=null) {
+            System.out.println("@@@@@@@@@@@@@222" + loginInfo.getStatusMsg());
             session.setAttribute("loginInfo", loginInfo);
         }
         return "/content/member/login_result";

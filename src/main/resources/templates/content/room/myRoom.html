@@ -14,9 +14,9 @@
             <img class="pin" src="/images/pin-red.png" alt="">
         </div>
         <div id="minime">
-            <div class="status-msg">[[${memberInfo.statusMsg}]]</div>
+            <div class="status-msg">[[${loginInfo.statusMsg}]]</div>
             <img th:src="|/images/${loginInfo.minime}.png|">
-            <p class="name">[[${memberInfo.memberName}]]</p>
+            <p class="name">[[${loginInfo.memberName}]]</p>
             <form action="/member/updateStatusMsg" method="post">
                 <input type="hidden" name="memberId" th:value="${loginInfo.memberId}">
                 <input type="text" name="statusMsg" required>

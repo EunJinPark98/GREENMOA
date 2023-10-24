@@ -31,7 +31,7 @@ public class RoomController {
 
     //마이룸
     @GetMapping("/myRoom")
-    public String myRoom(Model model, HttpSession session,MemberVO memberVO){
+    public String myRoom(Model model, HttpSession session){
         MemberVO loginInfo = (MemberVO) session.getAttribute("loginInfo");
         String memberId = loginInfo.getMemberId();
         model.addAttribute("todoList", todoService.selectTodo(memberId));
