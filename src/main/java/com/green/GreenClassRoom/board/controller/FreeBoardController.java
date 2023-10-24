@@ -2,19 +2,14 @@ package com.green.GreenClassRoom.board.controller;
 
 import com.green.GreenClassRoom.board.service.FreeBoardService;
 import com.green.GreenClassRoom.board.vo.FreeBoardVO;
-import com.green.GreenClassRoom.board.vo.QnaPageVO;
 import com.green.GreenClassRoom.board.vo.ReplyVO;
 import com.green.GreenClassRoom.member.vo.MemberVO;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
-import java.util.Collections;
 import java.util.List;
 
 @Controller
@@ -33,14 +28,14 @@ public class FreeBoardController {
         int totalDataCnt = freeBoardService.pagingFreeBoard();
         freeBoardVO.setTotalDataCnt(totalDataCnt);
         freeBoardVO.setPageInfo();
-        return "content/board/free_board_list";
+        return "/content/board/free_board_list";
     }
 
     // 게시글 작성 페이지 이동
     @GetMapping("/freeBoardWrite")
     public String boardWrite(){
 
-        return "content/board/free_board_write";
+        return "/content/board/free_board_write";
     }
 
     // 게시글 작성
@@ -64,6 +59,8 @@ public class FreeBoardController {
         // 댓글 등록이 실행되지 않으면 noCount가 넘어오지 않고, 그 값은 false가 된다.
         // 댓글 등록 시 게시글 목록 페이지로 오면 카운터 무효!
         // noCount 가 true가 아니라면 페이지의 조회수가 올라간다.
+
+        System.out.println("@@!!!!!!!!!!!!!!!!이겁니다@@@@@" + replyVO.getLimit());
         if(!noCount){
             freeBoardService.readCntUp(boardNum);
         }
@@ -77,18 +74,18 @@ public class FreeBoardController {
         List<ReplyVO> replyList = freeBoardService.selectReply(replyVO);
         model.addAttribute("replyList",replyList);
 
-        int totalDataCnt = freeBoardService.pagingFreeBoard();
-        freeBoardVO.setTotalDataCnt(totalDataCnt);
-        freeBoardVO.setPageInfo();
+        model.addAttribute("limit", replyVO.getLimit());
 
-        return "content/board/free_board_detail";
+        model.addAttribute("totalReply", freeBoardService.totalReply(boardNum));
+
+        return "/content/board/free_board_detail";
     }
     // 게시글 수정 페이지 이동
     @GetMapping("/updateBoardForm")
     public String updateBoardForm(int boardNum,Model model){
         FreeBoardVO freeBoardDetail=freeBoardService.selectFreeBoardDetail(boardNum);
         model.addAttribute("freeBoardDetail",freeBoardDetail);
-        return "content/board/free_board_update_page";
+        return "/content/board/free_board_update_page";
     }
 
     // 게시글 수정 기능
@@ -120,4 +117,12 @@ public class FreeBoardController {
         freeBoardService.deleteReply(replyNum);
         return "redirect:/board/freeBoardDetail?replyNum="+replyVO.getReplyNum()+"&boardNum="+replyVO.getBoardNum()+"&replyer="+replyVO.getReplyer() + "&noCount=true";
     }
+
+    // 댓글 더보기 기능
+    @GetMapping("/showReplyMore")
+    public String showReplyMore(ReplyVO replyVO, int limit){
+        replyVO.setLimit(limit);
+        return "redirect:/board/freeBoardDetail?boardNum=" + replyVO.getBoardNum() + "&limit=" + replyVO.getLimit();
+    }
+
 }

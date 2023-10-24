@@ -5,7 +5,7 @@ import lombok.Data;
 import java.util.List;
 
 @Data
-public class ReplyVO {
+public class ReplyVO{
     private int replyNum;
     private int boardNum;
     private String replyText;
@@ -14,4 +14,9 @@ public class ReplyVO {
     private String updateDate;
 //    private List<Integer> replyNumList;
     private String replyEmoji;
+    private int limit;
+
+    public ReplyVO() {
+        this.limit = 4;
+    }
 }

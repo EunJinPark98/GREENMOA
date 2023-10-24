@@ -102,7 +102,9 @@
                       </div>
                     </div>
                   </section>
-                  <input type="button" id="moreBtn" class="btn btn-primary" value="더보기">
+                  <th:block th:if="${totalReply} > 3">
+                    <input type="button" id="moreBtn" class="btn btn-primary" value="더보기" th:if="${totalReply} > ${limit} " th:onclick="showReplyMore([[${freeBoardDetail.boardNum}]],[[${limit}]])">
+                  </th:block>
             </th:block>
             
             <div>

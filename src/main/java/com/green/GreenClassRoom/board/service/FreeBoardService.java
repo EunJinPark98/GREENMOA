@@ -37,6 +37,8 @@ public interface FreeBoardService {
     // 자유게시판 페이징
     public int pagingFreeBoard();
 
+    //댓글의 총 개수
+    public int totalReply(int boardNum);
 
 
 }

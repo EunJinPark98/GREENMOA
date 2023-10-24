@@ -57,3 +57,16 @@ function noticeDelete(noticeBoardNum){
         }
     })
 }
+
+//댓글 더보기
+function showReplyMore(boardNum, limitUp){
+   console.log("리미트 =" + limitUp + "@@@"+ boardNum)
+
+    boardNum = parseInt(boardNum);
+    limitUp = parseInt(limitUp);
+
+    location.href = `/board/showReplyMore?limit=${limitUp + 3}&boardNum=${boardNum}`;
+    
+}
+
+
