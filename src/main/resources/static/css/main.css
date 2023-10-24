@@ -8,27 +8,13 @@ body{
     position: relative;
 }
 
-#classRoom{
-    position: relative;
-    background-image: url(/images/wood.png);
-    background-size: 100% auto;
-    background-position: top;
-    background-repeat: no-repeat;
-    border-radius: 20px;
-    box-sizing: border-box;
-    height: 700px;
-    width: 100%;
-    box-sizing: border-box;
-    padding: 0 10px;
-}
-
 
 /* 클래스룸 미니미들 위치 */
 .teacher{
     position: absolute;
-    top: 11%;
-    left: 40%;
-    width: 190px;
+    top: 20%;
+    left: 45%;
+    width: 100px;
 }
 .teacher img{
     width: 100%;
@@ -237,8 +223,14 @@ body{
     height: 200px;
     border: 2px solid #DEE2E6;
     border-radius: 0.375rem;
-    background-color: #fff;
     overflow-y: scroll; 
+    background-color: rgba(255, 255, 255, 0.2);
+}
+.chatting-fr{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
 }
 
 #chat-messages p{
