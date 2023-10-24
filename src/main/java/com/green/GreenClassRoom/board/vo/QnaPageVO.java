@@ -1,6 +1,6 @@
 package com.green.GreenClassRoom.board.vo;
 
-public class QnaPageVO {
+public class QnaPageVO{
     private int nowPage; //현재 페이지 번호
     private int totalDataCnt; //전체 데이터 개수
     private int displayDataCnt; //한 페이지에 보여지는 데이터의 수

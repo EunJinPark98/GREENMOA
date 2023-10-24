@@ -106,14 +106,38 @@
         )
     </insert>
     <select id="selectReply" resultMap="reply">
-        SELECT REPLY_NUM
+<!--        SELECT REPLY_NUM-->
+<!--            , REPLY_TEXT-->
+<!--            , REPLYER-->
+<!--            , TO_CHAR(REG_DATE,'YYYY-MM-DD') REG_DATE-->
+<!--            , REPLY_EMOJI-->
+<!--        FROM BOARD_REPLY-->
+<!--        WHERE BOARD_NUM=#{boardNum}-->
+<!--        ORDER BY REPLY_NUM DESC-->
+
+
+        SELECT  REPLY_NUM
             , REPLY_TEXT
             , REPLYER
-            , TO_CHAR(REG_DATE,'YYYY-MM-DD') REG_DATE
+            , REG_DATE
             , REPLY_EMOJI
+        FROM (
+        SELECT ROWNUM AS rnum, B.REPLY_NUM, B.REPLY_TEXT, B.REPLYER, TO_CHAR(B.REG_DATE, 'YYYY-MM-DD') REG_DATE, B.REPLY_EMOJI
+        FROM (
+        SELECT REPLY_NUM, REPLY_TEXT, REPLYER, REG_DATE, REPLY_EMOJI
         FROM BOARD_REPLY
-        WHERE BOARD_NUM=#{boardNum}
-        ORDER BY REPLY_NUM
+        WHERE BOARD_NUM = #{boardNum}
+        ORDER BY REG_DATE DESC
+        ) B
+        WHERE ROWNUM &lt; #{limit}
+        )
+        WHERE rnum &gt; 0
+    </select>
+    <!--댓글의 총 개수-->
+    <select id="totalReply" resultType="int">
+        SELECT COUNT(REPLY_NUM)
+        FROM BOARD_REPLY
+        WHERE BOARD_NUM = #{boardNum}
     </select>
     <!--댓글 삭제-->
     <delete id="deleteReply">

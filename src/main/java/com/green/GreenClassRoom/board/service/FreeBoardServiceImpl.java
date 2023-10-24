@@ -63,4 +63,9 @@ public class FreeBoardServiceImpl implements FreeBoardService{
     public int pagingFreeBoard() {
         return sqlSession.selectOne("freeBoardMapper.pagingFreeBoard");
     }
+
+    @Override
+    public int totalReply(int boardNum) {
+        return sqlSession.selectOne("freeBoardMapper.totalReply", boardNum);
+    }
 }
