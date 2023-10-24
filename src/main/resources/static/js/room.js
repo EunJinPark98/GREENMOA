@@ -238,3 +238,57 @@ function scrollToBottom() {
 
 
 // 풀캘린더
+var openCalender = document.querySelector('#openCalender');
+openCalender.addEventListener('click', function() {
+
+    // 캘린더 크기 조정
+  $('#calenderModal').on('shown.bs.modal', function() {           
+    calendar.updateSize(); 
+  });
+
+  var calendarEl = document.getElementById('calendar');
+  var calendar = new FullCalendar.Calendar(calendarEl, {
+    initialView: 'dayGridMonth',
+    editable: true,
+    events: {
+      url: '/getEvents', 
+      method: 'GET'
+    },
+  });
+
+  calendar.render();
+
+
+});
+
+$('#eventForm').on('submit', function(e) {
+    e.preventDefault();
+    
+    var title = $('#calTitle').val();
+    var date = $('#calDate').val();
+
+
+    if (title && date) {
+        var eventData = {
+            calTitle: title,
+            calDate: date,
+        };
+
+        $.ajax({
+            url: '/addEvent', 
+            type: 'POST',
+            data: JSON.stringify(eventData),
+            contentType: 'application/json',
+            success: function(response) {
+                // 서버에서 응답을 받으면 필요한 동작 수행
+                alert(response);
+                
+                calendar.refetchEvents();
+            }
+        });
+    }
+    calendar.refetchEvents();
+
+});
+
+

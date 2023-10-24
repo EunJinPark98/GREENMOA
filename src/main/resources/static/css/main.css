@@ -251,7 +251,9 @@ body{
 
 
 /* 풀캘린더 */
-
+#calendar{
+    height: 800px;
+}
 
 
 
