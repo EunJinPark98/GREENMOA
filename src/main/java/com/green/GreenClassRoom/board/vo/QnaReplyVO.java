@@ -13,4 +13,5 @@ public class QnaReplyVO {
     private String qnaRegDate;
     private String qnaUpdateDate;
     private List<String> replyList;
+    private String qnaReplyEmoji;
 }

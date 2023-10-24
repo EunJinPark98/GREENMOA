@@ -158,7 +158,7 @@ public class QnaBoardController {
         //첨부파일을 추가(게시글 등록때처럼 똑같이)
         System.out.println("!!!!!!!!!!!!" + qnaBoardVO);
         //qnaBoardService.updateFile(qnaBoardVO);
-       // qnaBoardService.updateQnaBoard(qnaBoardVO);
+        // qnaBoardService.updateQnaBoard(qnaBoardVO);
         return "redirect:/board/qnaBoardDetail?qnaBoardNum=" + qnaBoardVO.getQnaBoardNum();
     }
 

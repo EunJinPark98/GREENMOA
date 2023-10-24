@@ -21,6 +21,7 @@
         <result column="QNA_REPLYER" property="qnaReplyer"/>
         <result column="QNA_REG_DATE" property="qnaRegDate"/>
         <result column="QNA_UPDATE_DATE" property="qnaUpdateDate"/>
+        <result column="QNA_REPLY_EMOJI" property="qnaReplyEmoji"/>
     </resultMap>
 
     <!--질문게시판 글 작성 + 이미지 파일 첨부-->
@@ -51,10 +52,17 @@
         SELECT QNA_BOARD_NUM
             , QNA_BOARD_TITLE
             , QNA_BOARD_WRITER
-            , TO_CHAR(QNA_CREATE_DATE, 'YYYY-MM-DD') QNA_CREATE_DATE
             , QNA_READ_CNT
             , ORIGIN_FILE_NAME
             , ATTACHED_FILE_NAME
+            , (SELECT
+                CASE
+                    WHEN TRUNC(SYSDATE) = TRUNC(QNA_CREATE_DATE)
+                    THEN TO_CHAR(QNA_CREATE_DATE, 'HH24:MI')
+                    ELSE TO_CHAR(QNA_CREATE_DATE, 'YYYY-MM-DD')
+                END
+            FROM DUAL) QNA_CREATE_DATE
+
         FROM QNA_BOARD
         <if test='searchText !=null and !searchText.equals("")'>
             WHERE UPPER(${searchType}) LIKE '%'||UPPER(#{searchText})||'%'
@@ -82,7 +90,7 @@
             , QNA_BOARD_TITLE
             , QNA_BOARD_CONTENT
             , QNA_BOARD_WRITER
-            , TO_CHAR(QNA_CREATE_DATE, 'YYYY-MM-DD') QNA_CREATE_DATE
+            , TO_CHAR(QNA_CREATE_DATE, 'YYYY-MM-DD | HH24:MI') QNA_CREATE_DATE
             , QNA_READ_CNT
             , ORIGIN_FILE_NAME
             , ATTACHED_FILE_NAME
@@ -124,12 +132,14 @@
             , QNA_REPLY_TEXT
             , QNA_REPLYER
             , QNA_BOARD_NUM
+            , QNA_REPLY_EMOJI
         )
         VALUES(
             (SELECT NVL(MAX(QNA_REPLY_NUM),0) +1 FROM QNA_BOARD_REPLY)
             , #{qnaReplyText}
             , #{qnaReplyer}
             , #{qnaBoardNum}
+            , #{qnaReplyEmoji}
         )
     </insert>
 
@@ -138,10 +148,17 @@
         SELECT QNA_REPLY_NUM
             , QNA_REPLY_TEXT
             , QNA_REPLYER
-            , TO_CHAR(QNA_REG_DATE,'YYYY-MM-DD') QNA_REG_DATE
+            , (SELECT
+                CASE
+                    WHEN TRUNC(SYSDATE) = TRUNC(QNA_REG_DATE)
+                    THEN TO_CHAR(QNA_REG_DATE, 'HH24:MI')
+                    ELSE TO_CHAR(QNA_REG_DATE, 'YYYY-MM-DD')
+                END
+            FROM DUAL) QNA_REG_DATE
+            , QNA_REPLY_EMOJI
         FROM QNA_BOARD_REPLY
         WHERE QNA_BOARD_NUM = #{qnaBoardNum}
-        ORDER BY QNA_REPLY_NUM DESC
+        ORDER BY QNA_REPLY_NUM
     </select>
 
     <!--답변 삭제-->

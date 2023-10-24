@@ -29,26 +29,26 @@ public class RoomController {
 
     //클래스룸
     @GetMapping("/main")
-    public String main(Model model, HttpSession session,MemberVO memberVO,LetterVO letterVO){
+    public String main(Model model, HttpSession session, MemberVO memberVO, LetterVO letterVO) {
         model.addAttribute("memberList", memberService.selectMemberList());
         model.addAttribute("teacher", memberService.selectAdmin());
 
-        MemberVO loginInfo=(MemberVO) session.getAttribute("loginInfo");
-        model.addAttribute("loginInfo",loginInfo);
-        System.out.println("######"+loginInfo);
+        MemberVO loginInfo = (MemberVO) session.getAttribute("loginInfo");
+        model.addAttribute("loginInfo", loginInfo);
+        System.out.println("######" + loginInfo);
 
         return "/content/room/main";
     }
 
     //마이룸
     @GetMapping("/myRoom")
-    public String myRoom(Model model, HttpSession session,MemberVO memberVO, LetterVO letterVO){
+    public String myRoom(Model model, HttpSession session, MemberVO memberVO, LetterVO letterVO) {
         MemberVO loginInfo = (MemberVO) session.getAttribute("loginInfo");
         String memberId = loginInfo.getMemberId();
         model.addAttribute("todoList", todoService.selectTodo(memberId));
-        MemberVO statusMsg =roomService.selectStatusMsg(memberId);
-        model.addAttribute("statusMsg",statusMsg);
-        System.out.println("$$$$$$$"+statusMsg);
+        MemberVO statusMsg = roomService.selectStatusMsg(memberId);
+        model.addAttribute("statusMsg", statusMsg);
+        System.out.println("$$$$$$$" + statusMsg);
 
         // 쪽지 리스트 출력 기능
         MemberVO loginInfo1 = (MemberVO) session.getAttribute("loginInfo");
@@ -66,17 +66,17 @@ public class RoomController {
 
     //쪽지 보내기 등록
     @PostMapping("/insertLetter")
-    public String insertLetter(LetterVO letterVO,HttpSession session,Model model){
-        MemberVO loginInfo=(MemberVO) session.getAttribute("loginInfo");
+    public String insertLetter(LetterVO letterVO, HttpSession session, Model model) {
+        MemberVO loginInfo = (MemberVO) session.getAttribute("loginInfo");
         letterVO.setMemberId(loginInfo.getMemberId());
         roomService.insertLetter(letterVO);
-        System.out.println("@#@#@#@#"+letterVO);
+        System.out.println("@#@#@#@#" + letterVO);
         return "redirect:/room/main";
     }
 
     // 쪽지 선택 삭제
     @GetMapping("/deleteLetter")
-    public String deleteLetter(@RequestParam(name = "letterNums") List<String> letterNums, LetterVO letterVO){
+    public String deleteLetter(@RequestParam(name = "letterNums") List<String> letterNums, LetterVO letterVO) {
         System.out.println(letterNums);
         letterVO.setLetterNumList(letterNums);
         roomService.deleteLetter(letterVO);
@@ -85,30 +85,17 @@ public class RoomController {
 
     // 상태 메세지 수정 기능
     @GetMapping("/updateStatusMsg")
-    public String updateStatusMsg(MemberVO memberVO){
+    public String updateStatusMsg(MemberVO memberVO) {
         roomService.updateStatusMsg(memberVO);
-        System.out.println("########"+memberVO);
+        System.out.println("########" + memberVO);
         return "redirect:/room/myRoom";
     }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 }
+
+
+
+
+
+
