@@ -24,7 +24,7 @@
             , CAL_DATE
         ) VALUES (
             (SELECT NVL(MAX(CAL_NUM),0) +1 FROM GREEN_CALENDER)
-            , #{carTitle}
+            , #{calTitle}
             , #{calDate}
         )
     </insert>
