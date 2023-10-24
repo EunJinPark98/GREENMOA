@@ -19,7 +19,7 @@
                         <h3>[[${notice.noticeBoardTitle}]]</h3>
                     </div>
                     <div class="col-1 d-grid gap-2 d-md-flex justify-content-md-end col">
-                        <div class="backArrow" onclick="location.href='/board/notice'">뒤로가기</div>
+                        <div class="backArrow" onclick="history.back(-1)">뒤로가기</div>
                     </div>
                 </div>
             
@@ -52,7 +52,7 @@
 
                 <!-- 이전글 다음글 -->
                 <div class="row">
-                    <div class="col-6">
+                    <div class="col">
                         <div th:unless="${nextList == null}">
                             <span>다음</span>
                             <a th:href="@{/board/noticeBoardDetail(noticeBoardNum=${nextList.noticeBoardNum})}">
