@@ -1,6 +1,5 @@
 package com.green.GreenClassRoom.room.controller;
 
-import com.green.GreenClassRoom.board.vo.FreeBoardVO;
 import com.green.GreenClassRoom.member.service.MemberService;
 import com.green.GreenClassRoom.member.vo.MemberVO;
 import com.green.GreenClassRoom.room.service.RoomService;
