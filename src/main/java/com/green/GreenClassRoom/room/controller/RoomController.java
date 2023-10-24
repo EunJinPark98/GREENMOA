@@ -5,7 +5,6 @@ import com.green.GreenClassRoom.member.vo.MemberVO;
 import com.green.GreenClassRoom.room.service.RoomService;
 import com.green.GreenClassRoom.room.service.TodoService;
 import com.green.GreenClassRoom.room.vo.LetterVO;
-import com.green.GreenClassRoom.room.vo.TodoVO;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -13,9 +12,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-
-import java.lang.reflect.Member;
-import java.util.List;
 
 @Controller
 @RequestMapping("/room")
@@ -67,6 +63,13 @@ public class RoomController {
         System.out.println("########"+memberVO);
         return "redirect:/room/myRoom";
     }
+
+
+
+
+
+
+
 
 
 
