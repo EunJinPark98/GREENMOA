@@ -77,9 +77,8 @@ https://www.notion.so/6417d69b7005420eb74bf380d629e828
 <br>
 <br>
 
-![image](https://github.com/EunJinPark98/GREENMOA/assets/120006805/23b5f25f-df6c-43e6-b758-cb07b96f5437) <br>
+![image](https://github.com/EunJinPark98/GREENMOA/assets/120006805/6e0df20c-9516-4788-b321-aff998f75eef)
 
-화이팅...!
 
 
 </div>
