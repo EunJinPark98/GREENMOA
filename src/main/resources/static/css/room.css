@@ -3,20 +3,23 @@
 /* 마이룸 */
 #myRoom{
     position: relative;
-    background-image: url(/images/room_frame.jpg);
-    background-size: 100% 100%;
-    background-position: center;
+    background-image: url(/images/myroom-frame.png);
+    background-size: 100% auto;
+    background-position: top;
     background-repeat: no-repeat;
     border-radius: 20px;
-    height: 400px;
+    height: 1000px;
+    width: 788px;
     object-fit: cover;
+    box-sizing: border-box;
+    margin-left: -10px;
 }
 
 /* 미니미 */
 #minime{
     position: absolute;
-    right: 30%;
-    top: 0;
+    right: 36vw;
+    top: 50%;
     width: 150px;
 }
 
@@ -38,9 +41,9 @@
 /* 상태메세지 */
 .status-msg{
     position: relative;
-    width: 240px;
-    height: 180px;
-    background-image: url(/images/loginMinime1.png);
+    width: 337px;
+    height: 146px;
+    background-image: url(/images/myroom-msg.png);
     background-size: 100% auto;
     background-repeat: no-repeat;
     background-position: center;
@@ -60,14 +63,14 @@
     display: flex;
     flex-wrap: wrap;
     position: absolute;
-    top: 19px;
+    top: 10px;
     left: 10px;    
 }
 #input-status-msg{
     display: none;
     border: none;
     position: absolute;
-    top: 27px;
+    top: 13px;
     left: 28px;
     width: 74%;
     height: 69%;
@@ -79,8 +82,8 @@
 }
 .btnClose {
     position: absolute;
-    top: 20px;
-    right: 15px;
+    top: 30px;
+    right: 25px;
 	display:inline-block;
 	width:20px;
 	height:20px;
