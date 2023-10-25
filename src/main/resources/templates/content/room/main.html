@@ -29,6 +29,8 @@
               <th:block th:if="${memberList != null}">
                   <th:block th:each="member : ${memberList}">
                       <div class="member">
+                        <!-- 채팅 말풍선 -->
+                        <div th:class="'chat-bubble ' + 'member-' + ${member.memberId}"></div>
                           <!-- 미니미 말풍선 -->
                           <div class="minmeBubble" th:if="${session.loginInfo != null}">
                             <p class="letterText" data-bs-toggle="modal" th:attr="data-membername=${member.memberName}">쪽지보내기</p>
@@ -101,6 +103,7 @@
           <div class="chatting-fr">
             <th:block th:if="${session.loginInfo}!=null">
               <input id="sender" type="hidden" th:attr="data-sender=${session.loginInfo.memberName}">
+              <input id="memId" type="hidden" th:attr="data-id=${session.loginInfo.memberId}">
             </th:block>
             <div id="chat" class="container-md">
                 <h3>채팅</h3>

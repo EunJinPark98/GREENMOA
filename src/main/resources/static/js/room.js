@@ -197,12 +197,22 @@ function sendMessage() {
     var messageInput = document.getElementById('message').value;
     var sender = "외부인"
     var senderElement = document.getElementById('sender');
-    if (senderElement) {
-        var name = senderElement.getAttribute('data-sender');
-        if (name) sender = name;
-    }
+    var idElement = document.getElementById('memId');
+    var id = "외부인"
 
-    socket.send(JSON.stringify({'content': messageInput, 'sender' : sender}));
+    if(senderElement){
+        var name = senderElement.getAttribute('data-sender');
+        if (name){
+            sender = name;
+        } 
+    }
+    if(idElement){
+        id = idElement.getAttribute('data-id');
+    }
+        
+
+
+    socket.send(JSON.stringify({'content': messageInput, 'sender' : sender, 'id' : id}));
 
     document.getElementById('message').value = '';
 }
@@ -210,12 +220,12 @@ function sendMessage() {
 // 메시지 표시
 socket.onmessage = function(event) {
     var message = JSON.parse(event.data);
-    showMessage(message.content, message.sender);
+    showMessage(message.content, message.sender, message.id);
     scrollToBottom();
 };
 
 
-function showMessage(message, sender) {
+function showMessage(message, sender, id) {
     console.log("보내는사람 : " + sender);
     console.log("메세지 : " + message);
     
@@ -224,6 +234,17 @@ function showMessage(message, sender) {
     msg.appendChild(document.createTextNode(sender + " : " + message));
 
     chatMessages.appendChild(msg);
+
+    // 채팅 말풍선 나타나기
+    if(id != '없음'){
+        let chatBubble = document.querySelector('.member-' + id);
+        chatBubble.style.display = 'block';
+        chatBubble.innerHTML = message;
+        setTimeout(function() {
+            chatBubble.style.display = 'none';
+        }, 1000); // 2초는 2000 밀리초로 표현
+    }
+
 }
 
 

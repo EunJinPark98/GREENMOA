@@ -12,7 +12,7 @@ body{
 /* 클래스룸 미니미들 위치 */
 .teacher{
     position: absolute;
-    top: 20%;
+    top: 18%;
     left: 45%;
     width: 100px;
 }
@@ -28,7 +28,7 @@ body{
 }
 .mini-fr{
     position: absolute;
-    top: 55%;
+    top: 40%;
     left: 0;
     display: flex;
     justify-content: center;
@@ -138,12 +138,13 @@ body{
     height: 75px;
     text-indent: -99999px;
     position: absolute;
-    top: 41%;
-    right: 31%;
+    top: 25%;
+    right: 27%;
+    z-index: 800
 }
 
 .work-icon:hover + .work-btn{
-    top: 28%;
+    transform: translateY(20px);
 }
 
 .work-btn{
@@ -154,14 +155,15 @@ body{
     width: 100px;
     height: 100px;
     position: absolute;
-    top: 30%;
-    right: 30%;
+    top: 15%;
+    right: 27%;
     display: flex;
     justify-content: center;
     align-items: center;
     font-size: 20px;
     color: #fff;
     letter-spacing: 2px;
+    z-index: 1000;
 }
 
 .bounce{
@@ -249,31 +251,21 @@ body{
     width: 10%;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+.chat-bubble{
+    position: absolute;
+    top: -60px;
+    left: 0;
+    width: 100px;
+    height: 80px;
+    background-image: url(/images/bubble_chat2.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 100% auto;
+    z-index: 1200;
+    padding: 7px 5px;
+    line-height: 0.9rem;
+    display: none;
+}
 
 
 
