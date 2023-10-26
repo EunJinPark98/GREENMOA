@@ -41,7 +41,17 @@
                           <!-- 미니미 -->
                           <img class="minime-img" th:src="|/images/${member.minime}.png|">
                           <input type="hidden" id="memberName" name="memberName" th:value="${member.memberName}">
-                          <p class="name">[[${member.memberName}]]</p>
+                          <div class="nameTag">
+                            <div class="on-off">
+                              <th:block th:if="${member.onOff == 1}">
+                                <img class="connect-on" src="/images/connectOn.png" alt="">
+                              </th:block>
+                              <th:block th:if="${member.onOff == 0}">
+                                <img class="connect-off" src="/images/connectOff.png" alt="">
+                              </th:block>
+                            </div>
+                            <h6>[[${member.memberName}]]</h6>
+                          </div>
                       </div>
                       
                       <!-- 쪽지 보내기 모달창 -->
@@ -167,13 +177,29 @@
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-              과제리스트
+              <div class="accordion" id="workAccordion">
+                <div class="accordion-item" th:each="work, state : ${workList}">
+                  <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" th:data-bs-target="${'#my-work-' + state.index}" aria-expanded="true" aria-controls="collapseOne">
+                      [[${work.workTitle}]] <span style="margin-left: 5px;">기한 : [[${work.deadLine}]]</span>
+                    </button>
+                  </h2>
+                  <div  th:id="${'my-work-' + state.index}" class="accordion-collapse collapse" data-bs-parent="#workAccordion">
+                    <div class="accordion-body">
+                      [[${work.workContent}]]
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
+
+
+
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
-              <th:block th:if="${session.loginInfo != null && session.loginInfo.memberRoll == 'ADMIN'}">
+              <!-- <th:block th:if="${session.loginInfo != null && session.loginInfo.memberRoll == 'ADMIN'}"> -->
                 <button type="button" class="btn btn-primary">과제 등록</button>
-              </th:block>
+              <!-- </th:block> -->
             </div>
           </div>
         </div>

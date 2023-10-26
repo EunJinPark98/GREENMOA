@@ -4,6 +4,7 @@ import com.green.GreenClassRoom.member.service.MemberService;
 import com.green.GreenClassRoom.member.vo.MemberVO;
 import com.green.GreenClassRoom.room.service.RoomService;
 import com.green.GreenClassRoom.room.service.TodoService;
+import com.green.GreenClassRoom.room.service.WorkService;
 import com.green.GreenClassRoom.room.vo.LetterVO;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
@@ -23,16 +24,20 @@ public class RoomController {
     private final MemberService memberService;
     private final TodoService todoService;
     private final RoomService roomService;
+    private final WorkService workService;
 
     //클래스룸
     @GetMapping("/main")
     public String main(Model model, HttpSession session, MemberVO memberVO, LetterVO letterVO) {
+
         model.addAttribute("memberList", memberService.selectMemberList());
         model.addAttribute("teacher", memberService.selectAdmin());
 
         MemberVO loginInfo = (MemberVO) session.getAttribute("loginInfo");
         model.addAttribute("loginInfo", loginInfo);
-        System.out.println("######" + loginInfo);
+
+        model.addAttribute("workList", workService.selectWorkList());
+
 
         return "/content/room/main";
     }
@@ -87,6 +92,8 @@ public class RoomController {
         System.out.println("########" + memberVO);
         return "redirect:/room/myRoom";
     }
+
+
 
 
 }
