@@ -228,7 +228,6 @@
             movingElement.addEventListener('click', () => {
             movingElement.classList.add('active');
             });
-    
         document.addEventListener('keydown', (event) => {
             if (movingElement.classList.contains('active')) {
                 event.preventDefault(); // 스크롤 이벤트 중단
@@ -236,6 +235,9 @@
                 const style = getComputedStyle(movingElement);
                 let left = parseFloat(style.left) || 0;
                 let top = parseFloat(style.top) || 0;
+
+                 // 미니미 이미지 엘리먼트 선택
+                const minimeImage = movingElement.querySelector('.minime-img');
     
                 switch (event.key) {
                     case 'ArrowUp':
@@ -246,9 +248,11 @@
                         break;
                     case 'ArrowLeft':
                         left -= step;
+                        minimeImage.src = '/images/minimeA_1left.png';
                         break;
                     case 'ArrowRight':
                         left += step;
+                        minimeImage.src = '/images/minimeA_1right.png';
                         break;
                 }
     
