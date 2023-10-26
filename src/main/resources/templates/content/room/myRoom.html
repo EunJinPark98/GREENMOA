@@ -28,28 +28,15 @@
             </div>
         </div>
 
-        <!-- <div class="letterBox">
-            <div th:if="${loginInfo.memberId== and ${letterList != null}}">
-                <div class="openLetterBox">
-                    <div class="boxNum" data-bs-toggle="modal" data-bs-target="#letter-modal"><p>[[${letterCount}]]</p></div>
-                </div>
-            </div>
-            <div th:unless="${memberNamesMatch and ${letterList != null}}">
-                <div class="closeLetterBox" >
-                </div>
-            </div>
-        </div> -->
-
-        <div class="letterBox">
+        <div th:if="${letterCount > 0}">
             <div class="openLetterBox">
-                <div class="boxNum" data-bs-toggle="modal" data-bs-target="#letter-modal"><p>[[${letterCount}]]</p></div>
+                <div class="boxNum" data-bs-toggle="modal" data-bs-target="#letter-modal">
+                    <p th:text="${letterCount}"></p>
+                </div>
             </div>
         </div>
-        <!-- <div class="letterBox">
-            <div class="closeLetterBox" >
-            </div>
-        </div> -->
-        
+        <div th:unless="${letterCount > 0}" class="closeLetterBox">
+        </div>
     </div>
     
 
@@ -70,7 +57,7 @@
                                 <p class="letterSender">보낸 사람 : [[${letter.fromId}]]</p>
                                 <p>쪽지 내용 : [[${letter.letterContent}]]</p>
                                 <p>보낸 날짜 : [[${letter.letterDate}]]</p>
-                                <input type="checkbox" name="innerCheck" class="form-check-input chk"  onclick="checkLetter()" th:value="${letter.letterNum}" checked>
+                                <input type="checkbox" name="innerCheck" class="form-check-input chk"  onclick="checkLetter()" th:value="${letter.letterNum}">
                                 <button type="button" class="showinput" onclick="showinput()">답장하기</button>
                             </div>
                             <div class="answerLetter">

@@ -42,7 +42,7 @@
     <delete id="deleteTodoList">
         DELETE TODO_LIST
         WHERE TODO_NUM =#{todoNum}
-        AND TO_DATE(TO_CHAR(SYSDATE, 'YYYYMMDD'))-TO_DATE(TO_CHAR(TODO_FINISH_DATE, 'YYYYMMDD')) &gt; 0
+        OR TO_DATE(TO_CHAR(SYSDATE, 'YYYYMMDD'))-TO_DATE(TO_CHAR(TODO_FINISH_DATE, 'YYYYMMDD')) &gt; 0
     </delete>
 
 </mapper>
