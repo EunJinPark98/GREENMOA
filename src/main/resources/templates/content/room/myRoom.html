@@ -27,19 +27,39 @@
                 <p class="name">[[${loginInfo.memberName}]]</p>
             </div>
         </div>
-        <div class="letterBox" >
-            <div class="boxNum" data-bs-toggle="modal" data-bs-target="#letter-modal"><p>[[${letterCount}]]</p></div>
-        </div> 
+
+        <!-- <div class="letterBox">
+            <div th:if="${loginInfo.memberId== and ${letterList != null}}">
+                <div class="openLetterBox">
+                    <div class="boxNum" data-bs-toggle="modal" data-bs-target="#letter-modal"><p>[[${letterCount}]]</p></div>
+                </div>
+            </div>
+            <div th:unless="${memberNamesMatch and ${letterList != null}}">
+                <div class="closeLetterBox" >
+                </div>
+            </div>
+        </div> -->
+
+        <div class="letterBox">
+            <div class="openLetterBox">
+                <div class="boxNum" data-bs-toggle="modal" data-bs-target="#letter-modal"><p>[[${letterCount}]]</p></div>
+            </div>
+        </div>
+        <!-- <div class="letterBox">
+            <div class="closeLetterBox" >
+            </div>
+        </div> -->
+        
     </div>
     
 
-    <!-- 쪽지보내기 모달창 -->
+    <!-- 쪽지 모달창 -->
     <div class="modal fade" id="letter-modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
     aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">
-              <h1 class="modal-title">쪽지 보내기</h1>
+              <h1 class="modal-title">쪽지</h1>
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
@@ -47,18 +67,19 @@
                     <th:block th:each="letter : ${letterList}">
                         <hr>
                             <div class="letterCast">
-                                <p class="letterSender">보낸 사람 : [[${letter.memberId}]]</p>
+                                <p class="letterSender">보낸 사람 : [[${letter.fromId}]]</p>
                                 <p>쪽지 내용 : [[${letter.letterContent}]]</p>
                                 <p>보낸 날짜 : [[${letter.letterDate}]]</p>
                                 <input type="checkbox" name="innerCheck" class="form-check-input chk"  onclick="checkLetter()" th:value="${letter.letterNum}" checked>
-                                <button type="button" class="showinput" onclick="showinput()" th:value="${letter.letterNum}">답장하기</button>
+                                <button type="button" class="showinput" onclick="showinput()">답장하기</button>
                             </div>
                             <div class="answerLetter">
-                                <input type="hidden" id="memberId" th:value="${loginInfo.memberId}">
-                                <input type="hidden" id="memberName" name="memberName" th:value="${letter.memberName}">
-                                <label for="letterContet">메세지</label>
-                                <textarea id="letterContet" name="letterContent"></textarea>
-                                <button class="btn btn-primary sendAnswer">쪽지 보내기</button>
+                                <form action="/room/sendLetter" method="post">
+                                    <input type="hidden" id="fromId" name="fromId" th:value="${loginInfo.memberId}">
+                                    <input type="hidden" id="memberId" name="memberId" th:value="${letter.fromId}">
+                                    <textarea id="letterContet" name="letterContent"></textarea>
+                                    <input type="submit" class="btn btn-primary sendAnswer" value="쪽지 보내기"></input>
+                                </form>
                             </div>
                         <hr>
                     </th:block>

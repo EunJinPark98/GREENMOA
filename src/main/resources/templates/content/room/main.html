@@ -31,53 +31,35 @@
                       <div class="member">
                           <!-- 미니미 말풍선 -->
                           <div class="minmeBubble" th:if="${session.loginInfo != null}">
-                            <p class="letterText" data-bs-toggle="modal" th:attr="data-membername=${member.memberName}">쪽지보내기</p>
+                            <p class="letterText" th:attr="data-membername=${member.memberName}, data-memberid=${member.memberId}"  onclick="openLetterBox(this)">쪽지보내기</p>
                           </div>
                           <div class="minmeBubble" th:unless="${session.loginInfo != null}">
-                            <p class="letterText">로그인 하세요.</p>
+                            <p class="haveLogin">로그인 하세요.</p>
                           </div>
                           <!-- 미니미 -->
                           <img class="minime-img" th:src="|/images/${member.minime}.png|">
                           <input type="hidden" id="memberName" name="memberName" th:value="${member.memberName}">
                           <p class="name">[[${member.memberName}]]</p>
                       </div>
-                      
-                      <!-- 쪽지 보내기 모달창 -->
-                      <div class="modal fade" id="letterModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-                      aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-body modal-body">
-                                  <div class="letter">
-                                    <h3>[[${member.memberName}]]에게 쪽지보내기</h3>
-                                    <form action="/room/insertLetter" method="post">
-                                      <div th:if="${session.loginInfo != null}">
-                                        <div>
-                                          <input type="hidden" id="memberId" th:value="${loginInfo.memberId}">
-                                        </div>
-                                      </div>
-                                      <div th:unless="${session.loginInfo != null}">
-                                        
-                                      </div>
-                                      <div>
-                                          <!-- <label for="memberName">받는 사람</label> -->
-                                          <input type="hidden" id="memberName" name="memberName" th:value="${member.memberName}">
-                                      </div>
-                                      <div>
-                                          <label for="letterContet">메세지</label>
-                                          <textarea id="letterContet" name="letterContent"></textarea>
-                                      </div>
-                                      <ul>
-                                          <li><input type="submit" class="btn btn-primary" value="보내기"></li>
-                                          <li><button type="button" class="btn btn-secondary" onclick="closeLetterBox()">닫기</button></li>
-                                      </ul>
-                                    </form>
-                                </div>
-                                </div>
-                            </div>
+                      <!-- 쪽지 보내기창 -->
+                      <div class="letter">
+                        <div class="letterName">
+                          <h3  th:attr="data-membername=${member.memberName}"></h3>
                         </div>
-                      </div>
-
+                        <form action="/room/insertLetter" method="post">
+                            <div class="getMemberId">
+                              <input type="hidden" id="memberId" name="memberId" th:value="${member.memberId}">
+                            </div>
+                          <div class="letterTextarea">
+                              <textarea id="letterContet" name="letterContent"></textarea>
+                          </div>
+                          <div class="letterButton">
+                            <input type="submit" class="btn btn-primary" value="보내기">
+                          <button type="button" class="btn btn-secondary" onclick="closeLetterBox()">닫기</button>
+                          </div>
+                          
+                        </form>
+                    </div>
                   </th:block>
               </th:block>
             </div>

@@ -20,44 +20,31 @@ $('.minime-img').click(function() {
     lastClickedBubble = currentBubble;
 });
 
-// 쪽지보내기 버튼을 클릭할 때 이벤트 처리
-$('.minmeBubble p.letterText').click(function() {
-    // 클릭된 .minmeBubble 요소의 부모인 .member에서 클래스가 .name인 요소의 텍스트 값을 가져오기
-    var memberName = $(this).closest('.member').find('.name').text();
-    
-    // 모달 창 안의 #memberName 입력 필드에 선택된 회원의 이름 할당
-    $('#letterModal #memberName').val(memberName);
-});
 
-$(document).ready(function() {
-    // 쪽지보내기 버튼을 클릭할 때 이벤트 처리
-    $('.minmeBubble p.letterText').click(function() {
-        // data-membername 속성을 통해 memberName 값을 가져옴
-        var memberName = $(this).data('membername');
-        
-        // sendLetter 함수 호출
-        sendLetter(memberName);
-    });
+// 쪽지 보내기 클릭시 쪽지 보내기 창 열리기 닫히기
+function openLetterBox(element) {
+    var memberName = element.getAttribute('data-membername');
+    var memberId = element.getAttribute('data-memberid');
     
-    // sendLetter 함수 정의
-    function sendLetter(memberName) {
-        // 여기서 memberName을 사용하여 모달 창의 제목과 input 값 업데이트
-        $('#letterModal h3').text(memberName + '에게 쪽지보내기'); // 모달 창 제목 업데이트
-        $('#memberName').val(memberName); // 숨겨진 input 값 업데이트
+    document.querySelector('.letter h3').setAttribute('data-membername', memberName);
+    document.querySelector('#memberId').setAttribute('data-memberid', memberId);
 
-        // 모달 창을 보이게 변경
-        $('#letterModal').removeClass('fade');
-        $('#letterModal').addClass('show');
-        $('#letterModal').css('display', 'block');
-        
-    }
-});
-// Bootstrap 모달 창을 닫음
-function closeLetterBox(){
-    $('#letterModal').removeClass('show');
-    $('#letterModal').addClass('fade');
-    $('#letterModal').css('display', 'none');
- }
+    document.querySelector('.letter h3').textContent = memberName + '에게 쪽지보내기';
+    document.querySelector('.getMemberId input').value = memberId;
+    
+    document.querySelector('.letter').style.display = 'block';
+}
+
+function closeLetterBox() {
+
+    document.querySelector('.letter h3').removeAttribute('data-membername');
+    document.querySelector('#memberId').removeAttribute('data-memberid');
+    
+    document.querySelector('.letter h3').textContent = '';
+    
+    document.querySelector('.letter').style.display = 'none';
+}
+
 
 
 
@@ -145,20 +132,17 @@ function deleteletter(){
 }
 // 답장 input 보이게 하기
 
-function checkLetter(){
-    $('.answerLetter').css('display', 'block');
- }
-document.addEventListener("DOMContentLoaded", function() {
-    var showButtons = document.querySelectorAll('.showinput');
+function showinput() {
+    var clickedButton = event.target;
+    var letterCast = clickedButton.closest('.letterCast');
+    var answerLetterDiv = letterCast.nextElementSibling;
+    if (answerLetterDiv.style.display === 'none' || answerLetterDiv.style.display === '') {
+        answerLetterDiv.style.display = 'block';
+    } else {
+        answerLetterDiv.style.display = 'none';
+    }
+}
 
-    showButtons.forEach(function(button) {
-        button.addEventListener('click', function() {
-            var letterNum = this.getAttribute('th:value');
-            var answerLetterDiv = document.getElementsByClassName('answerLetter_' + letterNum);
-            answerLetterDiv.style.display = 'block';
-        });
-    });
-});
 
 
 

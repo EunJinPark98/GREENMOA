@@ -7,7 +7,7 @@ import java.util.List;
 @Data
 public class LetterVO {
     private int letterNum;
-    private String memberName;
+    private String fromId;
     private String memberId;
     private String letterContent;
     private String letterDate;

@@ -46,17 +46,19 @@ public class RoomController {
         MemberVO statusMsg = roomService.selectStatusMsg(memberId);
         model.addAttribute("statusMsg", statusMsg);
         System.out.println("$$$$$$$" + statusMsg);
+        model.addAttribute("loginInfo", loginInfo);
 
         // 쪽지 리스트 출력 기능
         MemberVO loginInfo1 = (MemberVO) session.getAttribute("loginInfo");
-        String memberName = loginInfo1.getMemberName();
-        model.addAttribute("letterList", roomService.selectLetter(memberName));
+        String memberId1 = loginInfo1.getMemberId();
+        model.addAttribute("letterList", roomService.selectLetter(memberId1));
 
         // 쪽지 갯수 출력 기능 추가
-        List<LetterVO> letterList = roomService.selectLetter(memberName);
+        List<LetterVO> letterList = roomService.selectLetter(memberId);
         model.addAttribute("letterList", letterList);
         int letterCount = letterList.size();
         model.addAttribute("letterCount", letterCount);
+
 
         return "content/room/myRoom";
     }
@@ -65,10 +67,17 @@ public class RoomController {
     @PostMapping("/insertLetter")
     public String insertLetter(LetterVO letterVO, HttpSession session, Model model) {
         MemberVO loginInfo = (MemberVO) session.getAttribute("loginInfo");
-        letterVO.setMemberId(loginInfo.getMemberId());
+        letterVO.setFromId(loginInfo.getMemberId());
+        System.out.println("테이블함쌓을거야@@@@@@" + letterVO);
+
         roomService.insertLetter(letterVO);
-        System.out.println("@#@#@#@#" + letterVO);
         return "redirect:/room/main";
+    }
+    // 답장 보내기
+    @PostMapping("/sendLetter")
+    public String sendLetter(LetterVO letterVO, HttpSession session, Model model) {
+        roomService.insertLetter(letterVO);
+        return "redirect:/room/myRoom";
     }
 
     // 쪽지 선택 삭제

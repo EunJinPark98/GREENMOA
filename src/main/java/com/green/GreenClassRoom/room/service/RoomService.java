@@ -20,7 +20,7 @@ public interface RoomService {
     public void insertLetter(LetterVO letterVO);
 
     // 쪽지 확인
-    public List<LetterVO> selectLetter(String memberName);
+    public List<LetterVO> selectLetter(String memberId);
 
     // 쪽지 선택 삭제
     public void deleteLetter(LetterVO letterVO);
