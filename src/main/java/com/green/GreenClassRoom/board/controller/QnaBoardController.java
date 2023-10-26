@@ -1,9 +1,8 @@
 package com.green.GreenClassRoom.board.controller;
 
 import com.green.GreenClassRoom.board.service.QnaBoardService;
-import com.green.GreenClassRoom.board.vo.BookMarkVO;
+import com.green.GreenClassRoom.board.vo.QnaBookMarkVO;
 import com.green.GreenClassRoom.board.vo.QnaBoardVO;
-import com.green.GreenClassRoom.board.vo.QnaPageVO;
 import com.green.GreenClassRoom.board.vo.QnaReplyVO;
 import com.green.GreenClassRoom.member.vo.MemberVO;
 import com.green.GreenClassRoom.util.ConstantVariable;
@@ -71,7 +70,7 @@ public class QnaBoardController {
     @GetMapping("/qnaBoardDetail")
     public String qnaBoardDetail(int qnaBoardNum, Model model, QnaReplyVO qnaReplyVO,
                                  @RequestParam(required = false, defaultValue = "false") boolean noCount,
-                                 HttpSession session, QnaBoardVO qnaBoardVO, BookMarkVO bookMarkVO){
+                                 HttpSession session, QnaBoardVO qnaBoardVO, QnaBookMarkVO qnaBookMarkVO){
 
         MemberVO loginInfo=(MemberVO) session.getAttribute("loginInfo");
         qnaBoardVO.setQnaBoardWriter(loginInfo.getMemberId());
@@ -97,9 +96,9 @@ public class QnaBoardController {
         model.addAttribute("totalQnaReply", qnaBoardService.totalQnaReply(qnaBoardNum));
 
         //현재 상세보기 하려는 게시글을 내가 북마크로 추가한 게시글인가?
-        System.out.println(bookMarkVO + "@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
-        bookMarkVO.setMemberId(loginInfo.getMemberId());
-        model.addAttribute("insertBookMark", qnaBoardService.selectInsertBookMark(bookMarkVO));
+        System.out.println(qnaBookMarkVO + "@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
+        qnaBookMarkVO.setMemberId(loginInfo.getMemberId());
+        model.addAttribute("insertBookMark", qnaBoardService.selectInsertBookMark(qnaBookMarkVO));
 
         return "content/board/qna_board_detail";
     }

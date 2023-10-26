@@ -24,8 +24,8 @@
         <result column="QNA_REPLY_EMOJI" property="qnaReplyEmoji"/>
     </resultMap>
     <!--북마크-->
-    <resultMap id="bookMark" type="com.green.GreenClassRoom.board.vo.BookMarkVO">
-        <id column="BOOK_MARK_NUM" property="bookMarkNum"/>
+    <resultMap id="qnaBookMark" type="com.green.GreenClassRoom.board.vo.QnaBookMarkVO">
+        <id column="QNA_BOOK_MARK_NUM" property="qnaBookMarkNum"/>
         <result column="QNA_BOARD_NUM" property="qnaBoardNum"/>
         <result column="MEMBER_ID" property="memberId"/>
     </resultMap>
@@ -203,9 +203,9 @@
     </select>
 
     <!--내가 선택한 질문 게시글이 북마크가 추가되어 있는지 확인-->
-    <select id="selectInsertBookMark" resultMap="bookMark">
-        SELECT BOOK_MARK_NUM
-        FROM BOOK_MARK
+    <select id="selectInsertBookMark" resultMap="qnaBookMark">
+        SELECT QNA_BOOK_MARK_NUM
+        FROM QNA_BOOK_MARK
         WHERE QNA_BOARD_NUM = #{qnaBoardNum}
         AND MEMBER_ID = #{memberId}
     </select>

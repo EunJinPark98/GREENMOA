@@ -1,9 +1,8 @@
 package com.green.GreenClassRoom.board.service;
 
-import com.green.GreenClassRoom.board.vo.BookMarkVO;
+import com.green.GreenClassRoom.board.vo.QnaBookMarkVO;
 import com.green.GreenClassRoom.board.vo.QnaBoardVO;
 import com.green.GreenClassRoom.board.vo.QnaReplyVO;
-import com.green.GreenClassRoom.board.vo.ReplyVO;
 
 import java.util.List;
 
@@ -52,6 +51,6 @@ public interface QnaBoardService {
     public int totalQnaReply(int qnaBoardNum);
 
     //내가 선택한 질문 게시글이 북마크가 추가되어 있는지 확인
-    public BookMarkVO selectInsertBookMark(BookMarkVO bookMarkVO);
+    public QnaBookMarkVO selectInsertBookMark(QnaBookMarkVO qnaBookMarkVO);
 
 }
