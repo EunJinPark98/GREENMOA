@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 해당 파일에 모든 쿼리문을 작성 -->
+<mapper namespace="bookMarkMapper">
+    <resultMap id="bookMark" type="com.green.GreenClassRoom.board.vo.BookMarkVO">
+        <id column="BOOK_MARK_NUM" property="bookMarkNum"/>
+        <result column="QNA_BOARD_NUM" property="qnaBoardNum"/>
+        <result column="MEMBER_ID" property="memberId"/>
+    </resultMap>
+
+    <!--게시글 북마크 조회-->
+    <select id="selectBookMark" resultMap="bookMark">
+        SELECT QNA_BOARD_NUM
+        FROM BOOK_MARK
+        WHERE MEMBER_ID = #{memberId}
+    </select>
+
+    <!--게시글 북마크 등록-->
+    <insert id="insertBookMark">
+        INSERT INTO BOOK_MARK (
+        BOOK_MARK_NUM
+        , QNA_BOARD_NUM
+        , MEMBER_ID
+        ) VALUES (
+        (SELECT NVL(MAX(BOOK_MARK_NUM),0) +1 FROM BOOK_MARK)
+        , #{qnaBoardNum}
+        , #{memberId}
+        )
+    </insert>
+
+    <!--게시글 북마크 취소-->
+    <delete id="deleteBookMark">
+        DELETE BOOK_MARK
+        WHERE QNA_BOARD_NUM = #{qnaBoardNum}
+        AND MEMBER_ID = #{memberId}
+    </delete>
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

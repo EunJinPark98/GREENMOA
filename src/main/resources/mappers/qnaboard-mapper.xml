@@ -4,7 +4,7 @@
 <!-- 해당 파일에 모든 쿼리문을 작성 -->
 <mapper namespace="qnaBoardMapper">
     <resultMap id="qnaBoard" type="com.green.GreenClassRoom.board.vo.QnaBoardVO">
-        <result column="QNA_BOARD_NUM" property="qnaBoardNum"/>
+        <id column="QNA_BOARD_NUM" property="qnaBoardNum"/>
         <result column="QNA_BOARD_TITLE" property="qnaBoardTitle"/>
         <result column="QNA_BOARD_CONTENT" property="qnaBoardContent"/>
         <result column="QNA_BOARD_WRITER" property="qnaBoardWriter"/>
@@ -23,6 +23,13 @@
         <result column="QNA_UPDATE_DATE" property="qnaUpdateDate"/>
         <result column="QNA_REPLY_EMOJI" property="qnaReplyEmoji"/>
     </resultMap>
+    <!--북마크-->
+    <resultMap id="bookMark" type="com.green.GreenClassRoom.board.vo.BookMarkVO">
+        <id column="BOOK_MARK_NUM" property="bookMarkNum"/>
+        <result column="QNA_BOARD_NUM" property="qnaBoardNum"/>
+        <result column="MEMBER_ID" property="memberId"/>
+    </resultMap>
+
 
     <!--질문게시판 글 작성 + 이미지 파일 첨부-->
     <insert id="insert">
@@ -145,20 +152,41 @@
 
     <!--답변 조회-->
     <select id="selectQnaReply" resultMap="reply">
+<!--        SELECT QNA_REPLY_NUM-->
+<!--            , QNA_REPLY_TEXT-->
+<!--            , QNA_REPLYER-->
+<!--            , (SELECT-->
+<!--                CASE-->
+<!--                    WHEN TRUNC(SYSDATE) = TRUNC(QNA_REG_DATE)-->
+<!--                    THEN TO_CHAR(QNA_REG_DATE, 'HH24:MI')-->
+<!--                    ELSE TO_CHAR(QNA_REG_DATE, 'YYYY-MM-DD')-->
+<!--                END-->
+<!--            FROM DUAL) QNA_REG_DATE-->
+<!--            , QNA_REPLY_EMOJI-->
+<!--        FROM QNA_BOARD_REPLY-->
+<!--        WHERE QNA_BOARD_NUM = #{qnaBoardNum}-->
+<!--        ORDER BY QNA_REPLY_NUM-->
+
+
+
+
         SELECT QNA_REPLY_NUM
             , QNA_REPLY_TEXT
             , QNA_REPLYER
-            , (SELECT
-                CASE
-                    WHEN TRUNC(SYSDATE) = TRUNC(QNA_REG_DATE)
-                    THEN TO_CHAR(QNA_REG_DATE, 'HH24:MI')
-                    ELSE TO_CHAR(QNA_REG_DATE, 'YYYY-MM-DD')
-                END
-            FROM DUAL) QNA_REG_DATE
+            , QNA_REG_DATE
             , QNA_REPLY_EMOJI
+        FROM (
+        SELECT ROWNUM AS rnum, B.QNA_REPLY_NUM, B.QNA_REPLY_TEXT, B.QNA_REPLYER, TO_CHAR(B.QNA_REG_DATE, 'YYYY-MM-DD HH24:MI') QNA_REG_DATE, B.QNA_REPLY_EMOJI
+        FROM (
+        SELECT QNA_REPLY_NUM, QNA_REPLY_TEXT, QNA_REPLYER, QNA_REG_DATE, QNA_REPLY_EMOJI
         FROM QNA_BOARD_REPLY
         WHERE QNA_BOARD_NUM = #{qnaBoardNum}
-        ORDER BY QNA_REPLY_NUM
+        ORDER BY QNA_REG_DATE DESC
+        ) B
+        WHERE ROWNUM &lt; #{qnaReplyLimit}
+        )
+        WHERE rnum &gt; 0
+
     </select>
 
     <!--답변 삭제-->
@@ -167,8 +195,20 @@
         WHERE QNA_REPLY_NUM = #{qnaReplyNum}
     </delete>
 
+    <!--답변 총 개수-->
+    <select id="totalQnaReply" resultType="int">
+        SELECT COUNT(QNA_REPLY_NUM)
+        FROM QNA_BOARD_REPLY
+        WHERE QNA_BOARD_NUM = #{qnaBoardNum}
+    </select>
 
-
+    <!--내가 선택한 질문 게시글이 북마크가 추가되어 있는지 확인-->
+    <select id="selectInsertBookMark" resultMap="bookMark">
+        SELECT BOOK_MARK_NUM
+        FROM BOOK_MARK
+        WHERE QNA_BOARD_NUM = #{qnaBoardNum}
+        AND MEMBER_ID = #{memberId}
+    </select>
 </mapper>
 
 

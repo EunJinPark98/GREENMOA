@@ -1,5 +1,6 @@
 package com.green.GreenClassRoom.board.service;
 
+import com.green.GreenClassRoom.board.vo.BookMarkVO;
 import com.green.GreenClassRoom.board.vo.QnaBoardVO;
 import com.green.GreenClassRoom.board.vo.QnaReplyVO;
 import lombok.RequiredArgsConstructor;
@@ -76,6 +77,16 @@ public class QnaBoardServiceImpl implements QnaBoardService{
     @Override
     public void deleteQnaReply(QnaReplyVO qnaReplyVO) {
         sqlSession.delete("qnaBoardMapper.deleteQnaReply", qnaReplyVO);
+    }
+
+    @Override
+    public int totalQnaReply(int qnaBoardNum) {
+        return sqlSession.selectOne("qnaBoardMapper.totalQnaReply", qnaBoardNum);
+    }
+
+    @Override
+    public BookMarkVO selectInsertBookMark(BookMarkVO bookMarkVO) {
+        return sqlSession.selectOne("qnaBoardMapper.selectInsertBookMark", bookMarkVO);
     }
 
 

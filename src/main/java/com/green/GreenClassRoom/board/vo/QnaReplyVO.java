@@ -14,4 +14,9 @@ public class QnaReplyVO {
     private String qnaUpdateDate;
     private List<String> replyList;
     private String qnaReplyEmoji;
+    private int qnaReplyLimit;
+
+    public QnaReplyVO(){
+        this.qnaReplyLimit = 4;
+    }
 }

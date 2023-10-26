@@ -30,6 +30,9 @@ public class NoticeBoardController {
         int totalDataCnt = noticeBoardService.pagingNotice();
         noticeBoardVO.setTotalDataCnt(totalDataCnt);
         noticeBoardVO.setPageInfo();
+
+        model.addAttribute("totalDataCnt", totalDataCnt);
+
         return "/content/board/notice_board_list";
     }
 
