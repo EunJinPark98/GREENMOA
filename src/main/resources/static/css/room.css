@@ -113,7 +113,7 @@
     left: 50px;
     top: 50px;
     transform: rotate(-8deg);
-    background-image: url(/images/todoList_3.png);
+    background-image: url(/images/todo.png);
     background-size: 100% auto;
     background-repeat: no-repeat;
     background-position: center;
@@ -273,4 +273,118 @@
     background-size: 100% auto;
     background-repeat: no-repeat;
     background-position: center;
+}
+
+#check{
+    position: absolute;
+}
+.todoInput{
+    padding-top: 140px;
+}
+.todolist{
+    background-image: url(/images/todolist.png);
+    background-position: top;
+    background-repeat: no-repeat;
+    background-size: 100% auto;
+    width: 468px;
+    height: 753px;
+    padding-left: 20px;
+}
+.todoModal{
+    background-color: transparent;
+    border: none;
+}
+#todoContent{
+    background-color: transparent;
+    border: none;
+    width: 315px;
+    resize: none;
+    padding: 6px 0 0 0;
+}
+#todoContent:focus{
+    outline: none;
+}
+#todoFinishDate::-webkit-datetime-edit-text {
+    -webkit-appearance: none;
+    display: none;
+}
+#todoFinishDate::-webkit-datetime-edit-month-field{
+    -webkit-appearance: none;
+    display: none;
+}
+#todoFinishDate::-webkit-datetime-edit-day-field {
+    -webkit-appearance: none;
+    display: none;
+}
+#todoFinishDate::-webkit-datetime-edit-year-field {
+    -webkit-appearance: none;
+    display: none;
+}
+#todoFinishDate{
+    background-color: transparent;
+    border: none;
+    width: 21px;
+}
+#todoFinishDate:focus{
+    outline: none;
+}
+.todoGroup{
+    width: 100px;
+}
+#save{
+    background-color: #e5897a;
+    border: none;
+    text-indent: -99999px;
+    width: 38px;
+    position: relative;
+    right: 10px;
+}
+#save:hover{
+    filter: brightness(80%);
+}
+.todoBtn:before, .todoBtn:after{
+	content:"";
+    display: block;
+	position:absolute;
+    top: 22%;
+    right: 12.5%;
+	height:15px;
+	width: 2px;
+	background-color: #fff;
+    z-index: 1;
+}
+.todoBtn:after{
+	transform:rotate(90deg);
+}
+.realTodoList ul{
+    margin-top: 10px;
+    margin-bottom: 0;
+}
+.realTodoList li{
+    height: 40px;
+    position: relative;
+    font-size: 18px;
+}
+.Dday{
+    display: inline-block;
+    margin-left: 10px;
+}
+ul{
+    list-style: circle;
+}
+#todoNum{
+    background-color: #ffde93;
+    border: none;
+    border-radius: 7px;
+    width: 38px;
+    height: 38px;
+    display: inline-block;
+    margin-left: 15px;
+    position: absolute;
+    top: 0;
+    right: 25px;
+
+}
+#todoNum:hover{
+    filter: brightness(90%);
 }

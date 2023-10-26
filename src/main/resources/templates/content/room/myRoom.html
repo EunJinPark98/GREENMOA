@@ -76,22 +76,29 @@
     <div class="modal fade" id="todo-modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
     aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-body modal-body">
-                <h1 class="mb-5 text-center">투두 리스트</h1>
+        <div class="todoModal modal-content">
+            <div class="todolist modal-body modal-body">
+
+                <div class="col offset-md-11">
+                    <button type="button" id="check" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+
                 <div class="todoInput">
                     <form>
-                        <label>해보자</label>
-                        <!-- <input type="text" name="todoContent"> -->
-                        <textarea rows="5" cols="50" id="todoContent" required></textarea>
-                        <div class="input-group">
-                            <textarea class="form-control" aria-label="With textarea" placeholder="해보자"></textarea>
+                        <div class="row">
+                            <div class="col-1 mt-2">
+                                <input type="date" id="todoFinishDate" required><br>
+                                <input type="hidden" id="todoWriter" th:value="${loginInfo.memberId}">
+                                <input type="hidden" id="memberId" th:value="${loginInfo.memberId}">
+                            </div>
+                            <div class="col-9">
+                                <input type="text" id="todoContent" maxlength="19" placeholder="해보자" required >
+                            </div>
+                            <div class="col-1">
+                                <input type="reset" id="save" class="btn btn-outline-secondary" onclick="insertTodo();"></input>
+                                <span class="todoBtn"></span>
+                            </div>
                         </div>
-                        <label>끝내보자</label>
-                        <input type="date" id="todoFinishDate" required><br>
-                        <input type="hidden" id="todoWriter" th:value="${loginInfo.memberId}">
-                        <input type="hidden" id="memberId" th:value="${loginInfo.memberId}">
-                        <input type="reset" id="save" value="등록" onclick="insertTodo()"></input>
                     </form>
                 </div>
                 <div class="todoOutput">
@@ -102,19 +109,21 @@
                         <ul>
                             <li>
                                 [[${todo.todoContent}]]
+                                <p class="Dday">D<span>[[${todo.todoStartDate}]]</span></p>
+                                <button type="button" id="todoNum" th:onclick="deleteTodo([[${todo.todoNum}]]);"
+                                 th:value="${todo.todoNum}"checked>
+                                    <i class="bi bi-check-lg" style="color: #575757;">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-lg" viewBox="0 0 16 16">
+                                            <path d="M12.736 3.97a.733.733 0 0 1 1.047 0c.286.289.29.756.01 1.05L7.88 12.01a.733.733 0 0 1-1.065.02L3.217 8.384a.757.757 0 0 1 0-1.06.733.733 0 0 1 1.047 0l3.052 3.093 5.4-6.425a.247.247 0 0 1 .02-.022Z"/>
+                                        </svg>
+                                    </i>
+                                </button>
                             </li>
-                                <p>D<span>[[${todo.todoStartDate}]]</span>
-                                </p>
-                            <button type="button" id="todoNum" th:onclick="deleteTodo([[${todo.todoNum}]]);"
-                             th:value="${todo.todoNum}"checked>삭제</button>
+
                         </ul>
                     </th:block>
                 </div>
-                <div class="row mt-5" style="display: flex; justify-content: center;">
-                    <div class="col-3 d-grid">
-                        <button type="button" id="check" class="btn btn-primary" data-bs-dismiss="modal">확인</button>
-                    </div>
-                </div>
+                
             </div>
         </div>
     </div>
