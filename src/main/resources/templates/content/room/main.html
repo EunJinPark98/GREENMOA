@@ -29,6 +29,9 @@
               <th:block th:if="${memberList != null}">
                   <th:block th:each="member : ${memberList}">
                       <div class="member" th:id="${'my-minime-' + member.memberId}">
+
+
+
                         <!-- 채팅 말풍선 -->
                         <div th:class="'chat-bubble ' + 'member-' + ${member.memberId}"></div>
                           <!-- 미니미 말풍선 -->
@@ -36,7 +39,7 @@
                             <p class="letterText" th:attr="data-membername=${member.memberName}, data-memberid=${member.memberId}"  onclick="openLetterBox(this)">쪽지보내기</p>
                           </div>
                           <div class="minmeBubble" th:unless="${session.loginInfo != null}">
-                            <p class="haveLogin">로그인 하세요.</p>
+                            <p class="letterText" onclick="location.href='/member/loginPage';">쪽지보내기</p>
                           </div>
                           <!-- 미니미 -->
                           <img class="minime-img" th:src="|/images/${member.minime}.png|">
@@ -179,9 +182,6 @@
 
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
-              <!-- <th:block th:if="${session.loginInfo != null && session.loginInfo.memberRoll == 'ADMIN'}"> -->
-                <button type="button" class="btn btn-primary">과제 등록</button>
-              <!-- </th:block> -->
             </div>
           </div>
         </div>
@@ -213,17 +213,21 @@
 
 
 
-      <!-- <div class="moving"></div> -->
 
 
 
       <script>
-        const movingElement = document.querySelector('#my-minime-test1');
-        const step = 10; // 이동 거리 조절
+
+        var idElement = document.getElementById('memId');
+        if(idElement){ //로그인 했을 경우에만 움직이도록
+            var myId = idElement.getAttribute('data-id');
+
+            const movingElement = document.querySelector('#my-minime-'+ myId);
+            const step = 10; // 이동 거리 조절
     
-        movingElement.addEventListener('click', () => {
+            movingElement.addEventListener('click', () => {
             movingElement.classList.add('active');
-        });
+            });
     
         document.addEventListener('keydown', (event) => {
             if (movingElement.classList.contains('active')) {
@@ -259,6 +263,13 @@
                 movingElement.classList.remove('active');
             }
         });
+
+
+
+        }
+        
+
+        
     </script>
       
       
