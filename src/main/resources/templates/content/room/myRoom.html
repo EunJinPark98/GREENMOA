@@ -116,7 +116,8 @@
                     <th:block th:each="todo : ${todoList}">
                         <ul>
                             <li>
-                                [[${todo.todoContent}]]
+                                <input type="checkbox" class="todoCheck" onclick="addlinethrough();">
+                                <p class="todoName">[[${todo.todoContent}]]</p>
                                 <p class="Dday">D<span>[[${todo.todoStartDate}]]</span></p>
                                 <button type="button" id="todoNum" th:onclick="deleteTodo([[${todo.todoNum}]]);"
                                  th:value="${todo.todoNum}"checked>

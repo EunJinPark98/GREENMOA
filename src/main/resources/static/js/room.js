@@ -60,10 +60,23 @@ function insertTodo(){
 };
 // 삭제버튼 클릭시 todoList delete
 function deleteTodo(todoNum){
-    const result = confirm('할일을 끝마쳤나요?');
+    const result = confirm('정말 삭제하시겠습니까?');
     if(result){
         location.href=`/room/deleteTodoList?todoNum=${todoNum}`;
     };
+};
+
+function addlinethrough(){
+    let todoName = document.querySelector('.todoName');
+    let Dday = document.querySelector('.Dday');
+    if(todoName.style.textDecoration == '' && Dday.style.textDecoration == ''){
+        todoName.style.textDecoration = 'line-through';
+        Dday.style.textDecoration = 'line-through';
+    }else{
+        todoName.style.textDecoration = '';
+        Dday.style.textDecoration = '';
+
+    }
 };
 
 // 상태 메세지 변경
