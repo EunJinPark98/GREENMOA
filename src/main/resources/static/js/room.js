@@ -84,11 +84,18 @@ function showInput(){
     let inputStatus =document.getElementById('input-status-msg');
     inputStatus.style.display='block';
 
+    // 인풋 포커스될때만 취소버튼 보이게
+    let btnClose = document.querySelector('.btnClose');
+    btnClose.style.display = 'block';
+
 };
 // 상태 메세지 input 닫기
 function closeInput(){
     let inputStatus =document.getElementById('input-status-msg');
     inputStatus.style.display='none';
+    
+    let btnClose = document.querySelector('.btnClose');
+    btnClose.style.display = 'none';
 
 };
 

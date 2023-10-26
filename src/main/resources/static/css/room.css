@@ -8,11 +8,10 @@
     background-position: top;
     background-repeat: no-repeat;
     border-radius: 20px;
-    height: 1000px;
-    width: 788px;
+    height: 100%;
+    width: 100%;
     object-fit: cover;
     box-sizing: border-box;
-    margin-left: -10px;
 }
 
 /* 미니미 */
@@ -169,3 +168,109 @@
 }
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* 윤주 - 마이룸 작업 */
+#myRoom{
+    position: relative;
+    background-image: url(/images/myroom-background.png);
+    background-size: 100% auto;
+    background-position: top;
+    background-repeat: no-repeat;
+    border-radius: 20px;
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    box-sizing: border-box;
+}
+.status-msg{
+    position: relative;
+    width: 222px;
+    height: 173px;
+    background-image: url(/images/myroom-smg2.png);
+    background-size: 100% auto;
+    background-repeat: no-repeat;
+    background-position: center;
+
+   /* display: flex;
+   justify-content: center; */
+   align-items: center;
+   
+   font-size: 1.3rem;
+   margin-right: 0px;
+
+}
+.statusMsgText{
+    padding: 30px;
+    width: 99%;
+    display: flex;
+    flex-wrap: wrap;
+    position: absolute;
+    top: 24px;
+    left: 7px;    
+}
+#input-status-msg{
+    display: none;
+    border: none;
+    position: absolute;
+    top: 13px;
+    left: 22px;
+    width: 75%;
+    height: 69%;
+    resize: none;
+    outline: none;
+}
+#input-status-msg::-webkit-scrollbar{
+    display: none;
+}
+.btnClose {
+    position: absolute;
+    top: 35px;
+    right: 30px;
+	display:none;
+	width:16px;
+	height:16px;
+    cursor: pointer;
+}
+#minime{
+    position: absolute;
+    right: 36vw;
+    top: 30vh;
+    width: 150px;
+}
+.letterBox{
+    display: flex;
+    justify-content: center;
+    width: 150px;
+    height: 200px;
+    position: absolute;
+    left: 320vw;
+    top: 43vh;
+    transform: rotate(-1deg);
+    background-image: url(/images/mailbox-close.png);
+    background-size: 100% auto;
+    background-repeat: no-repeat;
+    background-position: center;
+}
