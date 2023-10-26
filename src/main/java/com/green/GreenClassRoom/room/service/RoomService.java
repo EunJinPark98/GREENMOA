@@ -23,7 +23,7 @@ public interface RoomService {
     public List<LetterVO> selectLetter(String memberId);
 
     // 쪽지 선택 삭제
-    public void deleteLetter(LetterVO letterVO);
+    public int deleteLetter(LetterVO letterVO);
 
     // 쪽지 갯수 출력
     public List<LetterVO> letterCnt();

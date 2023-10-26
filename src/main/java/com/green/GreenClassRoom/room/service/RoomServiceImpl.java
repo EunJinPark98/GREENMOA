@@ -2,6 +2,7 @@ package com.green.GreenClassRoom.room.service;
 
 import com.green.GreenClassRoom.member.vo.MemberVO;
 import com.green.GreenClassRoom.room.vo.LetterVO;
+import com.green.GreenClassRoom.room.vo.TodoVO;
 import com.green.GreenClassRoom.room.vo.menuVO;
 import lombok.RequiredArgsConstructor;
 import org.mybatis.spring.SqlSessionTemplate;
@@ -41,8 +42,8 @@ public class RoomServiceImpl implements RoomService{
     }
 
     @Override
-    public void deleteLetter(LetterVO letterVO) {
-        sqlSession.delete("letterMapper.deleteLetter",letterVO);
+    public int deleteLetter(LetterVO letterVO) {
+        return sqlSession.delete("letterMapper.deleteLetter",letterVO);
     }
 
     @Override

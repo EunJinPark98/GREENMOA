@@ -28,12 +28,12 @@ public class TodoController {
         todoService.insertTodo(todoVO);
         return "redirect:/room/myRoom";
     }
-    // 장바구니 선택 삭제
+    // 투두 선택 삭제
     @GetMapping("/deleteTodoList")
     public String deleteTodoList(int todoNum, TodoVO todoVO){
-        System.out.println(todoNum);
+        System.out.println("@@@@@"+todoNum);
 
-        // 선택 품목 삭제
+        // 선택 투두 삭제
         todoService.deleteTodoList(todoNum);
         return "redirect:/room/myRoom";
     }
