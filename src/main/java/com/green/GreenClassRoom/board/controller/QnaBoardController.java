@@ -1,6 +1,7 @@
 package com.green.GreenClassRoom.board.controller;
 
 import com.green.GreenClassRoom.board.service.QnaBoardService;
+import com.green.GreenClassRoom.board.vo.QnaBookMarkVO;
 import com.green.GreenClassRoom.board.vo.QnaBoardVO;
 import com.green.GreenClassRoom.board.vo.QnaReplyVO;
 import com.green.GreenClassRoom.member.vo.MemberVO;
@@ -27,7 +28,7 @@ public class QnaBoardController {
 
     //질문게시판 페이지
     @RequestMapping("/question")
-    public String qnaBoardList(QnaBoardVO qnaBoardVO, Model model){
+    public String qnaBoardList(QnaBoardVO qnaBoardVO, Model model, HttpSession session){
 
         //페이징 처리
         int totalDataCnt = qnaBoardService.selectQnaBoardCnt();
@@ -37,6 +38,9 @@ public class QnaBoardController {
         //질문게시판 글 조회
         List<QnaBoardVO> qnaBoardList = qnaBoardService.selectQnaBoard(qnaBoardVO);
         model.addAttribute("qnaBoardList", qnaBoardList);
+
+        model.addAttribute("totalDataCnt", totalDataCnt);
+
         return "content/board/qna_board_list";
     }
 
@@ -66,11 +70,12 @@ public class QnaBoardController {
     @GetMapping("/qnaBoardDetail")
     public String qnaBoardDetail(int qnaBoardNum, Model model, QnaReplyVO qnaReplyVO,
                                  @RequestParam(required = false, defaultValue = "false") boolean noCount,
-                                 HttpSession session, QnaBoardVO qnaBoardVO){
+                                 HttpSession session, QnaBoardVO qnaBoardVO, QnaBookMarkVO qnaBookMarkVO){
 
         MemberVO loginInfo=(MemberVO) session.getAttribute("loginInfo");
         qnaBoardVO.setQnaBoardWriter(loginInfo.getMemberId());
         model.addAttribute("loginInfo",loginInfo);
+        model.addAttribute("nowPage", qnaBoardVO.getNowPage());
 
         QnaBoardVO qnaBoard = qnaBoardService.qnaBoardDetail(qnaBoardNum);
         model.addAttribute("qnaBoardList", qnaBoard);
@@ -85,6 +90,16 @@ public class QnaBoardController {
 
         List<QnaReplyVO> qnaReplyList = qnaBoardService.selectQnaReply(qnaReplyVO);
         model.addAttribute("qnaReplyList", qnaReplyList);
+
+        model.addAttribute("qnaReplyLimit", qnaReplyVO.getQnaReplyLimit());
+
+        model.addAttribute("totalQnaReply", qnaBoardService.totalQnaReply(qnaBoardNum));
+
+        //현재 상세보기 하려는 게시글을 내가 북마크로 추가한 게시글인가?
+        System.out.println(qnaBookMarkVO + "@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
+        qnaBookMarkVO.setMemberId(loginInfo.getMemberId());
+        model.addAttribute("insertBookMark", qnaBoardService.selectInsertBookMark(qnaBookMarkVO));
+
         return "content/board/qna_board_detail";
     }
 
@@ -197,6 +212,13 @@ public class QnaBoardController {
         qnaReplyVO.setQnaReplyNum(qnaReplyVO.getQnaReplyNum());
         qnaBoardService.deleteQnaReply(qnaReplyVO);
         return "redirect:/board/qnaBoardDetail?qnaBoardNum=" + qnaReplyVO.getQnaBoardNum() + "&replyer=" + qnaReplyVO.getQnaReplyer() + "&noCount=true";
+    }
+
+    //댓글 더보기 기능
+    @GetMapping("/showQnaReplyMore")
+    public String showQnaReplyMore(QnaReplyVO qnaReplyVO, int qnaReplyLimit){
+        qnaReplyVO.setQnaReplyLimit(qnaReplyLimit);
+        return "redirect:/board/qnaBoardDetail?qnaBoardNum=" + qnaReplyVO.getQnaBoardNum() + "&qnaReplyLimit=" + qnaReplyVO.getQnaReplyLimit();
     }
 
 }

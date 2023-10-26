@@ -28,9 +28,6 @@
                         <div class="col-11">
                             <h3>[[${board.title}]]</h3>
                         </div>
-                            <div class="col-1 d-grid gap-2 d-md-flex justify-content-md-end col">
-                                <div class="backArrow" onclick="history.back(-1)">뒤로가기</div>
-                            </div>
                     </div>
                 
                     <hr>
@@ -103,7 +100,7 @@
                     </div>
                   </section>
                   <th:block th:if="${totalReply} > 3">
-                    <input type="button" id="moreBtn" class="btn btn-primary" value="더보기" th:if="${totalReply} > ${limit} " th:onclick="showReplyMore([[${freeBoardDetail.boardNum}]],[[${limit}]])">
+                    <input type="button" id="moreBtn" class="btn btn-primary" value="더 보기" th:if="${totalReply} >= ${limit} " th:onclick="showReplyMore([[${freeBoardDetail.boardNum}]],[[${limit}]])">
                   </th:block>
             </th:block>
             

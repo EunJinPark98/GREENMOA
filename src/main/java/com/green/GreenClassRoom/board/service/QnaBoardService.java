@@ -1,8 +1,8 @@
 package com.green.GreenClassRoom.board.service;
 
+import com.green.GreenClassRoom.board.vo.QnaBookMarkVO;
 import com.green.GreenClassRoom.board.vo.QnaBoardVO;
 import com.green.GreenClassRoom.board.vo.QnaReplyVO;
-import com.green.GreenClassRoom.board.vo.ReplyVO;
 
 import java.util.List;
 
@@ -46,5 +46,11 @@ public interface QnaBoardService {
 
     // 답변 선택 삭제 기능
     public void deleteQnaReply(QnaReplyVO qnaReplyVO);
+
+    //답변 총 개수
+    public int totalQnaReply(int qnaBoardNum);
+
+    //내가 선택한 질문 게시글이 북마크가 추가되어 있는지 확인
+    public QnaBookMarkVO selectInsertBookMark(QnaBookMarkVO qnaBookMarkVO);
 
 }
