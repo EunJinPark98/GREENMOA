@@ -62,22 +62,24 @@ body{
     margin-left: 15px;
     font-size: 15px;
 }
+
 .haveLogin{
     margin-top: 20px;
     margin-left: 15px;
     font-size: 15px;
 }
-.member img{
+.minime-img{
     width: 100px;
     height: auto;
     z-index: 1200;
 }
 
-.member .name{
+.nameTag{
+    width: 100px;
+    height: 20px;
+    font-size: 1.2rem;
     display: flex;
     justify-content: center;
-    font-size: 1.2rem;
-    margin-bottom: -10px;
 }
 .inner-fr{
     position: relative;
@@ -112,6 +114,26 @@ body{
     margin-left: 92px;
     margin-bottom: 10px;
 }
+
+.on-off{
+    width: 12px;
+    position: relative;
+    margin-right: 3px;
+}
+.connect-on, .connect-off {
+    width: 100%;
+    height: auto;
+    position: absolute;
+    top: 15%;
+    left: 0;
+}
+.nameTag h6{
+    margin-bottom: 0;
+    margin-right: 15px;
+}
+
+
+
 /* 출석부 */
 .student-list{
     width: 100px;
@@ -306,11 +328,6 @@ body{
 
 
 
-
-
-
-
-
 /* 풀캘린더 */
 #calendar{
     height: 800px;
@@ -318,15 +335,22 @@ body{
 
 
 
+#bg {
+    width: 700px;
+    height: 700px;
+    background-color: lightgray;
+    position: relative;
+}
 
-
-
-
-
-
-
-
-
+.moving {
+    width: 50px;
+    height: 50px;
+    background-color: blue;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
 
 
 

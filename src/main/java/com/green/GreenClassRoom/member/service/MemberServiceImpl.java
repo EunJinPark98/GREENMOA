@@ -4,6 +4,7 @@ import com.green.GreenClassRoom.member.vo.MemberVO;
 import lombok.RequiredArgsConstructor;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -24,7 +25,9 @@ public class MemberServiceImpl implements MemberService {
     }
 
     @Override
+    @Transactional(rollbackFor = Exception.class)
     public MemberVO login(MemberVO memberVO) {
+        sqlSession.update("memberMapper.connectOn", memberVO);
         return sqlSession.selectOne("memberMapper.login",memberVO);
     }
 
@@ -36,6 +39,16 @@ public class MemberServiceImpl implements MemberService {
     @Override
     public MemberVO selectAdmin() {
         return sqlSession.selectOne("memberMapper.selectAdmin");
+    }
+
+    @Override
+    public void connectOn(String memberId) {
+        sqlSession.update("memberMapper.connectOn", memberId);
+    }
+
+    @Override
+    public void connectOff(String memberId) {
+        sqlSession.update("memberMapper.connectOff", memberId);
     }
 
 }

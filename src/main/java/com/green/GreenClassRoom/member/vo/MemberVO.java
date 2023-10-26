@@ -18,4 +18,5 @@ public class MemberVO {
     private String memberRoll;
     private String minime;
     private String statusMsg;
+    private int onOff;
 }

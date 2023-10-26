@@ -1,6 +1,5 @@
 package com.green.GreenClassRoom.member.service;
 
-import com.green.GreenClassRoom.board.vo.FreeBoardVO;
 import com.green.GreenClassRoom.member.vo.MemberVO;
 
 import java.util.List;
@@ -22,4 +21,8 @@ public interface MemberService {
     // 선생님 출력
     public MemberVO selectAdmin();
 
+    //접속
+    public void connectOn(String memberId);
+    //비접속
+    public void connectOff(String memberId);
 }

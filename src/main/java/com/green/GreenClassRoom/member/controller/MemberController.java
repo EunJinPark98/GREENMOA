@@ -1,6 +1,5 @@
 package com.green.GreenClassRoom.member.controller;
 
-import com.green.GreenClassRoom.board.vo.FreeBoardVO;
 import com.green.GreenClassRoom.member.service.MemberService;
 import com.green.GreenClassRoom.member.vo.MemberVO;
 import jakarta.servlet.http.HttpSession;
@@ -51,11 +50,17 @@ public class MemberController {
         if(loginInfo!=null) {
             session.setAttribute("loginInfo", loginInfo);
         }
+
+
         return "/content/member/login_result";
     }
     // 로그아웃 기능
     @GetMapping("/logout")
     public String logout(HttpSession session){
+        MemberVO loginInfo = (MemberVO) session.getAttribute("loginInfo");
+        if(loginInfo!=null){
+            memberService.connectOff(loginInfo.getMemberId());
+        }
         session.removeAttribute("loginInfo");
         return "redirect:/room/main";
     }
