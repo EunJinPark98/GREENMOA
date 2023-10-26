@@ -105,6 +105,9 @@
                         <label>해보자</label>
                         <!-- <input type="text" name="todoContent"> -->
                         <textarea rows="5" cols="50" id="todoContent" required></textarea>
+                        <div class="input-group">
+                            <textarea class="form-control" aria-label="With textarea" placeholder="해보자"></textarea>
+                        </div>
                         <label>끝내보자</label>
                         <input type="date" id="todoFinishDate" required><br>
                         <input type="hidden" id="todoWriter" th:value="${loginInfo.memberId}">
