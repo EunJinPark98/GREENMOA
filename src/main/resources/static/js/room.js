@@ -60,7 +60,7 @@ function insertTodo(){
 };
 // 삭제버튼 클릭시 todoList delete
 function deleteTodo(todoNum){
-    const result = confirm('정말 삭제하시겠습니까?');
+    const result = confirm('할일을 끝마쳤나요?');
     if(result){
         location.href=`/room/deleteTodoList?todoNum=${todoNum}`;
     };
