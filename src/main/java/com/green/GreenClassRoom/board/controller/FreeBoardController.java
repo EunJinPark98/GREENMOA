@@ -28,6 +28,9 @@ public class FreeBoardController {
         int totalDataCnt = freeBoardService.pagingFreeBoard();
         freeBoardVO.setTotalDataCnt(totalDataCnt);
         freeBoardVO.setPageInfo();
+
+        model.addAttribute("totalDataCnt", totalDataCnt);
+
         return "/content/board/free_board_list";
     }
 

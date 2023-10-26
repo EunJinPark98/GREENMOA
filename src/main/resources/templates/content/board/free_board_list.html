@@ -54,7 +54,7 @@
                 <!-- 게시글이 있다면 -->
                 <th:block th:unless="${#lists.size(boardList)==0}">
                     <tr th:each="board, state : ${boardList}">
-                        <td>[[${board.boardNum}]]</td>
+                        <td>[[${totalDataCnt - state.index - (10 * (freeBoardVO.nowPage - 1))}]]</td>
                         <td><a th:href="@{freeBoardDetail(boardNum=${board.boardNum})}">[[${board.title}]]</a></td>
                         <td>[[${board.writer}]]</td>
                         <td>[[${board.createDate}]]</td>

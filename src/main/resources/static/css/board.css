@@ -210,3 +210,11 @@ div:where(.swal2-container) div:where(.swal2-actions) {
 #moreBtn{
     margin-bottom: 10px;
 }
+
+.bookmark{
+    width: 30px;
+    height: 45px;
+}
+.bookCheck{
+    cursor: pointer;
+}
