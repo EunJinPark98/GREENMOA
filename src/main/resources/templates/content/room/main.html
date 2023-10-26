@@ -28,7 +28,7 @@
             <div class="mini-fr">
               <th:block th:if="${memberList != null}">
                   <th:block th:each="member : ${memberList}">
-                      <div class="member">
+                      <div class="member" th:id="${'my-minime-' + member.memberId}">
                         <!-- 채팅 말풍선 -->
                         <div th:class="'chat-bubble ' + 'member-' + ${member.memberId}"></div>
                           <!-- 미니미 말풍선 -->
@@ -231,9 +231,53 @@
 
 
 
+      <!-- <div class="moving"></div> -->
+
+
+
+      <script>
+        const movingElement = document.querySelector('#my-minime-test1');
+        const step = 10; // 이동 거리 조절
     
-
-
+        movingElement.addEventListener('click', () => {
+            movingElement.classList.add('active');
+        });
+    
+        document.addEventListener('keydown', (event) => {
+            if (movingElement.classList.contains('active')) {
+                event.preventDefault(); // 스크롤 이벤트 중단
+    
+                const style = getComputedStyle(movingElement);
+                let left = parseFloat(style.left) || 0;
+                let top = parseFloat(style.top) || 0;
+    
+                switch (event.key) {
+                    case 'ArrowUp':
+                        top -= step;
+                        break;
+                    case 'ArrowDown':
+                        top += step;
+                        break;
+                    case 'ArrowLeft':
+                        left -= step;
+                        break;
+                    case 'ArrowRight':
+                        left += step;
+                        break;
+                }
+    
+                // 이동 범위를 제한합니다.
+                movingElement.style.left = left + 'px';
+                movingElement.style.top = top + 'px';
+            }
+        });
+    
+        document.addEventListener('mousedown', (event) => {
+            if (movingElement.classList.contains('active') && event.target !== movingElement) {
+                movingElement.classList.remove('active');
+            }
+        });
+    </script>
       
       
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
