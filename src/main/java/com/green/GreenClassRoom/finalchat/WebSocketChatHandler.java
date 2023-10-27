@@ -53,5 +53,4 @@ public class WebSocketChatHandler extends TextWebSocketHandler {
     public void afterConnectionClosed(WebSocketSession session, CloseStatus status) throws Exception {
       sessions.remove(session.getId());
     }
-
 }
