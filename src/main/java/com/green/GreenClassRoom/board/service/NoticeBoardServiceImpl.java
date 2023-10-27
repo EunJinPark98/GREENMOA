@@ -1,6 +1,7 @@
 package com.green.GreenClassRoom.board.service;
 
 import com.green.GreenClassRoom.board.vo.NoticeBoardVO;
+import com.green.GreenClassRoom.board.vo.NoticeBookMarkVO;
 import lombok.RequiredArgsConstructor;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Service;
@@ -63,5 +64,10 @@ public class NoticeBoardServiceImpl implements NoticeBoardService{
     @Override
     public NoticeBoardVO nextList(int noticeBoardNum) {
         return sqlSession.selectOne("noticeBoardMapper.nextList", noticeBoardNum);
+    }
+
+    @Override
+    public NoticeBookMarkVO selectInsertNoticeBookMark(NoticeBookMarkVO noticeBookMarkVO) {
+        return sqlSession.selectOne("noticeBoardMapper.selectInsertNoticeBookMark", noticeBookMarkVO);
     }
 }

@@ -19,13 +19,13 @@
     <!--게시글 북마크 등록-->
     <insert id="insertBookMark">
         INSERT INTO QNA_BOOK_MARK (
-        QNA_BOOK_MARK_NUM
-        , QNA_BOARD_NUM
-        , MEMBER_ID
+            QNA_BOOK_MARK_NUM
+            , QNA_BOARD_NUM
+            , MEMBER_ID
         ) VALUES (
-        (SELECT NVL(MAX(QNA_BOOK_MARK_NUM),0) +1 FROM QNA_BOOK_MARK)
-        , #{qnaBoardNum}
-        , #{memberId}
+            (SELECT NVL(MAX(QNA_BOOK_MARK_NUM),0) +1 FROM QNA_BOOK_MARK)
+            , #{qnaBoardNum}
+            , #{memberId}
         )
     </insert>
 
