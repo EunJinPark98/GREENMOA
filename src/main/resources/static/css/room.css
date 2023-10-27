@@ -299,6 +299,8 @@
     object-fit: cover;
     box-sizing: border-box;
 }
+
+/* 상태메세지 */
 .status-msg{
     position: relative;
     width: 222px;
@@ -369,6 +371,7 @@
     background-position: center;
 }
 
+/* 투두리스트 */
 #check{
     position: absolute;
 }
@@ -519,3 +522,140 @@ input[type="checkbox"]:checked{
 #todoNum:hover{
     filter: brightness(90%);
 }
+
+/* 과제 */
+.workIcon{
+    background-image: url(/images/login.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 67% auto;
+    width: 195px;
+    height: 100px;
+    position: absolute;
+    top: 50%;
+    right: 10%;
+}
+.adminWork{
+    display: flex;
+    justify-content: center;
+    width: 150px;
+    height: 200px;
+    position: absolute;
+    right: 17%;
+    top: 31%;
+    transform: rotate(-1deg);
+    background-image: url(/images/msgBox_1.png);
+    background-size: 100% auto;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+.reg-work-back{
+    background-color: transparent;
+    border: none;
+}
+.reg-work{
+    background-image: url(/images/reg-work.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 100% auto;
+    width: 513px;
+    height: 532px;
+}
+
+.titleLabel {
+    display: block;
+    letter-spacing: 4px;
+    padding-top: 10px;
+  }
+  
+  .label-text {
+    color: #949494;
+    cursor: text;
+    font-size: 20px;
+    line-height: 20px;
+    text-transform: uppercase;
+    transform: translateY(-34px);
+    transition: all 0.3s;
+    padding-left: 5px;
+  }
+  
+  .workTitle {
+    background-color: transparent;
+    border: 0;
+    border-bottom: 2px solid #686868;
+    color: #686868;
+    font-size: 28px;
+    letter-spacing: -1px;
+    outline: 0;
+    padding: 5px 20px;
+    transition: all 0.3s;
+    width: 200px;
+  }
+  
+  .workTitle:focus {
+    width: 400px;
+  }
+  
+  .workTitle:focus + .label-text, .workTitle:valid + .label-text{
+    color: #3f3f3f;
+    font-size: 13px;
+    transform: translateY(-74px);
+  }
+
+  .input-field{
+    position: relative;
+  }
+  .input-field textarea{
+    font-size: 18px;
+    padding: 20px 15px;
+    border: none;
+    border-left-style: double;
+    background: transparent;
+    outline: none;
+    resize: none;
+  }
+  .input-field label{
+    position: absolute;
+    top: 50%;
+    left: 15px;
+    transform: translateY(-50%);
+    color: #686868;
+    font-size: 19px;
+    pointer-events: none;
+    transition: 0.3s;
+  }
+  textarea:focus{
+    border: 2px solid #949494;
+    background-color: #fff;
+    border-radius: 6px;
+  }
+  textarea:focus ~ label,
+  textarea:valid ~ label{
+    top: 0;
+    left: 15px;
+    font-size: 16px;
+    padding: 0 2px;
+    background: #fff; 
+    border: 2px solid #949494;
+    border-radius: 5px;
+  }
+
+  .dateLabel{
+    background-color: transparent;
+    border: none;
+  }
+  .deadLine{
+    background-color: transparent;
+    border: 0;
+    border-bottom: 2px solid #686868;
+    color: #686868;
+    font-size: 18px;
+    letter-spacing: -1px;
+    outline: 0;
+    padding: 5px 20px;
+    transition: all 0.3s;
+    width: 150px;
+  }
+  .deadLine:focus{
+        width: 300px;
+  }
