@@ -99,6 +99,7 @@
             <th:block th:if="${session.loginInfo}!=null">
               <input id="sender" type="hidden" th:attr="data-sender=${session.loginInfo.memberName}">
               <input id="memId" type="hidden" th:attr="data-id=${session.loginInfo.memberId}">
+              <input id="miniSrc" type="hidden" th:attr="data-minime=${session.loginInfo.minime}">
             </th:block>
             <div id="chat" class="container-md">
                 <h3>채팅</h3>
@@ -219,24 +220,29 @@
       <script>
 
         var idElement = document.getElementById('memId');
+        var srcElement = document.getElementById('miniSrc');
+
         if(idElement){ //로그인 했을 경우에만 움직이도록
             var myId = idElement.getAttribute('data-id');
+            var minimeSrc = srcElement.getAttribute('data-minime');
 
             const movingElement = document.querySelector('#my-minime-'+ myId);
             const step = 10; // 이동 거리 조절
+
     
             movingElement.addEventListener('click', () => {
             movingElement.classList.add('active');
             });
         document.addEventListener('keydown', (event) => {
             if (movingElement.classList.contains('active')) {
+
                 event.preventDefault(); // 스크롤 이벤트 중단
     
                 const style = getComputedStyle(movingElement);
                 let left = parseFloat(style.left) || 0;
                 let top = parseFloat(style.top) || 0;
 
-                 // 미니미 이미지 엘리먼트 선택
+                 // 미니미 이미지 선택
                 const minimeImage = movingElement.querySelector('.minime-img');
     
                 switch (event.key) {
@@ -248,15 +254,20 @@
                         break;
                     case 'ArrowLeft':
                         left -= step;
-                        minimeImage.src = '/images/minimeA_1left.png';
+                        minimeImage.src = `/images/${minimeSrc}left.png`;
                         break;
                     case 'ArrowRight':
                         left += step;
-                        minimeImage.src = '/images/minimeA_1right.png';
+                        minimeImage.src = `/images/${minimeSrc}right.png`;
+                        break;
+                        case 'Space':
+                        if (!isJumping) {
+                            jump();
+                        }
                         break;
                 }
     
-                // 이동 범위를 제한합니다.
+                // 이동 범위
                 movingElement.style.left = left + 'px';
                 movingElement.style.top = top + 'px';
             }
@@ -270,9 +281,11 @@
 
 
 
-        }
-        
 
+
+
+
+        }
         
     </script>
       
