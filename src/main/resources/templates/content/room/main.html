@@ -32,13 +32,14 @@
                         <div th:class="'chat-bubble ' + 'member-' + ${member.memberId}"></div>
                           <!-- 미니미 말풍선 -->
                           <div class="minmeBubble" th:if="${session.loginInfo != null}">
+                            <input class="loginId" type="hidden" th:value="${session.loginInfo.memberId}">
                             <p class="letterText" th:attr="data-membername=${member.memberName}, data-memberid=${member.memberId}"  onclick="openLetterBox(this)">쪽지보내기</p>
                           </div>
                           <div class="minmeBubble" th:unless="${session.loginInfo != null}">
                             <p class="letterText" onclick="location.href='/member/loginPage';">쪽지보내기</p>
                           </div>
                           <!-- 미니미 -->
-                          <img class="minime-img" th:src="|/images/${member.minime}.png|">
+                          <img class="minime-img" th:src="|/images/${member.minime}.png|" th:attr="data-memberid=${member.memberId}">
                           <input type="hidden" id="memberName" name="memberName" th:value="${member.memberName}">
                           <div class="nameTag">
                             <img class="connect-state" src="/images/connectOff.png" alt="">

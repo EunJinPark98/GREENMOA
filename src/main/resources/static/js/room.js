@@ -27,13 +27,17 @@ var lastClickedBubble = null;
 
 $('.minime-img').click(function() {
     var currentBubble = $(this).siblings('.minmeBubble');
+    let imageMemberId = $(this).data('memberid');
+    let imageLoginId = $(this).siblings('.minmeBubble').find('.loginId').val();
 
-    if (lastClickedBubble !== null && !lastClickedBubble.is(currentBubble)) {
-        lastClickedBubble.hide();
+    if(imageMemberId != imageLoginId){
+        if (lastClickedBubble !== null && !lastClickedBubble.is(currentBubble)) {
+            lastClickedBubble.hide();
+        }
+    
+        currentBubble.toggle();
+        lastClickedBubble = currentBubble;
     }
-
-    currentBubble.toggle();
-    lastClickedBubble = currentBubble;
 });
 
 
