@@ -9,6 +9,42 @@ body{
 }
 
 
+#classRoom{
+    position: relative;
+    height: 1000px;
+    border: 3px solid #D8D8D8;
+    box-sizing: border-box;
+    border-radius: 20px;
+    background-image: url(/images/wood-floor.png);
+    background-size: 100% auto;
+    background-position: top;
+    background-repeat: no-repeat;
+    border-radius: 20px;
+    width: 100%;
+}
+/* #moving-zone{
+    position: relative;
+    height: 490px;
+    width: 100%;
+    background-color: blue;
+    z-index: 20000;
+    transform: translateY(105%);
+}
+#moving-zone-top{
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 0;
+    width: 0;
+    border-left: 550px solid transparent;
+    border-right: 550px solid transparent;
+    border-bottom: 280px solid red;
+    z-index: 20000;
+     transform: translateY(-100%);
+} */
+
+
+
 /* 클래스룸 미니미들 위치 */
 .teacher{
     position: absolute;
@@ -26,16 +62,10 @@ body{
     font-size: 1.2rem;
     margin-bottom: -10px;
 }
-.mini-fr{
-    position: absolute;
-    top: 40%;
-    left: 0;
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    padding: 0 20px;
-}
 .member{
+    z-index: 2000;
+}
+.member-content{
     position: relative;
 }
 
