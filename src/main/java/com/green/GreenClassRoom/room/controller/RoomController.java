@@ -6,6 +6,7 @@ import com.green.GreenClassRoom.room.service.RoomService;
 import com.green.GreenClassRoom.room.service.TodoService;
 import com.green.GreenClassRoom.room.service.WorkService;
 import com.green.GreenClassRoom.room.vo.LetterVO;
+import com.green.GreenClassRoom.room.vo.WorkVO;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -53,6 +54,9 @@ public class RoomController {
         System.out.println("$$$$$$$" + statusMsg);
         model.addAttribute("loginInfo", loginInfo);
 
+        String memberRoll=loginInfo.getMemberRoll();
+        model.addAttribute("memberRoll",memberRoll);
+
         // 쪽지 리스트 출력 기능
         MemberVO loginInfo1 = (MemberVO) session.getAttribute("loginInfo");
         String memberId1 = loginInfo1.getMemberId();
@@ -99,6 +103,12 @@ public class RoomController {
     public String updateStatusMsg(MemberVO memberVO) {
         roomService.updateStatusMsg(memberVO);
         System.out.println("########" + memberVO);
+        return "redirect:/room/myRoom";
+    }
+    // 과제 등록 기능
+    @PostMapping("/insertWork")
+    public String insertWork(WorkVO workVO) {
+        workService.insertWork(workVO);
         return "redirect:/room/myRoom";
     }
 

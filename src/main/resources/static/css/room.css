@@ -181,7 +181,24 @@
 .answerLetter {
     display: none;
 }
-
+/* 과제 등록 이미지 */
+.adminWork{
+    display: flex;
+    justify-content: center;
+    width: 150px;
+    height: 200px;
+    position: absolute;
+    right: 110px;
+    top: 137px;
+    transform: rotate(-1deg);
+    background-image: url(/images/msgBox_1.png);
+    background-size: 100% auto;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+.adminWork p{
+    margin-top: 73px;
+}
 
 
 
