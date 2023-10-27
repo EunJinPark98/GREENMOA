@@ -37,6 +37,11 @@
         </div>
         <div th:unless="${letterCount > 0}" class="closeLetterBox">
         </div>
+
+        <!-- 선생님 권한으로 과제 등록  -->
+        <div th:if="${loginInfo.memberRoll == 'ADMIN'}" class="adminWork">
+            <div data-bs-toggle="modal" data-bs-target="#admin-work-modal"><p>과제 등록 하기</p></div>
+        </div>
     </div>
     
 
@@ -127,6 +132,49 @@
         </div>
     </div>
     </div>
+
+    <!-- 선생님 과제 리스트 insert 모달창-->
+    <div class="modal fade" id="admin-work-modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-body modal-body">
+                    <h1 class="mb-5 text-center">투두 리스트</h1>
+                    <form action="/room/insertWork" method="post">
+                        <label>과제이름</label>
+                        <input type="text" name="workTitle" required><br>
+                        <label>과제내용</label>
+                        <textarea name="workContent"cols="30" rows="10"></textarea><br>
+                        <label>마감날짜</label>
+                        <input type="text" name="deadLine">
+                        <input type="submit" value="등록하기">
+                        <button type="button" id="check" class="btn btn-primary" data-bs-dismiss="modal">닫기</button>
+                    </form>
+                </div>
+            </div>
+        </div>        
+    </div>
+    
+    <!-- 선생님 달력 insert 모달창-->
+    <!-- <div class="modal fade" id="admin-work-modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-body modal-body">
+                    <h1 class="mb-5 text-center">일정 입력</h1>
+                    <form id="eventForm">
+                        <label for="calTitle">일정 제목:</label>
+                        <input type="text" id="calTitle" name="calTitle" required>
+                        <label for="calDate">일정 날짜:</label>
+                        <input type="date" id="calDate" name="calDate" required>
+                        <button type="submit">등록</button>
+                      </form>
+                </div>
+            </div>
+        </div>        
+    </div> -->
+    
+    
     <script src="/js/room.js"></script>
 </th:block>
 </body>
