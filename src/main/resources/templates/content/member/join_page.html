@@ -10,6 +10,9 @@
 <th:block layout:fragment="content">
     <link rel="stylesheet" href="/css/member.css">
     <link rel="stylesheet" href="/css/slick.css">
+    <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.32/dist/sweetalert2.min.css" rel="stylesheet">
+
+
 
     <div class="row mt-5">
         <div class="col">
@@ -56,6 +59,7 @@
                                 <label for="memberBirthday" class="form-label">생년월일</label>
                                 <input type="text" class="form-control" id="memberBirthday" name="memberBirthday" placeholder="예시: 19950616">
                             </div>
+                            <div class="error-div" id="birthday-error-div"></div>
                             <div class="col-4">
                                 <label class="form-label">연락처</label>
                                 <select class="form-select" name="memberTels" >
@@ -165,6 +169,7 @@
     </div>
     </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.32/dist/sweetalert2.all.min.js"></script>
     <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
     <script src="/js/slick.min.js"></script>
     <script src="/js/join.js"></script>

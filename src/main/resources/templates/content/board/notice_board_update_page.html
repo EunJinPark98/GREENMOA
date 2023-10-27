@@ -21,13 +21,14 @@
                     <span class="input-group-text" id="basic-addon1">제목</span>
                     <input name="noticeBoardTitle" type="text" th:value="${noticeInfo.noticeBoardTitle}" class="form-control" required>
                 </div>
-                <div class="input-group mb-3">
-                    <span class="input-group-text">내용</span>
-                    <textarea id="summernote" name="noticeBoardContent" class="form-control" rows="13" aria-label="With textarea" th:utext="${noticeInfo.noticeBoardContent}"></textarea>
+                <div class="row mb-3">
+                    <div class="col">
+                        <textarea id="summernote" name="noticeBoardContent"  th:utext="${noticeInfo.noticeBoardContent}"></textarea>
+                    </div>
                 </div>
                 <div class="d-grid gap-2 d-md-flex justify-content-md-end">
                     <input type="hidden" name="noticeBoardNum" th:value="${noticeInfo.noticeBoardNum}">
-                    <input class="btn btn-outline-warning" type="submit" value="수정"/>
+                    <input class="btn btn-primary" type="submit" value="수정"/>
                 </div>
 
             </form>

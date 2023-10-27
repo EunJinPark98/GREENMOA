@@ -21,6 +21,13 @@ function joinValidate(){
     }
 
     // 정규식 테스트
+    const memberBirthday = joinForm.memberBirthday.value;
+    var birthdayRegex = /^[0-9]{8}$/;
+    if(!(birthdayRegex.test(memberBirthday))){
+        inputInvalidate('#birthday-error-div', '생년월일을 잘못 입력했습니다.')
+        return;
+    }
+
     var telRegex = /^01([0|1|6|7|8|9])-?([0-9]{3,4})-?([0-9]{4})$/;
     const tel = joinForm.memberTels[0].value + '-' + joinForm.memberTels[1].value + '-' + joinForm.memberTels[2].value;
     if(!(telRegex.test(tel))){
@@ -35,7 +42,62 @@ function joinValidate(){
         return;
     }
 
-    joinForm.submit();
+   // const formData = new FormData(joinForm);
+   
+    //console.log(formData);
+
+    // let entries = formData.entries();
+    // for (const pair of entries) {
+    //     console.log(pair[0]+ ', ' + pair[1]); 
+    //}
+
+    fetch('/member/join', { //요청경로
+        method: 'POST',
+        cache: 'no-cache',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
+        },
+        //컨트롤러로 전달할 데이터
+        body: new URLSearchParams({
+            memberId : joinForm.memberId.value,
+            memberPw : joinForm.memberPw.value,
+            memberName : joinForm.memberName.value,
+            memberGender: joinForm.memberGender.value,
+            memberBirthday : joinForm.memberBirthday.value,
+            memberTel : joinForm.memberTels[0].value + '-' + joinForm.memberTels[1].value + '-' + joinForm.memberTels[2].value,
+            memberEmail : joinForm.memberEmails[0].value + joinForm.memberEmails[1].value,
+            memberAddr : joinForm.memberAddr.value,
+            addrDetail : joinForm.addrDetail.value,
+            minime : joinForm.minime.value
+         })
+    })
+    .then((response) => {
+        if(!response.ok){
+            alert('fetch error!\n컨트롤러로 통신중에 오류가 발생했습니다.');
+            return ;
+        }
+    
+        return response.text(); //컨트롤러에서 return하는 데이터가 없거나 int, String 일 때 사용
+        //return response.json(); //나머지 경우에 사용
+    })
+    //fetch 통신 후 실행 영역
+    .then((data) => {//data -> controller에서 리턴되는 데이터!
+        Swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: `회원가입을 <br> <sub>축하드립니다!<sub>`,
+            showConfirmButton: false,
+            timer: 2000
+        }).then(()=>{
+            location.href = '/room/main';
+        })
+    })
+    //fetch 통신 실패 시 실행 영역
+    .catch(err=>{
+        alert('fetch error!\nthen 구문에서 오류가 발생했습니다.\n콘솔창을 확인하세요!');
+        console.log(err);
+    });
+
 }
 
 //validate 실패 시 메세지 설정
@@ -66,10 +128,22 @@ function checkId(){
     })
     .then((data) => {
         if(data){
-            alert('사용 가능한 아이디입니다.');
+            Swal.fire({
+                position: 'center',
+                icon: 'success',
+                title: '사용 가능한 아이디입니다.',
+                showConfirmButton: false,
+                timer: 1500
+              })
             document.querySelector('#joinBtn').disabled = false;
         }else{
-            alert('사용 불가능한 아이디입니다.');
+            Swal.fire({
+                position: 'center',
+                icon: 'error',
+                title: '사용 불가능한 아이디입니다.',
+                showConfirmButton: false,
+                timer: 1500
+              })
         }
     })
     .catch(err=>{

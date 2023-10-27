@@ -14,7 +14,7 @@
         <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
 
         <div class="boardBox">
-            <h3 class="headTitle">질문글 수정</h3>
+            <h3 class="headTitle">질문 글 수정</h3>
             <span class="headTitleBar">head-title-bar</span>
             
             <form action="/board/updateQnaBoard" method="post" enctype="multipart/form-data">
@@ -48,7 +48,7 @@
                 <div class="d-grid gap-2 d-md-flex justify-content-md-end">
                     <input type="hidden" name="qnaBoardNum" th:value="${qnaBoardDetail.qnaBoardNum}">
                     
-                    <input class="btn btn-outline-warning" type="submit" value="수정"></input>
+                    <input class="btn btn-primary" type="submit" value="수정"></input>
                 </div>
 
             </form>
