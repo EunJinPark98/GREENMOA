@@ -1,8 +1,24 @@
+//미니미 초기 위치 랜덤
+document.addEventListener("DOMContentLoaded", function () {
+    const memberElements = document.querySelectorAll(".member");
+    
+    memberElements.forEach(function (element) {
+        // 랜덤한 위치 값 설정
+        const randomLeftValue = Math.floor(Math.random() * 1021); // 0~1020px 범위에서 랜덤값
+        const randomTopValue = Math.floor(Math.random() * 381) + 400; // 400~780px 범위에서 랜덤값
+
+        // 스타일 설정
+        element.style.left = randomLeftValue + "px";
+        element.style.top = randomTopValue + "px";
+    });
+});
+
+
 //과제 말풍선
-let utilMenu = document.querySelector('.utilMenu');
-window.onload = function(){
-  utilMenu.classList.add('bounce');
-}
+// let utilMenu = document.querySelector('.utilMenu');
+// window.onload = function(){
+//   utilMenu.classList.add('bounce');
+// }
 
 
 
@@ -168,13 +184,19 @@ function showinput() {
 
 
 
-// 채팅
-
+///////////////// 소켓통신 /////////////////////////////////////
 var socket = new WebSocket('ws://192.168.30.55:8081/chat');
 
 
 socket.onopen = function() {
-    console.log('채팅 연결되었습니다.');
+    console.log('연결되었습니다.');
+    if(idElement){
+        console.log('로그인 되었습니다.');
+        socket.send(JSON.stringify({
+            'myId' : myId,
+        }));
+
+    };
 };
 
 socket.onclose = function(event) {
@@ -188,6 +210,93 @@ socket.onclose = function(event) {
 socket.onerror = function(error) {
     console.error('오류 발생: ' + error);
 };
+
+
+
+
+
+var idElement = document.getElementById('memId'); //로그인 아이디
+var srcElement = document.getElementById('miniSrc'); 
+
+if(idElement){ //로그인 했을 경우
+    var myId = idElement.getAttribute('data-id');
+
+    // socket.send(JSON.stringify({
+    //     'myId' : myId,
+    // }));
+
+
+    var minimeSrc = srcElement.getAttribute('data-minime');
+
+    const movingElement = document.querySelector('#my-minime-'+ myId);
+    const step = 10; // 이동 거리 조절
+
+    // 나의 미니미 클릭
+    movingElement.addEventListener('click', () => {
+        movingElement.classList.add('active');
+    });
+
+    //  미니미 키보드로 동작
+    document.addEventListener('keydown', (event) => {
+    if (movingElement.classList.contains('active')) { //클릭 했을 경우에만 
+        event.preventDefault();
+
+        const style = getComputedStyle(movingElement);
+        let left = parseFloat(style.left) || 0;
+        let top = parseFloat(style.top) || 0;
+
+        switch (event.key) {
+            case 'ArrowUp':
+                if(top>400){
+                top -= step;
+                }
+            break;
+            case 'ArrowDown':
+                if(top<780){
+                top += step;
+                }
+            break;
+            case 'ArrowLeft':
+                if(left>0){
+                left -= step;
+                }
+            break;
+            case 'ArrowRight':
+            if(left<1020){
+                left += step;
+            }
+            break;
+        }
+    
+        // 이동 범위
+        movingElement.style.left = left + 'px';
+        movingElement.style.top = top + 'px';
+        
+        // 소켓 전달
+        socket.send(JSON.stringify({
+            'moveId' : myId,
+            'left' : left,
+            'top' : top,
+            'eventKey' : event.key,
+            'minimeSrc' : minimeSrc
+        }));
+
+
+        }
+    });
+
+
+
+
+  //바탕 클릭하면 이제 안움직이게
+  document.addEventListener('mousedown', (event) => {
+    if (movingElement.classList.contains('active') && event.target !== movingElement) {
+        movingElement.classList.remove('active');
+    }
+  });
+}
+
+
 
 
 
@@ -216,20 +325,62 @@ function sendMessage() {
     }
         
 
-
     socket.send(JSON.stringify({'content': messageInput, 'sender' : sender, 'id' : id}));
 
     document.getElementById('message').value = '';
 }
 
-// 메시지 표시
+// 소켓으로 받은 데이터
 socket.onmessage = function(event) {
-    var message = JSON.parse(event.data);
-    showMessage(message.content, message.sender, message.id);
-    scrollToBottom();
+    var data = JSON.parse(event.data);
+    
+    // 접속 활성화
+    if(data.myId){
+        let myId = document.querySelector('#my-minime-'+ data.myId);
+        myId.querySelector('.connect-state').src = '/images/connectOn.png';
+    }
+    
+
+    // 채팅 전송
+    if(data.content != null){
+        showMessage(data.content, data.sender, data.id);
+        scrollToBottom();
+    }
+
+
+    // 미니미 이동
+    if(data.moveId){
+        let moveMini = document.querySelector('#my-minime-'+ data.moveId);
+
+        switch (data.eventKey) {
+            case 'ArrowUp':
+                if(data.top>400){
+                    moveMini.style.top = data.top + 'px';
+                }
+            break;
+            case 'ArrowDown':
+                if(data.top<780){
+                    moveMini.style.top = data.top + 'px';
+                }
+            break;
+            case 'ArrowLeft':
+                if(data.left>0){
+                    moveMini.style.left = data.left + 'px';
+                    moveMini.querySelector('.minime-img').src = `/images/${data.minimeSrc}left.png`;
+                }
+            break;
+            case 'ArrowRight':
+            if(data.left<1020){
+                    moveMini.style.left = data.left + 'px';
+                    moveMini.querySelector('.minime-img').src = `/images/${data.minimeSrc}right.png`;
+            }
+            break;
+        }
+    }
+   
 };
 
-
+//채팅 띄우기
 function showMessage(message, sender, id) {
     console.log("보내는사람 : " + sender);
     console.log("메세지 : " + message);
@@ -258,6 +409,18 @@ function scrollToBottom() {
     var chatMessages = document.getElementById('chat-messages');
     chatMessages.scrollTop = chatMessages.scrollHeight;
 }
+
+
+
+
+
+/////////////////////////////////////////////////////////////////////////////////////
+
+
+
+
+
+
 
 
 

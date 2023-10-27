@@ -23,23 +23,6 @@
             <!-- 출석부 -->
             <div class="student-list" data-bs-toggle="modal" data-bs-target="#stuListModal"><img src="/images/studentList.png" alt=""></div>
             <!-- 학생 미니미 -->
-  <script>
-document.addEventListener("DOMContentLoaded", function () {
-    const memberElements = document.querySelectorAll(".member");
-    
-    memberElements.forEach(function (element) {
-        // 랜덤한 위치 값 설정
-        const randomLeftValue = Math.floor(Math.random() * 1021); // 0~1020px 범위에서 랜덤값
-        const randomTopValue = Math.floor(Math.random() * 381) + 400; // 400~780px 범위에서 랜덤값
-
-        // 스타일 설정
-        element.style.position = "absolute";
-        element.style.left = randomLeftValue + "px";
-        element.style.top = randomTopValue + "px";
-    });
-});
-  </script>
-
             <div class="mini-fr">
               <th:block th:if="${memberList != null}">
                   <th:block th:each="member : ${memberList}">
@@ -58,14 +41,7 @@ document.addEventListener("DOMContentLoaded", function () {
                           <img class="minime-img" th:src="|/images/${member.minime}.png|">
                           <input type="hidden" id="memberName" name="memberName" th:value="${member.memberName}">
                           <div class="nameTag">
-                            <div class="on-off">
-                              <th:block th:if="${member.onOff == 1}">
-                                <img class="connect-on" src="/images/connectOn.png" alt="">
-                              </th:block>
-                              <th:block th:if="${member.onOff == 0}">
-                                <img class="connect-off" src="/images/connectOff.png" alt="">
-                              </th:block>
-                            </div>
+                            <img class="connect-state" src="/images/connectOff.png" alt="">
                             <h6>[[${member.memberName}]]</h6>
                           </div>
                       </div>
@@ -224,72 +200,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
 
-    <script>
-      var idElement = document.getElementById('memId');
-      var srcElement = document.getElementById('miniSrc');
 
-      if(idElement){ //로그인 했을 경우에만 움직이도록
-        var myId = idElement.getAttribute('data-id');
-        var minimeSrc = srcElement.getAttribute('data-minime');
-
-        const movingElement = document.querySelector('#my-minime-'+ myId);
-        const step = 10; // 이동 거리 조절
-
-        // 나의 미니미 클릭
-        movingElement.addEventListener('click', () => {
-          movingElement.classList.add('active');
-        });
-
-      //  미니미 키보드로 동작
-      document.addEventListener('keydown', (event) => {
-        if (movingElement.classList.contains('active')) {
-            event.preventDefault();
-
-            const style = getComputedStyle(movingElement);
-            let left = parseFloat(style.left) || 0;
-            let top = parseFloat(style.top) || 0;
-            const minimeImage = movingElement.querySelector('.minime-img');
-
-            switch (event.key) {
-              case 'ArrowUp':
-                  if(top>400){
-                    top -= step;
-                  }
-                break;
-              case 'ArrowDown':
-                  if(top<780){
-                    top += step;
-                  }
-                break;
-              case 'ArrowLeft':
-                  if(left>0){
-                    left -= step;
-                    minimeImage.src = `/images/${minimeSrc}left.png`;
-                  }
-                break;
-              case 'ArrowRight':
-                if(left<1020){
-                  left += step;
-                  minimeImage.src = `/images/${minimeSrc}right.png`;
-                }
-                break;
-            }
-
-            // 이동 범위
-            movingElement.style.left = left + 'px';
-            movingElement.style.top = top + 'px';
-          }
-        });
-  
-
-      //바탕 클릭하면 이제 안움직이게
-      document.addEventListener('mousedown', (event) => {
-          if (movingElement.classList.contains('active') && event.target !== movingElement) {
-              movingElement.classList.remove('active');
-          }
-      });
-      }
-    </script>
       
       
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>

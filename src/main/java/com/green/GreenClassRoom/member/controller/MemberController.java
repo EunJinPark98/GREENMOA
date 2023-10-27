@@ -58,9 +58,6 @@ public class MemberController {
     @GetMapping("/logout")
     public String logout(HttpSession session){
         MemberVO loginInfo = (MemberVO) session.getAttribute("loginInfo");
-        if(loginInfo!=null){
-            memberService.connectOff(loginInfo.getMemberId());
-        }
         session.removeAttribute("loginInfo");
         return "redirect:/room/main";
     }

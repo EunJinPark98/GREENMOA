@@ -16,7 +16,7 @@
         <result column="MEMBER_ROLL" property="memberRoll"/>
         <result column="MINIME" property="minime"/>
         <result column="STATUS_MSG" property="statusMsg"/>
-        <result column="ON_OFF" property="onOff"/>
+
     </resultMap>
 
     <!--회원가입-->
@@ -60,25 +60,13 @@
             , MINIME
             , MEMBER_BIRTHDAY
             , STATUS_MSG
-            , ON_OFF
             , MINIME
         FROM GREEN_MEMBER
         WHERE MEMBER_ID=#{memberId}
         AND MEMBER_PW=#{memberPw}
     </select>
 
-    <!--접속중-->
-    <update id="connectOn">
-        UPDATE GREEN_MEMBER
-        SET ON_OFF = 1
-        WHERE MEMBER_ID = #{memberId}
-    </update>
-    <!--비접속-->
-    <update id="connectOff">
-        UPDATE GREEN_MEMBER
-        SET ON_OFF = 0
-        WHERE MEMBER_ID = #{memberId}
-    </update>
+
 
     <!--ID 체크-->
     <select id="checkId" resultType="String">
@@ -94,7 +82,6 @@
             , MEMBER_GENDER
             , MEMBER_BIRTHDAY
             , MINIME
-            , ON_OFF
         FROM GREEN_MEMBER
         WHERE MEMBER_ROLL = 'USER'
     </select>
@@ -108,6 +95,7 @@
         FROM GREEN_MEMBER
         WHERE MEMBER_ROLL = 'ADMIN'
     </select>
+
     <!--상태메세지 수정 -->
     <update id="updateStatusMsg">
         UPDATE GREEN_MEMBER
@@ -115,6 +103,7 @@
         STATUS_MSG=#{statusMsg}
         WHERE MEMBER_ID=#{memberId}
     </update>
+
     <!--상태 메세지 출력-->
     <select id="selectStatusMsg" resultMap="member">
         SELECT STATUS_MSG

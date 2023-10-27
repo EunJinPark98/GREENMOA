@@ -22,27 +22,6 @@ body{
     border-radius: 20px;
     width: 100%;
 }
-/* #moving-zone{
-    position: relative;
-    height: 490px;
-    width: 100%;
-    background-color: blue;
-    z-index: 20000;
-    transform: translateY(105%);
-}
-#moving-zone-top{
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 0;
-    width: 0;
-    border-left: 550px solid transparent;
-    border-right: 550px solid transparent;
-    border-bottom: 280px solid red;
-    z-index: 20000;
-     transform: translateY(-100%);
-} */
-
 
 
 /* 클래스룸 미니미들 위치 */
@@ -64,6 +43,9 @@ body{
 }
 .member{
     z-index: 2000;
+    position: absolute;
+    top: 500px;
+    bottom: 500px;
 }
 .member-content{
     position: relative;
@@ -140,17 +122,11 @@ body{
     margin-bottom: 10px;
 }
 
-.on-off{
+.connect-state{
     width: 12px;
-    position: relative;
+    height: 12px;
+    margin-top: 3px;
     margin-right: 3px;
-}
-.connect-on, .connect-off {
-    width: 100%;
-    height: auto;
-    position: absolute;
-    top: 15%;
-    left: 0;
 }
 .nameTag h6{
     margin-bottom: 0;
