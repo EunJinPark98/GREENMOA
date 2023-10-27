@@ -2,6 +2,7 @@ package com.green.GreenClassRoom.board.controller;
 
 import com.green.GreenClassRoom.board.service.FreeBoardService;
 import com.green.GreenClassRoom.board.vo.FreeBoardVO;
+import com.green.GreenClassRoom.board.vo.FreeBookMarkVO;
 import com.green.GreenClassRoom.board.vo.ReplyVO;
 import com.green.GreenClassRoom.member.vo.MemberVO;
 import jakarta.servlet.http.HttpSession;
@@ -55,9 +56,9 @@ public class FreeBoardController {
 
     // 게시글 상세 페이지 이동, 게시글 조회수 증가 기능
     @GetMapping("/freeBoardDetail")
-    public String freeBoardDetail(int boardNum,Model model,ReplyVO replyVO,
+    public String freeBoardDetail(int boardNum, Model model, ReplyVO replyVO,
                                   @RequestParam(required = false, defaultValue = "false") boolean noCount
-                                    , HttpSession session,FreeBoardVO freeBoardVO){
+                                    , HttpSession session, FreeBoardVO freeBoardVO, FreeBookMarkVO freeBookMarkVO){
         // @RequestParam(required = false, defaultValue = "false") boolean noCount
         // 댓글 등록이 실행되지 않으면 noCount가 넘어오지 않고, 그 값은 false가 된다.
         // 댓글 등록 시 게시글 목록 페이지로 오면 카운터 무효!
@@ -80,6 +81,9 @@ public class FreeBoardController {
         model.addAttribute("limit", replyVO.getLimit());
 
         model.addAttribute("totalReply", freeBoardService.totalReply(boardNum));
+
+        freeBookMarkVO.setMemberId(loginInfo.getMemberId());
+        model.addAttribute("insertFreeBookMark", freeBoardService.selectInsertFreeBookMark(freeBookMarkVO));
 
         return "/content/board/free_board_detail";
     }

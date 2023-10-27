@@ -212,7 +212,7 @@ body{
     right: -40px;
     transform: rotate(30deg);
 }
-/* --------- 과제로 애니메이션 효과 --------- */
+/* --------- 과제 --------- */
 .work-icon{
     background-image: url(/images/login.png);
     background-position: center;
@@ -267,6 +267,46 @@ body{
     }
 }
 
+.work-back{
+    background-color: transparent;
+    border: none;
+}
+.work-frame{
+    background-image: url(/images/work.png);
+    background-position: top;
+    background-repeat: no-repeat;
+    background-size: 100% auto;
+    width: 450px;
+    height: 770px;
+    padding-top: 20px;
+}
+.accordion-button:not(.collapsed) {
+    background-color: #b2adc3;
+}
+.accordion-button:hover {
+    background-color: #b2adc3;
+}
+.accordion-button:focus {
+    border-color: none;
+    box-shadow: none;
+    border-radius: 10px;
+}
+.accordion-button{
+    color: #3b3838;
+    background-color: #fcefe6;
+}
+.accordion-item{
+    border: none;
+    border-radius: 10px;
+}
+.accordion-header{
+    border-top: 1px solid #acacac;
+    
+}
+.accordion-body{
+    margin-bottom: 20px;
+    box-shadow: 0px 6px 20px -15px rgba(0,0,0,0.5);
+}
 
 /* --------- 캘린더 --------- */
 .pin{

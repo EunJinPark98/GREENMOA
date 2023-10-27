@@ -1,6 +1,6 @@
 //summer-note
 $(document).ready(function() {
-    $('#summernote11').summernote({
+    $('#summernote').summernote({
         height : 300,
         minHeight : null,
         maxHeight : null,

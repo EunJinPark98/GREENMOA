@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class QnaBookMarkController {
     private final QnaBookMarkService qnaBookMarkService;
 
+    //북마크 추가ㅏ
     @ResponseBody
     @PostMapping("/insertBookMark")
     public int insertBookMark(QnaBookMarkVO qnaBookMarkVO, HttpSession session){
@@ -25,6 +26,7 @@ public class QnaBookMarkController {
         return qnaBookMarkService.insertBookMark(qnaBookMarkVO);
     }
 
+    //북마크 삭제
     @ResponseBody
     @PostMapping("/deleteBookMark")
     public int deleteBookMark(QnaBookMarkVO qnaBookMarkVO, HttpSession session){

@@ -263,7 +263,7 @@ function scrollToBottom() {
 
 
 
-// 풀캘린더
+// 풀캘린더 (main.html)
 var openCalender = document.querySelector('#openCalender');
 openCalender.addEventListener('click', function() {
 
@@ -287,9 +287,10 @@ openCalender.addEventListener('click', function() {
 
 });
 
-$('#eventForm').on('submit', function(e) {
-    e.preventDefault();
-    
+
+
+
+function eventReg(){
     var title = $('#calTitle').val();
     var date = $('#calDate').val();
 
@@ -314,7 +315,49 @@ $('#eventForm').on('submit', function(e) {
         });
     }
     calendar.refetchEvents();
+}
 
-});
+
+
+//일정 등록 (myRoom.html)
+// $('#eventForm1').on('click', function(e) {
+// //$('#asdef').on('click', function(e) {
+//     e.preventDefault();
+//     alert('클릭했다');
+//     var title = $('#calTitle').val();
+//     var date = $('#calDate').val();
+
+
+//     if (title && date) {
+//         var eventData = {
+//             calTitle: title,
+//             calDate: date,
+//         };
+
+//         $.ajax({
+//             url: '/addEvent', 
+//             type: 'POST',
+//             data: JSON.stringify(eventData),
+//             contentType: 'application/json',
+//             success: function(response) {
+//                 // 서버에서 응답을 받으면 필요한 동작 수행
+//                 alert(response);
+                
+//                 calendar.refetchEvents();
+//             }
+//         });
+//     }
+//     calendar.refetchEvents();
+
+// });
+
+function openCalendar() {
+    var calendarFormDiv = document.querySelector('.calendarForm');
+    calendarFormDiv.style.display = 'block';
+}
+function closeCalender() {
+    var calendarFormDiv = document.querySelector('.calendarForm');
+    calendarFormDiv.style.display = 'none';
+}
 
 

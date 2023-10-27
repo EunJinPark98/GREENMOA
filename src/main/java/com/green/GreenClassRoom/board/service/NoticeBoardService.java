@@ -1,6 +1,7 @@
 package com.green.GreenClassRoom.board.service;
 
 import com.green.GreenClassRoom.board.vo.NoticeBoardVO;
+import com.green.GreenClassRoom.board.vo.NoticeBookMarkVO;
 
 import java.util.List;
 import java.util.Map;
@@ -31,5 +32,7 @@ public interface NoticeBoardService {
     //상세페이지에서 이전글 다음글
     public NoticeBoardVO prevList(int noticeBoardNum);
     public NoticeBoardVO nextList(int noticeBoardNum);
+
+    public NoticeBookMarkVO selectInsertNoticeBookMark(NoticeBookMarkVO noticeBookMarkVO);
 
 }

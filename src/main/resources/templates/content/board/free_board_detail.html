@@ -28,6 +28,12 @@
                         <div class="col-11">
                             <h3>[[${board.title}]]</h3>
                         </div>
+                        <div class="col-1">
+                            <span class="bookCheck">
+                                <img class="bookmark" src="/images/bookmark-off.png" alt="" th:if="${insertFreeBookMark == null}" th:onclick="checkFreeBookMark(this, [[${board.boardNum}]])">
+                                <img class="bookmark bookmarked" src="/images/bookmark-on.png" alt="" th:if="${insertFreeBookMark != null}" th:onclick="checkFreeBookMark(this, [[${board.boardNum}]])">
+                            </span>
+                        </div>
                     </div>
                 
                     <hr>
@@ -40,7 +46,7 @@
                     </div>
                     <div class="row">
                         <div class="col-6 mb-5 px-4">
-                            <div class="textContent">[[${board.content}]]</div>
+                            <div id="summernote" th:utext="${board.content}" class="textContent"></div>
                         </div>
                     </div>
                     <div class="row">
