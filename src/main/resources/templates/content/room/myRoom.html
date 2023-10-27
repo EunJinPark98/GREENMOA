@@ -42,6 +42,7 @@
         <div th:if="${loginInfo.memberRoll == 'ADMIN'}" class="adminWork">
             <div data-bs-toggle="modal" data-bs-target="#admin-work-modal"><p>과제 등록 하기</p></div>
         </div>
+        <div class="workIcon"></div>
     </div>
     
 
@@ -122,7 +123,7 @@
                         <ul>
                             <li>
                                 <div class="check">
-                                    <input type="checkbox" class="todoCheck" onclick="addlinethrough();">
+                                    <input type="checkbox" class="todoCheck" onclick="addlinethrough(this);">
                                     <label for="checkbox"></label>
                                     <p class="todoName">[[${todo.todoContent}]]</p>
                                     <p class="Dday">D<span>[[${todo.todoStartDate}]]</span></p>
@@ -151,18 +152,38 @@
     <div class="modal fade" id="admin-work-modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
     aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-body modal-body">
-                    <h1 class="mb-5 text-center">투두 리스트</h1>
+            <div class="reg-work-back modal-content">
+                <div class="reg-work modal-body modal-body">
+
+                    <div class="row">
+                        <div class="col-11">
+                            <h3 class="mt-2 text-center">과제 등록</h3>
+                        </div>
+                        <div class="col-1 d-grid gap-2 d-md-flex justify-content-end col">
+                            <button type="button" id="check" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                    </div>
+
                     <form action="/room/insertWork" method="post">
-                        <label>과제이름</label>
-                        <input type="text" name="workTitle" required><br>
-                        <label>과제내용</label>
-                        <textarea name="workContent"cols="30" rows="10"></textarea><br>
-                        <label>마감날짜</label>
-                        <input type="text" name="deadLine">
-                        <input type="submit" value="등록하기">
-                        <button type="button" id="check" class="btn btn-primary" data-bs-dismiss="modal">닫기</button>
+
+                        <label class="titleLabel">
+                            <input type="text" name="workTitle" class="workTitle" required/>
+                            <div class="label-text">과제명</div>
+                        </label>
+
+                        <div class="input-field">
+                            <textarea name="workContent" rows="6" cols="50" required></textarea>
+                            <label>과제내용</label>
+                        </div>
+
+                        <div class="input-group mb-5">
+                            <span class="input-group-text dateLabel">마감일자</span>
+                            <input type="text" name="deadLine" class="deadLine" placeholder="ex. 2023-00-00"  required>
+                        </div>
+
+                        <div class="col d-md-flex justify-content-center col">
+                            <button class="btn btn-primary" type="submit" id="button-addon2">등록</button>
+                        </div>
                     </form>
                 </div>
             </div>
