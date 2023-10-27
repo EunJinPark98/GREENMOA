@@ -156,12 +156,18 @@
       <!-- 과제 모달 -->
       <div class="modal fade" id="workModal" tabindex="-1" aria-labelledby="workModalLabel" aria-hidden="true">
         <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h1 class="modal-title fs-5" id="workModalLabel">과제</h1>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
+          <div class="work-back modal-content">
+            <div class="work-frame modal-body">
+
+              <div class="row mt-2 mb-2">
+                <div class="col-7">
+                  <h1 class="modal-title fs-4 d-grid gap-2 d-md-flex justify-content-end col" id="workModalLabel">과 제</h1>
+                </div>
+                <div class="col-5 d-grid gap-2 d-md-flex justify-content-end col">
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+              </div>
+
               <div class="accordion" id="workAccordion">
                 <div class="accordion-item" th:each="work, state : ${workList}">
                   <h2 class="accordion-header">
@@ -176,12 +182,6 @@
                   </div>
                 </div>
               </div>
-            </div>
-
-
-
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
             </div>
           </div>
         </div>
