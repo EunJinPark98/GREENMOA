@@ -44,6 +44,7 @@ public class CalenderController {
     //캘린더 일정 추가
     @PostMapping("/addEvent")
     public ResponseEntity<String> addEvent(@RequestBody CalenderVO calenderVO) {
+
         try {
             calenderService.insertCalender(calenderVO);
             return ResponseEntity.ok("일정이 추가되었습니다.");

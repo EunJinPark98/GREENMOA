@@ -110,9 +110,9 @@
     width: 150px;
     height: 200px;
     position: absolute;
-    left: 50px;
-    top: 50px;
-    transform: rotate(-8deg);
+    right: 104px;
+    top: 89px;
+    transform: rotate(-1deg);
     background-image: url(/images/todo.png);
     background-size: 100% auto;
     background-repeat: no-repeat;
@@ -139,7 +139,7 @@
     height: 200px;
     position: absolute;
     left: 88px;
-    top: 233px;
+    top: 282px;
     transform: rotate(-1deg);
     background-image: url(/images/mailbox-open.png);
     background-size: 100% auto;
@@ -154,7 +154,7 @@
     height: 200px;
     position: absolute;
     left: 88px;
-    top: 233px;
+    top: 282px;
     transform: rotate(-1deg);
     background-image: url(/images/mailbox-close.png);
     background-size: 100% auto;
@@ -188,8 +188,8 @@
     width: 150px;
     height: 200px;
     position: absolute;
-    right: 110px;
-    top: 137px;
+    right: 313px;
+    top: 87px;
     transform: rotate(-1deg);
     background-image: url(/images/msgBox_1.png);
     background-size: 100% auto;
@@ -198,6 +198,73 @@
 }
 .adminWork p{
     margin-top: 73px;
+}
+/* 달력 이미지 */
+.adminCalendar{
+    background-image: url(/images/calendar.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 100% auto;
+    width: 150px;
+    height: 200px;
+    text-indent: -99999px;
+    position: absolute;
+    top: 7%;
+    left: 23%;
+    transform: perspective(200px) rotateY(30deg);
+    z-index: 10;
+}
+.colorPen{
+    background-image: url(/images/color-pen.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 100% auto;
+    width: 30px;
+    height: 124px;
+    transform: rotate(54deg);
+    text-indent: -99999px;
+    position: absolute;
+    top: 8%;
+    left: 111%;
+}
+.calendarForm{
+    display: none;
+    background-image: url(/images/calendar-form.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 100% auto;
+    width: 388px;
+    height: 205px;
+    position: absolute;
+    z-index: 100;
+    top: 7%;
+    left: 16%;
+}
+#eventForm{
+    margin-top: 20px;
+    margin-left: 55px;
+}
+.calendarHead{
+    background-image: url(/images/calender-head.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 100% auto;
+    width: 116px;
+    height: 55px;
+    margin-top: 20px;
+    margin-left: 128px;
+}
+.calendarHead p{
+    padding-top: 13px;
+    padding-left: 29px;
+}
+.closeCalender{
+    margin-top: -119px;
+    margin-left: 341px;
+    width: 24px;
+    height: 24px;
+    text-align: center;
+
 }
 
 
