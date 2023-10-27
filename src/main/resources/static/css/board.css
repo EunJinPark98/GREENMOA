@@ -218,3 +218,6 @@ div:where(.swal2-container) div:where(.swal2-actions) {
 .bookCheck{
     cursor: pointer;
 }
+.note-editable{
+    background-color: white;
+}

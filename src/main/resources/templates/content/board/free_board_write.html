@@ -8,7 +8,9 @@
 </head>
 <body>
     <th:block layout:fragment="content">
+        <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
         <link rel="stylesheet" href="/css/board.css">
+
         <div class="boardBox">
             <h3 class="headTitle">자유게시글 작성 페이지</h3>
             <span class="headTitleBar">head-title-bar</span>
@@ -22,7 +24,7 @@
 
                 <div class="input-group mb-3">
                     <span class="input-group-text">내용</span>
-                    <textarea name="content" class="form-control" rows="13" aria-label="With textarea"></textarea>
+                    <textarea id="summernote" name="content" class="form-control" rows="13" aria-label="With textarea"></textarea>
                 </div>
 
                 <div class="d-grid gap-2 d-md-flex justify-content-md-end">
@@ -31,6 +33,11 @@
 
             </form>
         </div>
+
+        <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
+        <script src="/js/summernote/lang/summernote-ko-KR.js"></script>
+        <script src="/js/board/free_board_write.js"></script>
     </th:block>   
 </body>
 </html>

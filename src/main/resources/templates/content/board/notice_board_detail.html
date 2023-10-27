@@ -18,6 +18,12 @@
                     <div class="col-11">
                         <h3>[[${notice.noticeBoardTitle}]]</h3>
                     </div>
+                    <div class="col-1">
+                        <span class="bookCheck">
+                            <img class="bookmark" src="/images/bookmark-off.png" alt="" th:if="${insertNoticeBookMark == null}" th:onclick="checkNoticeBookMark(this, [[${notice.noticeBoardNum}]])">
+                            <img class="bookmark bookmarks" src="/images/bookmark-on.png" alt="" th:if="${insertNoticeBookMark != null}" th:onclick="checkNoticeBookMark(this, [[${notice.noticeBoardNum}]])">
+                        </span>
+                    </div>
                 </div>
             
                 <hr>
@@ -30,7 +36,7 @@
                 </div>
                 <div class="row">
                     <div class="col mb-5 px-4">
-                        <div class="textContent">[[${notice.noticeBoardContent}]]</div>
+                        <div id="summernote" th:utext="${notice.noticeBoardContent}" class="textContent"></div>
                     </div>
                 </div>
                 <div class="row">

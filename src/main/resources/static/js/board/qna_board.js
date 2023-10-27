@@ -76,7 +76,7 @@ function showQnaReplyMore(qnaBoardNum, qnaReplyLimit){
 // })
 
 
-
+//북마크 기능
 function checkBookMark(imageTag ,qnaBoardNum) {
     // 이미 추가되어 있는 경우 삭제를 수행
     if (imageTag.classList.contains('bookmarked')) {
@@ -88,7 +88,7 @@ function checkBookMark(imageTag ,qnaBoardNum) {
                 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
             },
             body: new URLSearchParams({
-                qnaBoardNum: qnaBoardNum
+                qnaBoardNum : qnaBoardNum
             })
         })
         .then((response) => {
@@ -116,7 +116,7 @@ function checkBookMark(imageTag ,qnaBoardNum) {
                 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
             },
             body: new URLSearchParams({
-                qnaBoardNum: qnaBoardNum
+                qnaBoardNum : qnaBoardNum
             })
         })
         .then((response) => {

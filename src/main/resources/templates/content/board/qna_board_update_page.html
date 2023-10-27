@@ -10,7 +10,6 @@
 <body>
     <th:block layout:fragment="content">
         <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.32/dist/sweetalert2.min.css" rel="stylesheet">
-        <!-- <link rel="stylesheet" href="/css/summernote/summernote-lite.css"> -->
         <link rel="stylesheet" href="/css/board.css">
         <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
 
@@ -26,7 +25,7 @@
                 </div>
                 <div class="row mb-5">
                     <div class="col">
-                        <textarea id="summernote11" name="qnaBoardContent"  th:utext="${qnaBoardDetail.qnaBoardContent}"></textarea>
+                        <textarea id="summernote" name="qnaBoardContent"  th:utext="${qnaBoardDetail.qnaBoardContent}"></textarea>
                     </div>
                 </div>
 

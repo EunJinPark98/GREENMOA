@@ -12,6 +12,12 @@
         <result column="NOTICE_BOARD_CREATE_DATE" property="noticeBoardCreateDate"/>
         <result column="NOTICE_BOARD_READ_CNT" property="noticeBoardReadCnt"/>
     </resultMap>
+    <!--북마크-->
+    <resultMap id="noticeBookMark" type="com.green.GreenClassRoom.board.vo.NoticeBookMarkVO">
+        <id column="NOTICE_BOOK_MARK_NUM" property="noticeBookMarkNum"/>
+        <result column="NOTICE_BOARD_NUM" property="noticeBoardNum"/>
+        <result column="MEMBER_ID" property="memberId"/>
+    </resultMap>
 
     <!--공지사항 목록-->
     <select id="selectNoticeList" resultMap="notice">
@@ -111,6 +117,13 @@
             FROM NOTICE_BOARD
             WHERE NOTICE_BOARD_NUM &gt; #{noticeBoardNum}
         )
+    </select>
+
+    <select id="selectInsertNoticeBookMark" resultMap="noticeBookMark">
+        SELECT NOTICE_BOOK_MARK_NUM
+        FROM NOTICE_BOOK_MARK
+        WHERE NOTICE_BOARD_NUM = #{noticeBoardNum}
+        AND MEMBER_ID = #{memberId}
     </select>
 
 

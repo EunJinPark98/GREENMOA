@@ -1,6 +1,7 @@
 package com.green.GreenClassRoom.board.service;
 
 import com.green.GreenClassRoom.board.vo.FreeBoardVO;
+import com.green.GreenClassRoom.board.vo.FreeBookMarkVO;
 import com.green.GreenClassRoom.board.vo.ReplyVO;
 import com.green.GreenClassRoom.member.vo.MemberVO;
 
@@ -39,6 +40,8 @@ public interface FreeBoardService {
 
     //댓글의 총 개수
     public int totalReply(int boardNum);
+
+    public FreeBookMarkVO selectInsertFreeBookMark(FreeBookMarkVO freeBookMarkVO);
 
 
 }

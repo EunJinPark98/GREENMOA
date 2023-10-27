@@ -2,6 +2,7 @@ package com.green.GreenClassRoom.board.controller;
 
 import com.green.GreenClassRoom.board.service.NoticeBoardService;
 import com.green.GreenClassRoom.board.vo.NoticeBoardVO;
+import com.green.GreenClassRoom.board.vo.NoticeBookMarkVO;
 import com.green.GreenClassRoom.member.vo.MemberVO;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
@@ -53,7 +54,9 @@ public class NoticeBoardController {
 
     // 상세페이지
     @GetMapping("/noticeBoardDetail")
-    public String noticeBoardDetail(int noticeBoardNum, Model model){
+    public String noticeBoardDetail(int noticeBoardNum, Model model, NoticeBookMarkVO noticeBookMarkVO, HttpSession session){
+        MemberVO loginInfo = (MemberVO) session.getAttribute("loginInfo");
+
         noticeBoardService.updateReadCnt(noticeBoardNum);
 
         NoticeBoardVO noticeInfo = noticeBoardService.noticeBoardDetail(noticeBoardNum);
@@ -65,6 +68,10 @@ public class NoticeBoardController {
         model.addAttribute("prevList", prevList);
         model.addAttribute("nextList", nextList);
         System.out.println("이전글 " + prevList + "\n다음글 " + nextList);
+
+
+        noticeBookMarkVO.setMemberId(loginInfo.getMemberId());
+        model.addAttribute("insertNoticeBookMark", noticeBoardService.selectInsertNoticeBookMark(noticeBookMarkVO));
 
         return "content/board/notice_board_detail";
     }

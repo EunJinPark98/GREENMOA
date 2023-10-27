@@ -1,10 +1,10 @@
 package com.green.GreenClassRoom.board.service;
 
 import com.green.GreenClassRoom.board.vo.FreeBoardVO;
+import com.green.GreenClassRoom.board.vo.FreeBookMarkVO;
 import com.green.GreenClassRoom.board.vo.ReplyVO;
 import lombok.RequiredArgsConstructor;
 import org.mybatis.spring.SqlSessionTemplate;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -67,5 +67,10 @@ public class FreeBoardServiceImpl implements FreeBoardService{
     @Override
     public int totalReply(int boardNum) {
         return sqlSession.selectOne("freeBoardMapper.totalReply", boardNum);
+    }
+
+    @Override
+    public FreeBookMarkVO selectInsertFreeBookMark(FreeBookMarkVO freeBookMarkVO) {
+        return sqlSession.selectOne("freeBoardMapper.selectInsertFreeBookMark", freeBookMarkVO);
     }
 }

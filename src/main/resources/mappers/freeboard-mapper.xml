@@ -23,6 +23,12 @@
         <result column="UPDATE_DATE" property="updateDate"/>
         <result column="REPLY_EMOJI" property="replyEmoji"/>
     </resultMap>
+    <!--북마크-->
+    <resultMap id="freeBookMark" type="com.green.GreenClassRoom.board.vo.FreeBookMarkVO">
+        <id column="FREE_BOOK_MARK_NUM" property="freeBookMarkNum"/>
+        <result column="BOARD_NUM" property="boardNum"/>
+        <result column="MEMBER_ID" property="memberId"/>
+    </resultMap>
 
     <!--자유게시판 목록 쿼리-->
     <select id="selectFreeBoardList" resultMap="freeBoard">
@@ -148,6 +154,13 @@
     <select id="pagingFreeBoard" resultType="int">
         SELECT COUNT(BOARD_NUM)
         FROM FREE_BOARD
+    </select>
+
+    <select id="selectInsertFreeBookMark" resultMap="freeBookMark">
+        SELECT FREE_BOOK_MARK_NUM
+        FROM FREE_BOOK_MARK
+        WHERE BOARD_NUM = #{boardNum}
+        AND MEMBER_ID =#{memberId}
     </select>
 </mapper>
 

@@ -20,7 +20,7 @@
                     <h3>[[${qnaBoard.qnaBoardTitle}]]</h3>
                 </div>
                 <div class="col-1">
-                    <span class="bookCheck" >
+                    <span class="bookCheck">
                         <img class="bookmark"  src="/images/bookmark-off.png" alt="" th:if="${insertBookMark == null}" th:onclick="checkBookMark(this, [[${qnaBoard.qnaBoardNum}]])">
                         <img class="bookmark bookmarked"  src="/images/bookmark-on.png" alt="" th:if="${insertBookMark != null}" th:onclick="checkBookMark(this, [[${qnaBoard.qnaBoardNum}]])">
                     </span>
