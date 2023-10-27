@@ -69,6 +69,7 @@ body{
     color: #fff;
     letter-spacing: 2px;
 }
+
 .letterText{
     margin-top: 20px;
     margin-left: 15px;
@@ -91,6 +92,7 @@ body{
 .inner-fr{
     position: relative;
 }
+
 .letter{
     display: none;
     background-image: url(/images/postit.png);
@@ -98,8 +100,8 @@ body{
     background-repeat: no-repeat;
     background-size: 100% auto;
     position: absolute;
-    top: -247px;
-    left: 204px;
+    top: 0;
+    left: 0;
     width: 300px;
 }
 .letterName{
