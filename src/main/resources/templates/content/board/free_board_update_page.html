@@ -21,13 +21,14 @@
                     <span class="input-group-text" id="basic-addon1">제목</span>
                     <input name="title" type="text" th:value="${freeBoardDetail.title}" class="form-control" required>
                 </div>
-                <div class="input-group mb-3">
-                    <span class="input-group-text">내용</span>
-                    <textarea id="summernote" name="content" class="form-control" aria-label="With textarea" th:utext="${freeBoardDetail.content}"></textarea>
+                <div class="row mb-3">
+                    <div class="col">
+                        <textarea id="summernote" name="content"  th:utext="${freeBoardDetail.content}"></textarea>
+                    </div>
                 </div>
                 <div class="d-grid gap-2 d-md-flex justify-content-md-end">
                     <input type="hidden" name="boardNum" th:value="${freeBoardDetail.boardNum}">
-                    <input class="btn btn-outline-warning" type="submit" value="수정"></input>
+                    <input class="btn btn-primary" type="submit" value="수정"></input>
                 </div>
 
             </form>

@@ -167,8 +167,8 @@ td{
 
 
 /* alert창 */
-.swal2-popup.swal2-modal.swal2-icon-warning.swal2-show{
-    background-image: url(/images/confirm.png);
+div:where(.swal2-container) div:where(.swal2-popup) {
+    background-image: url(/images/login-modal.png);
     background-position: center;
     background-repeat: no-repeat;
     background-size: 100% auto;
@@ -176,18 +176,12 @@ td{
     height: 635px;
     padding-top: 70px;
 }
-div:where(.swal2-icon).swal2-warning {
-    border-color: #e1904a;
-    color: #e1904a;
-    top: 95px;
+div:where(.swal2-icon).swal2-success, div:where(.swal2-icon).swal2-error.swal2-icon-show {
+    top: 220px;
 }
-h2#swal2-title.swal2-title {
-    margin-top: 0px;
-    top: 30px;
-}
-div:where(.swal2-container) div:where(.swal2-actions) {
+h2#swal2-title.swal2-title{
     height: 0;
-    margin-bottom: 130px;
+    margin-top: 70px;
 }
 
 

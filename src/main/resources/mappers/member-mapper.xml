@@ -38,16 +38,10 @@
             , #{memberName}
             , #{memberBirthday}
             , #{memberGender}
-            ,
-            <foreach collection="memberTels" item="tel" separator="||'-'||">
-                #{tel}
-            </foreach>
+            , #{memberTel}
             , #{memberAddr}
             , #{addrDetail}
-            ,
-            <foreach collection="memberEmails" item="email" separator="||">
-                #{email}
-            </foreach>
+            , #{memberEmail}
             , #{minime}
         )
     </insert>

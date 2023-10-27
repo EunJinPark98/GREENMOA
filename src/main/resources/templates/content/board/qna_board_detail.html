@@ -84,7 +84,7 @@
                                 </div>
                                 <div class="col-4 d-grid gap-2 d-md-flex justify-content-md-end col align-self-end">
                                     <div class="small">[[${qnaReply.qnaRegDate}]]</div>
-                                    <input type="button" id="qnaReplyNum" name="qnaReplyNum" th:onclick="deleteQnaReply([[${qnaBoardList.qnaBoardNum}]], [[${qnaReply.qnaReplyNum}]])" 
+                                    <input type="button" th:if="${session.loginInfo != null}" id="qnaReplyNum" name="qnaReplyNum" th:onclick="deleteQnaReply([[${qnaBoardList.qnaBoardNum}]], [[${qnaReply.qnaReplyNum}]])" 
                                     th:data-reply-num="${qnaReply.qnaReplyNum}" value="삭제" th:disabled="${qnaReply.qnaReplyer != session.loginInfo.memberId}">
                                 </div>
                             </div>

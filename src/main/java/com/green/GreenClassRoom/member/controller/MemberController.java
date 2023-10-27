@@ -5,10 +5,9 @@ import com.green.GreenClassRoom.member.vo.MemberVO;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.Map;
 
 @Controller
 @RequestMapping("/member")
@@ -23,10 +22,13 @@ public class MemberController {
     }
 
     //회원가입
+    @ResponseBody
     @PostMapping("/join")
-    public String join(MemberVO memberVO){
+    public void join(MemberVO memberVO){
+    //public void join(@RequestBody Map<String, Object> map){
+        System.out.println(memberVO);
+        //System.out.println(map);
         memberService.join(memberVO);
-        return "redirect:/room/main";
     }
 
     //아이디 중복 확인
