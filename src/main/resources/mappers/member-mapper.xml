@@ -61,6 +61,7 @@
             , MEMBER_BIRTHDAY
             , STATUS_MSG
             , ON_OFF
+            , MINIME
         FROM GREEN_MEMBER
         WHERE MEMBER_ID=#{memberId}
         AND MEMBER_PW=#{memberPw}
