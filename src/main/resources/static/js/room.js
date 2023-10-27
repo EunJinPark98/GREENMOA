@@ -66,6 +66,7 @@ function deleteTodo(todoNum){
     };
 };
 
+// 투두리스트 체크 온오프 표시만
 function addlinethrough(){
     let todoName = document.querySelector('.todoName');
     let Dday = document.querySelector('.Dday');
