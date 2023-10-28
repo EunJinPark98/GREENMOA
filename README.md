@@ -28,14 +28,19 @@
 <br>
 
 
-## 💭구현할 기능 (구상중)
+## 💭구현할 기능
 
-로그인/회원가입 (협진)<br>
-클래스룸 - 채팅, 쪽지, 일정관리, 과제 (은진)<br>
-마이룸 - 투두리스트, 상태메세지, 쪽지 (지누)<br>
-게시판 - 공지(윤주), 질의(협진), 자유(지누)<br>
+로그인/회원가입<br>
+클래스룸 - 채팅, 쪽지, 일정관리, 과제<br>
+마이룸 - 투두리스트, 상태메세지, 쪽지<br>
+게시판 - 공지, 질의, 자유<br>
 
 ![image](https://github.com/EunJinPark98/GREENMOA/assets/120006805/d44c95c9-5826-40f1-9cd9-849e456307d0) <br>
+
+
+## DB
+![image](https://github.com/EunJinPark98/GREENMOA/assets/120006805/f6598453-298c-4957-b656-4b90ac359eef)
+
 
 <br>
 <br>
@@ -75,9 +80,7 @@ https://www.notion.so/6417d69b7005420eb74bf380d629e828
 ✔️ 재밌게 만들기!<br>
 
 <br>
-<br>
 
-![image](https://github.com/EunJinPark98/GREENMOA/assets/120006805/6e0df20c-9516-4788-b321-aff998f75eef)
 
 
 
