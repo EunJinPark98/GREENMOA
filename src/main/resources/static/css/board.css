@@ -23,25 +23,20 @@ a:hover{
     position: relative;
     z-index: 1;
 }
-.headTitleBar{
+.headTitle:before{
+    content: "";
+    display: block;
     position: absolute;
-    top: 75px;
-    width: 155px;
+    top: 60%;
+    width: 20px;
     height: 15px;
     background-color: #ffc107;
-    opacity: 0.6;
-    animation: headTitleBar .5s ease-in forwards;
-    text-indent: -99999px;
+    transform: translate(0%, 0%);
+    transition: all 0.3s ease;
+    z-index: -1;
 }
-
-@keyframes headTitleBar{
-    0%{
-        width: 0px;
-    }
-    100%{
-        width: 155px;
-    }
-
+.headTitle:hover:before{
+    width: 100%;
 }
 .searchBox{
     width: 35%;
