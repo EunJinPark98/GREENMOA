@@ -38,8 +38,6 @@ public class WebSocketChatHandler extends TextWebSocketHandler {
         //메시지 수신
         String receivedMessage = message.getPayload();
 
-//        System.out.println("제이슨 : " + receivedMessage);
-
         ObjectMapper objectMapper = new ObjectMapper();
         Map<String, String> msgMap = objectMapper.readValue(receivedMessage, new TypeReference<Map<String, String>>() {});
 //        System.out.println("정보 : " + msgMap);
@@ -52,5 +50,10 @@ public class WebSocketChatHandler extends TextWebSocketHandler {
     @Override   //연결 닫힐 때
     public void afterConnectionClosed(WebSocketSession session, CloseStatus status) throws Exception {
       sessions.remove(session.getId());
+    }
+
+    public void loginUser(String memberId, WebSocketSession session) {
+        // 사용자 정보를 세션에 추가
+        session.getAttributes().put("memberId", memberId);
     }
 }
