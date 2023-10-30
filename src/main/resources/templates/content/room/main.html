@@ -5,11 +5,12 @@
 <head>
 <meta charset="UTF-8">
 <title></title>
+<th:block layout:fragment="content_css">
+    <link rel="stylesheet" href="/css/main.css">
+</th:block>
 </head>
 <body>
     <th:block layout:fragment="content" style="height: 1000px;">
-      <link rel="stylesheet" href="/css/main.css">
-
       <!-- 클래스룸 -->
       <div id="classRoom">
 
@@ -43,6 +44,7 @@
                           <input type="hidden" id="memberName" name="memberName" th:value="${member.memberName}">
                           <div class="nameTag">
                             <img class="connect-state" src="/images/connectOff.png" alt="">
+                            <!-- <div class="connect"></div> -->
                             <h6>[[${member.memberName}]]</h6>
                           </div>
                       </div>
@@ -94,7 +96,6 @@
               <input id="miniSrc" type="hidden" th:attr="data-minime=${session.loginInfo.minime}">
             </th:block>
             <div id="chat" class="container-md">
-                <h3>채팅</h3>
                 <div id="chat-messages"></div>
                 <form id="message-form">
                     <input type="text" id="message" class="form-control">
@@ -196,20 +197,19 @@
     </div>
 
 
-
-
-
-
-
-      
-      
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-        <script src="/js/room.js"></script>
-        <!-- WebSocket 채팅 -->
-        <script src="/webjars/sockjs-client/1.1.2/sockjs.min.js"></script>
-        <!-- 풀 캘린더 -->
-        <link href="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.0/main.css" rel="stylesheet">
-        <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.0/main.js"></script>
+    <h1>여기</h1>
+    <ul id="onlineUsers">
+      <!-- 여기에 접속 중인 사용자 목록이 나열될 것입니다. -->
+    </ul>
     </th:block>
+
+          
+  <th:block layout:fragment="content_js">
+    <script src="/js/room.js"></script>
+
+    <!-- 풀 캘린더 -->
+    <link href="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.0/main.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.0/main.js"></script>
+  </th:block>
 </body>
 </html>

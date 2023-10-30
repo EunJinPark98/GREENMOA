@@ -170,14 +170,12 @@ function checkLetter(){
     // 내용부에 체크되어 있는 체크박스
     const checked = document.querySelectorAll('input[name="innerCheck"]:checked');
     
-
     if(checkboxes.length==checked.length){
         selectAll.checked = true;
     }
     else{
         selectAll.checked =false;
     }
-
 }
 
 // 선택삭제 버튼 클릭시 실행
@@ -226,19 +224,29 @@ function showAlert() {
 ///////////////// 소켓통신 /////////////////////////////////////
 var socket = new WebSocket('ws://192.168.30.55:8081/chat');
 
+//로그인 한 정보 태그
+var idElement = document.getElementById('memId'); 
+var srcElement = document.getElementById('miniSrc'); 
 
 socket.onopen = function() {
     console.log('연결되었습니다.');
     if(idElement){
         console.log('로그인 되었습니다.');
         socket.send(JSON.stringify({
-            'myId' : myId,
+            'connectId' : idElement.getAttribute('data-id')
         }));
-
     };
 };
 
+
 socket.onclose = function(event) {
+    if(idElement){
+        console.log('로그아웃 되었습니다.');
+        socket.send(JSON.stringify({
+            'disConnectId' : idElement.getAttribute('data-id')
+        }));
+    };
+
     if (event.wasClean) {
         console.log('연결이 정상적으로 닫힘, 코드=' + event.code + ' 이유=' + event.reason);
     } else {
@@ -254,25 +262,23 @@ socket.onerror = function(error) {
 
 
 
-var idElement = document.getElementById('memId'); //로그인 아이디
-var srcElement = document.getElementById('miniSrc'); 
-
 if(idElement){ //로그인 했을 경우
     var myId = idElement.getAttribute('data-id');
-
-    // socket.send(JSON.stringify({
-    //     'myId' : myId,
-    // }));
-
-
     var minimeSrc = srcElement.getAttribute('data-minime');
 
+
     const movingElement = document.querySelector('#my-minime-'+ myId);
-    const step = 10; // 이동 거리 조절
 
     // 나의 미니미 클릭
     movingElement.addEventListener('click', () => {
         movingElement.classList.add('active');
+            let connectTag = document.getElementById('memId');
+    if(connectTag){
+        let connectId = connectTag.getAttribute('data-id');
+        socket.send(JSON.stringify({
+            'connectId' : connectId,
+        }));
+    } 
     });
 
     //  미니미 키보드로 동작
@@ -283,29 +289,6 @@ if(idElement){ //로그인 했을 경우
         const style = getComputedStyle(movingElement);
         let left = parseFloat(style.left) || 0;
         let top = parseFloat(style.top) || 0;
-
-        switch (event.key) {
-            case 'ArrowUp':
-                if(top>400){
-                top -= step;
-                }
-            break;
-            case 'ArrowDown':
-                if(top<780){
-                top += step;
-                }
-            break;
-            case 'ArrowLeft':
-                if(left>0){
-                left -= step;
-                }
-            break;
-            case 'ArrowRight':
-            if(left<1020){
-                left += step;
-            }
-            break;
-        }
     
         // 이동 범위
         movingElement.style.left = left + 'px';
@@ -320,11 +303,8 @@ if(idElement){ //로그인 했을 경우
             'minimeSrc' : minimeSrc
         }));
 
-
-        }
+    }
     });
-
-
 
 
   //바탕 클릭하면 이제 안움직이게
@@ -363,20 +343,77 @@ function sendMessage() {
         id = idElement.getAttribute('data-id');
     }
         
-
     socket.send(JSON.stringify({'content': messageInput, 'sender' : sender, 'id' : id}));
 
     document.getElementById('message').value = '';
 }
+
+
+// 로그아웃 버튼 누르면 접속 비활성화
+$('.disConnectBtn').click(function(){
+    let idEl = document.getElementById('memId'); 
+    let disConnectId = idEl.getAttribute('data-id');
+    socket.send(JSON.stringify({
+        'disConnectId' : disConnectId,
+    }));
+})
+
+// 접속중 불들어오게
+window.addEventListener('load', function() {
+    let connectTag = document.getElementById('memId');
+    if(connectTag){
+        let connectId = connectTag.getAttribute('data-id');
+        socket.send(JSON.stringify({
+            'connectId' : connectId,
+        }));
+    } 
+});
+
+window.addEventListener('scroll', function() {
+    let connectTag = document.getElementById('memId');
+    if(connectTag){
+        let connectId = connectTag.getAttribute('data-id');
+        socket.send(JSON.stringify({
+            'connectId' : connectId,
+        }));
+    } 
+});
+
+window.addEventListener('mousemove', function(event) {
+    let connectTag = document.getElementById('memId');
+    if(connectTag){
+        let connectId = connectTag.getAttribute('data-id');
+        socket.send(JSON.stringify({
+            'connectId' : connectId,
+        }));
+    } 
+});
+
+window.addEventListener('keydown', function(event) {
+    let connectTag = document.getElementById('memId');
+    if(connectTag){
+        let connectId = connectTag.getAttribute('data-id');
+        socket.send(JSON.stringify({
+            'connectId' : connectId,
+        }));
+    } 
+});
+
 
 // 소켓으로 받은 데이터
 socket.onmessage = function(event) {
     var data = JSON.parse(event.data);
     
     // 접속 활성화
-    if(data.myId){
-        let myId = document.querySelector('#my-minime-'+ data.myId);
-        myId.querySelector('.connect-state').src = '/images/connectOn.png';
+    if(data.connectId){
+        let connectId = document.querySelector('#my-minime-'+ data.connectId);
+        connectId.querySelector('.connect-state').src = '/images/connectOn.png';
+    }
+
+    // 접속 비활성화
+    if(data.disConnectId){
+        let disConnectId = document.querySelector('#my-minime-'+ data.disConnectId);
+        disConnectId.querySelector('.connect-state').src = '/images/connectOff.png';
     }
     
 
@@ -394,23 +431,23 @@ socket.onmessage = function(event) {
         switch (data.eventKey) {
             case 'ArrowUp':
                 if(data.top>400){
-                    moveMini.style.top = data.top + 'px';
+                    moveMini.style.top = (data.top-10) + 'px';
                 }
             break;
             case 'ArrowDown':
                 if(data.top<780){
-                    moveMini.style.top = data.top + 'px';
+                    moveMini.style.top = (data.top+10) + 'px';
                 }
             break;
             case 'ArrowLeft':
                 if(data.left>0){
-                    moveMini.style.left = data.left + 'px';
+                    moveMini.style.left = (data.left-10) + 'px';
                     moveMini.querySelector('.minime-img').src = `/images/${data.minimeSrc}left.png`;
                 }
             break;
             case 'ArrowRight':
             if(data.left<1020){
-                    moveMini.style.left = data.left + 'px';
+                    moveMini.style.left = (data.left+10) + 'px';
                     moveMini.querySelector('.minime-img').src = `/images/${data.minimeSrc}right.png`;
             }
             break;
@@ -561,5 +598,9 @@ function closeCalender() {
     var calendarFormDiv = document.querySelector('.calendarForm');
     calendarFormDiv.style.display = 'none';
 }
+
+
+
+
 
 

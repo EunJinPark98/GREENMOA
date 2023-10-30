@@ -5,10 +5,12 @@
 <head>
 <meta charset="UTF-8">
 <title></title>
+<th:block layout:fragment="content_css">
+    <link rel="stylesheet" href="/css/main.css">
+</th:block>
 </head>
 <body>
 <th:block layout:fragment="content">
-    <link rel="stylesheet" href="/css/room.css">
     <div id="myRoom">
 
         <!-- 투두 모달 -->
@@ -205,9 +207,12 @@
     </div>
     
     <!-- 풀 캘린더 -->
+
+</th:block>
+
+<th:block layout:fragment="content_js">
     <link href="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.0/main.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.0/main.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="/js/room.js"></script>
 </th:block>
 </body>

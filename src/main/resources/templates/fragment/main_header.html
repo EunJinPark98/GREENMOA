@@ -18,13 +18,15 @@
                 </th:block>
                 <!-- 로그인 했을 시 -->
                 <th:block th:if="${session.loginInfo !=null}">
-                    <div class="loginMinime" onclick="location.href='/member/logout';"></div>
-                    <div class="loginConver" onclick="location.href='/member/logout';">로그아웃</div>
+                    <div class="loginMinime disConnectBtn" onclick="location.href='/member/logout';"></div>
+                    <div class="loginConver disConnectBtn" onclick="location.href='/member/logout';">로그아웃</div>
                 </th:block>
+
             </div>
         </div>
     </th:block>
     </div>
     <script src="/js/main_header.js"></script>
+    <script src="/js/room.js"></script>
 </body>
 </html>

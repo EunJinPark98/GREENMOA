@@ -5,10 +5,12 @@
 <head>
 <meta charset="UTF-8">
 <title></title>
+<th:block layout:fragment="content_css">
+    <link rel="stylesheet" href="/css/member.css"> 
+</th:block>
 </head>
 <body>
     <th:block layout:fragment="content">
-    <link rel="stylesheet" href="/css/member.css"> 
         
         <div class="modal fade" id="login-modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true" >
             <div class="modal-dialog">
@@ -53,6 +55,7 @@
         </div>
         
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+        <!-- WebSocket -->
         <script>
             // 로그인 모달
              $(window).on('load', function() {
@@ -64,6 +67,9 @@
             })
         </script>
 
+    </th:block>
+    <th:block layout:fragment="content_js">
+        <script src="/js/room.js"></script>
     </th:block>
 </body>
 </html>
