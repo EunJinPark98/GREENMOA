@@ -11,6 +11,5 @@ public class TodoVO {
     private String todoContent;
     private String todoStartDate;
     private String todoFinishDate;
-    private String dDay;
-
+//    private String dDay;
 }
