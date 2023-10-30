@@ -26,6 +26,7 @@ public class TodoController {
         model.addAttribute("loginInfo",loginInfo);
         System.out.println("@@@@@@@"+todoVO);
         todoService.insertTodo(todoVO);
+
         return "redirect:/room/myRoom";
     }
     // 투두 선택 삭제

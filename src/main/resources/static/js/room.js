@@ -48,16 +48,46 @@ function closeLetterBox() {
 
 
 
-// 등록 클릭시 todoList insert
-function insertTodo(){
-    const result = confirm('등록하시겠습니까?');
-    let todoContent =document.querySelector('#todoContent').value;
-    let todoFinishDate =document.querySelector('#todoFinishDate').value;
+// // 등록 클릭시 todoList insert
+function insertTodo() {
+    let todoContent = document.querySelector('#todoContent').value;
+    let todoFinishDate = document.querySelector('#todoFinishDate').value;
+    
+    // 현재 날짜 가져오기
+    let today = new Date();
+    today.setHours(0, 0, 0, 0); // 현재 시간을 00:00:00 으로 설정
 
-    if(result){
-        location.href=`/room/insertTodo?todoContent=${todoContent}&todoFinishDate=${todoFinishDate}`
-    };
-};
+    // 입력한 날짜를 Date 객체로 변환
+    let selectedDate = new Date(todoFinishDate);
+
+    // 입력한 날짜가 오늘 날짜보다 이전이면 얼럿 메시지 표시
+    if (selectedDate < today) {
+        alert('지난 날짜 입니다.');
+        return;
+    }
+
+    // todoFinishDate가 비어있을 때 얼럿 메시지 표시
+    if (!todoFinishDate) {
+        alert('날짜를 설정하세요.');
+        return;
+    }
+
+    // todoList의 길이 확인
+    let todoListLength = document.querySelectorAll('.realTodoList ul').length;
+
+    // todoList의 길이가 10개 이상인 경우 얼럿 메시지 표시하고 등록을 막음
+    if (todoListLength >= 9) {
+        window.alert('9개 이상 등록할 수 없습니다.');
+        return;
+    }
+
+    const result = confirm('등록하시겠습니까?');
+
+    if (result) {
+        location.href = `/room/insertTodo?todoContent=${todoContent}&todoFinishDate=${todoFinishDate}`;
+    }
+}
+
 // 삭제버튼 클릭시 todoList delete
 function deleteTodo(todoNum){
     const result = confirm('정말 삭제하시겠습니까?');
@@ -162,6 +192,10 @@ function showinput() {
     } else {
         answerLetterDiv.style.display = 'none';
     }
+}
+// 답장 얼럿 창
+function showAlert() {
+    alert('답장 보내기 완료');
 }
 
 
