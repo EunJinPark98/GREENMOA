@@ -180,17 +180,16 @@
 
                     <form action="/room/insertWork" method="post">
 
-                        <label class="titleLabel">
-                            <input type="text" name="workTitle" class="workTitle" required/>
-                            <div class="label-text">과제명</div>
-                        </label>
-
-                        <div class="input-field">
-                            <textarea name="workContent" rows="6" cols="50" required></textarea>
-                            <label>과제내용</label>
+                        <div class="input-group mt-2 mb-3">
+                            <span class="input-group-text titleLabel">과제명</span>
+                            <input type="text" name="workTitle" class="workTitle" required>
                         </div>
 
-                        <div class="input-group mb-5">
+                        <div class="input-field">
+                            <textarea name="workContent" rows="6" cols="35" placeholder="과제내용" required></textarea>
+                        </div>
+
+                        <div class="input-group mt-2 mb-4">
                             <span class="input-group-text dateLabel">마감일자</span>
                             <input type="text" name="deadLine" class="deadLine" placeholder="ex. 2023-00-00"  required>
                         </div>

@@ -1,6 +1,18 @@
 @charset "UTF-8";
 
 /* 양식 디자인 */
+.join-title{
+    background-image: url(/images/join-title.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 100% auto;
+    width: 520px;
+    height: 110px;
+    padding-top: 21px;
+    display: block;
+    color: #505050;
+    margin: 0 auto;
+}
 .join-input input{
     margin-bottom: 15px;
 }
