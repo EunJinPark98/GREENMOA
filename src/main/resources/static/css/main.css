@@ -378,29 +378,3 @@ body{
     z-index: 99999;
 }
 
-
-
-
-
-/* 
-.connect.on{
-    width: 12px;
-    height: 12px;
-    margin-top: 3px;
-    margin-right: 3px;
-    background-image: url(/images/connectOn.png);
-    background-size: 100% auto;
-    background-repeat: no-repeat;
-    background-position: center;
-}
-
-.connect.off{
-    width: 12px;
-    height: 12px;
-    margin-top: 3px;
-    margin-right: 3px;
-    background-image: url(/images/connectOff.png);
-    background-size: 100% auto;
-    background-repeat: no-repeat;
-    background-position: center;
-} */
