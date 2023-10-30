@@ -40,8 +40,8 @@
 /* 상태메세지 */
 .status-msg{
     position: relative;
-    width: 337px;
-    height: 146px;
+    width: 227px;
+    height: 178px;
     background-image: url(/images/myroom-msg.png);
     background-size: 100% auto;
     background-repeat: no-repeat;
@@ -58,20 +58,21 @@
 
 .statusMsgText{
     padding: 30px;
-    width: 99%;
+    width: 95%;
     display: flex;
     flex-wrap: wrap;
     position: absolute;
-    top: 10px;
-    left: 10px;    
+    top: 17px;
+    left: 0px;
+
 }
 #input-status-msg{
     display: none;
     border: none;
     position: absolute;
-    top: 13px;
+    top: 28px;
     left: 28px;
-    width: 74%;
+    width: 75%;
     height: 69%;
     resize: none;
 }

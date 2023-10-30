@@ -18,6 +18,7 @@ public class TodoServiceImpl implements TodoService{
         return sqlSession.insert("todoMapper.insertTodo",todoVO);
     }
 
+
     @Override
     public List<TodoVO> selectTodo(String todoWriter) {
         return sqlSession.selectList("todoMapper.selectTodo",todoWriter);
