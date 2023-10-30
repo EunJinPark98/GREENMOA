@@ -95,6 +95,7 @@ public class QnaBoardController {
 
         model.addAttribute("totalQnaReply", qnaBoardService.totalQnaReply(qnaBoardNum));
 
+
         //현재 상세보기 하려는 게시글을 내가 북마크로 추가한 게시글인가?
         System.out.println(qnaBookMarkVO + "@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
         qnaBookMarkVO.setMemberId(loginInfo.getMemberId());

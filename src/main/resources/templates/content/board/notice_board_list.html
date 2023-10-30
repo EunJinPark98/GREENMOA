@@ -53,7 +53,7 @@
                 </th:block>
                 <!-- 게시글이 있다면 -->
                 <th:block th:unless="${#lists.size(noticeList)==0}">
-                    <tr th:each="notice, state : ${noticeList}">
+                    <tr th:each="notice, state : ${noticeList}" th:onclick="goNoticeBoardDetail([[${notice.noticeBoardNum}]])" style="cursor: pointer;">
                         <td>[[${totalDataCnt - state.index - (10 * (noticeBoardVO.nowPage - 1))}]]</td>
                         <td><a th:href="@{noticeBoardDetail(noticeBoardNum=${notice.noticeBoardNum})}">[[${notice.noticeBoardTitle}]]</a></td>
                         <td>[[${notice.memberId}]]</td>
@@ -97,6 +97,7 @@
             </a>
         </div>
 
+        <script src="/js/board/board.js"></script>
     </th:block>
 </body>
 </html>

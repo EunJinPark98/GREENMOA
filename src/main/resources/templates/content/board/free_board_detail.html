@@ -91,7 +91,7 @@
                                       <div class="col-4 d-grid gap-2 d-md-flex justify-content-md-end col align-self-end">
                                         <div class="small">[[${reply.regDate}]]</div>
                                         <input type="button" id="replyNum" name="replyNum" th:onclick="deleteReply([[${freeBoardDetail.boardNum}]],[[${reply.replyNum}]])" 
-                                        th:data-reply-num="${reply.replyNum}" value="삭제" th:disabled="${reply.replyer != session.loginInfo.memberId}">
+                                        th:data-reply-num="${reply.replyNum}" value="삭제" th:if="${session.loginInfo.memberId == reply.replyer}" th:disabled="${reply.replyer != session.loginInfo.memberId}">
                                         <!-- th:diabled="" 댓글 각각에 -->
                                       </div>
                                   </div>

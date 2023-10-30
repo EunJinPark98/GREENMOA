@@ -188,3 +188,13 @@ function checkNoticeBookMark(imageTag, noticeBoardNum) {
         });
     }
 }
+
+//자유게시판 Detail로 가기
+function goFreeBoardDetail(boardNum){
+    location.href=`/board/freeBoardDetail?boardNum=${boardNum}`;
+}
+
+//공지사항 Detail로 가기
+function goNoticeBoardDetail(noticeBoardNum){
+    location.href=`/board/noticeBoardDetail?noticeBoardNum=${noticeBoardNum}`;
+}

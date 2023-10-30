@@ -135,3 +135,7 @@ function checkBookMark(imageTag ,qnaBoardNum) {
         });
     }
 }
+
+function goQnaBoardDetail(qnaBoardNum){
+    location.href=`/board/qnaBoardDetail?qnaBoardNum=${qnaBoardNum}`;
+}

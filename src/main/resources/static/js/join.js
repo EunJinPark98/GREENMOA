@@ -109,6 +109,30 @@ function inputInvalidate(tagId, msg){
 
 //아이디 중복확인
 function checkId(){
+    const memberId = document.querySelector('#memberId').value;
+
+    if(memberId == ''){
+        Swal.fire({
+            position: 'center',
+            icon: 'error',
+            title: '아이디는 필수입력입니다.',
+            showConfirmButton: false,
+            timer: 1500
+        });
+
+        return;
+    }else if(memberId.length <= 4){
+        Swal.fire({
+            position: 'center',
+            icon: 'error',
+            title: '아이디는 4자 이상 입력해주세요.',
+            showConfirmButton: false,
+            timer: 1500
+        });
+        
+        return;
+    }
+
     fetch('/member/checkIdFetch', { 		
         method: 'POST', 		
         cache: 'no-cache',
@@ -134,7 +158,7 @@ function checkId(){
                 title: '사용 가능한 아이디입니다.',
                 showConfirmButton: false,
                 timer: 1500
-              })
+            })
             document.querySelector('#joinBtn').disabled = false;
         }else{
             Swal.fire({
@@ -143,7 +167,7 @@ function checkId(){
                 title: '사용 불가능한 아이디입니다.',
                 showConfirmButton: false,
                 timer: 1500
-              })
+            })
         }
     })
     .catch(err=>{
