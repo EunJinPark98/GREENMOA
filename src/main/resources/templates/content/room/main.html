@@ -184,11 +184,10 @@
     <!-- 캘린더 모달 -->
     <div class="modal fade" id="calenderModal" tabindex="-1" aria-labelledby="calenderModalLabel" aria-hidden="true">
       <div class="modal-dialog modal-xl">
-        <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="modal-body">
+        <div class="modal-content modal-content-cal">
+
+          <div class="modal-body modal-body-cal">
+            <button type="button" class="btn-close btn-close-cal" data-bs-dismiss="modal" aria-label="Close"></button>
             <div id="calendar"></div>
           </div>
         </div>
@@ -203,9 +202,7 @@
   <th:block layout:fragment="content_js">
     <script src="/js/room.js"></script>
 
-    <!-- 풀 캘린더 -->
-    <link href="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.0/main.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.0/main.js"></script>
+
   </th:block>
 </body>
 </html>
