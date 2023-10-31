@@ -666,3 +666,77 @@ input[type="checkbox"]:checked{
   .workBtn:hover{
     background-color: #fad06d;
   }
+
+  /* 쪽지 모달 */
+  .modal.show .modal-dialog {
+    padding-top: 100px;
+}
+  .modal-dialog-scrollable .modal-content {
+    overflow: hidden;
+    max-height: 100%;
+}
+  .letter-frame{
+    background-color: transparent;
+    border: none;
+  }
+  #letter-modal .modal-dialog .letter-frame .letter-body{
+    background-image: url(/images/letter-frame.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 100% auto;
+    height: 530px;
+  }
+  #letter-modal .modal-dialog .letter-frame .letter-body .letterList {
+    height: 365px; 
+    width: 400px;
+    overflow-y: auto;
+    margin-top: 30px;
+    margin-left: 60px;
+  }
+.letterSender{
+    display: inline-block;
+    color: #574d4d;
+    font-size: 15px;
+}
+.letterSender span{
+    font-size: 20px;
+    margin-right: 100px;
+    color: #3f3f3f;
+}
+.innerCheck{
+    margin-left: 10px;
+}
+.letterText{
+    white-space: pre-line;
+    border-left: 2px dashed #3f3f3f;
+    padding-left: 10px;
+}
+.showinput{
+    background-color: #9c8277;
+    margin-left: 330px;
+}
+.sendAnswer{
+    background-color: #9c8277;
+}
+.sendAnswer:hover{
+    background-color: #86b9af;
+}
+#letterContet{
+    resize: none;
+    max-width: 75%;
+}
+#letterContet::-webkit-scrollbar{
+    display: none;
+}
+
+.letterBtn{
+    margin-top: 40px;
+    margin-left: 170px;
+}
+  /* 스크롤바 */
+  #letter-modal .modal-dialog .letter-frame .letter-body .letterList::-webkit-scrollbar {
+    width: 2px;
+}
+#letter-modal .modal-dialog .letter-frame .letter-body .letterList::-webkit-scrollbar-thumb {
+    background: #686868;
+}
