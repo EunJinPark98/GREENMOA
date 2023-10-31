@@ -316,30 +316,6 @@ function showAlert() {
     });
 }
 
-// // 투두리스트 핀 움직이기
-// const todoList = document.querySelector('.todoList');
-// const pin = document.querySelector('.pin');
-
-// todoList.addEventListener('mouseenter', () => {
-//     pin.style.marginTop = '-5px';
-//     pin.style.marginLeft = '5px';
-// });
-
-// todoList.addEventListener('mouseleave', () => {
-//     pin.style.marginTop = '5px';
-//     pin.style.marginLeft = '10px';
-// });
-// // 캘린더 색연필 움직이기
-// const adminCalendar = document.querySelector('.adminCalendar');
-// const colorPen = document.querySelector('.colorPen');
-
-// adminCalendar.addEventListener('mouseenter', () => {
-//     colorPen.style.top = '2%'; // 원하는 높이로 이동
-// });
-
-// adminCalendar.addEventListener('mouseleave', () => {
-//     colorPen.style.top = '8%'; // 다시 초기 높이로 이동
-// });
 
 
 
