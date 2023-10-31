@@ -22,6 +22,7 @@ a:hover{
 .headTitle{
     position: relative;
     z-index: 1;
+    font-size: 36px;
 }
 .headTitle:before{
     content: "";
