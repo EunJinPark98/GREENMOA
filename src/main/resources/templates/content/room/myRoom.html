@@ -33,6 +33,7 @@
                 <p class="name">[[${loginInfo.memberName}]]</p>
             </div>
         </div>
+        <div class="bookMarkModal" data-bs-toggle="modal" data-bs-target="#bookMark-modal"><h4>북마크</h4></div>
 
         <!-- 우편함 -->
         <div th:if="${letterCount > 0}">
@@ -45,9 +46,14 @@
         <div th:unless="${letterCount > 0}" class="closeLetterBox">
         </div>
 
+
+        
         <!-- 선생님 권한으로 과제 등록  -->
         <div th:if="${loginInfo.memberRoll == 'ADMIN'}" class="adminWork">
-            <div data-bs-toggle="modal" data-bs-target="#admin-work-modal"><p>과제 등록 하기</p></div>
+            <div data-bs-toggle="modal" data-bs-target="#admin-work-modal">
+                <p>과제 등록 하기</p>
+                <div class="workIcon"></div>
+            </div>
         </div>
         <!-- 선생님 권한으로 일정 등록 -->
         <div th:if="${loginInfo.memberRoll == 'ADMIN'}" class="adminCalendar" onclick="openCalendar()">
@@ -62,8 +68,139 @@
             </form>
             <div class="closeCalender" onclick="closeCalender()">x</div>
         </div>
-        <div class="workIcon"></div>
     </div>
+
+    <!-- 북마크 모달창 -->
+    <div class="modal fade" id="bookMark-modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title">북마크</h1>
+            </div>
+
+            <div class="modal-body">
+                <h6>공지사항 북마크</h6>
+                <table class="table table-hover table-striped text-center table-list align-middle">
+                    <colgroup>
+                        <col width="20%">
+                        <col width="*">
+                        <col width="20%">
+                        <col width="20%">
+                    </colgroup>
+                    <thead>
+                        <tr>
+                            <td>NO</td>
+                            <td>제 목</td>
+                            <td>작성자</td>
+                            <td>북마크 해제</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <th:block th:if="${#lists.size(noticeBookMarkList)==0}">
+                            <tr>
+                                <td colspan="4">체크된 북마크가 없습니다.</td>
+                            </tr>
+                        </th:block>
+                        <th:block class="noticeBookMarkList" th:if="${#lists.size(noticeBookMarkList)!=0}">
+                            <tr th:each="noticeMark, state : ${noticeBookMarkList}">
+                                <td>[[${#lists.size(noticeBookMarkList)-state.index}]]</td>
+                                <td>[[${noticeMark.noticeBoardVO.noticeBoardTitle}]]</td>
+                                <td>[[${noticeMark.noticeBoardVO.memberId}]]</td>
+                                <td><span class="bookCheck">
+                                    <img class="bookmark myRoomMark" src="/images/bookmark-off.png" alt="" th:if="${noticeMark == null}" th:onclick="checkNoticeBookMark(this, [[${noticeMark.noticeBoardVO.noticeBoardNum}]])">
+                                    <img class="bookmark bookmarked myRoomMark" src="/images/bookmark-on.png" alt="" th:if="${noticeMark != null}" th:onclick="checkNoticeBookMark(this, [[${noticeMark.noticeBoardVO.noticeBoardNum}]])">
+                                    </span>
+                                </td>
+                        </tr>
+                        </th:block>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="modal-body">
+                <h6>질문게시판 북마크</h6>
+                <table class="table table-hover table-striped text-center table-list align-middle">
+                    <colgroup>
+                        <col width="20%">
+                        <col width="*">
+                        <col width="20%">
+                        <col width="20%">
+                    </colgroup>
+                    <thead>
+                        <tr>
+                            <td>NO</td>
+                            <td>제 목</td>
+                            <td>작성자</td>
+                            <td>북마크 해제</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <th:block th:if="${#lists.size(qnaBookMarkList)==0}">
+                            <tr>
+                                <td colspan="4">체크된 북마크가 없습니다.</td>
+                            </tr>
+                        </th:block>
+                        <th:block class="qnaBookMarkList" th:if="${#lists.size(qnaBookMarkList)!=0}">
+                            <tr th:each="qnaBookMark, state : ${qnaBookMarkList}">
+                                <td>[[${#lists.size(qnaBookMarkList)-state.index}]]</td>
+                                <td>[[${qnaBookMark.qnaBoardVO.qnaBoardTitle}]]</td>
+                                <td>[[${qnaBookMark.qnaBoardVO.qnaBoardWriter}]]</td>
+                                <td><span class="bookCheck">
+                                    <img class="bookmark myRoomMark" src="/images/bookmark-off.png" alt="" th:if="${qnaBookMark == null}" th:onclick="checkBookMark(this, [[${qnaBookMark.qnaBoardVO.qnaBoardNum}]])">
+                                    <img class="bookmark bookmarked myRoomMark" src="/images/bookmark-on.png" alt="" th:if="${qnaBookMark != null}" th:onclick="checkBookMark(this, [[${qnaBookMark.qnaBoardVO.qnaBoardNum}]])">
+                                    </span>
+                                </td>
+                        </tr>
+                        </th:block>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="modal-body">
+                <h6>자유게시판 북마크</h6>
+                <table class="table table-hover table-striped text-center table-list align-middle">
+                    <colgroup>
+                        <col width="20%">
+                        <col width="*">
+                        <col width="20%">
+                        <col width="20%">
+                    </colgroup>
+                    <thead>
+                        <tr>
+                            <td>NO</td>
+                            <td>제 목</td>
+                            <td>작성자</td>
+                            <td>북마크 해제</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <th:block th:if="${#lists.size(freeBookMarkList)==0}">
+                            <tr>
+                                <td colspan="4">체크된 북마크가 없습니다.</td>
+                            </tr>
+                        </th:block>
+                        <th:block class="freeBookMarkList" th:if="${#lists.size(freeBookMarkList)!=0}">
+                            <tr th:each="freeMark, state : ${freeBookMarkList}">
+                                <td>[[${#lists.size(freeBookMarkList)-state.index}]]</td>
+                                <td>[[${freeMark.freeBoardVO.title}]]</td>
+                                <td>[[${freeMark.freeBoardVO.writer}]]</td>
+                                <td><span class="bookCheck">
+                                    <img class="bookmark myRoomMark" src="/images/bookmark-off.png" alt="" th:if="${freeMark == null}" th:onclick="checkFreeBookMark(this, [[${freeMark.freeBoardVO.boardNum}]])">
+                                    <img class="bookmark bookmarked myRoomMark" src="/images/bookmark-on.png" alt="" th:if="${freeMark != null}" th:onclick="checkFreeBookMark(this, [[${freeMark.freeBoardVO.boardNum}]])">
+                                    </span>
+                                </td>
+                        </tr>
+                        </th:block>
+                    </tbody>
+                </table>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="closeModalBtn">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
     
     <!-- 쪽지 모달창 -->
     <div class="modal fade" id="letter-modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
@@ -214,6 +351,8 @@
     <link href="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.0/main.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.0/main.js"></script>
     <script src="/js/room.js"></script>
+    <script type="text/javascript" src="/js/board/board.js"></script>
+    <script src="/js/board/qna_board.js"></script>
 </th:block>
 </body>
 </html>
