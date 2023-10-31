@@ -43,6 +43,7 @@ $('.minime-img').click(function() {
 
 // 쪽지 보내기 클릭시 쪽지 보내기 창 열리기 닫히기
 function openLetterBox(element) {
+    element.closest('.minmeBubble').style.display = 'none';
     var memberName = element.getAttribute('data-membername');
     var memberId = element.getAttribute('data-memberid');
     
@@ -415,14 +416,12 @@ socket.onmessage = function(event) {
         let disConnectId = document.querySelector('#my-minime-'+ data.disConnectId);
         disConnectId.querySelector('.connect-state').src = '/images/connectOff.png';
     }
-    
 
     // 채팅 전송
     if(data.content != null){
         showMessage(data.content, data.sender, data.id);
         scrollToBottom();
     }
-
 
     // 미니미 이동
     if(data.moveId){
