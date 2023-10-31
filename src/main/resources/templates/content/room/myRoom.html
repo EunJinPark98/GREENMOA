@@ -33,18 +33,25 @@
                 <p class="name">[[${loginInfo.memberName}]]</p>
             </div>
         </div>
-        <div class="bookMarkModal" data-bs-toggle="modal" data-bs-target="#bookMark-modal"><h4>북마크</h4></div>
+        <div class="bookMarkModal" data-bs-toggle="modal" data-bs-target="#bookMark-modal">
+            <div class="bookMarkPoint"></div>
+            <div class="bookMarkText">bookMark</div>
+        </div>
 
         <!-- 우편함 -->
-        <div th:if="${letterCount > 0}">
-            <div class="openLetterBox" data-bs-toggle="modal" data-bs-target="#letter-modal">
-                <div class="boxNum">
-                    <p th:text="${letterCount}"></p>
+        <div th:if="${loginInfo.memberRoll != 'ADMIN'}">
+            <div th:if="${letterCount > 0}">
+                <div class="openLetterBox" data-bs-toggle="modal" data-bs-target="#letter-modal">
+                    <div class="boxNum">
+                        <p th:text="${letterCount}"></p>
+                    </div>
                 </div>
             </div>
+            <div th:unless="${letterCount > 0}" class="closeLetterBox">
+            </div>
         </div>
-        <div th:unless="${letterCount > 0}" class="closeLetterBox">
-        </div>
+        <div th:if="${loginInfo.memberRoll == 'ADMIN'}"></div>
+        
 
 
         
@@ -196,7 +203,7 @@
                 </table>
             </div>
             <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="closeModalBtn">Close</button>
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="closeModalBtn" onclick="reload()">Close</button>
             </div>
           </div>
         </div>
@@ -222,11 +229,11 @@
                                 <button type="button" class="showinput" onclick="showinput()">답장하기</button>
                             </div>
                             <div class="answerLetter">
-                                <form action="/room/sendLetter" method="post" onsubmit="showAlert()">
+                                <form action="/room/sendLetter" method="post" id="sendLetterForm">
                                     <input type="hidden" id="fromId" name="fromId" th:value="${loginInfo.memberId}">
                                     <input type="hidden" id="memberId" name="memberId" th:value="${letter.fromId}">
                                     <textarea id="letterContet" name="letterContent"></textarea>
-                                    <input type="submit" class="btn btn-primary sendAnswer" value="쪽지 보내기"></input>
+                                    <input type="button" class="btn btn-primary sendAnswer" value="쪽지 보내기" onclick="showAlert()"></input>
                                 </form>
                             </div>
                         <hr>
@@ -318,7 +325,7 @@
                         </div>
                     </div>
 
-                    <form action="/room/insertWork" method="post">
+                    <form action="/room/insertWork" method="post" id="todoListForm">
 
                         <div class="input-group mt-2 mb-3">
                             <span class="input-group-text titleLabel">과제명</span>
@@ -335,7 +342,7 @@
                         </div>
 
                         <div class="col d-md-flex justify-content-center col">
-                            <button class="workBtn btn btn-secondary" type="submit" id="button-addon2">등록</button>
+                            <button class="workBtn btn btn-secondary" type="button" id="button-addon2" onclick="todoListAlert()">등록</button>
                         </div>
                     </form>
                 </div>
@@ -353,6 +360,7 @@
     <script src="/js/room.js"></script>
     <script type="text/javascript" src="/js/board/board.js"></script>
     <script src="/js/board/qna_board.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </th:block>
 </body>
 </html>
