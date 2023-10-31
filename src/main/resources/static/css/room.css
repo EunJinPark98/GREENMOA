@@ -54,7 +54,7 @@
    font-size: 1.3rem;
    margin-right: 50px;
 
-}
+}input
 
 .statusMsgText{
     padding: 30px;
@@ -62,20 +62,11 @@
     display: flex;
     flex-wrap: wrap;
     position: absolute;
-    top: 17px;
-    left: 0px;
+    top: 24px;
+    left: 7px;
 
 }
-#input-status-msg{
-    display: none;
-    border: none;
-    position: absolute;
-    top: 28px;
-    left: 28px;
-    width: 75%;
-    height: 69%;
-    resize: none;
-}
+
 .statusMsgButton{
     margin-top: 10px;
     margin-left: 60px;
@@ -260,9 +251,29 @@
     width: 24px;
     height: 24px;
     text-align: center;
+    font-size: 25px;
 
 }
 
+/* 북마크 */
+.bookMarkModal{
+    background-image: url(/images/connectOff.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 100% auto;
+    width: 150px;
+    height: 200px;
+    position: absolute;
+    text-align: center;
+    top: 7%;
+    left: 50%;
+}
+.bookMarkModal h4{
+    margin-top: 92px;
+}
+.myRoomMark{
+    width: 19%;
+}
 
 
 
@@ -332,8 +343,8 @@
     display: none;
     border: none;
     position: absolute;
-    top: 13px;
-    left: 22px;
+    top: 28px;
+    left: 28px;
     width: 75%;
     height: 69%;
     resize: none;
@@ -533,8 +544,8 @@ input[type="checkbox"]:checked{
     width: 195px;
     height: 100px;
     position: absolute;
-    top: 50%;
-    right: 10%;
+    top: 83%;
+    right: -27%;
 }
 .adminWork{
     display: flex;
@@ -542,7 +553,7 @@ input[type="checkbox"]:checked{
     width: 150px;
     height: 200px;
     position: absolute;
-    right: 17%;
+    right: 27%;
     top: 31%;
     transform: rotate(-1deg);
     background-image: url(/images/msgBox_1.png);

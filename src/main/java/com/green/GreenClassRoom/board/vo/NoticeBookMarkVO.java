@@ -7,4 +7,5 @@ public class NoticeBookMarkVO {
     private int noticeBookMarkNum;
     private int noticeBoardNum;
     private String memberId;
+    private NoticeBoardVO noticeBoardVO;
 }

@@ -7,13 +7,19 @@
         <id column="QNA_BOOK_MARK_NUM" property="qnaBookMarkNum"/>
         <result column="QNA_BOARD_NUM" property="qnaBoardNum"/>
         <result column="MEMBER_ID" property="memberId"/>
+        <association property="qnaBoardVO" resultMap="qnaBoardMapper.qnaBoard"/>
     </resultMap>
 
     <!--게시글 북마크 조회-->
     <select id="selectBookMark" resultMap="qnaBookMark">
-        SELECT QNA_BOARD_NUM
-        FROM QNA_BOOK_MARK
-        WHERE MEMBER_ID = #{memberId}
+        SELECT BOARD1.QNA_BOARD_NUM
+        , MARK1.QNA_BOOK_MARK_NUM
+        , BOARD1.QNA_BOARD_TITLE
+        , BOARD1.QNA_BOARD_WRITER
+        FROM QNA_BOOK_MARK MARK1, QNA_BOARD BOARD1
+        WHERE MARK1.QNA_BOARD_NUM = BOARD1.QNA_BOARD_NUM
+        AND MARK1.MEMBER_ID = #{memberId}
+        ORDER BY QNA_BOOK_MARK_NUM DESC
     </select>
 
     <!--게시글 북마크 등록-->

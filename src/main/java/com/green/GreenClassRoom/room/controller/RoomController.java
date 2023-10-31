@@ -1,5 +1,10 @@
 package com.green.GreenClassRoom.room.controller;
 
+import com.green.GreenClassRoom.board.service.FreeBookMarkService;
+import com.green.GreenClassRoom.board.service.NoticeBookMarkService;
+import com.green.GreenClassRoom.board.service.QnaBoardService;
+import com.green.GreenClassRoom.board.service.QnaBookMarkService;
+import com.green.GreenClassRoom.board.vo.FreeBookMarkVO;
 import com.green.GreenClassRoom.member.service.MemberService;
 import com.green.GreenClassRoom.member.vo.MemberVO;
 import com.green.GreenClassRoom.room.service.RoomService;
@@ -26,6 +31,9 @@ public class RoomController {
     private final TodoService todoService;
     private final RoomService roomService;
     private final WorkService workService;
+    private final FreeBookMarkService freeBookMarkService;
+    private final NoticeBookMarkService noticeBookMarkService;
+    private final QnaBookMarkService qnaBookMarkService;
 
     //클래스룸
     @GetMapping("/main")
@@ -67,6 +75,11 @@ public class RoomController {
         model.addAttribute("letterList", letterList);
         int letterCount = letterList.size();
         model.addAttribute("letterCount", letterCount);
+
+        // 자유게시판 북마크 조회
+        model.addAttribute("freeBookMarkList",freeBookMarkService.selectFreeBookMark(memberId));
+        model.addAttribute("noticeBookMarkList",noticeBookMarkService.selectNoticeBookMark(memberId));
+        model.addAttribute("qnaBookMarkList",qnaBookMarkService.selectBookMark(memberId));
 
 
         return "content/room/myRoom";

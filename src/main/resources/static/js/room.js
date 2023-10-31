@@ -520,46 +520,23 @@ function eventReg(){
 }
 
 
-
-//일정 등록 (myRoom.html)
-// $('#eventForm1').on('click', function(e) {
-// //$('#asdef').on('click', function(e) {
-//     e.preventDefault();
-//     alert('클릭했다');
-//     var title = $('#calTitle').val();
-//     var date = $('#calDate').val();
-
-
-//     if (title && date) {
-//         var eventData = {
-//             calTitle: title,
-//             calDate: date,
-//         };
-
-//         $.ajax({
-//             url: '/addEvent', 
-//             type: 'POST',
-//             data: JSON.stringify(eventData),
-//             contentType: 'application/json',
-//             success: function(response) {
-//                 // 서버에서 응답을 받으면 필요한 동작 수행
-//                 alert(response);
-                
-//                 calendar.refetchEvents();
-//             }
-//         });
-//     }
-//     calendar.refetchEvents();
-
-// });
-
 function openCalendar() {
-    var calendarFormDiv = document.querySelector('.calendarForm');
+    let calendarFormDiv = document.querySelector('.calendarForm');
     calendarFormDiv.style.display = 'block';
 }
 function closeCalender() {
-    var calendarFormDiv = document.querySelector('.calendarForm');
+    let calendarFormDiv = document.querySelector('.calendarForm');
     calendarFormDiv.style.display = 'none';
 }
+
+// 북마크 모달창 Close 버튼 클릭 시 모달 닫고 페이지 새로고침
+document.getElementById('closeModalBtn').addEventListener('click', function() {
+    // 모달 닫기
+    let modal = new bootstrap.Modal(document.getElementById('bookMark-modal'));
+    modal.hide();
+    
+    // 페이지 새로고침
+    location.reload(true);
+});
 
 

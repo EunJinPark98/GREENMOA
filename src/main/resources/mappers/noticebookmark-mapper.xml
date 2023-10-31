@@ -7,12 +7,18 @@
         <id column="NOTICE_BOOK_MARK_NUM" property="noticeBookMarkNum"/>
         <result column="NOTICE_BOARD_NUM" property="noticeBoardNum"/>
         <result column="MEMBER_ID" property="memberId"/>
+        <association property="noticeBoardVO" resultMap="noticeBoardMapper.notice"/>
     </resultMap>
 
     <select id="selectNoticeBookMark" resultMap="noticeBookMark">
-        SELECT NOTICE_BOARD_NUM
-        FROM NOTICE_BOOK_MARK
-        WHERE MEMBER_ID = #{memberId}
+        SELECT BOARD1.NOTICE_BOARD_NUM
+        , MARK1.NOTICE_BOOK_MARK_NUM
+        , BOARD1.NOTICE_BOARD_TITLE
+        , BOARD1.MEMBER_ID
+        FROM NOTICE_BOOK_MARK MARK1, NOTICE_BOARD BOARD1
+        WHERE MARK1.NOTICE_BOARD_NUM = BOARD1.NOTICE_BOARD_NUM
+        AND MARK1.MEMBER_ID = #{memberId}
+        ORDER BY NOTICE_BOOK_MARK_NUM DESC
     </select>
 
     <insert id="insertNoticeBookMark">
