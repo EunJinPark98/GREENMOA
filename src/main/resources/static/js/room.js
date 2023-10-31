@@ -66,6 +66,42 @@ function closeLetterBox() {
     document.querySelector('.letter').style.display = 'none';
 }
 
+// 답장 얼럿 창
+function showAlert() {
+    let sendLetterForm = document.getElementById("sendLetterForm");
+    Swal.fire({
+        title: "답장 보내기 완료",
+        icon: 'success'
+    }).then(() => {
+        sendLetterForm.submit();
+    });
+}
+
+// 쪽지 보내기 얼럿창 
+function mainLetterAlert() {
+    let insertLetterForm = document.getElementById("insertLetterForm");
+    let memberId = document.querySelector('#memberId').value;
+    console.log("#######"+memberId);
+    Swal.fire({
+        title: `"${memberId}"님께 쪽지를 보냈습니다.`,
+        icon: 'success'
+    }).then(() => {
+        insertLetterForm.submit();
+    });
+}
+
+// 과제 등록 얼럿창 
+function todoListAlert() {
+    let todoListForm = document.getElementById("todoListForm");
+    console.log("#######"+memberId);
+    Swal.fire({
+        title: "과제를 등록 했습니다.",
+        icon: 'success'
+    }).then(() => {
+        todoListForm.submit();
+    });
+}
+
 
 
 
@@ -83,13 +119,19 @@ function insertTodo() {
 
     // 입력한 날짜가 오늘 날짜보다 이전이면 얼럿 메시지 표시
     if (selectedDate < today) {
-        alert('지난 날짜 입니다.');
+        Swal.fire({
+            title: "지난 날짜입니다.",
+            icon: 'error'
+        });
         return;
     }
 
     // todoFinishDate가 비어있을 때 얼럿 메시지 표시
     if (!todoFinishDate) {
-        alert('날짜를 설정하세요.');
+        Swal.fire({
+            title: "날짜 및 내용을 입력하세요.",
+            icon: 'error'
+        });
         return;
     }
 
@@ -98,23 +140,50 @@ function insertTodo() {
 
     // todoList의 길이가 10개 이상인 경우 얼럿 메시지 표시하고 등록을 막음
     if (todoListLength >= 9) {
-        window.alert('9개 이상 등록할 수 없습니다.');
+        Swal.fire({
+            title: "9개 이상 등록할 수 없습니다.",
+            icon: 'error'
+        });
         return;
     }
 
-    const result = confirm('등록하시겠습니까?');
-
-    if (result) {
-        location.href = `/room/insertTodo?todoContent=${todoContent}&todoFinishDate=${todoFinishDate}`;
-    }
+    Swal.fire({
+        title: "등록하시겠습니까?",
+        icon: 'question',
+        showCancelButton: true,
+        confirmButtonColor: '#9c8277',
+        cancelButtonColor: '#767f87',
+        confirmButtonText: '등록',
+        cancelButtonText: '취소'
+    }).then((result) => {
+        // 확인을 눌렀을 때만 실행
+        if (result.isConfirmed) {
+            Swal.fire({
+                title: "등록되었습니다.",
+                icon: 'success'
+            }).then(() => {
+                // 확인을 누르면 페이지 이동
+                location.href = `/room/insertTodo?todoContent=${todoContent}&todoFinishDate=${todoFinishDate}`;
+            });
+        }
+    });
 }
 
 // 삭제버튼 클릭시 todoList delete
 function deleteTodo(todoNum){
-    const result = confirm('정말 삭제하시겠습니까?');
-    if(result){
-        location.href=`/room/deleteTodoList?todoNum=${todoNum}`;
-    };
+    Swal.fire({
+        title: "정말 삭제하시겠습니까?",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#9c8277',
+        cancelButtonColor: '#767f87',
+        confirmButtonText: '삭제',
+        cancelButtonText: '취소',
+    }).then((result) => {
+        if (result.isConfirmed) {
+            location.href = `/room/deleteTodoList?todoNum=${todoNum}`;
+        }
+    });
 };
 
 // 투두리스트 체크 가로줄
@@ -184,25 +253,48 @@ function deleteletter(){
     // 체크된 체크박스들
     const checkedChks = document.querySelectorAll('.chk:checked');
     // 선택된 상품이 없을 경우
-    if(checkedChks.length==0){
-        alert('삭제할 쪽지를 선택하세요.');
-        // 아무것도 없는 return 을 만나면 함수가 끝난다.
-        return ;
-    }
-    if(confirm('선택한 쪽지를 삭제하시겠습니까?')){
-        // 모든 CART_CODE를 가져갈 배열 생성
-        let letterNumArr=[];
-
-        // 삭제하고자하는 CART_CODE들 가져오기
-        checkedChks.forEach(function(chk,index){
-            letterNumArr[index]=chk.value;
+    if (checkedChks.length == 0) {
+        Swal.fire({
+            title: "삭제할 쪽지를 선택하세요.",
+            icon: 'error'
         });
-        // 삭제하러 이동
-        location.href=`/room/deleteLetter?letterNums=${letterNumArr}`;
+        // 함수 종료
+        return;
     }
-}
-// 답장 input 보이게 하기
 
+    // SweetAlert로 확인 창 표시
+    Swal.fire({
+        title: "선택한 쪽지를 삭제하시겠습니까?",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#9c8277',
+        cancelButtonColor: '#767f87',
+        confirmButtonText: '삭제',
+        cancelButtonText: '취소'
+    }).then((result) => {
+        // 확인을 눌렀을 때만 실행
+        if (result.isConfirmed) {
+            // 모든 쪽지 번호를 가져갈 배열 생성
+            let letterNumArr = [];
+
+            // 삭제하고자 하는 쪽지 번호들 가져오기
+            checkedChks.forEach(function(chk, index) {
+                letterNumArr[index] = chk.value;
+            });
+
+            // SweetAlert로 성공 메시지 표시 후 삭제하러 이동
+            Swal.fire({
+                title: "삭제되었습니다.",
+                icon: 'success'
+            }).then(() => {
+                // 확인을 누르면 페이지 이동
+                location.href = `/room/deleteLetter?letterNums=${letterNumArr}`;
+            });
+        }
+    });
+}
+
+// 답장 input 보이게 하기
 function showinput() {
     var clickedButton = event.target;
     var letterCast = clickedButton.closest('.letterCast');
@@ -215,9 +307,39 @@ function showinput() {
 }
 // 답장 얼럿 창
 function showAlert() {
-    alert('답장 보내기 완료');
+    let sendLetterForm = document.getElementById("sendLetterForm");
+    Swal.fire({
+        title: "답장 보내기 완료",
+        icon: 'success'
+    }).then(() => {
+        sendLetterForm.submit();
+    });
 }
 
+// 투두리스트 핀 움직이기
+const todoList = document.querySelector('.todoList');
+const pin = document.querySelector('.pin');
+
+todoList.addEventListener('mouseenter', () => {
+    pin.style.marginTop = '-5px';
+    pin.style.marginLeft = '5px';
+});
+
+todoList.addEventListener('mouseleave', () => {
+    pin.style.marginTop = '5px';
+    pin.style.marginLeft = '10px';
+});
+// 캘린더 색연필 움직이기
+const adminCalendar = document.querySelector('.adminCalendar');
+const colorPen = document.querySelector('.colorPen');
+
+adminCalendar.addEventListener('mouseenter', () => {
+    colorPen.style.top = '2%'; // 원하는 높이로 이동
+});
+
+adminCalendar.addEventListener('mouseleave', () => {
+    colorPen.style.top = '8%'; // 다시 초기 높이로 이동
+});
 
 
 
@@ -546,8 +668,10 @@ function eventReg(){
             contentType: 'application/json',
             success: function(response) {
                 // 서버에서 응답을 받으면 필요한 동작 수행
-                alert(response);
-                
+                Swal.fire({
+                    title: "일정이 추가 되었습니다.",
+                    icon: 'success'
+                })
                 calendar.refetchEvents();
             }
         });
@@ -566,16 +690,9 @@ function closeCalender() {
 }
 
 // 북마크 모달창 Close 버튼 클릭 시 모달 닫고 페이지 새로고침
-document.getElementById('closeModalBtn').addEventListener('click', function() {
-    // 모달 닫기
-    let modal = new bootstrap.Modal(document.getElementById('bookMark-modal'));
-    modal.hide();
-    
-    // 페이지 새로고침
-    location.reload(true);
-});
-
-
+function reload(){
+    location.reload();
+}
 
 
 
