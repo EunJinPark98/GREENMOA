@@ -416,14 +416,12 @@ socket.onmessage = function(event) {
         let disConnectId = document.querySelector('#my-minime-'+ data.disConnectId);
         disConnectId.querySelector('.connect-state').src = '/images/connectOff.png';
     }
-    
 
     // 채팅 전송
     if(data.content != null){
         showMessage(data.content, data.sender, data.id);
         scrollToBottom();
     }
-
 
     // 미니미 이동
     if(data.moveId){
