@@ -207,7 +207,7 @@ body{
     height: 75px;
     text-indent: -99999px;
     position: absolute;
-    top: 25%;
+    top: 35%;
     right: 27%;
     z-index: 800
 }
@@ -224,7 +224,7 @@ body{
     width: 100px;
     height: 100px;
     position: absolute;
-    top: 15%;
+    top: 25%;
     right: 27%;
     display: flex;
     justify-content: center;
@@ -303,7 +303,7 @@ body{
     position: absolute;
     top: 10%;
     left: 12%;
-    z-index: 100;
+    z-index: 9998;
     width: 35px;
     height: 35px;
     text-indent: -99999px;
@@ -328,11 +328,98 @@ body{
 }
 #calendar{
     height: 800px;
-  
+    z-index: 10000;
 }
 
- 
+.modal-content-cal, .fc-media-screen, .modal-content-cal{
+    background-color: #FBDE82;
+}
+.modal-header-cal{
+    background-color: #E57E7D;
+}
+.fc-daygrid-day-frame, .fc-scrollgrid-sync-inner{
+    background-color: #FBDE82;
+    border: 2px solid #E57E7D;
+}
 
+.fc-col-header-cell-cushion, .fc-daygrid-day-number {
+    color: #778E8D;
+}
+.fc-header-toolbar{
+    background-color: #E57E7D;
+    width: 600px;
+    border-radius: 180px;
+    height: 120px;
+    text-align: center;
+    position: absolute;
+    top: 20px;
+    left: 25%;
+}
+.fc-today-button {
+    display: none !important;
+}
+
+.fc-today-button{
+    background-color: red;
+    padding: 30px;
+    text-align: center;
+}
+.fc-header-toolbar::after{
+    content: "";
+    clear: both;
+    display: block;
+    position: absolute;
+    top: 16px;
+    left: 16px;
+    border: 4px solid #FBDE82;
+    border-radius: 100px;
+    width: 565px;
+    height: 90px;
+}
+.fc-button-primary{
+    background-color: transparent !important;
+    border: none !important;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+.fc-toolbar-title{
+    position: absolute;
+    font-size: 3rem;
+    margin: 0;
+    top: 42px;
+    left: 220px;
+    color: #fff;
+    font-weight: 900;
+}
+.modal-body-cal{
+    position: relative;
+    padding-top: 200px;
+}
+.btn-close-cal{
+    position: absolute;
+    top: 20px;
+    right: 20px;
+}
+
+.fc .fc-button .fc-icon {
+    font-size: 2em;
+    margin-right: 170px;
+}
+.fc-event-title-container{
+    background-color: #FEBC5B;
+    border-color: #FEBC5B;
+    font-size: 1.2rem;
+    color: black;
+    background-image: url(/images/event.png);
+    background-repeat: no-repeat;
+    background-size: 100% auto;
+    background-position: center;
+    padding-left: 32px;
+}
+.fc-event-main-frame{
+    border-color: #FEBC5B;
+}
 
 
 /* 채팅 */
