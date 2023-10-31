@@ -17,12 +17,15 @@
 /* 미니미 */
 #minime{
     position: absolute;
-    right: 36vw;
-    top: 50%;
+    right: 37vw;
+    top: 27vh;
     width: 150px;
 }
 
 #minime img{
+    position: absolute;
+    left: -46px;
+    top: 170px;
     width: 100%;
     height: auto;
     margin-left: 70px;
@@ -30,7 +33,8 @@
 
 #minime .name{
     position: absolute;
-    right: -100px;
+    top: 353px;
+    right: -21px;
     width: 100%;
     display: flex;
     justify-content: center;
@@ -116,6 +120,10 @@
     width: 30px;
     height: 32px;
 }
+.todoList:hover .pin {
+    margin-top: -5px;
+    margin-left: 5px;
+}
 
 
 /* 편지함 이미지 */
@@ -151,15 +159,15 @@
 /* 쪽지 갯수 표시 */
 .boxNum {
     padding: 2px;
-    margin-top: 59px;
-    margin-left: -32px;
+    margin-top: 70px;
+    margin-left: 52px;
     width: 37px;
     height: 30px;
-    background-color: #fac74f;
+    background-color: transparent;
     color: #3f3f3f;
-    border-radius: 50px;
     text-align: center;
-    border: 2px solid #fff;
+    border: 2px solid transparent;
+
 }
 .boxNum p{
     margin-left: 4px;
@@ -180,13 +188,16 @@
     right: 313px;
     top: 87px;
     transform: rotate(-1deg);
-    background-image: url(/images/msgBox_1.png);
+    background-image: url(/images/loginMenu.png);
     background-size: 100% auto;
     background-repeat: no-repeat;
     background-position: center;
+    
 }
+
 .adminWork p{
-    margin-top: 73px;
+    margin-top: 82px;
+    font-size: 18px;
 }
 /* 달력 이미지 */
 .adminCalendar{
@@ -198,8 +209,8 @@
     height: 200px;
     text-indent: -99999px;
     position: absolute;
-    top: 7%;
-    left: 23%;
+    top: 6%;
+    left: 19%;
     transform: perspective(200px) rotateY(30deg);
     z-index: 10;
 }
@@ -223,11 +234,11 @@
     background-position: center;
     background-repeat: no-repeat;
     background-size: 100% auto;
-    width: 388px;
-    height: 205px;
+    width: 396px;
+    height: 213px;
     position: absolute;
     z-index: 100;
-    top: 7%;
+    top: 5%;
     left: 16%;
 }
 #eventForm{
@@ -241,7 +252,7 @@
     width: 116px;
     height: 55px;
     margin-top: 20px;
-    margin-left: 128px;
+    margin-left: 142px;
 }
 .calendarHead p{
     padding-top: 13px;
@@ -254,6 +265,7 @@
     width: 24px;
     height: 24px;
     cursor: pointer;
+    font-size: 32px;
 }
 
 #calTitle{
@@ -305,7 +317,7 @@
 
 /* 북마크 */
 .bookMarkModal{
-    background-image: url(/images/connectOff.png);
+    background-image: url(/images/bookmark-icon.png);
     background-position: center;
     background-repeat: no-repeat;
     background-size: 100% auto;
@@ -313,14 +325,40 @@
     height: 200px;
     position: absolute;
     text-align: center;
-    top: 7%;
-    left: 50%;
+    top: 40%;
+    left: 59%;
 }
-.bookMarkModal h4{
-    margin-top: 92px;
+.bookMarkPoint{
+    background-image: url(/images/bookmark-off.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 100% auto;
+    width: 34px;
+    height: 62px;
+    margin-top: 67px;
+    margin-left: 97px;
+    transform: rotate(-11deg);
+}
+.bookMarkPoint:hover{
+    background-image: url(/images/bookmark-on.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 100% auto;
+    width: 34px;
+    height: 62px;
+    margin-top: 67px;
+    margin-left: 97px;
+    transform: rotate(-11deg);
+}
+.bookMarkText{
+    color: #cf9a1d;
+    font-size: 12px;
+    margin-top: -29px;
+    margin-right: 47px;
+    transform: rotate(-8deg);
 }
 .myRoomMark{
-    width: 19%;
+    width: 29%;
 }
 
 #calDate:valid::before {
@@ -331,7 +369,6 @@
     margin-top: 5px;
     padding: 3px 7px;
 }
-
 
 
 
@@ -416,8 +453,8 @@
 }
 #minime{
     position: absolute;
-    right: 36vw;
-    top: 30vh;
+    right: 37vw;
+    top: 27vh;
     width: 150px;
 }
 .letterBox{
@@ -605,13 +642,17 @@ input[type="checkbox"]:checked{
     width: 150px;
     height: 200px;
     position: absolute;
-    right: 27%;
-    top: 31%;
+    right: 35%;
+    top: 13%;
     transform: rotate(-1deg);
-    background-image: url(/images/msgBox_1.png);
+    background-image: url(/images/loginMenu.png);
     background-size: 100% auto;
     background-repeat: no-repeat;
     background-position: center;
+    transition: top 0.3s ease;
+}
+.adminWork:hover {
+    top: 82px;
 }
 .reg-work-back{
     background-color: transparent;
