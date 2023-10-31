@@ -43,6 +43,7 @@ $('.minime-img').click(function() {
 
 // 쪽지 보내기 클릭시 쪽지 보내기 창 열리기 닫히기
 function openLetterBox(element) {
+    element.closest('.minmeBubble').style.display = 'none';
     var memberName = element.getAttribute('data-membername');
     var memberId = element.getAttribute('data-memberid');
     
