@@ -5,12 +5,13 @@
 <head>
 <meta charset="UTF-8">
 <title>공지사항 보기</title>
+<th:block layout:fragment="content_css">
+    <link rel="stylesheet" href="/css/board.css">
+</th:block>
+
 </head>
 <body>
 <th:block layout:fragment="content">
-    <!-- sweetalert2 script -->
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <link rel="stylesheet" href="/css/board.css">
     <div class="boardBox">
         <th:block th:unless="${#lists.size(noticeInfo)==0}">
             <div th:each="notice, state : ${noticeInfo}">
@@ -68,7 +69,10 @@
         </th:block>
     </div>
 
+</th:block>
+<th:block layout:fragment="content_js">
     <script src="/js/board/board.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </th:block>
 </body>
 </html>

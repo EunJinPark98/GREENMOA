@@ -5,13 +5,13 @@
 <head>
 <meta charset="UTF-8">
 <title></title>
+<th:block layout:fragment="content_css">
+    <link rel="stylesheet" href="/css/board.css">
+</th:block>
 </head>
 <body>
     <th:block layout:fragment="content">
 
-        <!-- sweetalert2 script -->
-        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-        <link rel="stylesheet" href="/css/board.css">
         <div class="boardBox">
 
             <!-- 게시글이 하나도 없다면 -->
@@ -144,7 +144,12 @@
             </div>
         </div>
 
+    </th:block>
+
+    <th:block layout:fragment="content_js">
         <script type="text/javascript" src="/js/board/board.js"></script>
+        <!-- sweetalert2 script -->
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     </th:block>
 </body>
 </html>

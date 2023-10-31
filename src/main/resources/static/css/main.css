@@ -138,6 +138,9 @@ body{
 
 
 /* 출석부 */
+#stuListModal{
+    z-index: 9999;
+}
 .student-list{
     width: 100px;
     position: absolute;
@@ -190,7 +193,11 @@ body{
     right: -40px;
     transform: rotate(30deg);
 }
+
 /* --------- 과제 --------- */
+#workModal{
+    z-index: 9999;
+}
 .work-icon{
     background-image: url(/images/login.png);
     background-position: center;
@@ -316,7 +323,15 @@ body{
     z-index: 10;
 }
 
+#calenderModal{
+    z-index: 9999;
+}
+#calendar{
+    height: 800px;
+  
+}
 
+ 
 
 
 
@@ -370,11 +385,4 @@ body{
     display: none;
 }
 
-
-
-/* 풀캘린더 */
-#calendar{
-    height: 800px;
-    z-index: 99999;
-}
 
