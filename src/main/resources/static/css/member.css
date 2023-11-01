@@ -12,6 +12,15 @@
     display: block;
     color: #505050;
     margin: 0 auto;
+    animation: titleScale 0.5s ease-in-out forwards;
+}
+@keyframes titleScale{
+    0%{
+        transform: scaleX(0)
+    }
+    100%{
+        transform: scaleX(1)
+    }
 }
 .join-input input{
     margin-bottom: 15px;
