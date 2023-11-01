@@ -23,6 +23,7 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity security) throws Exception{
         security.csrf(AbstractHttpConfigurer::disable)
+
                 .authorizeHttpRequests(authorize ->
                   authorize.requestMatchers(
                                 new AntPathRequestMatcher("/")
@@ -39,6 +40,7 @@ public class SecurityConfig {
                             , new AntPathRequestMatcher("/book/insertNoticeBookMark")
                             , new AntPathRequestMatcher("/book/deleteBookMark")
                             , new AntPathRequestMatcher("/book/insertBookMark")
+                            , new AntPathRequestMatcher("/chat")
                           ).permitAll()
                           .anyRequest().authenticated()
                 )
@@ -69,6 +71,8 @@ public class SecurityConfig {
                         , new AntPathRequestMatcher("/upload/**")
                         , new AntPathRequestMatcher("/h2-console/*")
                         , new AntPathRequestMatcher("/webjars/**")
+                        //, new AntPathRequestMatcher("/chat")
+                        //    , new AntPathRequestMatcher("ws://192.168.30.29:8081/chat")
                 );
     }
 }
