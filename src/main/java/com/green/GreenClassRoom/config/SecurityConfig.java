@@ -39,6 +39,7 @@ public class SecurityConfig {
                             , new AntPathRequestMatcher("/book/insertNoticeBookMark")
                             , new AntPathRequestMatcher("/book/deleteBookMark")
                             , new AntPathRequestMatcher("/book/insertBookMark")
+                            , new AntPathRequestMatcher("/chat")
                           ).permitAll()
                           .anyRequest().authenticated()
                 )
