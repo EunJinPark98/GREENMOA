@@ -224,7 +224,7 @@
                                 <form action="/room/sendLetter" method="post" id="sendLetterForm">
                                     <input type="hidden" id="fromId" name="fromId" th:value="${loginInfo.memberId}">
                                     <input type="hidden" id="memberId" name="memberId" th:value="${letter.fromId}">
-                                    <textarea id="letterContet" name="letterContent"></textarea>
+                                    <textarea id="letterContent" name="letterContent"></textarea>
                                     <input type="button" class="btn btn-primary sendAnswer" value="쪽지 보내기" onclick="showAlert()"></input>
                                 </form>
                             </div>

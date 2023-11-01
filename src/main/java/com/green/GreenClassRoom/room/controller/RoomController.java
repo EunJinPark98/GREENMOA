@@ -2,9 +2,7 @@ package com.green.GreenClassRoom.room.controller;
 
 import com.green.GreenClassRoom.board.service.FreeBookMarkService;
 import com.green.GreenClassRoom.board.service.NoticeBookMarkService;
-import com.green.GreenClassRoom.board.service.QnaBoardService;
 import com.green.GreenClassRoom.board.service.QnaBookMarkService;
-import com.green.GreenClassRoom.board.vo.FreeBookMarkVO;
 import com.green.GreenClassRoom.member.service.MemberService;
 import com.green.GreenClassRoom.member.vo.MemberVO;
 import com.green.GreenClassRoom.room.service.RoomService;
@@ -12,7 +10,6 @@ import com.green.GreenClassRoom.room.service.TodoService;
 import com.green.GreenClassRoom.room.service.WorkService;
 import com.green.GreenClassRoom.room.vo.LetterVO;
 import com.green.GreenClassRoom.room.vo.WorkVO;
-import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.User;
@@ -23,7 +20,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import java.security.Principal;
 import java.util.List;
 
 @Controller
@@ -100,7 +96,7 @@ public class RoomController {
 
     //쪽지 보내기 등록
     @PostMapping("/insertLetter")
-    public String insertLetter(LetterVO letterVO, HttpSession session, Model model, Authentication authentication) {
+    public String insertLetter(LetterVO letterVO, Model model, Authentication authentication) {
         User user = (User)authentication.getPrincipal();
         letterVO.setFromId(user.getUsername());
         System.out.println("테이블함쌓을거야@@@@@@" + letterVO);
@@ -111,6 +107,7 @@ public class RoomController {
     // 답장 보내기
     @PostMapping("/sendLetter")
     public String sendLetter(LetterVO letterVO, Model model) {
+        System.out.println(letterVO + "!&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&");
         roomService.insertLetter(letterVO);
         return "redirect:/room/myRoom";
     }
