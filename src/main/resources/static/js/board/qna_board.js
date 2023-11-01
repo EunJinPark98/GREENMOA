@@ -2,7 +2,7 @@
 function deleteQnaBoard(qnaBoardNum){
     Swal.fire({
     title: "게시글을 삭제하시겠습니까?",
-    icon: 'warning',
+    icon: 'error',
     showCancelButton: true,
     confirmButtonColor: '#9c8277',
     cancelButtonColor: '#767f87',
@@ -20,11 +20,11 @@ function updateQnaBoard(qnaBoardNum){
     location.href=`/board/updateQnaBoardPage?qnaBoardNum=${qnaBoardNum}`;
 }
 
-// 댓글 삭제 버튼
+// 답변 삭제 버튼
 function deleteQnaReply(qnaBoardNum, qnaReplyNum){
     Swal.fire({
-    title: "댓글을 삭제하시겠습니까?",
-    icon: 'warning',
+    title: '답변을 삭제하시겠습니까?',
+    icon: 'error',
     showCancelButton: true,
     confirmButtonColor: '#9c8277',
     cancelButtonColor: '#767f87',
