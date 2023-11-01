@@ -69,10 +69,12 @@ function closeLetterBox() {
 // 답장 얼럿 창
 function showAlert() {
     let sendLetterForm = document.getElementById("sendLetterForm");
+    let letterContent = document.getElementById("letterContent").value;
     Swal.fire({
         title: "답장 보내기 완료",
         icon: 'success'
     }).then(() => {
+        sendLetterForm.elements["letterContent"].value = letterContent;
         sendLetterForm.submit();
     });
 }
@@ -202,7 +204,7 @@ function addlinethrough(checkbox){
 };
 
 // 상태 메세지 변경
-function showInput(){
+function updateStatusMsg(){
     let inputStatus =document.getElementById('input-status-msg');
     inputStatus.style.display='block';
 
@@ -305,41 +307,18 @@ function showinput() {
         answerLetterDiv.style.display = 'none';
     }
 }
-// 답장 얼럿 창
-function showAlert() {
-    let sendLetterForm = document.getElementById("sendLetterForm");
+// 답장 보내기
+function submitAnswer(event) {
     Swal.fire({
         title: "답장 보내기 완료",
         icon: 'success'
     }).then(() => {
-        sendLetterForm.submit();
+
+        let button = event.target;
+        let form = button.closest(".answerLetterForm"); // 클릭된 버튼의 부모 폼 찾기
+        form.submit(); // 폼 제출
     });
 }
-
-// // 투두리스트 핀 움직이기
-// const todoList = document.querySelector('.todoList');
-// const pin = document.querySelector('.pin');
-
-// todoList.addEventListener('mouseenter', () => {
-//     pin.style.marginTop = '-5px';
-//     pin.style.marginLeft = '5px';
-// });
-
-// todoList.addEventListener('mouseleave', () => {
-//     pin.style.marginTop = '5px';
-//     pin.style.marginLeft = '10px';
-// });
-// // 캘린더 색연필 움직이기
-// const adminCalendar = document.querySelector('.adminCalendar');
-// const colorPen = document.querySelector('.colorPen');
-
-// adminCalendar.addEventListener('mouseenter', () => {
-//     colorPen.style.top = '2%'; // 원하는 높이로 이동
-// });
-
-// adminCalendar.addEventListener('mouseleave', () => {
-//     colorPen.style.top = '8%'; // 다시 초기 높이로 이동
-// });
 
 
 

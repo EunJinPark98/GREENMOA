@@ -106,7 +106,7 @@ public class RoomController {
     }
     // 답장 보내기
     @PostMapping("/sendLetter")
-    public String sendLetter(LetterVO letterVO, Model model) {
+    public String sendLetter(LetterVO letterVO) {
         System.out.println(letterVO + "!&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&");
         roomService.insertLetter(letterVO);
         return "redirect:/room/myRoom";
