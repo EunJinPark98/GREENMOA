@@ -121,7 +121,7 @@ function checkId(){
         });
 
         return;
-    }else if(memberId.length <= 4){
+    }else if(memberId.length <= 3){
         Swal.fire({
             position: 'center',
             icon: 'error',
