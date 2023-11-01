@@ -80,15 +80,16 @@ function showAlert() {
 }
 
 // 쪽지 보내기 얼럿창 
-function mainLetterAlert() {
-    let insertLetterForm = document.getElementById("insertLetterForm");
-    let memberId = document.querySelector('#memberId').value;
-    console.log("#######"+memberId);
+function submitLetter(event) {
+    let letterBtn = event.target;
+    let letterForm = letterBtn.closest(".letterForm");
+    let memberId = letterBtn.closest("#memberId").value;
+
     Swal.fire({
         title: `"${memberId}"님께 쪽지를 보냈습니다.`,
         icon: 'success'
     }).then(() => {
-        insertLetterForm.submit();
+        letterForm.submit();
         document.querySelector('.letter').style.display = 'none';
     });
 }
@@ -334,7 +335,7 @@ function submitAnswer(event) {
     }).then(() => {
 
         let button = event.target;
-        let form = button.closest(".answerLetterForm"); // 클릭된 버튼의 부모 폼 찾기
+        let form = button.closest(".answerLetterForm"); 
         form.submit(); // 폼 제출
     });
 }
