@@ -30,5 +30,9 @@
             , #{deadLine}
         )
     </insert>
+    <delete id="deleteWork">
+        DELETE GREEN_WORK
+        WHERE WORK_NUM =#{workNum}
+    </delete>
 
 </mapper>

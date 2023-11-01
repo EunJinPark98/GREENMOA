@@ -10,4 +10,7 @@ public interface WorkService {
 
     //과제 보기
     public List<WorkVO> selectWorkList();
+
+    // 과제 삭제
+    public void deleteWork(int workNum);
 }

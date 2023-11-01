@@ -22,4 +22,9 @@ public class WorkServiceImpl implements WorkService{
     public List<WorkVO> selectWorkList() {
         return sqlSession.selectList("workMapper.selectWorkList");
     }
+
+    @Override
+    public void deleteWork(int workNum) {
+        sqlSession.delete("workMapper.deleteWork",workNum);
+    }
 }

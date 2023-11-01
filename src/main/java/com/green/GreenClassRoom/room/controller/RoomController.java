@@ -11,6 +11,7 @@ import com.green.GreenClassRoom.room.service.RoomService;
 import com.green.GreenClassRoom.room.service.TodoService;
 import com.green.GreenClassRoom.room.service.WorkService;
 import com.green.GreenClassRoom.room.vo.LetterVO;
+import com.green.GreenClassRoom.room.vo.TodoVO;
 import com.green.GreenClassRoom.room.vo.WorkVO;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
@@ -124,6 +125,15 @@ public class RoomController {
         workService.insertWork(workVO);
         return "redirect:/room/myRoom";
     }
+
+    //과제 삭제
+    @GetMapping("/deleteWork")
+    public String deleteWork(int workNum, WorkVO workVO){
+        workService.deleteWork(workNum);
+        return "redirect:/room/main";
+    }
+
+
 
 
 

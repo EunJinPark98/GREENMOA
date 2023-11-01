@@ -87,6 +87,7 @@ function mainLetterAlert() {
         icon: 'success'
     }).then(() => {
         insertLetterForm.submit();
+        document.querySelector('.letter').style.display = 'none';
     });
 }
 
@@ -101,6 +102,23 @@ function todoListAlert() {
         todoListForm.submit();
     });
 }
+
+// 과제버튼 삭제 클릭시 workList delete
+function deleteWork(workNum){
+    Swal.fire({
+        title: "정말 삭제하시겠습니까?",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#9c8277',
+        cancelButtonColor: '#767f87',
+        confirmButtonText: '삭제',
+        cancelButtonText: '취소',
+    }).then((result) => {
+        if (result.isConfirmed) {
+            location.href = `/room/deleteWork?workNum=${workNum}`;
+        }
+    });
+};
 
 
 
