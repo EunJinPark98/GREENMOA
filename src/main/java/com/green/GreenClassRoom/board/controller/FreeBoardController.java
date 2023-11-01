@@ -4,9 +4,12 @@ import com.green.GreenClassRoom.board.service.FreeBoardService;
 import com.green.GreenClassRoom.board.vo.FreeBoardVO;
 import com.green.GreenClassRoom.board.vo.FreeBookMarkVO;
 import com.green.GreenClassRoom.board.vo.ReplyVO;
+import com.green.GreenClassRoom.member.service.MemberService;
 import com.green.GreenClassRoom.member.vo.MemberVO;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -18,6 +21,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class FreeBoardController {
     private final FreeBoardService freeBoardService;
+    private final MemberService memberService;
 
     // 게시글 목록 페이지 이동
     @RequestMapping("/freeBoardList")
@@ -44,9 +48,10 @@ public class FreeBoardController {
 
     // 게시글 작성
     @PostMapping("/insertFreeBoard")
-    public String insertFreeBoard(FreeBoardVO freeBoardVO, HttpSession session){
-        MemberVO loginInfo=(MemberVO) session.getAttribute("loginInfo");
-        freeBoardVO.setWriter(loginInfo.getMemberId());
+    public String insertFreeBoard(FreeBoardVO freeBoardVO, Authentication authentication){
+        User user = (User) authentication.getPrincipal();
+
+        freeBoardVO.setWriter(user.getUsername());
 //        writer 값 임시로 지정
 //        freeBoardVO.setWriter("test2");
         freeBoardService.insertFreeBoard(freeBoardVO);
@@ -58,19 +63,19 @@ public class FreeBoardController {
     @GetMapping("/freeBoardDetail")
     public String freeBoardDetail(int boardNum, Model model, ReplyVO replyVO,
                                   @RequestParam(required = false, defaultValue = "false") boolean noCount
-                                    , HttpSession session, FreeBoardVO freeBoardVO, FreeBookMarkVO freeBookMarkVO){
+                                    , FreeBoardVO freeBoardVO, FreeBookMarkVO freeBookMarkVO, Authentication authentication){
         // @RequestParam(required = false, defaultValue = "false") boolean noCount
         // 댓글 등록이 실행되지 않으면 noCount가 넘어오지 않고, 그 값은 false가 된다.
         // 댓글 등록 시 게시글 목록 페이지로 오면 카운터 무효!
         // noCount 가 true가 아니라면 페이지의 조회수가 올라간다.
+        User user = (User) authentication.getPrincipal();
 
         System.out.println("@@!!!!!!!!!!!!!!!!이겁니다@@@@@" + replyVO.getLimit());
         if(!noCount){
             freeBoardService.readCntUp(boardNum);
         }
-        MemberVO loginInfo=(MemberVO) session.getAttribute("loginInfo");
-        freeBoardVO.setWriter(loginInfo.getMemberId());
-        model.addAttribute("loginInfo",loginInfo);
+        freeBoardVO.setWriter(user.getUsername());
+        model.addAttribute("loginInfo", memberService.selectLoginInfo(user.getUsername()));
 
         FreeBoardVO freeBoardDetail=freeBoardService.selectFreeBoardDetail(boardNum);
         model.addAttribute("freeBoardDetail",freeBoardDetail);
@@ -82,7 +87,7 @@ public class FreeBoardController {
 
         model.addAttribute("totalReply", freeBoardService.totalReply(boardNum));
 
-        freeBookMarkVO.setMemberId(loginInfo.getMemberId());
+        freeBookMarkVO.setMemberId(user.getUsername());
         model.addAttribute("insertFreeBookMark", freeBoardService.selectInsertFreeBookMark(freeBookMarkVO));
 
         return "/content/board/free_board_detail";

@@ -31,12 +31,13 @@
                         <div class="member-content">
                         <!-- 채팅 말풍선 -->
                         <div th:class="'chat-bubble ' + 'member-' + ${member.memberId}"></div>
-                          <!-- 미니미 말풍선 -->
-                          <div class="minmeBubble" th:if="${session.loginInfo != null}">
-                            <input class="loginId" type="hidden" th:value="${session.loginInfo.memberId}">
+                         
+                        <!-- 미니미 말풍선 -->
+                          <div class="minmeBubble" sec:authorize="isAuthenticated()" >
+                            <input class="loginId" type="hidden" th:value="${loginInfo.memberId}">
                             <p class="letterText" th:attr="data-membername=${member.memberName}, data-memberid=${member.memberId}"  onclick="openLetterBox(this)">쪽지보내기</p>
                           </div>
-                          <div class="minmeBubble" th:unless="${session.loginInfo != null}">
+                          <div class="minmeBubble" sec:authorize="isAnonymous()" >
                             <p class="letterText" onclick="location.href='/member/loginPage';">쪽지보내기</p>
                           </div>
                           <!-- 미니미 -->
@@ -89,11 +90,11 @@
 
       <!-- 채팅 -->
           <div class="chatting-fr">
-            <th:block th:if="${session.loginInfo}!=null">
-              <input id="sender" type="hidden" th:attr="data-sender=${session.loginInfo.memberName}">
-              <input id="memId" type="hidden" th:attr="data-id=${session.loginInfo.memberId}">
-              <input id="miniSrc" type="hidden" th:attr="data-minime=${session.loginInfo.minime}">
-            </th:block>
+            <div sec:authorize="isAuthenticated()">
+              <input id="sender" type="hidden" th:attr="data-sender=${loginInfo.memberName}">
+              <input id="memId" type="hidden" th:attr="data-id=${loginInfo.memberId}">
+              <input id="miniSrc" type="hidden" th:attr="data-minime=${loginInfo.minime}">
+            </div>
             <div id="chat" class="container-md">
                 <div id="chat-messages"></div>
                 <form id="message-form">

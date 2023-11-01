@@ -12,16 +12,15 @@
                 <!-- 그린모아 로고 -->
                 <h1 id="logo"><img src="/images/GREENMOA_logo.png" onclick="location.href='/room/main'"></h1>
                 <!-- 로그인 안했을 시 -->
-                <th:block th:if="${session.loginInfo ==null}">
+                <th:block sec:authorize="isAnonymous()">
                     <div class="loginMinime" onclick="location.href='/member/loginPage';"></div>
                     <div class="loginConver" onclick="location.href='/member/loginPage';">로그인</div>
                 </th:block>
                 <!-- 로그인 했을 시 -->
-                <th:block th:if="${session.loginInfo !=null}">
-                    <div class="loginMinime disConnectBtn" onclick="location.href='/member/logout';"></div>
-                    <div class="loginConver disConnectBtn" onclick="location.href='/member/logout';">로그아웃</div>
+                <th:block sec:authorize="isAuthenticated()">
+                    <div class="loginMinime" onclick="location.href='/logout';"></div>
+                    <div class="loginConver" onclick="location.href='/logout';">로그아웃</div>
                 </th:block>
-
             </div>
         </div>
     </th:block>

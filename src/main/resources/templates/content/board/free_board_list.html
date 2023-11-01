@@ -64,11 +64,9 @@
                     </tr>
                 </th:block>
             </table>
-            <!-- <th:block th:if="${session.loginInfo !=null}"> -->
-                <div class="d-grid gap-2 d-md-flex justify-content-md-end col align-self-end">
+                <div class="d-grid gap-2 d-md-flex justify-content-md-end col align-self-end" sec:authorize="isAuthenticated()">
                     <input type="button" value="글쓰기" class="btn btn-primary" onclick="location.href='freeBoardWrite';">
                 </div>
-            <!-- </th:block> -->
         </div>
 
         <!-- 페이징 -->

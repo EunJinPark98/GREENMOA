@@ -56,14 +56,11 @@
 
         
         <!-- 선생님 권한으로 과제 등록  -->
-        <div th:if="${loginInfo.memberRoll == 'ADMIN'}" class="adminWork">
-            <div data-bs-toggle="modal" data-bs-target="#admin-work-modal">
-                <p>과제 등록 하기</p>
-                <div class="workIcon"></div>
-            </div>
+        <div sec:authorize="hasRole('ADMIN')" class="adminWork">
+            <div data-bs-toggle="modal" data-bs-target="#admin-work-modal"><p>과제 등록 하기</p></div>
         </div>
         <!-- 선생님 권한으로 일정 등록 -->
-        <div th:if="${loginInfo.memberRoll == 'ADMIN'}" class="adminCalendar" onclick="openCalendar()">
+        <div sec:authorize="hasRole('ADMIN')" class="adminCalendar" onclick="openCalendar()">
             <div class="colorPen"></div>
         </div>
         <div class="calendarForm">
@@ -328,7 +325,7 @@
                         </div>
 
                         <div class="input-field">
-                            <textarea name="workContent" rows="6" cols="35" placeholder="과제내용" required></textarea>
+                            <textarea name="workContent" rows="6" cols="30" placeholder="과제내용" required></textarea>
                         </div>
 
                         <div class="input-group mt-2 mb-4">

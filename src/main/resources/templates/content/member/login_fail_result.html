@@ -30,24 +30,22 @@
             margin-top: 70px;
         }
         </style>
-
         
-        <!-- 로그인 성공 했으면~ -->
-        <div sec:authorize="isAuthenticated()">
-            <input type="hidden" id="loginId" th:value="${#authentication.name}">
+        <!-- 로그인 실패 했으면~ -->
+        <div sec:authorize="isAnonymous()">
+            <input type="hidden" id="inputId" th:value="${#authentication.name}">
             <script>
-                const loginId = document.querySelector('#loginId').value;
+                const memberId = document.querySelector('#inputId').value;
 
                 Swal.fire({
-                    position: 'center',
-                    icon: 'success',
-                    title: `${loginId} 님 <br> <sub>반갑습니다!<sub>`,
+                    icon: 'error',
+                    title: 'ID 혹은 PW 확인',
                     showConfirmButton: false,
-                    timer: 2000
+                    timer: 3000
                 }).then(()=>{
-                    location.href = '/room/main';
+                    location.href=`/room/main`;
                 })
-
+                
             </script>
         </div>
 
