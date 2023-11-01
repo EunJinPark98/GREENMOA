@@ -35,7 +35,13 @@
         SELECT BOARD_NUM
             , TITLE
             , WRITER
-            , TO_CHAR(CREATE_DATE,'YYYY-MM-DD') CREATE_DATE
+            , (SELECT
+                CASE
+                    WHEN TRUNC(SYSDATE) = TRUNC(CREATE_DATE)
+                    THEN TO_CHAR(CREATE_DATE, 'HH24:MI')
+                    ELSE TO_CHAR(CREATE_DATE, 'YYYY-MM-DD')
+                END
+            FROM DUAL) CREATE_DATE
             , READ_CNT
         FROM FREE_BOARD
         <if test='searchValue!=null and !searchValue.equals("")'>

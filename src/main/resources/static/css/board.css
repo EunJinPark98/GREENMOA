@@ -29,15 +29,19 @@ a:hover{
     display: block;
     position: absolute;
     top: 60%;
-    width: 20px;
+    width: 0px;
     height: 15px;
     background-color: #ffc107;
-    transform: translate(0%, 0%);
-    transition: all 0.3s ease;
+    animation: titleWidth 0.7s ease-in-out forwards;
     z-index: -1;
 }
-.headTitle:hover:before{
-    width: 100%;
+@keyframes titleWidth{
+    0%{
+        width: 0;
+    }
+    100%{
+        width: 100%;
+    }
 }
 .searchBox{
     width: 35%;
