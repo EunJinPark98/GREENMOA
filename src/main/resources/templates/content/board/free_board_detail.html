@@ -55,7 +55,7 @@
                         </div>
                         <div class="col-6 d-grid gap-2 d-md-flex justify-content-md-end col" 
                         sec:authorize="isAuthenticated()">
-                            <div th:if="${freeBoardDetail.writer == loginInfo.memberId}">
+                            <div th:if="${freeBoardDetail.writer == loginInfo.memberId or loginInfo.memberRoll == 'ADMIN'}">
                                 <input type="button" class="updateButton btn btn-primary" value="수정" th:onclick="goUpdate([[${freeBoardDetail.boardNum}]])">
                                 <input type="button" class="btn btn-light" value="삭제" th:onclick="goDelete([[${freeBoardDetail.boardNum}]])">
                             </div>
@@ -91,7 +91,7 @@
                                       <div class="col-4 d-grid gap-2 d-md-flex justify-content-md-end col align-self-end">
                                         <div class="small">[[${reply.regDate}]]</div>
                                         <input type="button" id="replyNum" name="replyNum" th:onclick="deleteReply([[${freeBoardDetail.boardNum}]],[[${reply.replyNum}]])" 
-                                        th:data-reply-num="${reply.replyNum}" value="삭제" th:if="${loginInfo.memberId == reply.replyer}" th:disabled="${reply.replyer != loginInfo.memberId}">
+                                        th:data-reply-num="${reply.replyNum}" value="삭제" th:if="${loginInfo.memberId == reply.replyer or loginInfo.memberRoll == 'ADMIN'}">
                                         <!-- th:diabled="" 댓글 각각에 -->
                                       </div>
                                   </div>

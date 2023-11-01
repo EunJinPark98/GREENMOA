@@ -169,15 +169,15 @@ div:where(.swal2-container) div:where(.swal2-popup) {
     background-repeat: no-repeat;
     background-size: 100% auto;
     background-color: transparent;
-    height: 635px;
+    height: 350px;
     padding-top: 70px;
 }
 div:where(.swal2-icon).swal2-success, div:where(.swal2-icon).swal2-error.swal2-icon-show {
-    top: 220px;
+    top: 50px;
 }
 h2#swal2-title.swal2-title{
     height: 0;
-    margin-top: 70px;
+    margin-top: 20px;
 }
 
 
