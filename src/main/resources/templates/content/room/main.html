@@ -33,11 +33,11 @@
                         <div th:class="'chat-bubble ' + 'member-' + ${member.memberId}"></div>
                          
                         <!-- 미니미 말풍선 -->
-                          <div sec:authorize="isAuthenticated()" >
+                          <div class="minmeBubble" sec:authorize="isAuthenticated()" >
                             <input class="loginId" type="hidden" th:value="${loginInfo.memberId}">
                             <p class="letterText" th:attr="data-membername=${member.memberName}, data-memberid=${member.memberId}"  onclick="openLetterBox(this)">쪽지보내기</p>
                           </div>
-                          <div sec:authorize="isAnonymous()" >
+                          <div class="minmeBubble" sec:authorize="isAnonymous()" >
                             <p class="letterText" onclick="location.href='/member/loginPage';">쪽지보내기</p>
                           </div>
                           <!-- 미니미 -->
