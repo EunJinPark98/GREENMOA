@@ -1,17 +1,17 @@
 //게시글 삭제 버튼
 function goDelete(boardNum){
-        Swal.fire({
-        title: "정말 삭제하시겠습니까?",
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#9c8277',
-        cancelButtonColor: '#767f87',
-        confirmButtonText: '삭제',
-        cancelButtonText: '취소',
-        }).then((result) => {
-        if (result.isConfirmed) {
-            location.href=`/board/deleteBoard?boardNum=${boardNum}`
-        }
+    Swal.fire({
+    title: "게시글을 삭제하시겠습니까?",
+    icon: 'error',
+    showCancelButton: true,
+    confirmButtonColor: '#9c8277',
+    cancelButtonColor: '#767f87',
+    confirmButtonText: '삭제',
+    cancelButtonText: '취소',
+    }).then((result) => {
+    if (result.isConfirmed) {
+        location.href=`/board/deleteBoard?boardNum=${boardNum}`
+    }
     })
 }
 
@@ -23,11 +23,19 @@ function goUpdate(boardNum){
 
 // 댓글 삭제 버튼
 function deleteReply(boardNum, replyNum){
-
-    const result = confirm('정말 삭제하시겠습니까?');
-    if(result){
+    Swal.fire({
+    title: '댓글을 삭제하시겠습니까?',
+    icon: 'error',
+    showCancelButton: true,
+    confirmButtonColor: '#9c8277',
+    cancelButtonColor: '#767f87',
+    confirmButtonText: '삭제',
+    cancelButtonText: '취소',
+    }).then((result) => {
+    if (result.isConfirmed) {
         location.href=`/board/deleteReply?replyNum=${replyNum}&boardNum=${boardNum}`;
-    };
+    }
+    })
 };
 
 // 댓글 이모지 드롭다운 선택
@@ -44,8 +52,8 @@ function changeEmoji(emojiURL){
 // 공지 삭제
 function noticeDelete(noticeBoardNum){
     Swal.fire({
-        title: "공지를 정말 삭제하시겠습니까?",
-        icon: 'warning',
+        title: "공지를 삭제하시겠습니까?",
+        icon: 'error',
         showCancelButton: true,
         confirmButtonColor: '#9c8277',
         cancelButtonColor: '#767f87',

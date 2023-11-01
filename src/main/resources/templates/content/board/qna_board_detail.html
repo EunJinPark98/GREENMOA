@@ -82,8 +82,8 @@
                                 </div>
                                 <div class="col-4 d-grid gap-2 d-md-flex justify-content-md-end col align-self-end">
                                     <div class="small">[[${qnaReply.qnaRegDate}]]</div>
-                                    <input type="button" th:if="${loginInfo.memberId == qnaReply.qnaReplyer }" id="qnaReplyNum" name="qnaReplyNum" th:onclick="deleteQnaReply([[${qnaBoardList.qnaBoardNum}]], [[${qnaReply.qnaReplyNum}]])" 
-                                    th:data-reply-num="${qnaReply.qnaReplyNum}" value="삭제" th:disabled="${qnaReply.qnaReplyer != loginInfo.memberId}">
+                                    <input type="button" th:if="${loginInfo.memberId == qnaReply.qnaReplyer or loginInfo.memberRoll == 'ADMIN'}" id="qnaReplyNum" name="qnaReplyNum" th:onclick="deleteQnaReply([[${qnaBoardList.qnaBoardNum}]], [[${qnaReply.qnaReplyNum}]])" 
+                                    th:data-reply-num="${qnaReply.qnaReplyNum}" value="삭제">
                                 </div>
                             </div>
 
