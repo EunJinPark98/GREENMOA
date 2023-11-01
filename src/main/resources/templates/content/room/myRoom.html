@@ -231,8 +231,10 @@
                                 <form action="/room/sendLetter" method="post" class="answerLetterForm">
                                     <input type="hidden" name="fromId" th:value="${loginInfo.memberId}">
                                     <input type="hidden" name="memberId" th:value="${letter.fromId}">
-                                    <textarea name="letterContent"></textarea>
-                                    <input type="button" class="btn btn-primary sendAnswer" value="쪽지 보내기" onclick="submitAnswer(event)"></input>
+                                    <div class="input-group">
+                                        <textarea name="letterContent" class="letterContet form-control"></textarea>
+                                        <input type="button" class="btn btn-primary sendAnswer" value="쪽지 보내기" onclick="submitAnswer(event)"></input>
+                                    </div>
                                 </form>
                             </div>
                             <hr>

@@ -795,11 +795,11 @@ input[type="checkbox"]:checked{
 .sendAnswer:hover{
     background-color: #86b9af;
 }
-#letterContet{
+.letterContet{
     resize: none;
     max-width: 75%;
 }
-#letterContet::-webkit-scrollbar{
+.letterContet::-webkit-scrollbar{
     display: none;
 }
 
