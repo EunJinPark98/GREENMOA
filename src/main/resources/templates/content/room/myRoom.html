@@ -39,7 +39,7 @@
         </div>
 
         <!-- 우편함 -->
-        <div th:if="${loginInfo.memberRoll != 'ADMIN'}">
+        <div sec:authorize="hasRole('USER')">
             <div th:if="${letterCount > 0}">
                 <div class="openLetterBox" data-bs-toggle="modal" data-bs-target="#letter-modal">
                     <div class="boxNum">
@@ -50,15 +50,15 @@
             <div th:unless="${letterCount > 0}" class="closeLetterBox">
             </div>
         </div>
-        <div th:if="${loginInfo.memberRoll == 'ADMIN'}"></div>
+        <div sec:authorize="hasRole('ADMIN')"></div>
         
         <!-- 미니미 사진 -->
-        <div th:if="${loginInfo.memberRoll != 'ADMIN'}">
+        <div sec:authorize="hasRole('USER')">
             <div class="minimiFrame" data-bs-toggle="modal" data-bs-target="#minimi-frame-modal">
                 <div class="minimiFace"></div>
             </div>
         </div>
-        <div th:if="${loginInfo.memberRoll == 'ADMIN'}"></div>
+        <div sec:authorize="hasRole('ADMIN')"></div>
 
 
         

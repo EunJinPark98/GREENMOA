@@ -113,6 +113,7 @@ function deleteWork(workNum){
         cancelButtonColor: '#767f87',
         confirmButtonText: '삭제',
         cancelButtonText: '취소',
+        zindex: 5000,
     }).then((result) => {
         if (result.isConfirmed) {
             location.href = `/room/deleteWork?workNum=${workNum}`;
