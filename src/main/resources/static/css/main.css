@@ -265,7 +265,7 @@ body{
     background-color: transparent;
     border: none;
 }
-.work-frame{
+#workModal .modal-dialog .work-back .work-frame{
     background-image: url(/images/work.png);
     background-position: top;
     background-repeat: no-repeat;
@@ -274,16 +274,47 @@ body{
     height: 770px;
     padding-top: 20px;
 }
+.work-frame .modal-body img {
+    max-height: 100px;
+}
+#workModalLabel{
+    position: relative;
+    z-index: 1;
+    top: 20px;
+    height: 95px;
+}
+#workModalLabel:after{
+    content: "";
+    display: inline-block;
+    position: absolute;
+    top: -30px;
+    left: 65px;
+    z-index: -1;
+    background-image: url(/images/work-head.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 100% auto;
+    width: 234px;
+    height: 100px;
+}
+.modal-header .btn-close {
+    margin: 0;
+    margin-top: -30px;
+    margin-left: -20px;
+}
+.work-frame .modal-header {
+    border-bottom: none;
+}
 .accordion-button:not(.collapsed) {
-    background-color: #b2adc3;
+    background-color: #a0bf9f;
 }
 .accordion-button:hover {
-    background-color: #b2adc3;
+    background-color: #a0bf9f;
 }
 .accordion-button:focus {
     border-color: none;
     box-shadow: none;
-    border-radius: 10px;
+    border-radius: 5px;
 }
 .accordion-button{
     color: #3b3838;
@@ -291,17 +322,22 @@ body{
 }
 .accordion-item{
     border: none;
-    border-radius: 10px;
-}
-.accordion-header{
-    border-top: 1px solid #acacac;
-    
+    border-radius: 5px;
 }
 .accordion-body{
     margin-bottom: 20px;
     box-shadow: 0px 6px 20px -15px rgba(0,0,0,0.5);
     white-space: pre-line;
 }
+
+.accordion {
+    max-height: 510px; 
+    overflow-y: auto; 
+}
+.accordion::-webkit-scrollbar{
+    display: none;
+}
+
 
 /* --------- 캘린더 --------- */
 .pin{
