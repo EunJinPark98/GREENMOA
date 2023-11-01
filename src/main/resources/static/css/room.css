@@ -117,6 +117,8 @@
     background-size: 100% auto;
     background-repeat: no-repeat;
     background-position: center;
+    transform-origin: top left; /* 원근 변환의 기준점을 좌상단으로 설정합니다 */
+    transform: perspective(1000px) rotateY(-28deg) rotate(12deg); /* 3D 회전을 통해 입체감을 표현합니다 */
 }
 .todoList .pin{
     margin-top: 5px;
@@ -207,8 +209,11 @@
     width: 150px;
     height: 200px;
     position: absolute;
-    top: 6%;
-    left: 19%;
+    top: 4%;
+    left: 4%;
+    transform-origin: top left; /* 원근 변환의 기준점을 좌상단으로 설정합니다 */
+    transform: perspective(1000px) rotateY(28deg) rotate(-10deg); /* 3D 회전을 통해 입체감을 표현합니다 */
+
 }
 .adminWork p{
     margin-top: 82px;
@@ -498,7 +503,7 @@
 .todoInput{
     padding-top: 140px;
 }
-.todolist{
+/* .todolist{
     background-image: url(/images/todolist.png);
     background-position: top;
     background-repeat: no-repeat;
@@ -506,7 +511,8 @@
     width: 468px;
     height: 753px;
     padding-left: 20px;
-}
+    
+} */
 .todoModal{
     background-color: transparent;
     border: none;
@@ -652,8 +658,8 @@ input[type="checkbox"]:checked{
     width: 195px;
     height: 100px;
     position: absolute;
-    top: 83%;
-    right: -27%;
+    top: 30%;
+    right: 33%;
 }
 .adminWork{
     display: flex;
@@ -661,8 +667,8 @@ input[type="checkbox"]:checked{
     width: 150px;
     height: 200px;
     position: absolute;
-    right: 35%;
-    top: 13%;
+    right: 9%;
+    top: -155%;
     transform: rotate(-1deg);
     background-image: url(/images/loginMenu.png);
     background-size: 100% auto;
@@ -671,7 +677,7 @@ input[type="checkbox"]:checked{
     transition: top 0.3s ease;
 }
 .adminWork:hover {
-    top: 82px;
+    top: -170%;
 }
 .reg-work-back{
     background-color: transparent;

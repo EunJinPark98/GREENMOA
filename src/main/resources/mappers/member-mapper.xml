@@ -92,11 +92,11 @@
     </update>
 
     <!--상태 메세지 출력-->
-    <select id="selectStatusMsg" resultMap="member">
-        SELECT STATUS_MSG
-        FROM GREEN_MEMBER
-        WHERE MEMBER_ID = #{memberId}
-    </select>
+<!--    <select id="selectStatusMsg" resultMap="String">-->
+<!--        SELECT STATUS_MSG-->
+<!--        FROM GREEN_MEMBER-->
+<!--        WHERE MEMBER_ID = #{memberId}-->
+<!--    </select>-->
 
     <select id="loginInfo" resultMap="member">
         SELECT MEMBER_ID

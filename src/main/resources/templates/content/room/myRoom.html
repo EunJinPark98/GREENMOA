@@ -21,10 +21,10 @@
         <!-- 미니미 상태메세지 -->
         <div id="minime">
             <div class="status-msg">
-                <div class="statusMsgText" onclick="updateStatusMsg()">
-                    [[${statusMsg.statusMsg}]]
-                    <input type="hidden" name="memberId" th:value="${loginInfo.memberId}">
-                    <textarea rows="2" cols="20" maxlength="20"  name="statusMsg" id="input-status-msg" th:value="${statusMsg.statusMsg}" th:onkeydown="updateStatusMsg([[${loginInfo.memberId}]])" required>[[${statusMsg.statusMsg}]]</textarea>
+                <div class="statusMsgText" onclick="openStatus()">
+                    [[${loginInfo.statusMsg}]]
+                    <input type="hidden" id="statusId" name="memberId" th:value="${loginInfo.memberId}">
+                    <textarea rows="2" cols="20" maxlength="20"  name="statusMsg" id="input-status-msg" th:value="${loginInfo.statusMsg}" required>[[${loginInfo.statusMsg}]]</textarea>
                 </div>
                 <div class="btnClose" onclick="closeInput()"></div>
             </div>
@@ -33,6 +33,10 @@
                 <p class="name">[[${loginInfo.memberName}]]</p>
             </div>
         </div>
+
+
+
+
         <div class="bookMarkModal" data-bs-toggle="modal" data-bs-target="#bookMark-modal">
             <div class="bookMarkPoint"></div>
             <div class="bookMarkText">bookMark</div>
@@ -63,8 +67,8 @@
 
         
         <!-- 선생님 권한으로 과제 등록  -->
-        <div sec:authorize="hasRole('ADMIN')" class="adminWork">
-            <div data-bs-toggle="modal" data-bs-target="#admin-work-modal"><p>과제 등록 하기</p></div>
+        <div sec:authorize="hasRole('ADMIN')" class="workIcon">
+            <div class="adminWork" data-bs-toggle="modal" data-bs-target="#admin-work-modal"><p>과제 등록 하기</p></div>
         </div>
         <!-- 선생님 권한으로 일정 등록 -->
         <div sec:authorize="hasRole('ADMIN')" class="adminCalendar" onclick="openCalendar()">
@@ -80,6 +84,10 @@
             <div class="closeCalender" onclick="closeCalender()">x</div>
         </div>
     </div>
+
+    
+
+    
 
     <!-- 북마크 모달창 -->
     <div class="modal fade" id="bookMark-modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"

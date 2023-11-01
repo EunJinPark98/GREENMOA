@@ -69,9 +69,7 @@ public class RoomController {
 
         String memberId = user.getUsername();
         model.addAttribute("todoList", todoService.selectTodo(memberId));
-        MemberVO statusMsg = roomService.selectStatusMsg(memberId);
-        model.addAttribute("statusMsg", statusMsg);
-        System.out.println("$$$$$$$" + statusMsg);
+
         model.addAttribute("loginInfo", memberService.loginInfo(user.getUsername()));
 
 
@@ -124,8 +122,9 @@ public class RoomController {
     // 상태 메세지 수정 기능
     @GetMapping("/updateStatusMsg")
     public String updateStatusMsg(MemberVO memberVO) {
+        System.out.println("#######ggggggg#" + memberVO);
         roomService.updateStatusMsg(memberVO);
-        System.out.println("########" + memberVO);
+
         return "redirect:/room/myRoom";
     }
     // 과제 등록 기능

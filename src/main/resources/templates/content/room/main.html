@@ -60,7 +60,7 @@
                               <input type="hidden" id="memberId" name="memberId" th:value="${member.memberId}">
                             </div>
                           <div class="letterTextarea">
-                              <textarea id="letterContet" name="letterContent"></textarea>
+                              <textarea  name="letterContent"></textarea>
                           </div>
                           <div class="letterButton">
                             <input type="button" class="btn btn-primary" value="보내기" onclick="submitLetter(evet)">
@@ -205,8 +205,7 @@
           
   <th:block layout:fragment="content_js">
     <script src="/js/room.js"></script>
-
-
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   </th:block>
 </body>
 </html>

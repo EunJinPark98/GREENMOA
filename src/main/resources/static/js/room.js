@@ -86,13 +86,14 @@ function submitLetter(event) {
     let memberId = letterBtn.closest("#memberId").value;
 
     Swal.fire({
-        title: `"${memberId}"님께 쪽지를 보냈습니다.`,
+        title: `쪽지 보내기 완료!.`,
         icon: 'success'
     }).then(() => {
         letterForm.submit();
         document.querySelector('.letter').style.display = 'none';
     });
 }
+
 
 // 과제 등록 얼럿창 
 function todoListAlert() {
@@ -223,8 +224,8 @@ function addlinethrough(checkbox){
     }
 };
 
-// 상태 메세지 변경
-function updateStatusMsg(){
+// 상태 메세지 변경 나타나게
+function openStatus(){
     let inputStatus =document.getElementById('input-status-msg');
     inputStatus.style.display='block';
 
@@ -244,15 +245,18 @@ function closeInput(){
 };
 
 // 상태 메세지 update
-function updateStatusMsg(memberId){
-    let inputStatus =document.getElementById('input-status-msg');
-    let inputStatusValue =document.getElementById('input-status-msg').value;
-    
-        if(window.event.keyCode==13){
-            inputStatus.style.display='none';
+let statusInput = document.getElementById('input-status-msg');
+if(statusInput){
+    statusInput.addEventListener('keydown', function(event) {
+        if (event.keyCode === 13) { 
+            event.preventDefault(); 
+            let inputStatusValue = this.value; 
+            let memberId = document.querySelector('#statusId').value;
             location.href=`/room/updateStatusMsg?memberId=${memberId}&statusMsg=${inputStatusValue}`;
-        };
-};
+        }
+    });
+}
+
 
 // 쪽지함 체크박스 선택
 function checkLetter(){
@@ -344,7 +348,8 @@ function submitAnswer(event) {
 
 
 ///////////////// 소켓통신 /////////////////////////////////////
-var socket = new WebSocket('ws://192.168.30.55:8081/chat');
+//var socket = new WebSocket('ws://192.168.30.55:8081/chat');
+var socket = new WebSocket('ws://localhost:8081/chat');
 
 //로그인 한 정보 태그
 var idElement = document.getElementById('memId'); 
