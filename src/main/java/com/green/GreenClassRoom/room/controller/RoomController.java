@@ -9,7 +9,6 @@ import com.green.GreenClassRoom.room.service.RoomService;
 import com.green.GreenClassRoom.room.service.TodoService;
 import com.green.GreenClassRoom.room.service.WorkService;
 import com.green.GreenClassRoom.room.vo.LetterVO;
-import com.green.GreenClassRoom.room.vo.TodoVO;
 import com.green.GreenClassRoom.room.vo.WorkVO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.Authentication;
@@ -107,7 +106,7 @@ public class RoomController {
     }
     // 답장 보내기
     @PostMapping("/sendLetter")
-    public String sendLetter(LetterVO letterVO, Model model) {
+    public String sendLetter(LetterVO letterVO) {
         System.out.println(letterVO + "!&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&");
         roomService.insertLetter(letterVO);
         return "redirect:/room/myRoom";

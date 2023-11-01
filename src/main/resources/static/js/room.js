@@ -69,10 +69,12 @@ function closeLetterBox() {
 // 답장 얼럿 창
 function showAlert() {
     let sendLetterForm = document.getElementById("sendLetterForm");
+    let letterContent = document.getElementById("letterContent").value;
     Swal.fire({
         title: "답장 보내기 완료",
         icon: 'success'
     }).then(() => {
+        sendLetterForm.elements["letterContent"].value = letterContent;
         sendLetterForm.submit();
     });
 }
@@ -220,7 +222,7 @@ function addlinethrough(checkbox){
 };
 
 // 상태 메세지 변경
-function showInput(){
+function updateStatusMsg(){
     let inputStatus =document.getElementById('input-status-msg');
     inputStatus.style.display='block';
 
@@ -323,17 +325,18 @@ function showinput() {
         answerLetterDiv.style.display = 'none';
     }
 }
-// 답장 얼럿 창
-function showAlert() {
-    let sendLetterForm = document.getElementById("sendLetterForm");
+// 답장 보내기
+function submitAnswer(event) {
     Swal.fire({
         title: "답장 보내기 완료",
         icon: 'success'
     }).then(() => {
-        sendLetterForm.submit();
+
+        let button = event.target;
+        let form = button.closest(".answerLetterForm"); // 클릭된 버튼의 부모 폼 찾기
+        form.submit(); // 폼 제출
     });
 }
-
 
 
 

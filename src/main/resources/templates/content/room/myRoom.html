@@ -21,7 +21,7 @@
         <!-- 미니미 상태메세지 -->
         <div id="minime">
             <div class="status-msg">
-                <div class="statusMsgText" onclick="showInput()">
+                <div class="statusMsgText" onclick="updateStatusMsg()">
                     [[${statusMsg.statusMsg}]]
                     <input type="hidden" name="memberId" th:value="${loginInfo.memberId}">
                     <textarea rows="2" cols="20" maxlength="20"  name="statusMsg" id="input-status-msg" th:value="${statusMsg.statusMsg}" th:onkeydown="updateStatusMsg([[${loginInfo.memberId}]])" required>[[${statusMsg.statusMsg}]]</textarea>
@@ -228,11 +228,11 @@
                                 <button type="button" class="showinput btn btn-primary" onclick="showinput()">답장</button>
                             </div>
                             <div class="answerLetter">
-                                <form action="/room/sendLetter" method="post" id="sendLetterForm">
-                                    <input type="hidden" id="fromId" name="fromId" th:value="${loginInfo.memberId}">
-                                    <input type="hidden" id="memberId" name="memberId" th:value="${letter.fromId}">
-                                    <textarea id="letterContent" name="letterContent"></textarea>
-                                    <input type="button" class="btn btn-primary sendAnswer" value="쪽지 보내기" onclick="showAlert()"></input>
+                                <form action="/room/sendLetter" method="post" class="answerLetterForm">
+                                    <input type="hidden" name="fromId" th:value="${loginInfo.memberId}">
+                                    <input type="hidden" name="memberId" th:value="${letter.fromId}">
+                                    <textarea name="letterContent"></textarea>
+                                    <input type="button" class="btn btn-primary sendAnswer" value="쪽지 보내기" onclick="submitAnswer(event)"></input>
                                 </form>
                             </div>
                             <hr>
