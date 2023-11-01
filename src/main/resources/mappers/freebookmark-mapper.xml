@@ -7,12 +7,18 @@
         <id column="FREE_BOOK_MARK_NUM" property="freeBookMarkNum"/>
         <result column="BOARD_NUM" property="boardNum"/>
         <result column="MEMBER_ID" property="memberId"/>
+        <association property="freeBoardVO" resultMap="freeBoardMapper.freeBoard"/>
     </resultMap>
 
     <select id="selectFreeBookMark" resultMap="freeBookMark">
-        SELECT BOARD_NUM
-        FROM FREE_BOOK_MARK
-        WHERE MEMBER_ID = #{memberId}
+        SELECT BOARD1.BOARD_NUM
+            , MARK1.FREE_BOOK_MARK_NUM
+            , BOARD1.TITLE
+            , BOARD1.WRITER
+        FROM FREE_BOOK_MARK MARK1, FREE_BOARD BOARD1
+        WHERE MARK1.BOARD_NUM = BOARD1.BOARD_NUM
+        AND MARK1.MEMBER_ID = #{memberId}
+        ORDER BY FREE_BOOK_MARK_NUM DESC
     </select>
 
     <insert id="insertFreeBookMark">

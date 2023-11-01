@@ -5,18 +5,25 @@
 <head>
 <meta charset="UTF-8">
 <title>공지사항 보기</title>
+<th:block layout:fragment="content_css">
+    <link rel="stylesheet" href="/css/board.css">
+</th:block>
+
 </head>
 <body>
 <th:block layout:fragment="content">
-    <!-- sweetalert2 script -->
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <link rel="stylesheet" href="/css/board.css">
     <div class="boardBox">
         <th:block th:unless="${#lists.size(noticeInfo)==0}">
             <div th:each="notice, state : ${noticeInfo}">
                 <div class="row">
                     <div class="col-11">
                         <h3>[[${notice.noticeBoardTitle}]]</h3>
+                    </div>
+                    <div class="col-1">
+                        <span class="bookCheck">
+                            <img class="bookmark"  src="/images/bookmark-off.png" alt="" th:if="${insertNoticeBookMark == null}" th:onclick="checkNoticeBookMark(this, [[${notice.noticeBoardNum}]])">
+                            <img class="bookmark bookmarked"  src="/images/bookmark-on.png" alt="" th:if="${insertNoticeBookMark != null}" th:onclick="checkNoticeBookMark(this, [[${notice.noticeBoardNum}]])">
+                        </span>
                     </div>
                 </div>
             
@@ -68,7 +75,10 @@
         </th:block>
     </div>
 
+</th:block>
+<th:block layout:fragment="content_js">
     <script src="/js/board/board.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </th:block>
 </body>
 </html>

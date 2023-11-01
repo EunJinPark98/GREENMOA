@@ -17,12 +17,15 @@
 /* 미니미 */
 #minime{
     position: absolute;
-    right: 36vw;
-    top: 50%;
+    right: 37vw;
+    top: 27vh;
     width: 150px;
 }
 
 #minime img{
+    position: absolute;
+    left: -46px;
+    top: 170px;
     width: 100%;
     height: auto;
     margin-left: 70px;
@@ -30,7 +33,8 @@
 
 #minime .name{
     position: absolute;
-    right: -100px;
+    top: 353px;
+    right: -21px;
     width: 100%;
     display: flex;
     justify-content: center;
@@ -54,7 +58,7 @@
    font-size: 1.3rem;
    margin-right: 50px;
 
-}
+}input
 
 .statusMsgText{
     padding: 30px;
@@ -62,20 +66,11 @@
     display: flex;
     flex-wrap: wrap;
     position: absolute;
-    top: 17px;
-    left: 0px;
+    top: 24px;
+    left: 7px;
 
 }
-#input-status-msg{
-    display: none;
-    border: none;
-    position: absolute;
-    top: 28px;
-    left: 28px;
-    width: 75%;
-    height: 69%;
-    resize: none;
-}
+
 .statusMsgButton{
     margin-top: 10px;
     margin-left: 60px;
@@ -125,6 +120,10 @@
     width: 30px;
     height: 32px;
 }
+.todoList:hover .pin {
+    margin-top: -5px;
+    margin-left: 5px;
+}
 
 
 /* 편지함 이미지 */
@@ -158,15 +157,17 @@
     background-position: center;
 }
 /* 쪽지 갯수 표시 */
-.boxNum{
-    padding: 5px;
-    margin-top: 59px;
-    margin-left: -32px;
-    width: 30px;
+.boxNum {
+    padding: 2px;
+    margin-top: 70px;
+    margin-left: 52px;
+    width: 37px;
     height: 30px;
-    background-color: gray;
-    color: white;
-    border-radius: 8px;
+    background-color: transparent;
+    color: #3f3f3f;
+    text-align: center;
+    border: 2px solid transparent;
+
 }
 .boxNum p{
     margin-left: 4px;
@@ -187,13 +188,16 @@
     right: 313px;
     top: 87px;
     transform: rotate(-1deg);
-    background-image: url(/images/msgBox_1.png);
+    background-image: url(/images/loginMenu.png);
     background-size: 100% auto;
     background-repeat: no-repeat;
     background-position: center;
+    
 }
+
 .adminWork p{
-    margin-top: 73px;
+    margin-top: 82px;
+    font-size: 18px;
 }
 /* 달력 이미지 */
 .adminCalendar{
@@ -205,8 +209,8 @@
     height: 200px;
     text-indent: -99999px;
     position: absolute;
-    top: 7%;
-    left: 23%;
+    top: 6%;
+    left: 19%;
     transform: perspective(200px) rotateY(30deg);
     z-index: 10;
 }
@@ -223,22 +227,22 @@
     top: 8%;
     left: 111%;
 }
+/* 일정등록 창 */
 .calendarForm{
     display: none;
     background-image: url(/images/calendar-form.png);
     background-position: center;
     background-repeat: no-repeat;
     background-size: 100% auto;
-    width: 388px;
-    height: 205px;
+    width: 396px;
+    height: 213px;
     position: absolute;
     z-index: 100;
-    top: 7%;
+    top: 5%;
     left: 16%;
 }
 #eventForm{
-    margin-top: 20px;
-    margin-left: 55px;
+    text-align: center;
 }
 .calendarHead{
     background-image: url(/images/calender-head.png);
@@ -248,27 +252,123 @@
     width: 116px;
     height: 55px;
     margin-top: 20px;
-    margin-left: 128px;
+    margin-left: 142px;
 }
 .calendarHead p{
     padding-top: 13px;
     padding-left: 29px;
 }
 .closeCalender{
-    margin-top: -119px;
-    margin-left: 341px;
+    position: absolute;
+    top: 10px;
+    right: 10px;
     width: 24px;
     height: 24px;
-    text-align: center;
+    cursor: pointer;
+    font-size: 32px;
+}
 
+#calTitle{
+    border: none;
+    position: relative;
+    width: 60%;
+    padding: 5px;
+    border-radius: 8px;
+    text-align: center;
+    font-size: 100%;
+    margin: 5px 0;
+}
+#calTitle:focus{
+    outline-color: #dda56c;
+}
+#calDate{
+    border: none;
+    position: relative;
+    width: 60%;
+    padding: 5px;
+    background-image: url(/images/calendar-check.svg);
+    background-position: center right 10px;
+    background-repeat: no-repeat;
+    background-size:  8% auto;
+    border-radius: 8px;
+    text-align: center;
+    font-size: 100%;
+}
+#calDate:focus{
+    outline-color: #dda56c;
+}
+#calDate::-webkit-calendar-picker-indicator {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    color: transparent;
+    cursor: pointer;
+  }
+  #calDate::before {
+    content: attr(placeholder); 
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    }
+    
+#calDate:valid::before {
+    display: none; 
+}
+
+.calBtn{
+    margin-top: 5px;
+    padding: 3px 7px;
 }
 
 
-
-
-
-
-
+/* 북마크 */
+.bookMarkModal{
+    background-image: url(/images/bookmark-icon.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 100% auto;
+    width: 150px;
+    height: 200px;
+    position: absolute;
+    text-align: center;
+    top: 40%;
+    left: 59%;
+}
+.bookMarkPoint{
+    background-image: url(/images/bookmark-off.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 100% auto;
+    width: 34px;
+    height: 62px;
+    margin-top: 67px;
+    margin-left: 97px;
+    transform: rotate(-11deg);
+}
+.bookMarkPoint:hover{
+    background-image: url(/images/bookmark-on.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 100% auto;
+    width: 34px;
+    height: 62px;
+    margin-top: 67px;
+    margin-left: 97px;
+    transform: rotate(-11deg);
+}
+.bookMarkText{
+    color: #cf9a1d;
+    font-size: 12px;
+    margin-top: -29px;
+    margin-right: 47px;
+    transform: rotate(-8deg);
+}
+.myRoomMark{
+    width: 29%;
+}
 
 
 
@@ -295,8 +395,8 @@
     background-position: top;
     background-repeat: no-repeat;
     border-radius: 20px;
-    height: 100%;
     width: 100%;
+    height: 1000px;
     object-fit: cover;
     box-sizing: border-box;
 }
@@ -332,8 +432,8 @@
     display: none;
     border: none;
     position: absolute;
-    top: 13px;
-    left: 22px;
+    top: 28px;
+    left: 28px;
     width: 75%;
     height: 69%;
     resize: none;
@@ -353,8 +453,8 @@
 }
 #minime{
     position: absolute;
-    right: 36vw;
-    top: 30vh;
+    right: 37vw;
+    top: 27vh;
     width: 150px;
 }
 .letterBox{
@@ -533,8 +633,8 @@ input[type="checkbox"]:checked{
     width: 195px;
     height: 100px;
     position: absolute;
-    top: 50%;
-    right: 10%;
+    top: 83%;
+    right: -27%;
 }
 .adminWork{
     display: flex;
@@ -542,121 +642,156 @@ input[type="checkbox"]:checked{
     width: 150px;
     height: 200px;
     position: absolute;
-    right: 17%;
-    top: 31%;
+    right: 35%;
+    top: 13%;
     transform: rotate(-1deg);
-    background-image: url(/images/msgBox_1.png);
+    background-image: url(/images/loginMenu.png);
     background-size: 100% auto;
     background-repeat: no-repeat;
     background-position: center;
+    transition: top 0.3s ease;
+}
+.adminWork:hover {
+    top: 82px;
 }
 .reg-work-back{
     background-color: transparent;
     border: none;
 }
-.reg-work{
-    background-image: url(/images/reg-work.png);
+.reg-work {
+    background-image: url(/images/reg-work33.png);
     background-position: center;
     background-repeat: no-repeat;
     background-size: 100% auto;
-    width: 513px;
-    height: 532px;
+    width: 567px;
+    height: 700px;
+    padding: 220px 40px 0 225px;
+    margin-top: -100px;
 }
 
-.titleLabel {
+.reg-work h3 {
+    background-image: url(/images/deco-line.png);
+    background-position: bottom;
+    background-repeat: no-repeat;
+    background-size: 100% auto;
+    width: 121px;
+    height: 34px;
     display: block;
-    letter-spacing: 4px;
-    padding-top: 10px;
-  }
-  
-  .label-text {
-    color: #949494;
-    cursor: text;
-    font-size: 20px;
-    line-height: 20px;
-    text-transform: uppercase;
-    transform: translateY(-34px);
-    transition: all 0.3s;
-    padding-left: 5px;
-  }
-  
-  .workTitle {
-    background-color: transparent;
-    border: 0;
-    border-bottom: 2px solid #686868;
-    color: #686868;
-    font-size: 28px;
-    letter-spacing: -1px;
-    outline: 0;
-    padding: 5px 20px;
-    transition: all 0.3s;
-    width: 200px;
-  }
-  
-  .workTitle:focus {
-    width: 400px;
-  }
-  
-  .workTitle:focus + .label-text, .workTitle:valid + .label-text{
-    color: #3f3f3f;
-    font-size: 13px;
-    transform: translateY(-74px);
-  }
+    margin: 20px auto 30px;
+}
 
-  .input-field{
-    position: relative;
-  }
   .input-field textarea{
     font-size: 18px;
     padding: 20px 15px;
     border: none;
     border-left-style: double;
-    background: transparent;
     outline: none;
     resize: none;
+    transition: all 0.3s;
+    background-color: transparent;
   }
-  .input-field label{
-    position: absolute;
-    top: 50%;
-    left: 15px;
-    transform: translateY(-50%);
-    color: #686868;
-    font-size: 19px;
-    pointer-events: none;
-    transition: 0.3s;
-  }
-  textarea:focus{
-    border: 2px solid #949494;
+  .input-field textarea::-webkit-scrollbar{
+    display: none;
+}
+  .input-field textarea:focus{
+    border-left: 3px solid #fad06d;
     background-color: #fff;
-    border-radius: 6px;
-  }
-  textarea:focus ~ label,
-  textarea:valid ~ label{
-    top: 0;
-    left: 15px;
-    font-size: 16px;
-    padding: 0 2px;
-    background: #fff; 
-    border: 2px solid #949494;
-    border-radius: 5px;
   }
 
-  .dateLabel{
+
+  .titleLabel, .dateLabel{
     background-color: transparent;
     border: none;
   }
-  .deadLine{
-    background-color: transparent;
+  .workTitle, .deadLine{
     border: 0;
     border-bottom: 2px solid #686868;
     color: #686868;
     font-size: 18px;
     letter-spacing: -1px;
     outline: 0;
-    padding: 5px 20px;
+    padding: 5px 10px;
     transition: all 0.3s;
-    width: 150px;
+    width: 130px;
   }
-  .deadLine:focus{
-        width: 300px;
+  .workTitle:focus, .deadLine:focus{
+        width: 220px;
+        border-color: #fad06d;
   }
+  .workBtn:hover{
+    background-color: #fad06d;
+  }
+
+  /* 쪽지 모달 */
+  .modal.show .modal-dialog {
+    padding-top: 100px;
+}
+  .modal-dialog-scrollable .modal-content {
+    overflow: hidden;
+    max-height: 100%;
+}
+  .letter-frame{
+    background-color: transparent;
+    border: none;
+  }
+  #letter-modal .modal-dialog .letter-frame .letter-body{
+    background-image: url(/images/letter-frame.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 100% auto;
+    height: 530px;
+  }
+  #letter-modal .modal-dialog .letter-frame .letter-body .letterList {
+    height: 365px; 
+    width: 400px;
+    overflow-y: auto;
+    margin-top: 30px;
+    margin-left: 60px;
+  }
+.letterSender{
+    display: inline-block;
+    color: #574d4d;
+    font-size: 15px;
+}
+.letterSender span{
+    font-size: 20px;
+    margin-right: 100px;
+    color: #3f3f3f;
+}
+.innerCheck{
+    margin-left: 10px;
+}
+.letterText{
+    white-space: pre-line;
+    border-left: 2px dashed #3f3f3f;
+    padding-left: 10px;
+}
+.showinput{
+    background-color: #9c8277;
+    margin-left: 330px;
+}
+.sendAnswer{
+    background-color: #9c8277;
+}
+.sendAnswer:hover{
+    background-color: #86b9af;
+}
+#letterContet{
+    resize: none;
+    max-width: 75%;
+}
+#letterContet::-webkit-scrollbar{
+    display: none;
+}
+
+.letterBtn{
+    margin-top: 40px;
+    margin-left: 170px;
+}
+  /* 스크롤바 */
+  #letter-modal .modal-dialog .letter-frame .letter-body .letterList::-webkit-scrollbar {
+    width: 2px;
+}
+#letter-modal .modal-dialog .letter-frame .letter-body .letterList::-webkit-scrollbar-thumb {
+    background: #686868;
+}

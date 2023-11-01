@@ -7,4 +7,5 @@ public class QnaBookMarkVO {
     private int qnaBookMarkNum;
     private int qnaBoardNum;
     private String memberId;
+    private QnaBoardVO qnaBoardVO;
 }

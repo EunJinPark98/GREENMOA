@@ -43,6 +43,7 @@ $('.minime-img').click(function() {
 
 // 쪽지 보내기 클릭시 쪽지 보내기 창 열리기 닫히기
 function openLetterBox(element) {
+    element.closest('.minmeBubble').style.display = 'none';
     var memberName = element.getAttribute('data-membername');
     var memberId = element.getAttribute('data-memberid');
     
@@ -65,6 +66,42 @@ function closeLetterBox() {
     document.querySelector('.letter').style.display = 'none';
 }
 
+// 답장 얼럿 창
+function showAlert() {
+    let sendLetterForm = document.getElementById("sendLetterForm");
+    Swal.fire({
+        title: "답장 보내기 완료",
+        icon: 'success'
+    }).then(() => {
+        sendLetterForm.submit();
+    });
+}
+
+// 쪽지 보내기 얼럿창 
+function mainLetterAlert() {
+    let insertLetterForm = document.getElementById("insertLetterForm");
+    let memberId = document.querySelector('#memberId').value;
+    console.log("#######"+memberId);
+    Swal.fire({
+        title: `"${memberId}"님께 쪽지를 보냈습니다.`,
+        icon: 'success'
+    }).then(() => {
+        insertLetterForm.submit();
+    });
+}
+
+// 과제 등록 얼럿창 
+function todoListAlert() {
+    let todoListForm = document.getElementById("todoListForm");
+    console.log("#######"+memberId);
+    Swal.fire({
+        title: "과제를 등록 했습니다.",
+        icon: 'success'
+    }).then(() => {
+        todoListForm.submit();
+    });
+}
+
 
 
 
@@ -82,13 +119,19 @@ function insertTodo() {
 
     // 입력한 날짜가 오늘 날짜보다 이전이면 얼럿 메시지 표시
     if (selectedDate < today) {
-        alert('지난 날짜 입니다.');
+        Swal.fire({
+            title: "지난 날짜입니다.",
+            icon: 'error'
+        });
         return;
     }
 
     // todoFinishDate가 비어있을 때 얼럿 메시지 표시
     if (!todoFinishDate) {
-        alert('날짜를 설정하세요.');
+        Swal.fire({
+            title: "날짜 및 내용을 입력하세요.",
+            icon: 'error'
+        });
         return;
     }
 
@@ -97,23 +140,50 @@ function insertTodo() {
 
     // todoList의 길이가 10개 이상인 경우 얼럿 메시지 표시하고 등록을 막음
     if (todoListLength >= 9) {
-        window.alert('9개 이상 등록할 수 없습니다.');
+        Swal.fire({
+            title: "9개 이상 등록할 수 없습니다.",
+            icon: 'error'
+        });
         return;
     }
 
-    const result = confirm('등록하시겠습니까?');
-
-    if (result) {
-        location.href = `/room/insertTodo?todoContent=${todoContent}&todoFinishDate=${todoFinishDate}`;
-    }
+    Swal.fire({
+        title: "등록하시겠습니까?",
+        icon: 'question',
+        showCancelButton: true,
+        confirmButtonColor: '#9c8277',
+        cancelButtonColor: '#767f87',
+        confirmButtonText: '등록',
+        cancelButtonText: '취소'
+    }).then((result) => {
+        // 확인을 눌렀을 때만 실행
+        if (result.isConfirmed) {
+            Swal.fire({
+                title: "등록되었습니다.",
+                icon: 'success'
+            }).then(() => {
+                // 확인을 누르면 페이지 이동
+                location.href = `/room/insertTodo?todoContent=${todoContent}&todoFinishDate=${todoFinishDate}`;
+            });
+        }
+    });
 }
 
 // 삭제버튼 클릭시 todoList delete
 function deleteTodo(todoNum){
-    const result = confirm('정말 삭제하시겠습니까?');
-    if(result){
-        location.href=`/room/deleteTodoList?todoNum=${todoNum}`;
-    };
+    Swal.fire({
+        title: "정말 삭제하시겠습니까?",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#9c8277',
+        cancelButtonColor: '#767f87',
+        confirmButtonText: '삭제',
+        cancelButtonText: '취소',
+    }).then((result) => {
+        if (result.isConfirmed) {
+            location.href = `/room/deleteTodoList?todoNum=${todoNum}`;
+        }
+    });
 };
 
 // 투두리스트 체크 가로줄
@@ -170,14 +240,12 @@ function checkLetter(){
     // 내용부에 체크되어 있는 체크박스
     const checked = document.querySelectorAll('input[name="innerCheck"]:checked');
     
-
     if(checkboxes.length==checked.length){
         selectAll.checked = true;
     }
     else{
         selectAll.checked =false;
     }
-
 }
 
 // 선택삭제 버튼 클릭시 실행
@@ -185,25 +253,48 @@ function deleteletter(){
     // 체크된 체크박스들
     const checkedChks = document.querySelectorAll('.chk:checked');
     // 선택된 상품이 없을 경우
-    if(checkedChks.length==0){
-        alert('삭제할 쪽지를 선택하세요.');
-        // 아무것도 없는 return 을 만나면 함수가 끝난다.
-        return ;
-    }
-    if(confirm('선택한 쪽지를 삭제하시겠습니까?')){
-        // 모든 CART_CODE를 가져갈 배열 생성
-        let letterNumArr=[];
-
-        // 삭제하고자하는 CART_CODE들 가져오기
-        checkedChks.forEach(function(chk,index){
-            letterNumArr[index]=chk.value;
+    if (checkedChks.length == 0) {
+        Swal.fire({
+            title: "삭제할 쪽지를 선택하세요.",
+            icon: 'error'
         });
-        // 삭제하러 이동
-        location.href=`/room/deleteLetter?letterNums=${letterNumArr}`;
+        // 함수 종료
+        return;
     }
-}
-// 답장 input 보이게 하기
 
+    // SweetAlert로 확인 창 표시
+    Swal.fire({
+        title: "선택한 쪽지를 삭제하시겠습니까?",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#9c8277',
+        cancelButtonColor: '#767f87',
+        confirmButtonText: '삭제',
+        cancelButtonText: '취소'
+    }).then((result) => {
+        // 확인을 눌렀을 때만 실행
+        if (result.isConfirmed) {
+            // 모든 쪽지 번호를 가져갈 배열 생성
+            let letterNumArr = [];
+
+            // 삭제하고자 하는 쪽지 번호들 가져오기
+            checkedChks.forEach(function(chk, index) {
+                letterNumArr[index] = chk.value;
+            });
+
+            // SweetAlert로 성공 메시지 표시 후 삭제하러 이동
+            Swal.fire({
+                title: "삭제되었습니다.",
+                icon: 'success'
+            }).then(() => {
+                // 확인을 누르면 페이지 이동
+                location.href = `/room/deleteLetter?letterNums=${letterNumArr}`;
+            });
+        }
+    });
+}
+
+// 답장 input 보이게 하기
 function showinput() {
     var clickedButton = event.target;
     var letterCast = clickedButton.closest('.letterCast');
@@ -216,9 +307,39 @@ function showinput() {
 }
 // 답장 얼럿 창
 function showAlert() {
-    alert('답장 보내기 완료');
+    let sendLetterForm = document.getElementById("sendLetterForm");
+    Swal.fire({
+        title: "답장 보내기 완료",
+        icon: 'success'
+    }).then(() => {
+        sendLetterForm.submit();
+    });
 }
 
+// // 투두리스트 핀 움직이기
+// const todoList = document.querySelector('.todoList');
+// const pin = document.querySelector('.pin');
+
+// todoList.addEventListener('mouseenter', () => {
+//     pin.style.marginTop = '-5px';
+//     pin.style.marginLeft = '5px';
+// });
+
+// todoList.addEventListener('mouseleave', () => {
+//     pin.style.marginTop = '5px';
+//     pin.style.marginLeft = '10px';
+// });
+// // 캘린더 색연필 움직이기
+// const adminCalendar = document.querySelector('.adminCalendar');
+// const colorPen = document.querySelector('.colorPen');
+
+// adminCalendar.addEventListener('mouseenter', () => {
+//     colorPen.style.top = '2%'; // 원하는 높이로 이동
+// });
+
+// adminCalendar.addEventListener('mouseleave', () => {
+//     colorPen.style.top = '8%'; // 다시 초기 높이로 이동
+// });
 
 
 
@@ -226,19 +347,29 @@ function showAlert() {
 ///////////////// 소켓통신 /////////////////////////////////////
 var socket = new WebSocket('ws://192.168.30.55:8081/chat');
 
+//로그인 한 정보 태그
+var idElement = document.getElementById('memId'); 
+var srcElement = document.getElementById('miniSrc'); 
 
 socket.onopen = function() {
     console.log('연결되었습니다.');
     if(idElement){
         console.log('로그인 되었습니다.');
         socket.send(JSON.stringify({
-            'myId' : myId,
+            'connectId' : idElement.getAttribute('data-id')
         }));
-
     };
 };
 
+
 socket.onclose = function(event) {
+    if(idElement){
+        console.log('로그아웃 되었습니다.');
+        socket.send(JSON.stringify({
+            'disConnectId' : idElement.getAttribute('data-id')
+        }));
+    };
+
     if (event.wasClean) {
         console.log('연결이 정상적으로 닫힘, 코드=' + event.code + ' 이유=' + event.reason);
     } else {
@@ -254,25 +385,23 @@ socket.onerror = function(error) {
 
 
 
-var idElement = document.getElementById('memId'); //로그인 아이디
-var srcElement = document.getElementById('miniSrc'); 
-
 if(idElement){ //로그인 했을 경우
     var myId = idElement.getAttribute('data-id');
-
-    // socket.send(JSON.stringify({
-    //     'myId' : myId,
-    // }));
-
-
     var minimeSrc = srcElement.getAttribute('data-minime');
 
+
     const movingElement = document.querySelector('#my-minime-'+ myId);
-    const step = 10; // 이동 거리 조절
 
     // 나의 미니미 클릭
     movingElement.addEventListener('click', () => {
         movingElement.classList.add('active');
+            let connectTag = document.getElementById('memId');
+    if(connectTag){
+        let connectId = connectTag.getAttribute('data-id');
+        socket.send(JSON.stringify({
+            'connectId' : connectId,
+        }));
+    } 
     });
 
     //  미니미 키보드로 동작
@@ -283,29 +412,6 @@ if(idElement){ //로그인 했을 경우
         const style = getComputedStyle(movingElement);
         let left = parseFloat(style.left) || 0;
         let top = parseFloat(style.top) || 0;
-
-        switch (event.key) {
-            case 'ArrowUp':
-                if(top>400){
-                top -= step;
-                }
-            break;
-            case 'ArrowDown':
-                if(top<780){
-                top += step;
-                }
-            break;
-            case 'ArrowLeft':
-                if(left>0){
-                left -= step;
-                }
-            break;
-            case 'ArrowRight':
-            if(left<1020){
-                left += step;
-            }
-            break;
-        }
     
         // 이동 범위
         movingElement.style.left = left + 'px';
@@ -320,11 +426,8 @@ if(idElement){ //로그인 했을 경우
             'minimeSrc' : minimeSrc
         }));
 
-
-        }
+    }
     });
-
-
 
 
   //바탕 클릭하면 이제 안움직이게
@@ -363,29 +466,84 @@ function sendMessage() {
         id = idElement.getAttribute('data-id');
     }
         
-
     socket.send(JSON.stringify({'content': messageInput, 'sender' : sender, 'id' : id}));
 
     document.getElementById('message').value = '';
 }
+
+
+// 로그아웃 버튼 누르면 접속 비활성화
+$('.disConnectBtn').click(function(){
+    let idEl = document.getElementById('memId'); 
+    let disConnectId = idEl.getAttribute('data-id');
+    socket.send(JSON.stringify({
+        'disConnectId' : disConnectId,
+    }));
+})
+
+// 접속중 불들어오게
+window.addEventListener('load', function() {
+    let connectTag = document.getElementById('memId');
+    if(connectTag){
+        let connectId = connectTag.getAttribute('data-id');
+        socket.send(JSON.stringify({
+            'connectId' : connectId,
+        }));
+    } 
+});
+
+window.addEventListener('scroll', function() {
+    let connectTag = document.getElementById('memId');
+    if(connectTag){
+        let connectId = connectTag.getAttribute('data-id');
+        socket.send(JSON.stringify({
+            'connectId' : connectId,
+        }));
+    } 
+});
+
+window.addEventListener('mousemove', function(event) {
+    let connectTag = document.getElementById('memId');
+    if(connectTag){
+        let connectId = connectTag.getAttribute('data-id');
+        socket.send(JSON.stringify({
+            'connectId' : connectId,
+        }));
+    } 
+});
+
+window.addEventListener('keydown', function(event) {
+    let connectTag = document.getElementById('memId');
+    if(connectTag){
+        let connectId = connectTag.getAttribute('data-id');
+        socket.send(JSON.stringify({
+            'connectId' : connectId,
+        }));
+    } 
+});
+
 
 // 소켓으로 받은 데이터
 socket.onmessage = function(event) {
     var data = JSON.parse(event.data);
     
     // 접속 활성화
-    if(data.myId){
-        let myId = document.querySelector('#my-minime-'+ data.myId);
-        myId.querySelector('.connect-state').src = '/images/connectOn.png';
+    if(data.connectId){
+        let connectId = document.querySelector('#my-minime-'+ data.connectId);
+        connectId.querySelector('.connect-state').src = '/images/connectOn.png';
     }
-    
+
+    // 접속 비활성화
+    if(data.disConnectId){
+        let disConnectId = document.querySelector('#my-minime-'+ data.disConnectId);
+        disConnectId.querySelector('.connect-state').src = '/images/connectOff.png';
+    }
 
     // 채팅 전송
     if(data.content != null){
         showMessage(data.content, data.sender, data.id);
         scrollToBottom();
     }
-
 
     // 미니미 이동
     if(data.moveId){
@@ -394,23 +552,23 @@ socket.onmessage = function(event) {
         switch (data.eventKey) {
             case 'ArrowUp':
                 if(data.top>400){
-                    moveMini.style.top = data.top + 'px';
+                    moveMini.style.top = (data.top-10) + 'px';
                 }
             break;
             case 'ArrowDown':
                 if(data.top<780){
-                    moveMini.style.top = data.top + 'px';
+                    moveMini.style.top = (data.top+10) + 'px';
                 }
             break;
             case 'ArrowLeft':
                 if(data.left>0){
-                    moveMini.style.left = data.left + 'px';
+                    moveMini.style.left = (data.left-10) + 'px';
                     moveMini.querySelector('.minime-img').src = `/images/${data.minimeSrc}left.png`;
                 }
             break;
             case 'ArrowRight':
             if(data.left<1020){
-                    moveMini.style.left = data.left + 'px';
+                    moveMini.style.left = (data.left+10) + 'px';
                     moveMini.querySelector('.minime-img').src = `/images/${data.minimeSrc}right.png`;
             }
             break;
@@ -510,8 +668,10 @@ function eventReg(){
             contentType: 'application/json',
             success: function(response) {
                 // 서버에서 응답을 받으면 필요한 동작 수행
-                alert(response);
-                
+                Swal.fire({
+                    title: "일정이 추가 되었습니다.",
+                    icon: 'success'
+                })
                 calendar.refetchEvents();
             }
         });
@@ -520,46 +680,20 @@ function eventReg(){
 }
 
 
-
-//일정 등록 (myRoom.html)
-// $('#eventForm1').on('click', function(e) {
-// //$('#asdef').on('click', function(e) {
-//     e.preventDefault();
-//     alert('클릭했다');
-//     var title = $('#calTitle').val();
-//     var date = $('#calDate').val();
-
-
-//     if (title && date) {
-//         var eventData = {
-//             calTitle: title,
-//             calDate: date,
-//         };
-
-//         $.ajax({
-//             url: '/addEvent', 
-//             type: 'POST',
-//             data: JSON.stringify(eventData),
-//             contentType: 'application/json',
-//             success: function(response) {
-//                 // 서버에서 응답을 받으면 필요한 동작 수행
-//                 alert(response);
-                
-//                 calendar.refetchEvents();
-//             }
-//         });
-//     }
-//     calendar.refetchEvents();
-
-// });
-
 function openCalendar() {
-    var calendarFormDiv = document.querySelector('.calendarForm');
+    let calendarFormDiv = document.querySelector('.calendarForm');
     calendarFormDiv.style.display = 'block';
 }
 function closeCalender() {
-    var calendarFormDiv = document.querySelector('.calendarForm');
+    let calendarFormDiv = document.querySelector('.calendarForm');
     calendarFormDiv.style.display = 'none';
 }
+
+// 북마크 모달창 Close 버튼 클릭 시 모달 닫고 페이지 새로고침
+function reload(){
+    location.reload();
+}
+
+
 
 

@@ -5,11 +5,12 @@
 <head>
 <meta charset="UTF-8">
 <title></title>
+<th:block layout:fragment="content_css">
+    <link rel="stylesheet" href="/css/main.css">
+</th:block>
 </head>
 <body>
     <th:block layout:fragment="content" style="height: 1000px;">
-      <link rel="stylesheet" href="/css/main.css">
-
       <!-- 클래스룸 -->
       <div id="classRoom">
 
@@ -54,7 +55,7 @@
                         <div class="letterName">
                           <h3  th:attr="data-membername=${member.memberName}"></h3>
                         </div>
-                        <form action="/room/insertLetter" method="post">
+                        <form action="/room/insertLetter" method="post" id="insertLetterForm">
                             <div class="getMemberId">
                               <input type="hidden" id="memberId" name="memberId" th:value="${member.memberId}">
                             </div>
@@ -62,8 +63,8 @@
                               <textarea id="letterContet" name="letterContent"></textarea>
                           </div>
                           <div class="letterButton">
-                            <input type="submit" class="btn btn-primary" value="보내기">
-                          <button type="button" class="btn btn-secondary" onclick="closeLetterBox()">닫기</button>
+                            <input type="button" class="btn btn-primary" value="보내기" onclick="mainLetterAlert()">
+                            <button type="button" class="btn btn-secondary" onclick="closeLetterBox()">닫기</button>
                           </div>
                         </form>
                     </div>
@@ -95,7 +96,6 @@
               <input id="miniSrc" type="hidden" th:attr="data-minime=${loginInfo.minime}">
             </div>
             <div id="chat" class="container-md">
-                <h3>채팅</h3>
                 <div id="chat-messages"></div>
                 <form id="message-form">
                     <input type="text" id="message" class="form-control">
@@ -185,11 +185,10 @@
     <!-- 캘린더 모달 -->
     <div class="modal fade" id="calenderModal" tabindex="-1" aria-labelledby="calenderModalLabel" aria-hidden="true">
       <div class="modal-dialog modal-xl">
-        <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="modal-body">
+        <div class="modal-content modal-content-cal">
+
+          <div class="modal-body modal-body-cal">
+            <button type="button" class="btn-close btn-close-cal" data-bs-dismiss="modal" aria-label="Close"></button>
             <div id="calendar"></div>
           </div>
         </div>
@@ -198,19 +197,16 @@
 
 
 
-
-
-
-
-      
-      
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-        <script src="/js/room.js"></script>
-        <!-- WebSocket 채팅 -->
-        <script src="/webjars/sockjs-client/1.1.2/sockjs.min.js"></script>
-        <!-- 풀 캘린더 -->
-        <link href="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.0/main.css" rel="stylesheet">
-        <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.0/main.js"></script>
     </th:block>
+
+          
+  <th:block layout:fragment="content_js">
+    <script src="/js/room.js"></script>
+
+    <!-- 풀 캘린더 -->
+    <link href="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.0/main.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.0/main.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  </th:block>
 </body>
 </html>

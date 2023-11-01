@@ -5,14 +5,20 @@
 <head>
 <meta charset="UTF-8">
 <title></title>
+<th:block layout:fragment="content_css">
+    <link rel="stylesheet" href="/css/room.css">
+</th:block>
 </head>
 <body>
 <th:block layout:fragment="content">
-    <link rel="stylesheet" href="/css/room.css">
     <div id="myRoom">
+
+        <!-- 투두 모달 -->
         <div class="todoList" data-bs-toggle="modal" data-bs-target="#todo-modal">
             <img class="pin" src="/images/pin-red.png" alt="">
         </div>
+
+        <!-- 미니미 상태메세지 -->
         <div id="minime">
             <div class="status-msg">
                 <div class="statusMsgText" onclick="showInput()">
@@ -27,17 +33,28 @@
                 <p class="name">[[${loginInfo.memberName}]]</p>
             </div>
         </div>
+        <div class="bookMarkModal" data-bs-toggle="modal" data-bs-target="#bookMark-modal">
+            <div class="bookMarkPoint"></div>
+            <div class="bookMarkText">bookMark</div>
+        </div>
 
-        <div th:if="${letterCount > 0}">
-            <div class="openLetterBox" data-bs-toggle="modal" data-bs-target="#letter-modal">
-                <div class="boxNum">
-                    <p th:text="${letterCount}"></p>
+        <!-- 우편함 -->
+        <div th:if="${loginInfo.memberRoll != 'ADMIN'}">
+            <div th:if="${letterCount > 0}">
+                <div class="openLetterBox" data-bs-toggle="modal" data-bs-target="#letter-modal">
+                    <div class="boxNum">
+                        <p th:text="${letterCount}"></p>
+                    </div>
                 </div>
             </div>
+            <div th:unless="${letterCount > 0}" class="closeLetterBox">
+            </div>
         </div>
-        <div th:unless="${letterCount > 0}" class="closeLetterBox">
-        </div>
+        <div th:if="${loginInfo.memberRoll == 'ADMIN'}"></div>
+        
 
+
+        
         <!-- 선생님 권한으로 과제 등록  -->
         <div sec:authorize="hasRole('ADMIN')" class="adminWork">
             <div data-bs-toggle="modal" data-bs-target="#admin-work-modal"><p>과제 등록 하기</p></div>
@@ -48,53 +65,176 @@
         </div>
         <div class="calendarForm">
             <div class="calendarHead"><p>일정 등록</p></div>
-            <form id="eventForm2">
-                <label for="calTitle">일정 제목:</label>
-                <input type="text" id="calTitle" name="calTitle" required><br>
-                <label for="calDate">일정 날짜:</label>
-                <input type="date" id="calDate" name="calDate" required>
-                <button type="button" onclick="eventReg();">등록</button>
+            <form id="eventForm">
+                <input type="text" id="calTitle" name="calTitle" placeholder="일정 제목" required><br>
+                <input type="date" id="calDate" name="calDate" placeholder="일정 선택" required><br>
+                <button type="button" class="calBtn btn btn-light" onclick="eventReg();">등록</button>
             </form>
             <div class="closeCalender" onclick="closeCalender()">x</div>
         </div>
-        <div class="workIcon"></div>
     </div>
-    
-    <!-- 쪽지 모달창 -->
-    <div class="modal fade" id="letter-modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+
+    <!-- 북마크 모달창 -->
+    <div class="modal fade" id="bookMark-modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
     aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">
-              <h1 class="modal-title">쪽지</h1>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              <h1 class="modal-title">북마크</h1>
             </div>
+
             <div class="modal-body">
+                <h6>공지사항 북마크</h6>
+                <table class="table table-hover table-striped text-center table-list align-middle">
+                    <colgroup>
+                        <col width="20%">
+                        <col width="*">
+                        <col width="20%">
+                        <col width="20%">
+                    </colgroup>
+                    <thead>
+                        <tr>
+                            <td>NO</td>
+                            <td>제 목</td>
+                            <td>작성자</td>
+                            <td>북마크 해제</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <th:block th:if="${#lists.size(noticeBookMarkList)==0}">
+                            <tr>
+                                <td colspan="4">체크된 북마크가 없습니다.</td>
+                            </tr>
+                        </th:block>
+                        <th:block class="noticeBookMarkList" th:if="${#lists.size(noticeBookMarkList)!=0}">
+                            <tr th:each="noticeMark, state : ${noticeBookMarkList}">
+                                <td>[[${#lists.size(noticeBookMarkList)-state.index}]]</td>
+                                <td>[[${noticeMark.noticeBoardVO.noticeBoardTitle}]]</td>
+                                <td>[[${noticeMark.noticeBoardVO.memberId}]]</td>
+                                <td><span class="bookCheck">
+                                    <img class="bookmark myRoomMark" src="/images/bookmark-off.png" alt="" th:if="${noticeMark == null}" th:onclick="checkNoticeBookMark(this, [[${noticeMark.noticeBoardVO.noticeBoardNum}]])">
+                                    <img class="bookmark bookmarked myRoomMark" src="/images/bookmark-on.png" alt="" th:if="${noticeMark != null}" th:onclick="checkNoticeBookMark(this, [[${noticeMark.noticeBoardVO.noticeBoardNum}]])">
+                                    </span>
+                                </td>
+                        </tr>
+                        </th:block>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="modal-body">
+                <h6>질문게시판 북마크</h6>
+                <table class="table table-hover table-striped text-center table-list align-middle">
+                    <colgroup>
+                        <col width="20%">
+                        <col width="*">
+                        <col width="20%">
+                        <col width="20%">
+                    </colgroup>
+                    <thead>
+                        <tr>
+                            <td>NO</td>
+                            <td>제 목</td>
+                            <td>작성자</td>
+                            <td>북마크 해제</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <th:block th:if="${#lists.size(qnaBookMarkList)==0}">
+                            <tr>
+                                <td colspan="4">체크된 북마크가 없습니다.</td>
+                            </tr>
+                        </th:block>
+                        <th:block class="qnaBookMarkList" th:if="${#lists.size(qnaBookMarkList)!=0}">
+                            <tr th:each="qnaBookMark, state : ${qnaBookMarkList}">
+                                <td>[[${#lists.size(qnaBookMarkList)-state.index}]]</td>
+                                <td>[[${qnaBookMark.qnaBoardVO.qnaBoardTitle}]]</td>
+                                <td>[[${qnaBookMark.qnaBoardVO.qnaBoardWriter}]]</td>
+                                <td><span class="bookCheck">
+                                    <img class="bookmark myRoomMark" src="/images/bookmark-off.png" alt="" th:if="${qnaBookMark == null}" th:onclick="checkBookMark(this, [[${qnaBookMark.qnaBoardVO.qnaBoardNum}]])">
+                                    <img class="bookmark bookmarked myRoomMark" src="/images/bookmark-on.png" alt="" th:if="${qnaBookMark != null}" th:onclick="checkBookMark(this, [[${qnaBookMark.qnaBoardVO.qnaBoardNum}]])">
+                                    </span>
+                                </td>
+                        </tr>
+                        </th:block>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="modal-body">
+                <h6>자유게시판 북마크</h6>
+                <table class="table table-hover table-striped text-center table-list align-middle">
+                    <colgroup>
+                        <col width="20%">
+                        <col width="*">
+                        <col width="20%">
+                        <col width="20%">
+                    </colgroup>
+                    <thead>
+                        <tr>
+                            <td>NO</td>
+                            <td>제 목</td>
+                            <td>작성자</td>
+                            <td>북마크 해제</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <th:block th:if="${#lists.size(freeBookMarkList)==0}">
+                            <tr>
+                                <td colspan="4">체크된 북마크가 없습니다.</td>
+                            </tr>
+                        </th:block>
+                        <th:block class="freeBookMarkList" th:if="${#lists.size(freeBookMarkList)!=0}">
+                            <tr th:each="freeMark, state : ${freeBookMarkList}">
+                                <td>[[${#lists.size(freeBookMarkList)-state.index}]]</td>
+                                <td>[[${freeMark.freeBoardVO.title}]]</td>
+                                <td>[[${freeMark.freeBoardVO.writer}]]</td>
+                                <td><span class="bookCheck">
+                                    <img class="bookmark myRoomMark" src="/images/bookmark-off.png" alt="" th:if="${freeMark == null}" th:onclick="checkFreeBookMark(this, [[${freeMark.freeBoardVO.boardNum}]])">
+                                    <img class="bookmark bookmarked myRoomMark" src="/images/bookmark-on.png" alt="" th:if="${freeMark != null}" th:onclick="checkFreeBookMark(this, [[${freeMark.freeBoardVO.boardNum}]])">
+                                    </span>
+                                </td>
+                        </tr>
+                        </th:block>
+                    </tbody>
+                </table>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="closeModalBtn" onclick="reload()">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+    <!-- 쪽지 모달창 -->
+    <div class="modal fade" id="letter-modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-scrollable">
+          <div class="letter-frame modal-content">
+            <div class="letter-body modal-body">
                 <div class="letterList">
                     <th:block th:each="letter : ${letterList}">
-                        <hr>
                             <div class="letterCast">
-                                <p class="letterSender">보낸 사람 : [[${letter.fromId}]]</p>
-                                <p>쪽지 내용 : [[${letter.letterContent}]]</p>
-                                <p>보낸 날짜 : [[${letter.letterDate}]]</p>
-                                <input type="checkbox" name="innerCheck" class="form-check-input chk"  onclick="checkLetter()" th:value="${letter.letterNum}">
-                                <button type="button" class="showinput" onclick="showinput()">답장하기</button>
+                                <p class="letterSender">보낸 사람 : <span>[[${letter.fromId}]]</span> [[${letter.letterDate}]]</p>
+                                <input type="checkbox" name="innerCheck" class="innerCheck form-check-input chk"  onclick="checkLetter()" th:value="${letter.letterNum}">
+                                <p class="letterText">[[${letter.letterContent}]]</p>
+                                <button type="button" class="showinput btn btn-primary" onclick="showinput()">답장</button>
                             </div>
                             <div class="answerLetter">
-                                <form action="/room/sendLetter" method="post" onsubmit="showAlert()">
+                                <form action="/room/sendLetter" method="post" id="sendLetterForm">
                                     <input type="hidden" id="fromId" name="fromId" th:value="${loginInfo.memberId}">
                                     <input type="hidden" id="memberId" name="memberId" th:value="${letter.fromId}">
                                     <textarea id="letterContet" name="letterContent"></textarea>
-                                    <input type="submit" class="btn btn-primary sendAnswer" value="쪽지 보내기"></input>
+                                    <input type="button" class="btn btn-primary sendAnswer" value="쪽지 보내기" onclick="showAlert()"></input>
                                 </form>
                             </div>
-                        <hr>
+                            <hr>
                     </th:block>
                 </div>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
-              <button type="button" class="btn btn-primary" onclick="deleteletter()">선택 삭제</button>
+                <div class="letterBtn">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
+                  <button type="button" class="btn btn-primary" onclick="deleteletter()">선택 삭제</button>
+                </div>
             </div>
           </div>
         </div>
@@ -177,25 +317,24 @@
                         </div>
                     </div>
 
-                    <form action="/room/insertWork" method="post">
+                    <form action="/room/insertWork" method="post" id="todoListForm">
 
-                        <label class="titleLabel">
-                            <input type="text" name="workTitle" class="workTitle" required/>
-                            <div class="label-text">과제명</div>
-                        </label>
-
-                        <div class="input-field">
-                            <textarea name="workContent" rows="6" cols="50" required></textarea>
-                            <label>과제내용</label>
+                        <div class="input-group mt-2 mb-3">
+                            <span class="input-group-text titleLabel">과제명</span>
+                            <input type="text" name="workTitle" class="workTitle" required>
                         </div>
 
-                        <div class="input-group mb-5">
+                        <div class="input-field">
+                            <textarea name="workContent" rows="6" cols="30" placeholder="과제내용" required></textarea>
+                        </div>
+
+                        <div class="input-group mt-2 mb-4">
                             <span class="input-group-text dateLabel">마감일자</span>
                             <input type="text" name="deadLine" class="deadLine" placeholder="ex. 2023-00-00"  required>
                         </div>
 
                         <div class="col d-md-flex justify-content-center col">
-                            <button class="btn btn-primary" type="submit" id="button-addon2">등록</button>
+                            <button class="workBtn btn btn-secondary" type="button" id="button-addon2" onclick="todoListAlert()">등록</button>
                         </div>
                     </form>
                 </div>
@@ -204,10 +343,16 @@
     </div>
     
     <!-- 풀 캘린더 -->
+
+</th:block>
+
+<th:block layout:fragment="content_js">
     <link href="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.0/main.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.0/main.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="/js/room.js"></script>
+    <script type="text/javascript" src="/js/board/board.js"></script>
+    <script src="/js/board/qna_board.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </th:block>
 </body>
 </html>

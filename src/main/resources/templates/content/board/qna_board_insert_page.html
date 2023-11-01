@@ -6,15 +6,17 @@
 <head>
 <meta charset="UTF-8">
 <title></title>
+<th:block layout:fragment="content_css">
+    <link rel="stylesheet" href="/css/board.css">
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
+</th:block>
+
 </head>
 <body>
 <th:block layout:fragment="content">
-    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="/css/board.css">
 
-    <link rel="stylesheet" href="/css/board.css">
     <div class="boardBox">
-        <h3 class="headTitle">질문 글 작성</h3>
+        <span class="headTitle">질문 글 작성</span>
 
         <form action="/board/qnaBoardInsert" method="post" enctype="multipart/form-data">
 
@@ -40,7 +42,9 @@
 
         </form>
     </div>
+</th:block>
 
+<th:block layout:fragment="content_js">
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
     <script src="/js/summernote/lang/summernote-ko-KR.js"></script>
