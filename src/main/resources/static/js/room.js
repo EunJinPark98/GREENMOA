@@ -348,8 +348,8 @@ function submitAnswer(event) {
 
 
 ///////////////// 소켓통신 /////////////////////////////////////
-//var socket = new WebSocket('ws://192.168.30.55:8081/chat');
-var socket = new WebSocket('ws://localhost:8081/chat');
+var socket = new WebSocket('ws://192.168.30.55:8081/chat');
+//var socket = new WebSocket('ws://localhost:8081/chat');
 
 //로그인 한 정보 태그
 var idElement = document.getElementById('memId'); 
