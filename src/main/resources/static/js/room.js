@@ -69,12 +69,10 @@ function closeLetterBox() {
 // 답장 얼럿 창
 function showAlert() {
     let sendLetterForm = document.getElementById("sendLetterForm");
-    let letterContent = document.getElementById("letterContent").value;
     Swal.fire({
         title: "답장 보내기 완료",
         icon: 'success'
     }).then(() => {
-        sendLetterForm.elements["letterContent"].value = letterContent;
         sendLetterForm.submit();
     });
 }
@@ -106,24 +104,6 @@ function todoListAlert() {
         todoListForm.submit();
     });
 }
-
-// 과제버튼 삭제 클릭시 workList delete
-function deleteWork(workNum){
-    Swal.fire({
-        title: "정말 삭제하시겠습니까?",
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#9c8277',
-        cancelButtonColor: '#767f87',
-        confirmButtonText: '삭제',
-        cancelButtonText: '취소',
-        zindex: 5000,
-    }).then((result) => {
-        if (result.isConfirmed) {
-            location.href = `/room/deleteWork?workNum=${workNum}`;
-        }
-    });
-};
 
 
 
@@ -331,18 +311,41 @@ function showinput() {
         answerLetterDiv.style.display = 'none';
     }
 }
-// 답장 보내기
-function submitAnswer(event) {
+// 답장 얼럿 창
+function showAlert() {
+    let sendLetterForm = document.getElementById("sendLetterForm");
     Swal.fire({
         title: "답장 보내기 완료",
         icon: 'success'
     }).then(() => {
-
-        let button = event.target;
-        let form = button.closest(".answerLetterForm"); 
-        form.submit(); // 폼 제출
+        sendLetterForm.submit();
     });
 }
+
+// // 투두리스트 핀 움직이기
+// const todoList = document.querySelector('.todoList');
+// const pin = document.querySelector('.pin');
+
+// todoList.addEventListener('mouseenter', () => {
+//     pin.style.marginTop = '-5px';
+//     pin.style.marginLeft = '5px';
+// });
+
+// todoList.addEventListener('mouseleave', () => {
+//     pin.style.marginTop = '5px';
+//     pin.style.marginLeft = '10px';
+// });
+// // 캘린더 색연필 움직이기
+// const adminCalendar = document.querySelector('.adminCalendar');
+// const colorPen = document.querySelector('.colorPen');
+
+// adminCalendar.addEventListener('mouseenter', () => {
+//     colorPen.style.top = '2%'; // 원하는 높이로 이동
+// });
+
+// adminCalendar.addEventListener('mouseleave', () => {
+//     colorPen.style.top = '8%'; // 다시 초기 높이로 이동
+// });
 
 
 
@@ -395,8 +398,8 @@ if(idElement){ //로그인 했을 경우
 
 
     const movingElement = document.querySelector('#my-minime-'+ myId);
-
-    // 나의 미니미 클릭
+    if(movingElement != null){
+           // 나의 미니미 클릭
     movingElement.addEventListener('click', () => {
         movingElement.classList.add('active');
             let connectTag = document.getElementById('memId');
@@ -440,6 +443,9 @@ if(idElement){ //로그인 했을 경우
         movingElement.classList.remove('active');
     }
   });
+    }   
+
+ 
 }
 
 
@@ -616,17 +622,6 @@ function scrollToBottom() {
 
 
 /////////////////////////////////////////////////////////////////////////////////////
-
-
-
-
-
-
-
-
-
-
-
 // 풀캘린더 (main.html)
 var openCalender = document.querySelector('#openCalender');
 openCalender.addEventListener('click', function() {
@@ -650,6 +645,17 @@ openCalender.addEventListener('click', function() {
 
 
 });
+
+
+
+
+
+
+
+
+
+
+
 
 
 
