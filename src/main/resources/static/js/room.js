@@ -78,10 +78,9 @@ function showAlert() {
 }
 
 // 쪽지 보내기 얼럿창 
-function submitLetter(event) {
+function mainLetterAlert(event) {
     let letterBtn = event.target;
-    let letterForm = letterBtn.closest(".letterForm");
-    let memberId = letterBtn.closest("#memberId").value;
+    let letterForm = letterBtn.closest(".letterForm"); 
 
     Swal.fire({
         title: `쪽지 보내기 완료!.`,
