@@ -49,8 +49,8 @@
                     
                 </div>
                 <div class="col-6 d-grid gap-2 d-md-flex justify-content-md-end col" 
-                th:if="${session.loginInfo != null}">
-                    <div th:if="${qnaBoardList.qnaBoardWriter == session.loginInfo.memberId or session.loginInfo.memberRoll == 'ADMIN'}">
+                sec:authorize="isAuthenticated()">
+                    <div th:if="${qnaBoardList.qnaBoardWriter == loginInfo.memberId or loginInfo.memberRoll == 'ADMIN'}">
                         <input type="button" class="updateButton btn btn-primary" value="수정" th:onclick="updateQnaBoard([[${qnaBoardList.qnaBoardNum}]])">
                         <input type="button" class="btn btn-light" value="삭제" th:onclick="deleteQnaBoard([[${qnaBoardList.qnaBoardNum}]])">
                     </div>
@@ -84,8 +84,8 @@
                                 </div>
                                 <div class="col-4 d-grid gap-2 d-md-flex justify-content-md-end col align-self-end">
                                     <div class="small">[[${qnaReply.qnaRegDate}]]</div>
-                                    <input type="button" th:if="${session.loginInfo.memberId == qnaReply.qnaReplyer }" id="qnaReplyNum" name="qnaReplyNum" th:onclick="deleteQnaReply([[${qnaBoardList.qnaBoardNum}]], [[${qnaReply.qnaReplyNum}]])" 
-                                    th:data-reply-num="${qnaReply.qnaReplyNum}" value="삭제" th:disabled="${qnaReply.qnaReplyer != session.loginInfo.memberId}">
+                                    <input type="button" th:if="${loginInfo.memberId == qnaReply.qnaReplyer }" id="qnaReplyNum" name="qnaReplyNum" th:onclick="deleteQnaReply([[${qnaBoardList.qnaBoardNum}]], [[${qnaReply.qnaReplyNum}]])" 
+                                    th:data-reply-num="${qnaReply.qnaReplyNum}" value="삭제" th:disabled="${qnaReply.qnaReplyer != loginInfo.memberId}">
                                 </div>
                             </div>
 

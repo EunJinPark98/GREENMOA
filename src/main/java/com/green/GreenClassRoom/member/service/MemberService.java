@@ -13,12 +13,15 @@ public interface MemberService {
     public boolean checkId(String memberId);
 
     // 로그인
-    public MemberVO login(MemberVO memberVO);
+    public MemberVO selectLoginInfo(String memberId);
 
     // 모든 학생 출력
     public List<MemberVO> selectMemberList();
 
     // 선생님 출력
     public MemberVO selectAdmin();
+
+    //로그인 정보 출력
+    public MemberVO loginInfo(String memberId);
 
 }

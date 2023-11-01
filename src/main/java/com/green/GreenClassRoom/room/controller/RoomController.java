@@ -9,6 +9,8 @@ import com.green.GreenClassRoom.room.vo.LetterVO;
 import com.green.GreenClassRoom.room.vo.WorkVO;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,6 +18,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.security.Principal;
 import java.util.List;
 
 @Controller
@@ -29,13 +32,19 @@ public class RoomController {
 
     //클래스룸
     @GetMapping("/main")
-    public String main(Model model, HttpSession session, MemberVO memberVO, LetterVO letterVO) {
+    public String main(Model model, MemberVO memberVO, LetterVO letterVO, Authentication authentication) {
+
+        if(authentication != null){
+            User user =  (User) authentication.getPrincipal();
+            //로그인 정보를 html로 넘겨주기
+            model.addAttribute("loginInfo", memberService.loginInfo(user.getUsername()));
+        }
+
+
+
 
         model.addAttribute("memberList", memberService.selectMemberList());
         model.addAttribute("teacher", memberService.selectAdmin());
-
-        MemberVO loginInfo = (MemberVO) session.getAttribute("loginInfo");
-        model.addAttribute("loginInfo", loginInfo);
 
         model.addAttribute("workList", workService.selectWorkList());
 
@@ -43,23 +52,27 @@ public class RoomController {
         return "/content/room/main";
     }
 
+
     //마이룸
     @GetMapping("/myRoom")
-    public String myRoom(Model model, HttpSession session, MemberVO memberVO, LetterVO letterVO) {
-        MemberVO loginInfo = (MemberVO) session.getAttribute("loginInfo");
-        String memberId = loginInfo.getMemberId();
+    public String myRoom(Model model, MemberVO memberVO, LetterVO letterVO, Authentication authentication) {
+        //로그인 정보
+        User user = (User)authentication.getPrincipal();
+
+        System.out.println(user.getUsername());
+
+
+
+        String memberId = user.getUsername();
         model.addAttribute("todoList", todoService.selectTodo(memberId));
         MemberVO statusMsg = roomService.selectStatusMsg(memberId);
         model.addAttribute("statusMsg", statusMsg);
         System.out.println("$$$$$$$" + statusMsg);
-        model.addAttribute("loginInfo", loginInfo);
+        model.addAttribute("loginInfo", memberService.loginInfo(user.getUsername()));
 
-        String memberRoll=loginInfo.getMemberRoll();
-        model.addAttribute("memberRoll",memberRoll);
 
         // 쪽지 리스트 출력 기능
-        MemberVO loginInfo1 = (MemberVO) session.getAttribute("loginInfo");
-        String memberId1 = loginInfo1.getMemberId();
+        String memberId1 = user.getUsername();
         model.addAttribute("letterList", roomService.selectLetter(memberId1));
 
         // 쪽지 갯수 출력 기능 추가
@@ -74,9 +87,9 @@ public class RoomController {
 
     //쪽지 보내기 등록
     @PostMapping("/insertLetter")
-    public String insertLetter(LetterVO letterVO, HttpSession session, Model model) {
-        MemberVO loginInfo = (MemberVO) session.getAttribute("loginInfo");
-        letterVO.setFromId(loginInfo.getMemberId());
+    public String insertLetter(LetterVO letterVO, HttpSession session, Model model, Authentication authentication) {
+        User user = (User)authentication.getPrincipal();
+        letterVO.setFromId(user.getUsername());
         System.out.println("테이블함쌓을거야@@@@@@" + letterVO);
 
         roomService.insertLetter(letterVO);
@@ -84,7 +97,7 @@ public class RoomController {
     }
     // 답장 보내기
     @PostMapping("/sendLetter")
-    public String sendLetter(LetterVO letterVO, HttpSession session, Model model) {
+    public String sendLetter(LetterVO letterVO, Model model) {
         roomService.insertLetter(letterVO);
         return "redirect:/room/myRoom";
     }

@@ -4,11 +4,14 @@ import com.green.GreenClassRoom.board.service.QnaBoardService;
 import com.green.GreenClassRoom.board.vo.QnaBookMarkVO;
 import com.green.GreenClassRoom.board.vo.QnaBoardVO;
 import com.green.GreenClassRoom.board.vo.QnaReplyVO;
+import com.green.GreenClassRoom.member.service.MemberService;
 import com.green.GreenClassRoom.member.vo.MemberVO;
 import com.green.GreenClassRoom.util.ConstantVariable;
 import com.green.GreenClassRoom.util.UploadUtil;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,10 +28,13 @@ import java.util.List;
 @RequiredArgsConstructor
 public class QnaBoardController {
     private final QnaBoardService qnaBoardService;
+    private final MemberService memberService;
 
     //질문게시판 페이지
     @RequestMapping("/question")
-    public String qnaBoardList(QnaBoardVO qnaBoardVO, Model model, HttpSession session){
+    public String qnaBoardList(QnaBoardVO qnaBoardVO, Model model, Authentication authentication){
+        User user = (User) authentication.getPrincipal();
+        memberService.selectLoginInfo(user.getUsername());
 
         //페이징 처리
         int totalDataCnt = qnaBoardService.selectQnaBoardCnt();
@@ -52,7 +58,9 @@ public class QnaBoardController {
 
     //질문게시판 글 작성
     @PostMapping("/qnaBoardInsert")
-    public String qnaBoardInsert(QnaBoardVO qnaBoardVO, MultipartFile img, HttpSession session){
+    public String qnaBoardInsert(QnaBoardVO qnaBoardVO, MultipartFile img, Authentication authentication){
+        User user = (User) authentication.getPrincipal();
+
         //이미지 파일 첨부
         QnaBoardVO upLoadInfo = UploadUtil.uploadFile(img);
         //이미지 파일을 첨부시 원본 파일명과 첨부된 파일명 데이터를 가져오는것!
@@ -60,8 +68,7 @@ public class QnaBoardController {
             qnaBoardVO.setOriginFileName(upLoadInfo.getOriginFileName());
             qnaBoardVO.setAttachedFileName(upLoadInfo.getAttachedFileName());
         }
-        MemberVO loginInfo = (MemberVO) session.getAttribute("loginInfo");
-        qnaBoardVO.setQnaBoardWriter(loginInfo.getMemberId());
+        qnaBoardVO.setQnaBoardWriter(user.getUsername());
         qnaBoardService.insert(qnaBoardVO);
         return "redirect:/board/question";
     }
@@ -70,11 +77,11 @@ public class QnaBoardController {
     @GetMapping("/qnaBoardDetail")
     public String qnaBoardDetail(int qnaBoardNum, Model model, QnaReplyVO qnaReplyVO,
                                  @RequestParam(required = false, defaultValue = "false") boolean noCount,
-                                 HttpSession session, QnaBoardVO qnaBoardVO, QnaBookMarkVO qnaBookMarkVO){
+                                 QnaBoardVO qnaBoardVO, QnaBookMarkVO qnaBookMarkVO, Authentication authentication){
+        User user = (User) authentication.getPrincipal();
 
-        MemberVO loginInfo=(MemberVO) session.getAttribute("loginInfo");
-        qnaBoardVO.setQnaBoardWriter(loginInfo.getMemberId());
-        model.addAttribute("loginInfo",loginInfo);
+
+        model.addAttribute("loginInfo",memberService.selectLoginInfo(user.getUsername()));
         model.addAttribute("nowPage", qnaBoardVO.getNowPage());
 
         QnaBoardVO qnaBoard = qnaBoardService.qnaBoardDetail(qnaBoardNum);
@@ -98,7 +105,7 @@ public class QnaBoardController {
 
         //현재 상세보기 하려는 게시글을 내가 북마크로 추가한 게시글인가?
         System.out.println(qnaBookMarkVO + "@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
-        qnaBookMarkVO.setMemberId(loginInfo.getMemberId());
+        qnaBookMarkVO.setMemberId(user.getUsername());
         model.addAttribute("insertBookMark", qnaBoardService.selectInsertBookMark(qnaBookMarkVO));
 
         return "content/board/qna_board_detail";

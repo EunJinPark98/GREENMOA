@@ -20,6 +20,7 @@ public class InterceptorConfig implements WebMvcConfigurer {
 
         //로그인 정보 던지기
         registry.addInterceptor(loginInfoInterceptor)
+                .addPathPatterns("/room/main")
                 .addPathPatterns("/room/myRoom")
                 .addPathPatterns("/board/freeBoardDetail")
                 .addPathPatterns("/board/qnaBoardDetail")

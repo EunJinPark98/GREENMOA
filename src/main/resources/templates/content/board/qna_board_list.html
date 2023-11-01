@@ -68,7 +68,7 @@
                         </tr>
                     </th:block>
                 </table>
-                <th:block th:if="${session.loginInfo != null}">
+                <th:block sec:authorize="isAuthenticated()">
                     <div class="d-grid gap-2 d-md-flex justify-content-md-end col align-self-end">
                         <input type="button" value="글쓰기" class="btn btn-primary" onclick="location.href='/board/qnaBoardUpdatePage';">
                     </div>

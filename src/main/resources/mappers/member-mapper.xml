@@ -47,20 +47,13 @@
     </insert>
 
     <!--로그인 기능 쿼리-->
-    <select id="login" resultMap="member">
+    <select id="selectLoginInfo" resultMap="member">
         SELECT MEMBER_ID
-            , MEMBER_NAME
+            , MEMBER_PW
             , MEMBER_ROLL
-            , MINIME
-            , MEMBER_BIRTHDAY
-            , STATUS_MSG
-            , MINIME
         FROM GREEN_MEMBER
         WHERE MEMBER_ID=#{memberId}
-        AND MEMBER_PW=#{memberPw}
     </select>
-
-
 
     <!--ID 체크-->
     <select id="checkId" resultType="String">
@@ -101,6 +94,21 @@
     <!--상태 메세지 출력-->
     <select id="selectStatusMsg" resultMap="member">
         SELECT STATUS_MSG
+        FROM GREEN_MEMBER
+        WHERE MEMBER_ID = #{memberId}
+    </select>
+
+    <select id="loginInfo" resultMap="member">
+        SELECT MEMBER_ID
+            , MEMBER_NAME
+            , MEMBER_GENDER
+            , MEMBER_TEL
+            , MEMBER_ADDR
+            , ADDR_DETAIL
+            , MEMBER_EMAIL
+            , MINIME
+            , MEMBER_BIRTHDAY
+            , STATUS_MSG
         FROM GREEN_MEMBER
         WHERE MEMBER_ID = #{memberId}
     </select>

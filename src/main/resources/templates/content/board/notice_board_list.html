@@ -61,7 +61,7 @@
                     </tr>
                 </th:block>
             </table>
-            <th:block th:if="${session.loginInfo != null && session.loginInfo.memberRoll == 'ADMIN'}">
+            <th:block sec:authorize="isAuthenticated() and hasRole('ADMIN')">
                 <div class="d-grid gap-2 d-md-flex justify-content-md-end col align-self-end">
                     <input type="button" value="글쓰기" class="btn btn-primary" onclick="location.href='noticeBoardWrite';">
                 </div>

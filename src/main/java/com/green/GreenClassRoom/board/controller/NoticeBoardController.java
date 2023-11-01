@@ -6,6 +6,8 @@ import com.green.GreenClassRoom.board.vo.NoticeBookMarkVO;
 import com.green.GreenClassRoom.member.vo.MemberVO;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -45,17 +47,18 @@ public class NoticeBoardController {
 
     // 글작성
     @PostMapping("/insertNotice")
-    public String insertNotice(NoticeBoardVO noticeBoardVO, HttpSession session){
-        MemberVO loginInfo = (MemberVO)session.getAttribute("loginInfo");
-        noticeBoardVO.setMemberId(loginInfo.getMemberId());
+    public String insertNotice(NoticeBoardVO noticeBoardVO, Authentication authentication){
+        User user = (User) authentication.getPrincipal();
+
+        noticeBoardVO.setMemberId(user.getUsername());
         noticeBoardService.insertNotice(noticeBoardVO);
         return "redirect:/board/notice";
     }
 
     // 상세페이지
     @GetMapping("/noticeBoardDetail")
-    public String noticeBoardDetail(int noticeBoardNum, Model model, NoticeBookMarkVO noticeBookMarkVO, HttpSession session){
-        MemberVO loginInfo = (MemberVO) session.getAttribute("loginInfo");
+    public String noticeBoardDetail(int noticeBoardNum, Model model, NoticeBookMarkVO noticeBookMarkVO, Authentication authentication){
+        User user = (User) authentication.getPrincipal();
 
         noticeBoardService.updateReadCnt(noticeBoardNum);
 
@@ -70,7 +73,7 @@ public class NoticeBoardController {
         System.out.println("이전글 " + prevList + "\n다음글 " + nextList);
 
 
-        noticeBookMarkVO.setMemberId(loginInfo.getMemberId());
+        noticeBookMarkVO.setMemberId(user.getUsername());
         model.addAttribute("insertNoticeBookMark", noticeBoardService.selectInsertNoticeBookMark(noticeBookMarkVO));
 
         return "content/board/notice_board_detail";
