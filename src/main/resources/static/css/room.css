@@ -194,7 +194,18 @@
     background-position: center;
     
 }
-
+/* 미니미 액자 */
+.minimiFrame{
+    background-image: url(/images/Untitled.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 100% auto;
+    width: 150px;
+    height: 200px;
+    position: absolute;
+    top: 6%;
+    left: 19%;
+}
 .adminWork p{
     margin-top: 82px;
     font-size: 18px;
@@ -226,6 +237,10 @@
     position: absolute;
     top: 8%;
     left: 111%;
+}
+.adminCalendar:hover .colorPen{
+    margin-top: -8px;
+    margin-left: 8px;
 }
 /* 일정등록 창 */
 .calendarForm{

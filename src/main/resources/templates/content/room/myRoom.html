@@ -52,6 +52,13 @@
         </div>
         <div th:if="${loginInfo.memberRoll == 'ADMIN'}"></div>
         
+        <!-- 미니미 사진 -->
+        <div th:if="${loginInfo.memberRoll != 'ADMIN'}">
+            <div class="minimiFrame" data-bs-toggle="modal" data-bs-target="#minimi-frame-modal">
+                <div class="minimiFace"></div>
+            </div>
+        </div>
+        <div th:if="${loginInfo.memberRoll == 'ADMIN'}"></div>
 
 
         
