@@ -104,6 +104,24 @@ function todoListAlert() {
     });
 }
 
+// 과제 삭제 얼럿창 
+function deleteWork(workNum){
+    Swal.fire({
+        title: "정말 삭제하시겠습니까?",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#9c8277',
+        cancelButtonColor: '#767f87',
+        confirmButtonText: '삭제',
+        cancelButtonText: '취소',
+    }).then((result) => {
+        if (result.isConfirmed) {
+            location.href = `/room/deleteWork?workNum=${workNum}`;
+        }
+    });
+
+}
+
 
 
 
