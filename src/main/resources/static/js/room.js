@@ -300,7 +300,7 @@ function deleteletter(){
 }
 
 // 답장 input 보이게 하기
-function showinput() {
+function goAnswer(event) {
     var clickedButton = event.target;
     var letterCast = clickedButton.closest('.letterCast');
     var answerLetterDiv = letterCast.nextElementSibling;
@@ -310,41 +310,18 @@ function showinput() {
         answerLetterDiv.style.display = 'none';
     }
 }
-// 답장 얼럿 창
-function showAlert() {
-    let sendLetterForm = document.getElementById("sendLetterForm");
+// 답장 전송
+function submitAnswer(event) {
+    let answerBtn = event.target;
+    var answerLetterForm = answerBtn.closest('.answerLetterForm');
     Swal.fire({
         title: "답장 보내기 완료",
         icon: 'success'
     }).then(() => {
-        sendLetterForm.submit();
+        answerLetterForm.submit();
     });
 }
 
-// // 투두리스트 핀 움직이기
-// const todoList = document.querySelector('.todoList');
-// const pin = document.querySelector('.pin');
-
-// todoList.addEventListener('mouseenter', () => {
-//     pin.style.marginTop = '-5px';
-//     pin.style.marginLeft = '5px';
-// });
-
-// todoList.addEventListener('mouseleave', () => {
-//     pin.style.marginTop = '5px';
-//     pin.style.marginLeft = '10px';
-// });
-// // 캘린더 색연필 움직이기
-// const adminCalendar = document.querySelector('.adminCalendar');
-// const colorPen = document.querySelector('.colorPen');
-
-// adminCalendar.addEventListener('mouseenter', () => {
-//     colorPen.style.top = '2%'; // 원하는 높이로 이동
-// });
-
-// adminCalendar.addEventListener('mouseleave', () => {
-//     colorPen.style.top = '8%'; // 다시 초기 높이로 이동
-// });
 
 
 

@@ -36,7 +36,6 @@
 
 
 
-
         <div class="bookMarkModal" data-bs-toggle="modal" data-bs-target="#bookMark-modal">
             <div class="bookMarkPoint"></div>
             <div class="bookMarkText">bookMark</div>
@@ -233,7 +232,7 @@
                                 <p class="letterSender">보낸 사람 : <span>[[${letter.fromId}]]</span> [[${letter.letterDate}]]</p>
                                 <input type="checkbox" name="innerCheck" class="innerCheck form-check-input chk"  onclick="checkLetter()" th:value="${letter.letterNum}">
                                 <p class="letterText">[[${letter.letterContent}]]</p>
-                                <button type="button" class="showinput btn btn-primary" onclick="showinput()">답장</button>
+                                <button type="button" class="showinput btn btn-primary" onclick="goAnswer(event)">답장</button>
                             </div>
                             <div class="answerLetter">
                                 <form action="/room/sendLetter" method="post" class="answerLetterForm">
