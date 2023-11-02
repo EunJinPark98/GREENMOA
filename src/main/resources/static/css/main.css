@@ -489,6 +489,7 @@ body{
     overflow-y: scroll; 
     border: 2px solid transparent;
     padding-left: 10px;
+    background-color: rgba(255, 255, 255, 0.2);
 }
 #chat-messages::-webkit-scrollbar{
     width: 10px;
