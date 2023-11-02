@@ -10,7 +10,13 @@ function goDelete(boardNum){
     cancelButtonText: '취소',
     }).then((result) => {
     if (result.isConfirmed) {
+        Swal.fire({
+            title: "삭제되었습니다.",
+            icon: 'success'
+        }).then(() => {
+            // 확인을 누르면 페이지 이동
         location.href=`/board/deleteBoard?boardNum=${boardNum}`
+        });
     }
     })
 }
@@ -33,7 +39,13 @@ function deleteReply(boardNum, replyNum){
     cancelButtonText: '취소',
     }).then((result) => {
     if (result.isConfirmed) {
+        Swal.fire({
+            title: "삭제되었습니다.",
+            icon: 'success'
+        }).then(() => {
+            // 확인을 누르면 페이지 이동
         location.href=`/board/deleteReply?replyNum=${replyNum}&boardNum=${boardNum}`;
+        });
     }
     })
 };
@@ -61,7 +73,13 @@ function noticeDelete(noticeBoardNum){
         cancelButtonText: '취소',
         }).then((result) => {
         if (result.isConfirmed) {
+            Swal.fire({
+                title: "삭제되었습니다.",
+                icon: 'success'
+            }).then(() => {
+                // 확인을 누르면 페이지 이동
             location.href=`/board/deleteNotice?noticeBoardNum=${noticeBoardNum}`
+            });
         }
     })
 }
