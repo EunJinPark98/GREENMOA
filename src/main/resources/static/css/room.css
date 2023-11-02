@@ -503,7 +503,7 @@
 .todoInput{
     padding-top: 140px;
 }
-/* .todolist{
+.todolist{
     background-image: url(/images/todolist.png);
     background-position: top;
     background-repeat: no-repeat;
@@ -512,7 +512,7 @@
     height: 753px;
     padding-left: 20px;
     
-} */
+}
 .todoModal{
     background-color: transparent;
     border: none;
