@@ -50,6 +50,12 @@ a:hover{
 td{
     padding: 5px ;
 }
+.table.table-striped.table-hover.align-middle.text-center .boardTitle{
+    color: #9c8277;
+}
+.table.table-striped.table-hover.align-middle.text-center .boardTitle:hover{
+    color: #a3d6cd;
+}
 
 /*  페이징  */
 .me-2 {
@@ -201,27 +207,29 @@ h2#swal2-title.swal2-title{
 }
 
 /* 더보기 버튼 */
+.moreFrame{
+    padding-top: 100px;
+}
 #moreBtn{
     margin-top: 15px;
+    padding: 20px 5px;
     border: none;
     background-color: transparent;
     color: #454545;
 }
-.moreArrow::after{
-    content: "";
-    display: block;
-    position: relative;
+.moreArrow{
+    position: absolute;
+    width: 47px;
+    bottom: 110px;
+    left: 50%;
     background-color: rgba(0, 0, 0, 0.1);
-    width: 50px;
-    left: -55px;
     border-radius: 50px;
-    margin-bottom: 20px;
-    padding: 70px 0 30px 0;
+    padding-top: 30px;
 }
   .moreArrow span {
     position: absolute;
     top: 5px;
-    left: 46.5%;
+    left: 13px;
     animation: arrow 2s infinite;
     width: 20px;
     height: 20px;

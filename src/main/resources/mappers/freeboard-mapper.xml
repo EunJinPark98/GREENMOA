@@ -72,7 +72,7 @@
         , TITLE
         , CONTENT
         , WRITER
-        , TO_CHAR(CREATE_DATE,'YYYY-MM-DD') CREATE_DATE
+        , TO_CHAR(CREATE_DATE,'YYYY-MM-DD | HH24:MI') CREATE_DATE
         , READ_CNT
         FROM FREE_BOARD
         WHERE BOARD_NUM=#{boardNum}
