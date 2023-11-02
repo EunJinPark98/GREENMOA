@@ -202,9 +202,58 @@ h2#swal2-title.swal2-title{
 
 /* 더보기 버튼 */
 #moreBtn{
-    margin-bottom: 10px;
+    margin-top: 15px;
+    border: none;
+    background-color: transparent;
+    color: #454545;
 }
+.moreArrow::after{
+    content: "";
+    display: block;
+    position: relative;
+    background-color: rgba(0, 0, 0, 0.1);
+    width: 50px;
+    left: -55px;
+    border-radius: 50px;
+    margin-bottom: 20px;
+    padding: 70px 0 30px 0;
+}
+  .moreArrow span {
+    position: absolute;
+    top: 5px;
+    left: 46.5%;
+    animation: arrow 2s infinite;
+    width: 20px;
+    height: 20px;
+    border-bottom: 2px solid #fff;
+    border-right: 2px solid #fff;
+    transform: rotate(45deg);
+  }
+  
+  @keyframes arrow
+  {
+  0% {opacity:0}
+  40% {opacity:1}
+  80% {opacity:0}
+  100% {opacity:0}
+  }
+  
+  .moreArrow span:nth-of-type(1) {
+    animation-delay:-1s;
+  }
+  
+  .moreArrow span:nth-of-type(2) {
+    top: 17px;
+    animation-delay:-0.5s;
+  }
+  
+  .moreArrow span:nth-of-type(3){ 
+    top: 30px;
+    animation-delay:0s;
+  }
 
+
+/* 북마크 */
 .bookmark{
     width: 30px;
     height: 45px;

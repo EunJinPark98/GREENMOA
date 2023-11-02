@@ -4,7 +4,7 @@
     layout:decorate="~{fragment/main_layout}">
 <head>
 <meta charset="UTF-8">
-<title></title>
+<title>[[${freeBoardDetail.title}]] : : 자유게시판</title>
 <th:block layout:fragment="content_css">
     <link rel="stylesheet" href="/css/board.css">
 </th:block>
@@ -105,9 +105,16 @@
                       </div>
                     </div>
                   </section>
-                  <th:block th:if="${totalReply} > 3">
-                    <input type="button" id="moreBtn" class="btn btn-primary" value="더 보기" th:if="${totalReply} >= ${limit} " th:onclick="showReplyMore([[${freeBoardDetail.boardNum}]],[[${limit}]])">
-                  </th:block>
+                  <div class="col d-flex justify-content-center">
+                    <th:block th:if="${totalReply} > 3">
+                        <input type="button" id="moreBtn" class="btn btn-primary" value="더보기" th:if="${totalReply} >= ${limit} " th:onclick="showReplyMore([[${freeBoardDetail.boardNum}]],[[${limit}]])">
+                        <div class="moreBtn">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
+                    </th:block>
+                  </div>
             </th:block>
             
             <div>
