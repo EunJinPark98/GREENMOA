@@ -96,20 +96,18 @@
                 </div>
                 </div>
             </tr>
-            <div class="col d-flex justify-content-center">
-                <th:block :if="${qnaReplyLimit} > 3">
-                    <input type="button" id="moreBtn" class="btn btn-primary" value="더보기" th:if="${totalQnaReply} >= ${qnaReplyLimit}" th:onclick="showQnaReplyMore([[${qnaBoardList.qnaBoardNum}]], [[${qnaReplyLimit}]])">
-                </th:block>
-                <th:block th:if="${totalQnaReply} >= ${qnaReplyLimit}">
-                    <div class="moreArrow">
+            <th:block th:if="${qnaReplyLimit} > 3">
+                <div class="moreFrame col d-flex justify-content-center" th:if="${totalQnaReply} >= ${qnaReplyLimit}">
+                    <div class="moreArrow" >
+                        <input type="button" id="moreBtn" class="btn btn-primary" value="더보기" th:onclick="showQnaReplyMore([[${qnaBoardList.qnaBoardNum}]], [[${qnaReplyLimit}]])">
                         <span></span>
                         <span></span>
                         <span></span>
                     </div>
-                </th:block>
-            </div>
+                </div>
+            </th:block>
         </th:block>
-        
+
         <div>
             <form action="/board/insertQnaReply" method="post" id="qnaReplyForm">
                 <div class="col input-group">

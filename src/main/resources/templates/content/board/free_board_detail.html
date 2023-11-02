@@ -105,16 +105,16 @@
                       </div>
                     </div>
                   </section>
-                  <div class="col d-flex justify-content-center">
                     <th:block th:if="${totalReply} > 3">
-                        <input type="button" id="moreBtn" class="btn btn-primary" value="더보기" th:if="${totalReply} >= ${limit} " th:onclick="showReplyMore([[${freeBoardDetail.boardNum}]],[[${limit}]])">
-                        <div class="moreBtn">
-                            <span></span>
-                            <span></span>
-                            <span></span>
+                        <div class="moreFrame col d-flex justify-content-center" th:if="${totalReply} >= ${limit} ">
+                            <div class="moreArrow">
+                                <input type="button" id="moreBtn" class="btn btn-primary" value="더보기"  th:onclick="showReplyMore([[${freeBoardDetail.boardNum}]],[[${limit}]])">
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                            </div>
                         </div>
                     </th:block>
-                  </div>
             </th:block>
             
             <div>

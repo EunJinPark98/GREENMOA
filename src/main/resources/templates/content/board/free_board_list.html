@@ -57,7 +57,7 @@
                 <th:block th:unless="${#lists.size(boardList)==0}">
                     <tr th:each="board, state : ${boardList}" th:onclick="goFreeBoardDetail([[${board.boardNum}]])" style="cursor: pointer;">
                         <td>[[${totalDataCnt - state.index - (10 * (freeBoardVO.nowPage - 1))}]]</td>
-                        <td>[[${board.title}]]</td>
+                        <td class="boardTitle">[[${board.title}]]</td>
                         <td>[[${board.writer}]]</td>
                         <td>[[${board.createDate}]]</td>
                         <td>[[${board.readCnt}]]</td>
