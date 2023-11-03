@@ -73,4 +73,9 @@ public class FreeBoardServiceImpl implements FreeBoardService{
     public FreeBookMarkVO selectInsertFreeBookMark(FreeBookMarkVO freeBookMarkVO) {
         return sqlSession.selectOne("freeBoardMapper.selectInsertFreeBookMark", freeBookMarkVO);
     }
+
+    @Override
+    public int updateFreeReplyCnt(FreeBoardVO freeBoardVO) {
+        return sqlSession.update("freeBoardMapper.updateFreeReplyCnt", freeBoardVO);
+    }
 }

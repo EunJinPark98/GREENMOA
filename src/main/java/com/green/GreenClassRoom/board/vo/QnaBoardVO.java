@@ -14,4 +14,5 @@ public class QnaBoardVO extends QnaPageVO {
     private String searchType;
     private String originFileName;
     private String attachedFileName;
+    private int qnaReplyCnt;
 }

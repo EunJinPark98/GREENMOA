@@ -12,4 +12,5 @@ public class FreeBoardVO extends QnaPageVO{
     private int readCnt;
     private String searchType;
     private String searchValue;
+    private int freeReplyCnt;
 }

@@ -12,6 +12,7 @@
         <result column="QNA_READ_CNT" property="qnaReadCnt"/>
         <result column="ORIGIN_FILE_NAME" property="originFileName"/>
         <result column="ATTACHED_FILE_NAME" property="attachedFileName"/>
+        <result column="QNA_REPLY_CNT" property="qnaReplyCnt"/>
     </resultMap>
     <!--리플-->
     <resultMap id="reply" type="com.green.GreenClassRoom.board.vo.QnaReplyVO">
@@ -69,7 +70,7 @@
                     ELSE TO_CHAR(QNA_CREATE_DATE, 'YYYY-MM-DD')
                 END
             FROM DUAL) QNA_CREATE_DATE
-
+            , QNA_REPLY_CNT
         FROM QNA_BOARD
         <if test='searchText !=null and !searchText.equals("")'>
             WHERE UPPER(${searchType}) LIKE '%'||UPPER(#{searchText})||'%'
@@ -209,6 +210,14 @@
         WHERE QNA_BOARD_NUM = #{qnaBoardNum}
         AND MEMBER_ID = #{memberId}
     </select>
+
+
+    <!--각 게시물의 댓글 갯수 세팅-->
+    <update id="updateQnaReplyCnt">
+        UPDATE QNA_BOARD
+        SET QNA_REPLY_CNT = #{qnaReplyCnt}
+        WHERE QNA_BOARD_NUM = #{qnaBoardNum}
+    </update>
 </mapper>
 
 

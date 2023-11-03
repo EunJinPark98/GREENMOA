@@ -30,10 +30,16 @@ function deleteFile(qnaBoardNum){
         icon: 'question',
         title: '첨부된 파일을 삭제하시겠습니까?',
         showCancelButton: true,
-        confirmButtonText: 'Confirm',
+        confirmButtonText: 'Delete',
     }).then((result) => {
         if (result.isConfirmed) {
-            location.href=`/board/deleteFile?qnaBoardNum=${qnaBoardNum}`;
+            Swal.fire({
+                title: "삭제되었습니다.",
+                icon: 'success'
+            }).then(() => {
+                // 확인을 누르면 페이지 이동
+                location.href=`/board/deleteFile?qnaBoardNum=${qnaBoardNum}`;
+            });
         }
     });
 

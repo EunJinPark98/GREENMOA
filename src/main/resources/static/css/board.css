@@ -272,3 +272,8 @@ h2#swal2-title.swal2-title{
 .note-editable{
     background-color: white;
 }
+
+/* 게시판 댓글 개수 */
+.reply{
+    font-size: 13px;
+}
