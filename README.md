@@ -36,7 +36,8 @@
 마이룸 - 투두리스트, 상태메세지, 쪽지<br>
 게시판 - 공지, 질의, 자유<br>
 
-![image](https://github.com/EunJinPark98/GREENMOA/assets/120006805/d44c95c9-5826-40f1-9cd9-849e456307d0) <br>
+<br>
+<br>
 
 
 ## DB
