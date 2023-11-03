@@ -16,6 +16,9 @@ public interface RoomService {
 //    // 상태 메세지 출력
 //    public String selectStatusMsg(String memberId);
 
+    // 미니미 수정 기능
+    public int updateMinime(MemberVO memberVO);
+
     // 쪽지 보내기 등록
     public void insertLetter(LetterVO letterVO);
 

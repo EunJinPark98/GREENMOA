@@ -90,6 +90,13 @@
         STATUS_MSG=#{statusMsg}
         WHERE MEMBER_ID=#{memberId}
     </update>
+    <!--미니미 수정 -->
+    <update id="updateMinime">
+        UPDATE GREEN_MEMBER
+        SET
+        MINIME=#{minime}
+        WHERE MEMBER_ID=#{memberId}
+    </update>
 
     <!--상태 메세지 출력-->
 <!--    <select id="selectStatusMsg" resultMap="String">-->
