@@ -17,7 +17,8 @@
 <br>
 
 
-![image](https://github.com/EunJinPark98/GREENMOA/assets/120006805/f1b09e79-b1ed-4d5c-964e-1d1c8a8e8ea6) <br>
+![image](https://github.com/EunJinPark98/GREENMOA/assets/120006805/ecc63e98-0e82-4dcc-8ded-a175aad56a5d)
+<br>
 
 박은진😊 : 팀 리더, 프로젝트 기획 및 관리 <br>
 이윤주😊 : 프론트엔드 개발 <br>
@@ -39,7 +40,8 @@
 
 
 ## DB
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/a4ce1f75-52cf-4c37-b201-5580c3acbb3f/241db181-35c9-489f-9bbe-179457d1c716/Untitled.png)
+![image](https://github.com/EunJinPark98/GREENMOA/assets/120006805/10597bdc-c457-4d2c-b96b-11ac3dd4004b)
+
 
 
 <br>
