@@ -39,7 +39,7 @@
 
 
 ## DB
-![image](https://github.com/EunJinPark98/GREENMOA/assets/120006805/f6598453-298c-4957-b656-4b90ac359eef)
+![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/a4ce1f75-52cf-4c37-b201-5580c3acbb3f/241db181-35c9-489f-9bbe-179457d1c716/Untitled.png)
 
 
 <br>
