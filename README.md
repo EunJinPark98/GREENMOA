@@ -7,11 +7,14 @@
 ![image](https://github.com/EunJinPark98/GREENMOA/assets/120006805/f3379b69-85e0-4972-90a2-3f01459ec8f1)
 
 
+
+
+![image](https://github.com/EunJinPark98/GREENMOA/assets/120006805/bdc31f38-77b7-4061-ad49-ea7ef8e928d9)
+
+
 <br>
 <br>
 
-
-싸이월드 + 메타버스 느낌의 학급커뮤니티<br>
 
 <br>
 <br>
