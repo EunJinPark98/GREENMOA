@@ -33,6 +33,7 @@ public interface NoticeBoardService {
     public NoticeBoardVO prevList(int noticeBoardNum);
     public NoticeBoardVO nextList(int noticeBoardNum);
 
+    //내가 선택한 질문 게시글이 북마크가 추가되어 있는지 확인
     public NoticeBookMarkVO selectInsertNoticeBookMark(NoticeBookMarkVO noticeBookMarkVO);
 
 }

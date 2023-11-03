@@ -84,9 +84,15 @@ public class QnaBoardServiceImpl implements QnaBoardService{
         return sqlSession.selectOne("qnaBoardMapper.totalQnaReply", qnaBoardNum);
     }
 
+
     @Override
     public QnaBookMarkVO selectInsertBookMark(QnaBookMarkVO qnaBookMarkVO) {
         return sqlSession.selectOne("qnaBoardMapper.selectInsertBookMark", qnaBookMarkVO);
+    }
+
+    @Override
+    public int updateQnaReplyCnt(QnaBoardVO qnaBoardVO) {
+        return sqlSession.update("qnaBoardMapper.updateQnaReplyCnt", qnaBoardVO);
     }
 
 

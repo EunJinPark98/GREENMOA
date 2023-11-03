@@ -18,7 +18,6 @@
                     <div class="input-group justify-content-md-center">
                         <select name="searchType" class="btn btn-outline-secondary dropdown-toggle" data-bs-toggle="dropdown">
                             <option value="title" class="dropdown-item">제목</option>
-                            <option value="content" class="dropdown-item">내용</option>
                             <option value="writer" class="dropdown-item">작성자</option>
                         </select>
                         <input type="text" name="searchValue" class="form-control">
@@ -57,7 +56,10 @@
                 <th:block th:unless="${#lists.size(boardList)==0}">
                     <tr th:each="board, state : ${boardList}" th:onclick="goFreeBoardDetail([[${board.boardNum}]])" style="cursor: pointer;">
                         <td>[[${totalDataCnt - state.index - (10 * (freeBoardVO.nowPage - 1))}]]</td>
-                        <td>[[${board.title}]]</td>
+                        <td>
+                            [[${board.title}]]
+                            <span class="reply">[<span>[[${board.freeReplyCnt}]]</span>]</span>
+                        </td>
                         <td>[[${board.writer}]]</td>
                         <td>[[${board.createDate}]]</td>
                         <td>[[${board.readCnt}]]</td>

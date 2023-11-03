@@ -41,7 +41,11 @@ public interface FreeBoardService {
     //댓글의 총 개수
     public int totalReply(int boardNum);
 
+    //내가 선택한 질문 게시글이 북마크가 추가되어 있는지 확인
     public FreeBookMarkVO selectInsertFreeBookMark(FreeBookMarkVO freeBookMarkVO);
+
+    //각 게시물의 댓글 수
+    public int updateFreeReplyCnt(FreeBoardVO freeBoardVO);
 
 
 }

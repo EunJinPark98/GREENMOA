@@ -53,4 +53,7 @@ public interface QnaBoardService {
     //내가 선택한 질문 게시글이 북마크가 추가되어 있는지 확인
     public QnaBookMarkVO selectInsertBookMark(QnaBookMarkVO qnaBookMarkVO);
 
+    //각 게시물 댓글 갯수 세팅
+    public int updateQnaReplyCnt(QnaBoardVO qnaBoardVO);
+
 }

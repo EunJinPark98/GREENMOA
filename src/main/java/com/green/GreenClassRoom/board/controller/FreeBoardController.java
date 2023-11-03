@@ -14,6 +14,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -35,6 +36,15 @@ public class FreeBoardController {
         freeBoardVO.setPageInfo();
 
         model.addAttribute("totalDataCnt", totalDataCnt);
+
+        //각각의 게시물의 댓글 갯수를 담은 리스트
+        for (FreeBoardVO freeBoard : boardList){
+            int pk = freeBoard.getBoardNum();
+            int cnt = freeBoardService.totalReply(pk);
+            freeBoardVO.setBoardNum(pk);
+            freeBoardVO.setFreeReplyCnt(cnt);
+            freeBoardService.updateFreeReplyCnt(freeBoardVO);
+        }
 
         return "/content/board/free_board_list";
     }

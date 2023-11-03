@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -46,6 +47,17 @@ public class QnaBoardController {
         model.addAttribute("qnaBoardList", qnaBoardList);
 
         model.addAttribute("totalDataCnt", totalDataCnt);
+
+        //각각의 게시물의 댓글 갯수를 담은 리스트
+        for(QnaBoardVO qnaBoard : qnaBoardList){
+            int pk = qnaBoard.getQnaBoardNum();
+            int cnt = qnaBoardService.totalQnaReply(pk);
+            qnaBoardVO.setQnaBoardNum(pk);
+            qnaBoardVO.setQnaReplyCnt(cnt);
+            qnaBoardService.updateQnaReplyCnt(qnaBoardVO);
+        }
+
+
 
         return "content/board/qna_board_list";
     }
