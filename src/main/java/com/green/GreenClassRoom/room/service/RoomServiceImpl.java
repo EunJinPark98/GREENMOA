@@ -25,6 +25,11 @@ public class RoomServiceImpl implements RoomService{
         return sqlSession.update("memberMapper.updateStatusMsg",memberVO);
     }
 
+    @Override
+    public int updateMinime(MemberVO memberVO) {
+        return sqlSession.update("memberMapper.updateMinime",memberVO);
+    }
+
 //    @Override
 //    public String selectStatusMsg(String memberId) {
 //        return sqlSession.selectOne("memberMapper.selectStatusMsg",memberId);

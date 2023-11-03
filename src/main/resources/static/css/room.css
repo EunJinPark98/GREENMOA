@@ -18,7 +18,9 @@
     box-sizing: border-box;
 }
 
+
 /* 미니미 */
+
 #minime{
     position: absolute;
     right: 37vw;
@@ -102,6 +104,193 @@
 .btnClose:after{
 	transform:rotate(-45deg);
 }
+
+/* 미니미 액자 */
+.minimeFrame{
+    background-image: url(/images/Untitled.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 100% auto;
+    width: 150px;
+    height: 200px;
+    position: absolute;
+    top: 4%;
+    left: 4%;
+    transform-origin: top left; /* 원근 변환의 기준점을 좌상단으로 설정합니다 */
+    transform: perspective(1000px) rotateY(28deg) rotate(-10deg); /* 3D 회전을 통해 입체감을 표현합니다 */
+
+}
+
+/* 내정보 (미니미) */
+
+.minineModalContent{
+    position: relative;
+    background-color: transparent;
+    border: transparent;
+}
+.minimeModal{
+    background-image: url(/images/confirm.png);
+    background-size: 100% auto;
+    background-repeat: no-repeat;
+    background-position: top;
+    width: 543px;
+    height: 388px;
+}
+.minimeInfo{
+    display: flex;
+    justify-content: space-between;
+}
+.minimeleft{
+    margin-top: 50px;
+    margin-left: 30px;
+}
+.minimeRight{
+    margin-top: 90px;
+    margin-right: 78px;
+}
+.minimeFace img{
+    width: 173px;
+    height: 214px;
+}
+.minimeChange{
+    margin-top: 20px;
+    margin-left: 27px;
+}
+#minimeModalCheck{
+    position: absolute;
+    top: 16px;
+    right: 23px;
+}
+/* 미니미 변경을 위한 창 */
+.minimeChangeWindow{
+    background-image: url(/images/confirm.png);
+    background-size: 100% auto;
+    background-repeat: no-repeat;
+    background-position: top;
+    width: 545px;
+    height: 390px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 999;
+    display: none;
+}
+
+
+/* 미니미 선택 효과 */
+.minimeA, .minimeB{
+    position: relative;
+}
+.minimeA img, .minimeB img{
+    width: 180px;
+    height: auto;
+}
+.myRoomMinime_AB{
+    justify-content: space-around;
+}
+
+.minimeA:hover > .mini-star,
+.minimeB:hover > .mini-star {
+    display: block;
+}
+.mini-star{
+    display: none;
+    position: absolute;
+    top: -10px;
+    left: 10px;
+    width: 200px;
+    height: auto;
+    background-color: transparent;
+}
+
+.minimeA_slideList div, .minimeB_slideList div{
+    position: relative;
+}
+.minimeA_slideList img, .minimeB_slideList img{
+    width: 180px;
+    height: auto;
+}
+.mini-check{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 235px;
+    height: 80px;
+    background-image: url(/images/icon_check.png);
+    background-size: 60px auto;
+    background-position: center;
+    background-repeat: no-repeat;
+    z-index: 1000;
+}
+
+/* 슬라이드 버튼 */
+.mini-modal-body{
+    position: relative;
+}
+.prev_btnA, .next_btnA, .prev_btnB, .next_btnB{
+    position: absolute;
+    top: 50%;
+    width: 30px;
+    height: 30px;
+    border-left: 5px solid #FEBC5B;
+    border-bottom: 5px solid #FEBC5B;
+    text-indent: -9999px;
+}
+
+.prev_btnA, .prev_btnB{
+    left: 25px;
+    transform: rotate(45deg);
+}
+
+.next_btnA, .next_btnB{
+    right: 25px;
+    transform: rotate(-135deg);
+}
+
+/* 토끼 */
+.minimeA_slideList{
+    display: none;
+}
+.minimeA_btn{
+    display: none;
+}
+
+/* 여우 */
+.minimeB_slideList{
+    display: none;
+}
+.minimeB_btn{
+    display: none ;
+}
+
+.minimeA_btn, .minimeB_btn{
+    display: none;
+}
+
+
+/* 미니미 선택 */
+.minime_AB{
+    display: flex;
+}
+.minimeA_btn{
+    display: none;
+}
+.minimeB_btn{
+    display: none;
+}
+
+/* 미니미 선택 닫기 */
+.minimeSelectClose{
+    width: 50px;
+    height: 50px;
+    align-items: center;
+    font-size: 34px;
+    padding-left: 16px;
+    position: absolute;
+    top: 0;
+    right: 10px;
+}
+
 
 /* 투두리스트 */
 .todoList{
@@ -200,21 +389,7 @@
     background-position: center;
     
 }
-/* 미니미 액자 */
-.minimiFrame{
-    background-image: url(/images/Untitled.png);
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: 100% auto;
-    width: 150px;
-    height: 200px;
-    position: absolute;
-    top: 4%;
-    left: 4%;
-    transform-origin: top left; /* 원근 변환의 기준점을 좌상단으로 설정합니다 */
-    transform: perspective(1000px) rotateY(28deg) rotate(-10deg); /* 3D 회전을 통해 입체감을 표현합니다 */
 
-}
 .adminWork p{
     margin-top: 82px;
     font-size: 18px;

@@ -122,6 +122,182 @@ function deleteWork(workNum){
 
 }
 
+// 미니미 변경을 위한 창
+function minimeChange() {
+    var minimeChangeWindow = document.querySelector('.minimeChangeWindow');
+    minimeChangeWindow.style.display = 'block';
+}
+//미니미 선택
+
+// 토끼 선택
+$('.minimeA').click(function(){
+    $('.minimeA_slideList').css({
+        display : 'block'
+    });
+    $('.minime_AB').css({
+        display : 'none'
+    });
+    $('.minimeA_btn').css({
+        display : 'flex'
+    })
+   
+})
+
+$('.minimeA_slideList').slick({
+    dots : false,
+    prevArrow : '.prev_btnA',
+    nextArrow : '.next_btnA',
+    slidesToShow : 1,
+    centerMode : true,
+    variableWidth: true
+})
+
+
+
+
+$('.minimeA_1').click(function(){
+    let srcValue = $(this).find('img').attr('src');
+    $('.my-minime img').attr('src', srcValue);
+    $('.myRoomMinimeInfoMinime').val('minimeA_1');
+
+    $('.minimeA_slideList').find('.mini-check').removeClass('mini-check');
+    $(this).find('span').addClass('mini-check');
+});
+$('.minimeA_2').click(function(){
+    let srcValue = $(this).find('img').attr('src');
+    $('.my-minime img').attr('src', srcValue);
+    $('.myRoomMinimeInfoMinime').val('minimeA_2');
+
+    $('.minimeA_slideList').find('.mini-check').removeClass('mini-check');
+    $(this).find('span').addClass('mini-check');
+});
+$('.minimeA_3').click(function(){
+    let srcValue = $(this).find('img').attr('src');
+    $('.my-minime img').attr('src', srcValue);
+    $('.myRoomMinimeInfoMinime').val('minimeA_3');
+
+    $('.minimeA_slideList').find('.mini-check').removeClass('mini-check');
+    $(this).find('span').addClass('mini-check');
+});
+$('.minimeA_4').click(function(){
+    let srcValue = $(this).find('img').attr('src');
+    $('.my-minime img').attr('src', srcValue);
+    $('.myRoomMinimeInfoMinime').val('minimeA_4');
+
+    $('.minimeA_slideList').find('.mini-check').removeClass('mini-check');
+    $(this).find('span').addClass('mini-check');
+});
+
+
+// 여우
+$('.minimeB').click(function(){
+    $('.minimeB_slideList').css({
+        display : 'block'
+    });
+    $('.minime_AB').css({
+        display : 'none'
+    });
+    $('.minimeB_btn').css({
+        display : 'flex'
+    })
+})
+
+$('.minimeB_slideList').slick({
+    dots : false,
+    prevArrow : '.prev_btnB',
+    nextArrow : '.next_btnB',
+    slidesToShow : 1,
+    centerMode : true,
+    variableWidth: true
+})
+
+$('.minimeB_1').click(function(){
+    let srcValue = $(this).find('img').attr('src');
+    $('.my-minime img').attr('src', srcValue);
+    $('.myRoomMinimeInfoMinime').val('minimeB_1');
+
+    $('.minimeB_slideList').find('.mini-check').removeClass('mini-check');
+    $(this).find('span').addClass('mini-check');
+});
+$('.minimeB_2').click(function(){
+    let srcValue = $(this).find('img').attr('src');
+    $('.my-minime img').attr('src', srcValue);
+    $('.myRoomMinimeInfoMinime').val('minimeB_2');
+
+    $('.minimeB_slideList').find('.mini-check').removeClass('mini-check');
+    $(this).find('span').addClass('mini-check');
+});
+$('.minimeB_3').click(function(){
+    let srcValue = $(this).find('img').attr('src');
+    $('.my-minime img').attr('src', srcValue);
+    $('.myRoomMinimeInfoMinime').val('minimeB_3');
+
+    $('.minimeB_slideList').find('.mini-check').removeClass('mini-check');
+    $(this).find('span').addClass('mini-check');
+});
+$('.minimeB_4').click(function(){
+    let srcValue = $(this).find('img').attr('src');
+    $('.my-minime img').attr('src', srcValue);
+    $('.myRoomMinimeInfoMinime').val('minimeB_4');
+
+    $('.minimeB_slideList').find('.mini-check').removeClass('mini-check');
+    $(this).find('span').addClass('mini-check');
+});
+
+
+//미니미 완료 버튼 활성화
+$('.minimeA_slideList').find('div').click(function(){
+    $('.minime-choice').prop('disabled', false);
+})
+$('.minimeB_slideList').find('div').click(function(){
+    $('.minime-choice').prop('disabled', false);
+})
+
+// 미니미선택 완료버튼
+$('.minime-choice').click(function(){
+    $('.minimeA_slideList').css({
+        display : 'none'
+    });
+    $('.minimeB_slideList').css({
+        display : 'none'
+    });
+    $('.minime_AB').css({
+        display : 'flex'
+    });
+    $('.minimeA_btn').css({
+        display : 'none'
+    });
+    $('.minimeB_btn').css({
+        display : 'none'
+    });
+    $('.minime-choice').prop('disabled', true);
+    $('.minimeA_slideList').find('.mini-check').removeClass('mini-check');
+    $('.minimeB_slideList').find('.mini-check').removeClass('mini-check');
+})
+
+function minimeComplet() {
+    // minime 선택 완료 시 수행할 로직 추가
+
+    // .minimeChangeWindow 요소 숨기기
+    document.querySelector('.minimeChangeWindow').style.display = 'none';
+
+    // 새 URL로 이동
+    let minimeValue = document.querySelector('.myRoomMinimeInfoMinime').value;
+    let memberId = document.querySelector('.myRoomMinimeInfoMenberId').value;
+
+    Swal.fire({
+        title: "변경되었습니다.",
+        icon: 'success'
+    }).then(() => {
+        location.href = `/room/updateMinime?minime=${minimeValue}&memberId=${memberId}`;
+    });
+    
+    
+}
+function minimeSelectClose(){
+    document.querySelector('.minimeChangeWindow').style.display = 'none';
+}
+
 
 
 

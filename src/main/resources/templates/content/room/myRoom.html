@@ -6,6 +6,7 @@
 <meta charset="UTF-8">
 <title>마이룸</title>
 <th:block layout:fragment="content_css">
+    <link rel="stylesheet" href="/css/slick.css">
     <link rel="stylesheet" href="/css/room.css">
 </th:block>
 </head>
@@ -57,8 +58,8 @@
         
         <!-- 미니미 사진 -->
         <div sec:authorize="hasRole('USER')">
-            <div class="minimiFrame" data-bs-toggle="modal" data-bs-target="#minimi-frame-modal">
-                <div class="minimiFace"></div>
+            <div class="minimeFrame" data-bs-toggle="modal" data-bs-target="#minime-frame-modal">
+                <div class="minimeFace"></div>
             </div>
         </div>
         <div sec:authorize="hasRole('ADMIN')"></div>
@@ -84,6 +85,88 @@
         </div>
     </div>
 
+    <!-- 내 정보 모달창 -->
+    <div class="modal fade" id="minime-frame-modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="minineModalDialog modal-dialog">
+        <div class="minineModalContent modal-content">
+            <div class="minimeChangeWindow">
+                <div class="minimeSelect">
+<!-- /////////////////// -->
+
+                    <h1 class="mb-2 mt-2 text-center">미니미 선택</h1>
+                    <div class="minimeSelectClose" onclick="minimeSelectClose()">x</div>
+                    <div class="minime_AB myRoomMinime_AB">
+                        <div class="minimeA">
+                            <img class="mini-star" src="/images/icon_star.png" alt="">
+                            <img src="/images/minimeA_1.png" alt="">
+                        </div>
+                        <div class="minimeB">
+                            <img class="mini-star" src="/images/icon_star.png" alt="">
+                            <img src="/images/minimeB_1.png" alt="">
+                        </div>
+                    </div>
+    
+                    <!-- 미니미A 토끼슬라이드 -->
+                    <div class="minimeA_slideList" style="display: none;">
+                        <div class="minimeA_1"><span></span><img src="/images/minimeA_1.png" alt=""></div>
+                        <div class="minimeA_2"><span></span><img src="/images/minimeA_2.png" alt=""></div>
+                        <div class="minimeA_3"><span></span><img src="/images/minimeA_3.png" alt=""></div>
+                        <div class="minimeA_4"><span></span><img src="/images/minimeA_4.png" alt=""></div>
+                    </div>
+                    <div class="minimeA_btn">
+                        <p class="prev_btnA">이전으로</p>
+                        <p class="next_btnA">다음으로</p>
+                    </div>
+                    
+                    <!-- 미니미B 여우슬라이드 -->
+                    <div class="minimeB_slideList" style="display: none;">
+                        <div class="minimeB_1"><span></span><img src="/images/minimeB_1.png" alt=""></div>
+                        <div class="minimeB_2"><span></span><img src="/images/minimeB_2.png" alt=""></div>
+                        <div class="minimeB_3"><span></span><img src="/images/minimeB_3.png" alt=""></div>
+                        <div class="minimeB_4"><span></span><img src="/images/minimeB_4.png" alt=""></div>
+                    </div>
+                    <div class="minimeB_btn">
+                        <p class="prev_btnB">이전으로</p>
+                        <p class="next_btnB">다음으로</p>
+                    </div>
+                    
+                    <div class="row mt-5" style="display: flex; justify-content: center;">
+                        <div class="col-3 d-grid">
+                            <input class="myRoomMinimeInfoMinime" type="hidden" name="minime" value="minimeA_1">
+                            <input class="myRoomMinimeInfoMenberId" type="hidden" name="memberId" th:value="${loginInfo.memberId}">
+                            <button type="button" class="btn btn-primary minime-choice" data-bs-dismiss="modal" disabled onclick="minimeComplet()">완료</button>
+                        </div>
+                    </div>
+                  
+                    
+<!-- ///////////////////////// -->
+                </div>
+            </div>
+            <div class="minimeModal modal-body modal-body">
+                <div class="col offset-md-11">
+                    <button type="button" id="minimeModalCheck" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="minimeInfo">
+                    <div class="minimeleft">
+                        <div class="minimeFace"><img th:src="|/images/${loginInfo.minime}.png|"></div>
+                        <button type="button" class="minimeChange btn btn-primary" onclick="minimeChange()">미니미 변경</button>
+                    </div>
+                    <div class="minimeRight">
+                        <div class="minimeID">아이디 : [[${loginInfo.memberId}]]</div>
+                        <div class="minimeName">이름 : [[${loginInfo.memberName}]]</div>
+                        <div class="minimeBirthday">생일 : [[${loginInfo.memberBirthday}]]</div>
+                        <div class="minimeGender">성별 : [[${loginInfo.memberGender}]]</div>
+                        <div class="minimeTel">전화번호 : [[${loginInfo.memberTel}]]</div>
+                        <div class="minimeAddr">주소 : [[${loginInfo.memberAddr}]]</div>
+                        <div class="minimeaddrDetail">상세주소 : [[${loginInfo.addrDetail}]]</div> 
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+    </div>
     
 
     
@@ -363,12 +446,15 @@
 </th:block>
 
 <th:block layout:fragment="content_js">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="/js/slick.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.0/main.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.0/main.js"></script>
     <script src="/js/room.js"></script>
     <script type="text/javascript" src="/js/board/board.js"></script>
     <script src="/js/board/qna_board.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    
 </th:block>
 </body>
 </html>

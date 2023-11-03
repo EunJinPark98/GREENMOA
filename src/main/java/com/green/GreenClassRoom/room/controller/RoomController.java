@@ -122,11 +122,17 @@ public class RoomController {
     // 상태 메세지 수정 기능
     @GetMapping("/updateStatusMsg")
     public String updateStatusMsg(MemberVO memberVO) {
-        System.out.println("#######ggggggg#" + memberVO);
         roomService.updateStatusMsg(memberVO);
-
         return "redirect:/room/myRoom";
     }
+    // 미니미 수정 기능
+    @GetMapping("/updateMinime")
+    public String updateMinime(MemberVO memberVO) {
+        System.out.println("#######ggggggg#" + memberVO);
+        roomService.updateMinime(memberVO);
+        return "redirect:/room/myRoom";
+    }
+
     // 과제 등록 기능
     @PostMapping("/insertWork")
     public String insertWork(WorkVO workVO) {
