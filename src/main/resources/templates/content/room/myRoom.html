@@ -206,7 +206,7 @@
                         <th:block class="noticeBookMarkList" th:if="${#lists.size(noticeBookMarkList)!=0}">
                             <tr th:each="noticeMark, state : ${noticeBookMarkList}">
                                 <td>[[${#lists.size(noticeBookMarkList)-state.index}]]</td>
-                                <td>[[${noticeMark.noticeBoardVO.noticeBoardTitle}]]</td>
+                                <td th:onclick="goNoticBoardDetail([[${noticeMark.noticeBoardNum}]])">[[${noticeMark.noticeBoardVO.noticeBoardTitle}]]</td>
                                 <td>[[${noticeMark.noticeBoardVO.memberId}]]</td>
                                 <td><span class="bookCheck">
                                     <img class="bookmark myRoomMark" src="/images/bookmark-off.png" alt="" th:if="${noticeMark == null}" th:onclick="checkNoticeBookMark(this, [[${noticeMark.noticeBoardVO.noticeBoardNum}]])">
@@ -245,7 +245,7 @@
                         <th:block class="qnaBookMarkList" th:if="${#lists.size(qnaBookMarkList)!=0}">
                             <tr th:each="qnaBookMark, state : ${qnaBookMarkList}">
                                 <td>[[${#lists.size(qnaBookMarkList)-state.index}]]</td>
-                                <td>[[${qnaBookMark.qnaBoardVO.qnaBoardTitle}]]</td>
+                                <td th:onclick="goQnaBoardDetail([[${qnaBookMark.qnaBoardNum}]])">[[${qnaBookMark.qnaBoardVO.qnaBoardTitle}]]</td>
                                 <td>[[${qnaBookMark.qnaBoardVO.qnaBoardWriter}]]</td>
                                 <td><span class="bookCheck">
                                     <img class="bookmark myRoomMark" src="/images/bookmark-off.png" alt="" th:if="${qnaBookMark == null}" th:onclick="checkBookMark(this, [[${qnaBookMark.qnaBoardVO.qnaBoardNum}]])">
@@ -284,7 +284,7 @@
                         <th:block class="freeBookMarkList" th:if="${#lists.size(freeBookMarkList)!=0}">
                             <tr th:each="freeMark, state : ${freeBookMarkList}">
                                 <td>[[${#lists.size(freeBookMarkList)-state.index}]]</td>
-                                <td>[[${freeMark.freeBoardVO.title}]]</td>
+                                <td th:onclick="goFreeBoardDetail([[${freeMark.boardNum}]])">[[${freeMark.freeBoardVO.title}]]</td>
                                 <td>[[${freeMark.freeBoardVO.writer}]]</td>
                                 <td><span class="bookCheck">
                                     <img class="bookmark myRoomMark" src="/images/bookmark-off.png" alt="" th:if="${freeMark == null}" th:onclick="checkFreeBookMark(this, [[${freeMark.freeBoardVO.boardNum}]])">
