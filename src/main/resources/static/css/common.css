@@ -44,7 +44,7 @@ body{
 
 
 
-#email-error-div{
+#email-error-div, #tel-error-div, #birthday-error-div, #id-error-div{
     color: red;
 }
 
