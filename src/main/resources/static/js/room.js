@@ -874,6 +874,18 @@ function reload(){
     location.reload();
 }
 
+// 북마크 제목 클릭시 해당 페이지 이동
+function goNoticBoardDetail(noticeBoardNum){
+    location.href=`/board/noticeBoardDetail?noticeBoardNum=${noticeBoardNum}`;
+}
+
+function goQnaBoardDetail(qnaBoardNum){
+    location.href=`/board/qnaBoardDetail?qnaBoardNum=${qnaBoardNum}`;
+}
+
+function goFreeBoardDetail(boardNum){
+    location.href=`/board/freeBoardDetail?boardNum=${boardNum}`;
+}
 
 
 
