@@ -476,7 +476,7 @@ body{
 
 .fc .fc-button .fc-icon {
     font-size: 2em;
-    margin-right: 170px;
+    margin-right: 163px;
 }
 .fc-event-title-container{
     background-color: #FEBC5B;
@@ -492,7 +492,9 @@ body{
 .fc-event-main-frame{
     border-color: #FEBC5B;
 }
-
+.fc-icon-chevron-left{
+    margin-right: 50px;
+}
 
 /* 채팅 */
 #chat{
