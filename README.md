@@ -4,9 +4,15 @@
 그린아카데미 팀 프로젝트 4조
 학급커뮤니티 "GREEN MOA"
 
+https://chocolate-candy-d12.notion.site/GREEN-MOA-6f38ea7751fb4dbebf8b5058bef14e99
+
+
+
 ![image](https://github.com/EunJinPark98/GREENMOA/assets/120006805/f3379b69-85e0-4972-90a2-3f01459ec8f1)
 
 
+<br>
+<br>
 
 
 ![image](https://github.com/EunJinPark98/GREENMOA/assets/120006805/bdc31f38-77b7-4061-ad49-ea7ef8e928d9)
@@ -23,10 +29,10 @@
 ![image](https://github.com/EunJinPark98/GREENMOA/assets/120006805/ecc63e98-0e82-4dcc-8ded-a175aad56a5d)
 <br>
 
-박은진😊 : 팀 리더, 프로젝트 기획 및 관리 <br>
-이윤주😊 : 프론트엔드 개발 <br>
-신협진😊 : 백엔드 개발 <br>
-김진우😊 : 백엔드 개발 <br>
+박은진 : 팀 리더, 프로젝트 기획 및 관리 <br>
+이윤주 : 프론트엔드 개발 <br>
+신협진 : 백엔드 개발 <br>
+김진우 : 백엔드 개발 <br>
 
 <br>
 <br>
