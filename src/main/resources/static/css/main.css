@@ -294,6 +294,7 @@ body{
     z-index: 1;
     top: 20px;
     height: 95px;
+    padding-left: 20px;
 }
 #workModalLabel:after{
     content: "";
@@ -313,6 +314,7 @@ body{
     margin: 0;
     margin-top: -30px;
     margin-left: -20px;
+    padding: 20px;
 }
 .work-frame .modal-header {
     border-bottom: none;
@@ -504,22 +506,32 @@ body{
     overflow-y: scroll; 
     border: 2px solid transparent;
     padding-left: 10px;
-    background-color: rgba(255, 255, 255, 0.2);
+    transition: all 0.2s ease;
 }
+/* 채팅 스크롤바 */
 #chat-messages::-webkit-scrollbar{
     width: 10px;
 }
-#chat-messages::-webkit-scrollbar-thumb{
+#chat-messages:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+#chat-messages::-webkit-scrollbar-thumb {
+    border: 0;
+}
+
+#chat-messages:hover::-webkit-scrollbar-thumb{
     background-color: #9c8277;
     border-radius: 10px;
+    border: 1px solid transparent;
+    background-clip: padding-box;
 }
-#chat-messages::-webkit-scrollbar-track{
+#chat-messages:hover::-webkit-scrollbar-track {
     background-color: rgba(255, 255, 255, 0.3);
     border-radius: 10px;
 }
-#chat-messages:hover{
-    border: 2px solid #DEE2E6;
-}
+/* 채팅 스크롤바 끝 */
+
 .chatting-fr{
     position: absolute;
     bottom: 0;
