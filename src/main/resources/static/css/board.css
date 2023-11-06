@@ -111,6 +111,15 @@ td{
     color: #6e6e6e; 
     white-space: pre-line;
     margin-bottom: 0;
+    background-color: rgba(255, 255, 255, 0.3);
+    border-radius: 15px;
+    padding: 20px;
+}
+
+/* 공지사항 */
+.noticeWriter{
+    font-size: 16px; 
+    color: rgb(104, 104, 104);
 }
 
 
