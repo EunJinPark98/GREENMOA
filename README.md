@@ -4,7 +4,8 @@
 그린아카데미 팀 프로젝트 4조
 학급커뮤니티 "GREEN MOA"
 
-https://chocolate-candy-d12.notion.site/GREEN-MOA-6f38ea7751fb4dbebf8b5058bef14e99
+
+https://eunjin-park.notion.site/GREEN-MOA-1bf4f3c360d34e57af6f3a2c796e0664?pvs=4
 
 
 
