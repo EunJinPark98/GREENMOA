@@ -24,7 +24,7 @@
 <br>
 <br>
 
-## 노션 
+## 📝 소개
 https://eunjin-park.notion.site/GREEN-MOA-1bf4f3c360d34e57af6f3a2c796e0664?pvs=4
 
 <br>
@@ -44,12 +44,12 @@ https://eunjin-park.notion.site/GREEN-MOA-1bf4f3c360d34e57af6f3a2c796e0664?pvs=4
 <br>
 
 
-## 💭구현할 기능
+## 💭 기능
 
 로그인/회원가입<br>
 클래스룸 - 무빙, 채팅, 쪽지, 일정관리, 과제<br>
-마이룸 - 투두리스트, 상태메세지, 쪽지<br>
-게시판 - 공지, 질의, 자유<br>
+마이룸 - 투두리스트, 상태메세지, 쪽지, 북마크<br>
+게시판 - 공지사항, 질문게시판, 자유게시판<br>
 
 <br>
 <br>
