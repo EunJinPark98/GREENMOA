@@ -1,13 +1,12 @@
 <div align=center>
   
-# 🏫GREEN MOA🏫
-## 학급커뮤니티 "GREEN MOA"
+# GREEN MOA
+## 편안하게 소통할 수 있는 메타버스 공간의 학급 커뮤니티
 
 <br>
 <br>
 
-## 노션 
-https://eunjin-park.notion.site/GREEN-MOA-1bf4f3c360d34e57af6f3a2c796e0664?pvs=4
+
 
 
 
@@ -25,10 +24,13 @@ https://eunjin-park.notion.site/GREEN-MOA-1bf4f3c360d34e57af6f3a2c796e0664?pvs=4
 <br>
 <br>
 
+## 노션 
+https://eunjin-park.notion.site/GREEN-MOA-1bf4f3c360d34e57af6f3a2c796e0664?pvs=4
 
 <br>
 <br>
 
+## 팀 소개
 
 ![image](https://github.com/EunJinPark98/GREENMOA/assets/120006805/ecc63e98-0e82-4dcc-8ded-a175aad56a5d)
 <br>
