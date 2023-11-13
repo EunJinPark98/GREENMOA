@@ -24,7 +24,7 @@
 <br>
 <br>
 
-## 📝 소개
+## 📝 프로젝트 소개
 https://eunjin-park.notion.site/GREEN-MOA-1bf4f3c360d34e57af6f3a2c796e0664?pvs=4
 
 <br>
