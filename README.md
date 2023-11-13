@@ -1,7 +1,6 @@
 <div align=center>
   
 # 🏫GREEN MOA🏫
-## 그린아카데미 팀 프로젝트 4조
 ## 학급커뮤니티 "GREEN MOA"
 
 <br>
