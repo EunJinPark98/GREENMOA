@@ -1,10 +1,13 @@
 <div align=center>
   
 # 🏫GREEN MOA🏫
-그린아카데미 팀 프로젝트 4조
-학급커뮤니티 "GREEN MOA"
+## 그린아카데미 팀 프로젝트 4조
+## 학급커뮤니티 "GREEN MOA"
 
-# 노션 
+<br>
+<br>
+
+## 노션 
 https://eunjin-park.notion.site/GREEN-MOA-1bf4f3c360d34e57af6f3a2c796e0664?pvs=4
 
 
