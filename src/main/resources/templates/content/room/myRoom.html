@@ -6,7 +6,6 @@
 <meta charset="UTF-8">
 <title>마이룸</title>
 <th:block layout:fragment="content_css">
-    <link rel="stylesheet" href="/css/slick.css">
     <link rel="stylesheet" href="/css/room.css">
 </th:block>
 </head>
@@ -206,7 +205,7 @@
                         <th:block class="noticeBookMarkList" th:if="${#lists.size(noticeBookMarkList)!=0}">
                             <tr th:each="noticeMark, state : ${noticeBookMarkList}">
                                 <td>[[${#lists.size(noticeBookMarkList)-state.index}]]</td>
-                                <td>[[${noticeMark.noticeBoardVO.noticeBoardTitle}]]</td>
+                                <td th:onclick="goNoticBoardDetail([[${noticeMark.noticeBoardNum}]])">[[${noticeMark.noticeBoardVO.noticeBoardTitle}]]</td>
                                 <td>[[${noticeMark.noticeBoardVO.memberId}]]</td>
                                 <td><span class="bookCheck">
                                     <img class="bookmark myRoomMark" src="/images/bookmark-off.png" alt="" th:if="${noticeMark == null}" th:onclick="checkNoticeBookMark(this, [[${noticeMark.noticeBoardVO.noticeBoardNum}]])">
@@ -245,7 +244,7 @@
                         <th:block class="qnaBookMarkList" th:if="${#lists.size(qnaBookMarkList)!=0}">
                             <tr th:each="qnaBookMark, state : ${qnaBookMarkList}">
                                 <td>[[${#lists.size(qnaBookMarkList)-state.index}]]</td>
-                                <td>[[${qnaBookMark.qnaBoardVO.qnaBoardTitle}]]</td>
+                                <td th:onclick="goQnaBoardDetail([[${qnaBookMark.qnaBoardNum}]])">[[${qnaBookMark.qnaBoardVO.qnaBoardTitle}]]</td>
                                 <td>[[${qnaBookMark.qnaBoardVO.qnaBoardWriter}]]</td>
                                 <td><span class="bookCheck">
                                     <img class="bookmark myRoomMark" src="/images/bookmark-off.png" alt="" th:if="${qnaBookMark == null}" th:onclick="checkBookMark(this, [[${qnaBookMark.qnaBoardVO.qnaBoardNum}]])">
@@ -284,7 +283,7 @@
                         <th:block class="freeBookMarkList" th:if="${#lists.size(freeBookMarkList)!=0}">
                             <tr th:each="freeMark, state : ${freeBookMarkList}">
                                 <td>[[${#lists.size(freeBookMarkList)-state.index}]]</td>
-                                <td>[[${freeMark.freeBoardVO.title}]]</td>
+                                <td th:onclick="goFreeBoardDetail([[${freeMark.boardNum}]])">[[${freeMark.freeBoardVO.title}]]</td>
                                 <td>[[${freeMark.freeBoardVO.writer}]]</td>
                                 <td><span class="bookCheck">
                                     <img class="bookmark myRoomMark" src="/images/bookmark-off.png" alt="" th:if="${freeMark == null}" th:onclick="checkFreeBookMark(this, [[${freeMark.freeBoardVO.boardNum}]])">
@@ -440,16 +439,16 @@
             </div>
         </div>        
     </div>
-    
-    <!-- 풀 캘린더 -->
+
+
 
 </th:block>
 
 <th:block layout:fragment="content_js">
-
     <link href="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.0/main.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.0/main.js"></script>
     <script src="/js/room.js"></script>
+    <script type="text/javascript" src="/js/board/board.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </th:block>
 </body>
