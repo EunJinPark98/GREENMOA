@@ -25,35 +25,24 @@ public class WebSocketChatHandler extends TextWebSocketHandler {
         }
     }
 
-    @Override  //연결
+    @Override  //연결 (세션 관리, 초기 설정)
     public void afterConnectionEstablished(WebSocketSession session) throws Exception {
-        // 세션 관리, 초기 설정
         sessions.put(session.getId(), session);
     }
 
-    @Override  //메시지 전송
+    @Override  //메시지 처리, 다른 클라이언트로 메시지 브로드캐스트
     protected void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {
-        //메시지 처리, 다른 클라이언트로 메시지 브로드캐스트
-
-        //메시지 수신
         String receivedMessage = message.getPayload();
-
-        ObjectMapper objectMapper = new ObjectMapper();
-        Map<String, String> msgMap = objectMapper.readValue(receivedMessage, new TypeReference<Map<String, String>>() {});
-//        System.out.println("정보 : " + msgMap);
-
-
-        // 메시지 브로드캐스트
         broadcastMessage(receivedMessage);
     }
 
-    @Override   //연결 닫힐 때
+    @Override   //연결 닫힘
     public void afterConnectionClosed(WebSocketSession session, CloseStatus status) throws Exception {
       sessions.remove(session.getId());
     }
 
+    // 사용자 정보를 세션에 추가
     public void loginUser(String memberId, WebSocketSession session) {
-        // 사용자 정보를 세션에 추가
         session.getAttributes().put("memberId", memberId);
     }
 }

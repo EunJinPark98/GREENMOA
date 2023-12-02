@@ -521,7 +521,6 @@ function submitAnswer(event) {
 
 
 ///////////////// 소켓통신 /////////////////////////////////////
-//var socket = new WebSocket('ws://192.168.30.55:8081/chat');
 var socket = new WebSocket('ws://192.168.35.187:8081/chat');
 
 //로그인 한 정보 태그
