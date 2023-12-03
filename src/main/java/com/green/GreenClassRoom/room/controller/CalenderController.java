@@ -18,7 +18,6 @@ import java.util.Map;
 @RestController
 @RequiredArgsConstructor
 public class CalenderController {
-
     private final CalenderService calenderService;
 
     //캘린더 조회
@@ -31,20 +30,14 @@ public class CalenderController {
             Map<String, Object> calendarEvent = new HashMap<>();
             calendarEvent.put("title", event.getCalTitle());
             calendarEvent.put("start", event.getCalDate());
-
-            // end 필드가 필요하면 아래와 같이 설정
-            // calendarEvent.put("end", event.getCalEndDate());
-
             calendarEvents.add(calendarEvent);
         }
-
         return ResponseEntity.ok(calendarEvents);
     }
 
     //캘린더 일정 추가
     @PostMapping("/addEvent")
     public ResponseEntity<String> addEvent(@RequestBody CalenderVO calenderVO) {
-
         try {
             calenderService.insertCalender(calenderVO);
             return ResponseEntity.ok("일정이 추가되었습니다.");

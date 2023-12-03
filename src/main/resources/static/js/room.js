@@ -520,10 +520,10 @@ function submitAnswer(event) {
 
 
 
-///////////////// 소켓통신 /////////////////////////////////////
-var socket = new WebSocket('ws://192.168.35.187:8081/chat');
+///////////////// 소켓통신 /////////////////////////////
+var socket = new WebSocket('ws://localhost:8081/chat');
 
-//로그인 한 정보 태그
+//로그인 한 정보를 담은 요소
 var idElement = document.getElementById('memId'); 
 var srcElement = document.getElementById('miniSrc'); 
 
@@ -537,7 +537,6 @@ socket.onopen = function() {
     };
 };
 
-
 socket.onclose = function(event) {
     if(idElement){
         console.log('로그아웃 되었습니다.');
@@ -545,9 +544,9 @@ socket.onclose = function(event) {
             'disConnectId' : idElement.getAttribute('data-id')
         }));
     };
-
     if (event.wasClean) {
-        console.log('연결이 정상적으로 닫힘, 코드=' + event.code + ' 이유=' + event.reason);
+        console.log('연결이 정상적으로 닫힘, 코드='+ event.code +
+                    ' 이유=' + event.reason);
     } else {
         console.error('연결이 끊어짐');
     }
@@ -565,44 +564,33 @@ if(idElement){ //로그인 했을 경우
     var myId = idElement.getAttribute('data-id');
     var minimeSrc = srcElement.getAttribute('data-minime');
 
-
     const movingElement = document.querySelector('#my-minime-'+ myId);
     if(movingElement != null){
-           // 나의 미니미 클릭
-    movingElement.addEventListener('click', () => {
+        // 나의 미니미 클릭
+        movingElement.addEventListener('click', () => {
         movingElement.classList.add('active');
-            let connectTag = document.getElementById('memId');
-    if(connectTag){
-        let connectId = connectTag.getAttribute('data-id');
-        socket.send(JSON.stringify({
-            'connectId' : connectId,
-        }));
-    } 
     });
 
     //  미니미 키보드로 동작
     document.addEventListener('keydown', (event) => {
-    if (movingElement.classList.contains('active')) { //클릭 했을 경우에만 
-        event.preventDefault();
-
-        const style = getComputedStyle(movingElement);
-        let left = parseFloat(style.left) || 0;
-        let top = parseFloat(style.top) || 0;
-    
-        // 이동 범위
-        movingElement.style.left = left + 'px';
-        movingElement.style.top = top + 'px';
+        if (movingElement.classList.contains('active')) { //클릭 했을 경우
+            event.preventDefault();
+            const style = getComputedStyle(movingElement);
+            let left = parseFloat(style.left) || 0;
+            let top = parseFloat(style.top) || 0;
         
-        // 소켓 전달
-        socket.send(JSON.stringify({
-            'moveId' : myId,
-            'left' : left,
-            'top' : top,
-            'eventKey' : event.key,
-            'minimeSrc' : minimeSrc
-        }));
-
-    }
+            // 이동 범위
+            movingElement.style.left = left + 'px';
+            movingElement.style.top = top + 'px';
+            
+            socket.send(JSON.stringify({
+                'moveId' : myId,
+                'left' : left,
+                'top' : top,
+                'eventKey' : event.key,
+                'minimeSrc' : minimeSrc
+            }));
+        }
     });
 
 
@@ -651,67 +639,35 @@ function sendMessage() {
 }
 
 
-// 로그아웃 버튼 누르면 접속 비활성화
-$('.disConnectBtn').click(function(){
-    let idEl = document.getElementById('memId'); 
-    let disConnectId = idEl.getAttribute('data-id');
-    socket.send(JSON.stringify({
-        'disConnectId' : disConnectId,
-    }));
-})
 
-// 접속중 불들어오게
-window.addEventListener('load', function() {
-    let connectTag = document.getElementById('memId');
-    if(connectTag){
-        let connectId = connectTag.getAttribute('data-id');
-        socket.send(JSON.stringify({
-            'connectId' : connectId,
-        }));
-    } 
-});
 
-window.addEventListener('scroll', function() {
-    let connectTag = document.getElementById('memId');
-    if(connectTag){
-        let connectId = connectTag.getAttribute('data-id');
+// 접속
+function onEvent() {
+    if (idElement) {
+        let connectId = idElement.getAttribute('data-id');
         socket.send(JSON.stringify({
-            'connectId' : connectId,
+            'connectId': connectId,
         }));
-    } 
-});
+    }
+}
 
-window.addEventListener('mousemove', function(event) {
-    let connectTag = document.getElementById('memId');
-    if(connectTag){
-        let connectId = connectTag.getAttribute('data-id');
-        socket.send(JSON.stringify({
-            'connectId' : connectId,
-        }));
-    } 
-});
+// 접속중 불 계속 보이도록
+window.addEventListener('load', onEvent);
+window.addEventListener('scroll', onEvent);
+window.addEventListener('mousemove', onEvent);
+window.addEventListener('keydown', onEvent);
 
-window.addEventListener('keydown', function(event) {
-    let connectTag = document.getElementById('memId');
-    if(connectTag){
-        let connectId = connectTag.getAttribute('data-id');
-        socket.send(JSON.stringify({
-            'connectId' : connectId,
-        }));
-    } 
-});
 
 
 // 소켓으로 받은 데이터
 socket.onmessage = function(event) {
     var data = JSON.parse(event.data);
-    
+
     // 접속 활성화
     if(data.connectId){
         let connectId = document.querySelector('#my-minime-'+ data.connectId);
         connectId.querySelector('.connect-state').src = '/images/connectOn.png';
     }
-
     // 접속 비활성화
     if(data.disConnectId){
         let disConnectId = document.querySelector('#my-minime-'+ data.disConnectId);
@@ -727,7 +683,6 @@ socket.onmessage = function(event) {
     // 미니미 이동
     if(data.moveId){
         let moveMini = document.querySelector('#my-minime-'+ data.moveId);
-
         switch (data.eventKey) {
             case 'ArrowUp':
                 if(data.top>400){
@@ -790,11 +745,9 @@ function scrollToBottom() {
 
 
 
-/////////////////////////////////////////////////////////////////////////////////////
 // 풀캘린더 (main.html)
 var openCalender = document.querySelector('#openCalender');
 openCalender.addEventListener('click', function() {
-
     // 캘린더 크기 조정
   $('#calenderModal').on('shown.bs.modal', function() {           
     calendar.updateSize(); 
@@ -811,7 +764,6 @@ openCalender.addEventListener('click', function() {
   });
 
   calendar.render();
-
 
 });
 
