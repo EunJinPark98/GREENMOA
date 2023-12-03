@@ -568,8 +568,8 @@ if(idElement){ //로그인 했을 경우
     if(movingElement != null){
         // 나의 미니미 클릭
         movingElement.addEventListener('click', () => {
-        movingElement.classList.add('active');
-    });
+            movingElement.classList.add('active');
+        });
 
     //  미니미 키보드로 동작
     document.addEventListener('keydown', (event) => {
@@ -593,16 +593,12 @@ if(idElement){ //로그인 했을 경우
         }
     });
 
-
-  //바탕 클릭하면 이제 안움직이게
-  document.addEventListener('mousedown', (event) => {
-    if (movingElement.classList.contains('active') && event.target !== movingElement) {
-        movingElement.classList.remove('active');
-    }
-  });
+    //미니미 밖 클릭하면 이제 안 움직이게
+    document.addEventListener('mousedown', (event) => {
+        if (movingElement.classList.contains('active') && event.target !== movingElement) {
+            movingElement.classList.remove('active');}
+    });
     }   
-
- 
 }
 
 
@@ -625,13 +621,9 @@ function sendMessage() {
 
     if(senderElement){
         var name = senderElement.getAttribute('data-sender');
-        if (name){
-            sender = name;
-        } 
+        if (name){ sender = name; } 
     }
-    if(idElement){
-        id = idElement.getAttribute('data-id');
-    }
+    if(idElement){ id = idElement.getAttribute('data-id');}
         
     socket.send(JSON.stringify({'content': messageInput, 'sender' : sender, 'id' : id}));
 
@@ -659,7 +651,7 @@ window.addEventListener('keydown', onEvent);
 
 
 
-// 소켓으로 받은 데이터
+// 웹소켓으로 받은 데이터
 socket.onmessage = function(event) {
     var data = JSON.parse(event.data);
 
@@ -713,9 +705,6 @@ socket.onmessage = function(event) {
 
 //채팅 띄우기
 function showMessage(message, sender, id) {
-    console.log("보내는사람 : " + sender);
-    console.log("메세지 : " + message);
-    
     var chatMessages = document.getElementById('chat-messages');
     var msg = document.createElement('p');
     msg.appendChild(document.createTextNode(sender + " : " + message));
@@ -729,11 +718,10 @@ function showMessage(message, sender, id) {
         chatBubble.innerHTML = message;
         setTimeout(function() {
             chatBubble.style.display = 'none';
-        }, 1000); // 2초는 2000 밀리초로 표현
+        }, 1000); 
     }
 
 }
-
 
 // 채팅 스크롤바 항상 밑에 있도록
 function scrollToBottom() {
@@ -745,7 +733,7 @@ function scrollToBottom() {
 
 
 
-// 풀캘린더 (main.html)
+// 풀캘린더
 var openCalender = document.querySelector('#openCalender');
 openCalender.addEventListener('click', function() {
     // 캘린더 크기 조정
@@ -764,7 +752,6 @@ openCalender.addEventListener('click', function() {
   });
 
   calendar.render();
-
 });
 
 

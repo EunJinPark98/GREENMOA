@@ -9,6 +9,7 @@
         <result column="DEAD_LINE" property="deadLine"/>
     </resultMap>
 
+    <!--과제 조회-->
     <select id="selectWorkList" resultMap="work">
         SELECT WORK_NUM
             , WORK_TITLE
@@ -17,6 +18,7 @@
         FROM GREEN_WORK
     </select>
 
+    <!--과제 등록-->
     <insert id="insertWork">
         INSERT INTO GREEN_WORK(
             WORK_NUM
@@ -30,9 +32,10 @@
             , #{deadLine}
         )
     </insert>
+
+    <!--과제 삭제-->
     <delete id="deleteWork">
         DELETE GREEN_WORK
         WHERE WORK_NUM =#{workNum}
     </delete>
-
 </mapper>

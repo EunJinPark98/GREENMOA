@@ -36,16 +36,13 @@ public class RoomController {
 
     //클래스룸
     @GetMapping("/main")
-    public String main(Model model, MemberVO memberVO, LetterVO letterVO, Authentication authentication) {
+    public String main(Model model, Authentication authentication) {
 
         if(authentication != null){
             User user =  (User) authentication.getPrincipal();
             //로그인 정보를 html로 넘겨주기
             model.addAttribute("loginInfo", memberService.loginInfo(user.getUsername()));
         }
-
-
-
 
         model.addAttribute("memberList", memberService.selectMemberList());
         model.addAttribute("teacher", memberService.selectAdmin());
@@ -59,13 +56,11 @@ public class RoomController {
 
     //마이룸
     @GetMapping("/myRoom")
-    public String myRoom(Model model, MemberVO memberVO, LetterVO letterVO, Authentication authentication) {
+    public String myRoom(Model model, Authentication authentication) {
         //로그인 정보
         User user = (User)authentication.getPrincipal();
 
         System.out.println(user.getUsername());
-
-
 
         String memberId = user.getUsername();
         model.addAttribute("todoList", todoService.selectTodo(memberId));
@@ -94,18 +89,15 @@ public class RoomController {
 
     //쪽지 보내기 등록
     @PostMapping("/insertLetter")
-    public String insertLetter(LetterVO letterVO, Model model, Authentication authentication) {
+    public String insertLetter(LetterVO letterVO, Authentication authentication) {
         User user = (User)authentication.getPrincipal();
         letterVO.setFromId(user.getUsername());
-        System.out.println("테이블함쌓을거야@@@@@@" + letterVO);
-
         roomService.insertLetter(letterVO);
         return "redirect:/room/main";
     }
     // 답장 보내기
     @PostMapping("/sendLetter")
     public String sendLetter(LetterVO letterVO) {
-        System.out.println(letterVO + "!&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&");
         roomService.insertLetter(letterVO);
         return "redirect:/room/myRoom";
     }
@@ -142,7 +134,7 @@ public class RoomController {
 
     //과제 삭제
     @GetMapping("/deleteWork")
-    public String deleteWork(int workNum, WorkVO workVO){
+    public String deleteWork(int workNum){
         workService.deleteWork(workNum);
         return "redirect:/room/main";
     }

@@ -50,10 +50,6 @@ public class WebSocketChatHandler extends TextWebSocketHandler {
         sessions.remove(session.getId());
     }
 
-    public void loginUser(String memberId, WebSocketSession session) {
-        session.getAttributes().put("memberId", memberId);
-    }
-
     private String getSessionId(WebSocketSession session) {
         return session.getId();
     }

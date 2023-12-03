@@ -45,6 +45,4 @@ public class CalenderController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("오류");
         }
     }
-
-
 }

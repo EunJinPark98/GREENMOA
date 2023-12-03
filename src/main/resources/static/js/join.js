@@ -42,15 +42,6 @@ function joinValidate(){
         return;
     }
 
-   // const formData = new FormData(joinForm);
-   
-    //console.log(formData);
-
-    // let entries = formData.entries();
-    // for (const pair of entries) {
-    //     console.log(pair[0]+ ', ' + pair[1]); 
-    //}
-
     fetch('/member/join', { //요청경로
         method: 'POST',
         cache: 'no-cache',
