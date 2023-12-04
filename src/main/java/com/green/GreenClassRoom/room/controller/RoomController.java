@@ -37,7 +37,6 @@ public class RoomController {
     //클래스룸
     @GetMapping("/main")
     public String main(Model model, Authentication authentication) {
-
         if(authentication != null){
             User user =  (User) authentication.getPrincipal();
             //로그인 정보를 html로 넘겨주기
@@ -49,7 +48,6 @@ public class RoomController {
 
         model.addAttribute("workList", workService.selectWorkList());
 
-
         return "/content/room/main";
     }
 
@@ -59,14 +57,9 @@ public class RoomController {
     public String myRoom(Model model, Authentication authentication) {
         //로그인 정보
         User user = (User)authentication.getPrincipal();
-
-        System.out.println(user.getUsername());
-
         String memberId = user.getUsername();
         model.addAttribute("todoList", todoService.selectTodo(memberId));
-
         model.addAttribute("loginInfo", memberService.loginInfo(user.getUsername()));
-
 
         // 쪽지 리스트 출력 기능
         String memberId1 = user.getUsername();
@@ -82,7 +75,6 @@ public class RoomController {
         model.addAttribute("freeBookMarkList",freeBookMarkService.selectFreeBookMark(memberId));
         model.addAttribute("noticeBookMarkList",noticeBookMarkService.selectNoticeBookMark(memberId));
         model.addAttribute("qnaBookMarkList",qnaBookMarkService.selectBookMark(memberId));
-
 
         return "content/room/myRoom";
     }
@@ -105,7 +97,6 @@ public class RoomController {
     // 쪽지 선택 삭제
     @GetMapping("/deleteLetter")
     public String deleteLetter(@RequestParam(name = "letterNums") List<String> letterNums, LetterVO letterVO) {
-        System.out.println(letterNums);
         letterVO.setLetterNumList(letterNums);
         roomService.deleteLetter(letterVO);
         return "redirect:/room/myRoom";
@@ -120,12 +111,11 @@ public class RoomController {
     // 미니미 수정 기능
     @GetMapping("/updateMinime")
     public String updateMinime(MemberVO memberVO) {
-        System.out.println("#######ggggggg#" + memberVO);
         roomService.updateMinime(memberVO);
         return "redirect:/room/myRoom";
     }
 
-    // 과제 등록 기능
+    // 과제 등록
     @PostMapping("/insertWork")
     public String insertWork(WorkVO workVO) {
         workService.insertWork(workVO);
